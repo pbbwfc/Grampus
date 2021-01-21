@@ -1,0 +1,68 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30804.86
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{80D4FEAC-9E91-40C9-8D49-055C03708B1A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{A0F56ACE-7864-47E2-BF9F-16C44C5F3B9C}"
+	ProjectSection(SolutionItems) = preProject
+		docs\getstrt.md = docs\getstrt.md
+		docs\index.md = docs\index.md
+		docs\intro.md = docs\intro.md
+		docs\repertoire.md = docs\repertoire.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sln", "sln", "{EF0490B0-B4D3-43F2-87C0-B9A8648A7804}"
+	ProjectSection(SolutionItems) = preProject
+		License.txt = License.txt
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{512337AA-FBE4-4A80-A8ED-EF98746D6A0C}"
+EndProject
+Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "FsChessPgn", "src\FsChessPgn\FsChessPgn.fsproj", "{240F4BC3-624A-47B4-8A6B-B979D3F9B937}"
+EndProject
+Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "Grampus.Tests", "tests\Grampus.Tests\Grampus.Tests.fsproj", "{842F649E-17A8-4F15-B0DE-AF090335A23A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "data", "data", "{87032E9A-6D91-417A-9B73-4A8550FE81FE}"
+	ProjectSection(SolutionItems) = preProject
+		tests\data\simple-game.pgn = tests\data\simple-game.pgn
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{240F4BC3-624A-47B4-8A6B-B979D3F9B937}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{240F4BC3-624A-47B4-8A6B-B979D3F9B937}.Debug|Any CPU.Build.0 = Debug|x64
+		{240F4BC3-624A-47B4-8A6B-B979D3F9B937}.Debug|x64.ActiveCfg = Debug|x64
+		{240F4BC3-624A-47B4-8A6B-B979D3F9B937}.Debug|x64.Build.0 = Debug|x64
+		{240F4BC3-624A-47B4-8A6B-B979D3F9B937}.Release|Any CPU.ActiveCfg = Release|x64
+		{240F4BC3-624A-47B4-8A6B-B979D3F9B937}.Release|Any CPU.Build.0 = Release|x64
+		{240F4BC3-624A-47B4-8A6B-B979D3F9B937}.Release|x64.ActiveCfg = Release|x64
+		{240F4BC3-624A-47B4-8A6B-B979D3F9B937}.Release|x64.Build.0 = Release|x64
+		{842F649E-17A8-4F15-B0DE-AF090335A23A}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{842F649E-17A8-4F15-B0DE-AF090335A23A}.Debug|Any CPU.Build.0 = Debug|x64
+		{842F649E-17A8-4F15-B0DE-AF090335A23A}.Debug|x64.ActiveCfg = Debug|x64
+		{842F649E-17A8-4F15-B0DE-AF090335A23A}.Debug|x64.Build.0 = Debug|x64
+		{842F649E-17A8-4F15-B0DE-AF090335A23A}.Release|Any CPU.ActiveCfg = Release|x64
+		{842F649E-17A8-4F15-B0DE-AF090335A23A}.Release|Any CPU.Build.0 = Release|x64
+		{842F649E-17A8-4F15-B0DE-AF090335A23A}.Release|x64.ActiveCfg = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{240F4BC3-624A-47B4-8A6B-B979D3F9B937} = {512337AA-FBE4-4A80-A8ED-EF98746D6A0C}
+		{842F649E-17A8-4F15-B0DE-AF090335A23A} = {80D4FEAC-9E91-40C9-8D49-055C03708B1A}
+		{87032E9A-6D91-417A-9B73-4A8550FE81FE} = {80D4FEAC-9E91-40C9-8D49-055C03708B1A}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A32EC242-14A4-4D0C-A712-506E7514A8A2}
+	EndGlobalSection
+EndGlobal
