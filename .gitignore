@@ -351,3 +351,20 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+Engines/**
+src/FsChess.WinForms/Engines/1/stockfish.cmd
+src/FsChess.WinForms/Engines/1/stockfish_12_win_x64_modern.zip
+src/FsChess.WinForms/Engines/1/stockfish_20090216_x64_modern.exe
+src/FsChess.WinForms/Engines/2/COPYING
+src/FsChess.WinForms/Engines/2/cublas64_100.dll
+src/FsChess.WinForms/Engines/2/CUDA.txt
+src/FsChess.WinForms/Engines/2/cudart64_100.dll
+src/FsChess.WinForms/Engines/2/CUDNN.txt
+src/FsChess.WinForms/Engines/2/cudnn64_7.dll
+src/FsChess.WinForms/Engines/2/lc0-v0.26.3-windows-gpu-nvidia-cudnn.zip
+src/FsChess.WinForms/Engines/2/lc0.exe
+src/FsChess.WinForms/Engines/2/leela.cmd
+src/FsChess.WinForms/Engines/2/LS15-20x256SE-jj-9-75000000.pb.gz
+src/FsChess.WinForms/Engines/2/README.txt
+src/FsChess.WinForms/Engines/2rel/komodo-12.1.1-64bit.exe
+src/FsChess.WinForms/Engines/2rel/komodo.cmd

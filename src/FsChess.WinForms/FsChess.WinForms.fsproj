@@ -1,0 +1,101 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <Platforms>x64</Platforms>
+  </PropertyGroup>
+
+  <PropertyGroup>
+	<SatelliteResourceLanguages>en</SatelliteResourceLanguages>
+  </PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutputPath>D:\GitHub\Grampus\debug\</OutputPath>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutputPath>D:\GitHub\Grampus\rel\</OutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="Engines\2rel\komodo-12.1.1-64bit.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Engines\2rel\komodo.cmd">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Engines\2\cublas64_100.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Engines\2\cudart64_100.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Engines\2\cudnn64_7.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Engines\2\lc0.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Engines\2\leela.cmd">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Engines\2\LS15-20x256SE-jj-9-75000000.pb.gz">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Engines\1\stockfish.cmd">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Engines\1\stockfish_20090216_x64_modern.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <EmbeddedResource Include="Cursors\BlackBishop.cur" />
+    <EmbeddedResource Include="Cursors\BlackKing.cur" />
+    <EmbeddedResource Include="Cursors\BlackKnight.cur" />
+    <EmbeddedResource Include="Cursors\BlackPawn.cur" />
+    <EmbeddedResource Include="Cursors\BlackQueen.cur" />
+    <EmbeddedResource Include="Cursors\BlackRook.cur" />
+    <EmbeddedResource Include="Cursors\WhiteBishop.cur" />
+    <EmbeddedResource Include="Cursors\WhiteKing.cur" />
+    <EmbeddedResource Include="Cursors\WhiteKnight.cur" />
+    <EmbeddedResource Include="Cursors\WhitePawn.cur" />
+    <EmbeddedResource Include="Cursors\WhiteQueen.cur" />
+    <EmbeddedResource Include="Cursors\WhiteRook.cur" />
+    <EmbeddedResource Include="Images\endButton.png" />
+    <EmbeddedResource Include="Images\homeButton.png" />
+    <EmbeddedResource Include="Images\nextButton.png" />
+    <EmbeddedResource Include="Images\nextLineButton.png" />
+    <EmbeddedResource Include="Images\prevButton.png" />
+    <EmbeddedResource Include="Images\Back.jpg" />
+    <EmbeddedResource Include="Images\BlackBishop.png" />
+    <EmbeddedResource Include="Images\BlackKing.png" />
+    <EmbeddedResource Include="Images\BlackKnight.png" />
+    <EmbeddedResource Include="Images\BlackPawn.png" />
+    <EmbeddedResource Include="Images\BlackQueen.png" />
+    <EmbeddedResource Include="Images\BlackRook.png" />
+    <EmbeddedResource Include="Images\down-32-red.png" />
+    <EmbeddedResource Include="Images\down-32-yell.png" />
+    <EmbeddedResource Include="Images\plus-minus-32.png" />
+    <EmbeddedResource Include="Images\prevLineButton.png" />
+    <EmbeddedResource Include="Images\sava.png" />
+    <EmbeddedResource Include="Images\up-32-red.png" />
+    <EmbeddedResource Include="Images\up-32-yell.png" />
+    <EmbeddedResource Include="Images\WhiteBishop.png" />
+    <EmbeddedResource Include="Images\WhiteKing.png" />
+    <EmbeddedResource Include="Images\WhiteKnight.png" />
+    <EmbeddedResource Include="Images\WhitePawn.png" />
+    <EmbeddedResource Include="Images\WhiteQueen.png" />
+    <EmbeddedResource Include="Images\WhiteRook.png" />
+    <Compile Include="TpGames.fs" />
+    <Compile Include="TcGames.fs" />
+    <Compile Include="TcAnl.fs" />
+    <Compile Include="PnlBoard.fs" />
+    <Compile Include="WbStats.fs" />
+    <Compile Include="PnlPgn.fs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FsChessPgn\FsChessPgn.fsproj" />
+  </ItemGroup>
+
+</Project>
