@@ -121,14 +121,17 @@
     <Compile Include="pMove.fs" />
     <Compile Include="MoveTextEntry.fs" />
     <Compile Include="GameUnencoded.fs" />
+    <Compile Include="Index.fs" />
     <Compile Include="MoveUtil.fs" />
     <Compile Include="MoveEncoded.fs" />
     <Compile Include="GameEncoded.fs" />
-    <Compile Include="RegParse.fs" />
     <Compile Include="Games.fs" />
+    <Compile Include="RegParse.fs" />
+    <Compile Include="PgnGames.fs" />
     <Compile Include="PgnWriter.fs" />
     <Compile Include="StaticTree.fs" />
     <Compile Include="Repertoire.fs" />
+    <Compile Include="Grampus.fs" />
     <Compile Include="FsChess.fs" />
     <Compile Include="FsChess.Pgn.fs" />
   </ItemGroup>
@@ -137,6 +140,7 @@
     <PackageReference Include="FSharp.Json" Version="0.4.0" />
     <PackageReference Include="LightningDB" Version="0.13.0" />
     <PackageReference Include="MessagePack" Version="2.2.85" />
+    <PackageReference Include="MessagePack.FSharpExtensions" Version="2.1.0" />
     <PackageReference Include="System.Drawing.Common" Version="5.0.0" />
   </ItemGroup>
 

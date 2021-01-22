@@ -23,3 +23,10 @@ module GameResult =
         |GameResult.BlackWins -> "0-1" 
         |GameResult.Draw -> "½-½" 
         |_ -> "*" 
+
+    let ToInt(result:GameResult) =
+        match result with
+        |GameResult.WhiteWins -> 2
+        |GameResult.BlackWins -> 0 
+        |GameResult.Draw -> 1
+        |_ -> 1

@@ -768,3 +768,18 @@ module GameEncoded =
                          AdditionalInfo = gm.AdditionalInfo
                          MoveText = nmt}
          egm1
+
+    let GetPosnsMoves (ply:int) (gm:EncodedGame) =
+        let revply = if ply= -1 then 999 else ply
+        let rec getnext (imtel:EncodedMoveTextEntry list) (opns:string list) (omvs:string list) =
+            if List.isEmpty imtel || omvs.Length=revply then opns.Tail|>List.rev|>List.toArray,omvs|>List.rev|>List.toArray
+            else
+                let mte = imtel.Head
+                match mte with
+                |EncodedHalfMoveEntry(_,_,mv) ->
+                    let nmvs = mv.San::omvs
+                    let npns = (mv.PostBrd|>Board.ToSimpleStr)::opns
+                    getnext imtel.Tail npns nmvs
+                |_ -> getnext imtel.Tail opns omvs
+        let ibd = if gm.BoardSetup.IsSome then gm.BoardSetup.Value else Board.Start
+        getnext gm.MoveText [ibd|>Board.ToSimpleStr] []

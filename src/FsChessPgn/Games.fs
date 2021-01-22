@@ -1,48 +1,39 @@
-namespace FsChessPgn
+﻿namespace FsChessPgn
 
+open System
 open FsChess
 open System.IO
-open System.Text
+open MessagePack
+open MessagePack.Resolvers
+open MessagePack.FSharp
 
 module Games =
-
-    let ReadFromStream(stream : Stream) = 
-        let sr = new StreamReader(stream)
-        let db = RegParse.AllGamesRdr(sr)
-        db
-
-    let ReadSeqFromFile(file : string) = 
-        let stream = new FileStream(file, FileMode.Open, FileAccess.Read, FileShare.Read)
-        let db = ReadFromStream(stream)
-        db
-
-    let ReadArrayFromFile(file : string) = 
-        let stream = new FileStream(file, FileMode.Open)
-        let result = ReadFromStream(stream) |> Seq.toArray
-        stream.Close()
-        result
-
     
-    let ReadListFromFile(file : string) = 
-        let stream = new FileStream(file, FileMode.Open)
-        let result = ReadFromStream(stream) |> Seq.toList
-        stream.Close()
-        result
+    let resolver =
+        Resolvers.CompositeResolver.Create(FSharpResolver.Instance,StandardResolver.Instance)
+    let options = MessagePackSerializerOptions.Standard.WithResolver(resolver)
 
-    let ReadIndexListFromFile(file : string) = ReadListFromFile(file)|>List.indexed
-
-    let ReadFromString(str : string) = 
-        let byteArray = Encoding.ASCII.GetBytes(str)
-        let stream = new MemoryStream(byteArray)
-        let result = ReadFromStream(stream) |> Seq.toList
-        stream.Close()
-        result
-
-    let ReadOneFromString(str : string) = 
-        let gms = str|>ReadFromString
-        gms.Head
-
-    let Encode gms = 
-        gms|>Seq.toArray|>Array.Parallel.map GameEncoded.Encode
-
+    let LoadGame (fol:string) (ie:IndexEntry) =
+        let fn = Path.Combine(fol,"GAMES")
+        use reader = new BinaryReader(File.Open(fn, FileMode.Open, FileAccess.Read, FileShare.Read))
+        reader.BaseStream.Position <- ie.Offset
+        let bin = reader.ReadBytes(ie.Length)
+        let ro = new ReadOnlyMemory<byte>(bin)
+        let gm = MessagePackSerializer.Deserialize<CompressedGame>(ro,options)
+        gm|>GameEncoded.Expand
     
+    let Save (fol:string) (offset:int64) (gma:seq<CompressedGame>) =
+        Directory.CreateDirectory(fol)|>ignore
+        let fn = Path.Combine(fol,"GAMES")
+        use writer = new BinaryWriter(File.Open(fn, FileMode.OpenOrCreate))
+        writer.Seek(int(offset),SeekOrigin.Begin)|>ignore
+        let svgm i gm =
+            let off = writer.BaseStream.Position
+            let bin = MessagePackSerializer.Serialize<CompressedGame>(gm,options)
+            if i%1000=0 then printf "%i..." i
+            writer.Write(bin)
+            {Offset=off;Length=bin.Length}
+        let iea = gma|>Seq.mapi svgm|>Seq.toArray
+        Index.Save(fol,iea)
+
+        

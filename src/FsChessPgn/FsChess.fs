@@ -8,10 +8,13 @@ module GameDate =
 
 module Result =
 
-    ///Gets the string symbol for a Piece
+    ///Gets the string symbol for a Result
     let ToStr = FsChessPgn.GameResult.ToStr
 
-    ///Gets the string symbol for a Piece
+    ///Gets the integer value (2 for white win, 0 for blackwin, 1 otherwise) for a Result
+    let ToInt = FsChessPgn.GameResult.ToInt
+
+    ///Gets the string symbol for a Result
     let ToUnicode = FsChessPgn.GameResult.ToUnicode
 
 module Square =
@@ -195,6 +198,10 @@ module Game =
     ///Expands a Compressed Game
     let Expand = FsChessPgn.GameEncoded.Expand
 
+    ///Gets the Positions and Sans up to the specified ply
+    let GetPosnsMoves = FsChessPgn.GameEncoded.GetPosnsMoves
+
+
 
 module Repertoire =
     
@@ -244,3 +251,27 @@ module StaticTree =
     
     ///Compavct the tree storage given a folder
     let Compact = FsChessPgn.StaticTree.Compact
+
+module Grampus =
+    
+    ///Load Garmpus File
+    let Load = FsChessPgn.Grampus.Load
+    
+    ///Save Grampus File
+    let Save = FsChessPgn.Grampus.Save
+
+module Index =
+    
+    ///Load Index
+    let Load = FsChessPgn.Index.Load
+
+    ///Save Index
+    let Save = FsChessPgn.Index.Save
+
+module Games =
+    
+    ///Load Game
+    let LoadGame = FsChessPgn.Games.LoadGame
+
+    ///Save Games
+    let Save = FsChessPgn.Games.Save

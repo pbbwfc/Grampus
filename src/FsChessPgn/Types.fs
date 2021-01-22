@@ -482,9 +482,6 @@ module Types =
             AdditionalInfo = Map.empty
             MoveText = []
         }
-
-    
-    
     
     [<MessagePackObject>]
     type IndexEntry =
@@ -493,6 +490,20 @@ module Types =
             Offset:int64
             [<Key(1)>]
             Length:int
+        }
+
+    type GrampusData =
+        {
+            SourcePgn : string
+            HasTree : bool
+            TreePly : int
+        }
+
+    let GrampusDataEMP =
+        {
+            SourcePgn = ""
+            HasTree = false
+            TreePly = 20
         }
     
     type RepOpt =

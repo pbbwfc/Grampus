@@ -1,0 +1,41 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net5.0-windows</TargetFramework>
+		<UseWindowsForms>true</UseWindowsForms>
+		<Platforms>x64</Platforms>
+		<ApplicationIcon>tree.ico</ApplicationIcon>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<SatelliteResourceLanguages>en</SatelliteResourceLanguages>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+	  <OutputPath>D:\GitHub\ScincNet\rel\</OutputPath>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+	  <OutputPath>D:\GitHub\ScincNet\debug\</OutputPath>
+	</PropertyGroup>
+
+	<ItemGroup>
+    <Compile Include="Form.fs" />
+    <Compile Include="Program.fs" />
+  </ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\FsChess.WinForms\FsChess.WinForms.fsproj" />
+	  <ProjectReference Include="..\FsChessPgn\FsChessPgn.fsproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <_DeploymentManifestIconFile Remove="tree.ico" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <EmbeddedResource Include="tree.ico" />
+	</ItemGroup>
+
+</Project>
