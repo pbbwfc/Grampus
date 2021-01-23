@@ -40,7 +40,8 @@ module Form =
         let sts = new WbStats(Dock=DockStyle.Fill)
         let ts = new ToolStrip(LayoutStyle = ToolStripLayoutStyle.HorizontalStackWithOverflow,Dock=DockStyle.Fill)
         let impbtn = new ToolStripButton(Text="Import PGN")
-        let crbtn = new ToolStripButton(Text="Create Tree")
+        let crbtn = new ToolStripButton(Text="Create Trees")
+        let vwbtn = new ToolStripButton(Text="View Trees/Filters")
         let crfbtn = new ToolStripButton(Text="Create Filters")
         let plylbl = new ToolStripLabel(Text = "Select Ply (-1 infinite)")
         let plydd = new ToolStripComboBox(AutoSize = false, Width=40)
@@ -102,7 +103,6 @@ module Form =
                 Grampus.Save(gmpfile,gmp)
                 log("Saved games")
                 this.Enabled <- true
-                
         
         let docreate(e) =
             let totaldict = new System.Collections.Generic.Dictionary<string,MvTrees>()
@@ -364,6 +364,13 @@ module Form =
                 Grampus.Save(gmpfile,gmp)
                 this.Enabled <-true
                     
+        let dovw(e) =
+            let ndlg = new OpenFileDialog(Title="Open Database",Filter="Grampus databases(*.grampus)|*.grampus",InitialDirectory=bfol)
+            if ndlg.ShowDialog() = DialogResult.OK then
+                gmpfile <- ndlg.FileName
+                setbinfol()
+                sts.InitStatic(Path.Combine(Path.GetDirectoryName(gmpfile),Path.GetFileNameWithoutExtension(gmpfile)))
+                sts.Refrsh()
 
         let bgpnl = new Panel(Dock=DockStyle.Fill,BorderStyle=BorderStyle.Fixed3D)
         let btmpnl = new Panel(Dock=DockStyle.Bottom,BorderStyle=BorderStyle.Fixed3D,Height=30)
@@ -392,11 +399,13 @@ module Form =
             ts.Items.Add(new ToolStripSeparator())|>ignore
             ts.Items.Add(plylbl)|>ignore
             ts.Items.Add(plydd)|>ignore
+            ts.Items.Add(vwbtn)|>ignore
             tppnl.Controls.Add(ts)
             this.Controls.Add(tppnl)
             impbtn.Click.Add(doimp)
             crbtn.Click.Add(docreate)
             crfbtn.Click.Add(docreatef)
+            vwbtn.Click.Add(dovw)
             sts.MvSel |> Observable.add domvsel
             
            
