@@ -15,15 +15,15 @@ type private MvTrees = System.Collections.Generic.Dictionary<string,TreeData>
 module Form =
     let img nm =
         let thisExe = System.Reflection.Assembly.GetExecutingAssembly()
-        let file = thisExe.GetManifestResourceStream("TreeUtils.Images." + nm)
+        let file = thisExe.GetManifestResourceStream("BatchUtils." + nm)
         Image.FromStream(file)
     let ico nm =
         let thisExe = System.Reflection.Assembly.GetExecutingAssembly()
-        let file = thisExe.GetManifestResourceStream("TreeUtils." + nm)
+        let file = thisExe.GetManifestResourceStream("BatchUtils." + nm)
         new Icon(file)
 
     type FrmMain() as this =
-        inherit Form(Text = "TreeUtils", Icon = ico "tree.ico", Width=800, Height=700, FormBorderStyle = FormBorderStyle.FixedDialog, MaximizeBox = false, StartPosition = FormStartPosition.CenterScreen)
+        inherit Form(Text = "TreeUtils", Icon = ico "batch.ico", Width=800, Height=700, FormBorderStyle = FormBorderStyle.FixedDialog, MaximizeBox = false, StartPosition = FormStartPosition.CenterScreen)
         let bfol = 
             let pth = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments),"Grampus\\bases")
             Directory.CreateDirectory(pth)|>ignore
@@ -31,12 +31,15 @@ module Form =
 
         let mutable bd = Board.Start
         let mutable gmpfile = Path.Combine(bfol,"Dummy.grampus")
-        let getbinfol() = Path.Combine(Path.GetDirectoryName(gmpfile),Path.GetFileNameWithoutExtension(gmpfile) + "_FILES")
+        let mutable gmp = GrampusDataEMP
+        let mutable binfol = ""
+        let setbinfol() = binfol <- Path.Combine(Path.GetDirectoryName(gmpfile),Path.GetFileNameWithoutExtension(gmpfile) + "_FILES")
         let mutable iea = [||]
         
 
         let sts = new WbStats(Dock=DockStyle.Fill)
         let ts = new ToolStrip(LayoutStyle = ToolStripLayoutStyle.HorizontalStackWithOverflow,Dock=DockStyle.Fill)
+        let impbtn = new ToolStripButton(Text="Import PGN")
         let crbtn = new ToolStripButton(Text="Create Tree")
         let crfbtn = new ToolStripButton(Text="Create Filters")
         let plylbl = new ToolStripLabel(Text = "Select Ply (-1 infinite)")
@@ -57,18 +60,55 @@ module Form =
             logtb.Text <- logtb.Text + nl + msg + " in " + el() + " seconds"
             st <- DateTime.Now
 
-
+        let showfilt(bd) =
+            let bdstr = bd|>Board.ToSimpleStr
+            let filt = Filter.Read(bdstr,binfol)
+            let ln = filt.Length
+            let lim = if ln>20 then 20 else ln
+            let filtstr = 
+                filt.[..lim]
+                |>List.map (fun i -> i.ToString())
+                |>List.reduce(fun a b -> a + "," + b)
+            gmstb.Text <- "Games: " + filtstr 
+        
         let domvsel(mvstr) =
             let mv = mvstr|>Move.FromSan bd
             bd <- bd|>Board.Push mv
             sts.UpdateFen(bd)
+            showfilt(bd)
         
+        let doimp(e) =
+            let ndlg = new OpenFileDialog(Title="Open PGN files",Filter="PGN files(*.pgn)|*.pgn",InitialDirectory=bfol)
+            if ndlg.ShowDialog() = DialogResult.OK then
+                this.Enabled <-false
+                let pgn = ndlg.FileName
+                let nm = Path.GetFileNameWithoutExtension(pgn)
+                gmpfile <- Path.Combine(bfol,nm + ".grampus")
+                setbinfol()
+                lbl.Text <- "Importing games..."
+                Application.DoEvents()
+                st <- DateTime.Now
+                let ugma = Pgn.Games.ReadSeqFromFile pgn
+                log("Imported games")
+                lbl.Text <- "Encoding games..."
+                let egma = ugma|>Seq.map(Game.Encode)
+                log("Encoded games")
+                lbl.Text <- "Compressing game..."
+                let cgma = egma|>Seq.map(Game.Compress)
+                log("Compressed games")
+                lbl.Text <- "Saving games..." 
+                Games.Save binfol 0L cgma
+                gmp <- {GrampusDataEMP with SourcePgn=pgn}
+                Grampus.Save(gmpfile,gmp)
+                log("Saved games")
+                this.Enabled <- true
+                
         
         let docreate(e) =
             let totaldict = new System.Collections.Generic.Dictionary<string,MvTrees>()
             
             let getGmBds i =
-                let gm = Games.LoadGame (getbinfol()) iea.[i]
+                let gm = Games.LoadGame binfol iea.[i]
                 let ply = plydd.SelectedItem|>unbox
                 let posns,mvs = Game.GetPosnsMoves ply gm 
                 let welo = gm.WhiteElo
@@ -193,8 +233,8 @@ module Form =
                 lbl.Text <- "Opening base..."
                 Application.DoEvents()
                 st <- DateTime.Now
-                let gmp = Grampus.Load gmpfile
-                let binfol = getbinfol()
+                gmp <- Grampus.Load gmpfile
+                setbinfol()
                 iea <- Index.Load binfol
                 let numgames = iea.Length
                 totaldict.Clear()
@@ -243,131 +283,31 @@ module Form =
                 log("Loaded View")
                 lbl.Text <- "Ready"
                 Application.DoEvents()
+                gmp <- {gmp with TreesCreated = Some(DateTime.Now); Ply=plydd.SelectedItem|>unbox}
+                Grampus.Save(gmpfile,gmp)
                 this.Enabled <-true
                     
         let docreatef(e) =
-            //TODO
-            let totaldict = new System.Collections.Generic.Dictionary<string,MvTrees>()
+            let totaldict = new System.Collections.Generic.Dictionary<string,int list>()
             
-            let getGmBds i =
-                let gm = Games.LoadGame (getbinfol()) iea.[i]
+            let getBds i =
+                let gm = Games.LoadGame binfol iea.[i]
                 let ply = plydd.SelectedItem|>unbox
-                let posns,mvs = Game.GetPosnsMoves ply gm 
-                let welo = gm.WhiteElo
-                let belo = gm.BlackElo
-                let res = gm.Result|>Result.ToInt
-                //{ "*",  "1-0",  "0-1",  "1/2-1/2" }
-                let yr = gm.Year
-                let gminfo =
-                    {
-                        Gmno = i
-                        Welo = if welo="-" then 0 else int(welo)
-                        Belo = if belo="-" then 0 else int(belo)
-                        Year = if yr.IsSome then yr.Value else 0
-                        Result = res
-                    }
-                gminfo,posns,mvs
+                let posns = Game.GetPosns ply gm 
+                posns
 
             let processGame i =
-                let gminfo,posns,mvs = getGmBds i
+                let posns = getBds i
                 
-                let wtd = 
-                    let perf,ct =
-                        if gminfo.Belo=0 then 0,0
-                        elif gminfo.Result=1 then //draw
-                            gminfo.Belo,1
-                        elif gminfo.Result=2 then //win
-                            (gminfo.Belo + 400),1
-                        else (gminfo.Belo - 400),1
-                    {TotElo = int64(gminfo.Welo);EloCount = (if gminfo.Welo=0 then 0L else 1L);TotPerf = int64(perf);
-                        PerfCount = int64(ct);TotYear = int64(gminfo.Year);YearCount = (if gminfo.Year=0 then 0L else 1L);
-                        TotScore = int64(gminfo.Result); DrawCount = (if gminfo.Result=1 then 1L else 0L); TotCount=1L}
-                let btd = 
-                    let perf,ct =
-                            if gminfo.Welo=0 then 0,0
-                            elif gminfo.Result=1 then //draw
-                                gminfo.Welo,1
-                            elif gminfo.Result=0 then //win
-                                (gminfo.Welo + 400),1
-                            else (gminfo.Welo - 400),1
-                    {TotElo = int64(gminfo.Belo);EloCount = (if gminfo.Belo=0 then 0L else 1L);TotPerf = int64(perf);
-                        PerfCount = int64(ct);TotYear = int64(gminfo.Year);YearCount = (if gminfo.Year=0 then 0L else 1L);
-                        TotScore = int64(gminfo.Result); DrawCount = (if gminfo.Result=1 then 1L else 0L); TotCount=1L}
                 //now need to go through the boarda and put in dictionary holding running totals
                 for j = 0 to posns.Length-1 do
                     let bd = posns.[j]
-                    let mv = mvs.[j]
-                    let isw = bd.EndsWith("w")
                     if totaldict.ContainsKey(bd) then
-                        let mvdct:MvTrees = totaldict.[bd]
-                        if mvdct.ContainsKey(mv) then
-                            let cmt =  mvdct.[mv]
-                            let nmt = if isw then wtd else btd
-                            mvdct.[mv]<-
-                                {TotElo = cmt.TotElo+nmt.TotElo;EloCount = cmt.EloCount+nmt.EloCount;
-                                    TotPerf = cmt.TotPerf+nmt.TotPerf;PerfCount = cmt.PerfCount+nmt.PerfCount;
-                                    TotYear = cmt.TotYear+nmt.TotYear;YearCount = cmt.YearCount+nmt.YearCount;
-                                    TotScore = cmt.TotScore+nmt.TotScore; DrawCount = cmt.DrawCount+nmt.DrawCount; 
-                                    TotCount=cmt.TotCount+nmt.TotCount}
-                        else 
-                            mvdct.[mv]<-if isw then wtd else btd
+                        let gms:int list = totaldict.[bd]
+                        totaldict.[bd]<-(i::gms)
                     else
-                        let mvdct = new MvTrees()
-                        mvdct.[mv]<-if isw then wtd else btd
-                        totaldict.[bd]<-mvdct
+                        totaldict.[bd]<-[i]
 
-            let processPos i (vl:MvTrees) =
-                let sts = new stats();
-                let mvsts = new ResizeArray<mvstats>()
-                let totsts = new totstats()
-                totsts.TotFreq<-1.0
-                for mtr in vl do
-                    let tr = mtr.Value
-                    totsts.TotCount<-totsts.TotCount+tr.TotCount
-
-                let mutable ect = 0L
-                let mutable pct = 0L
-                let mutable yct = 0L
-                for mtr in vl do
-                    let mv = mtr.Key
-                    let tr = mtr.Value
-                    let mvst = new mvstats()
-                    mvst.Count<-tr.TotCount
-                    mvst.Freq<-float(mvst.Count)/float(totsts.TotCount)
-                    mvst.WhiteWins<-(tr.TotScore-tr.DrawCount)/2L
-                    totsts.TotWhiteWins<-totsts.TotWhiteWins+mvst.WhiteWins
-                    mvst.Draws<-tr.DrawCount
-                    totsts.TotDraws<-totsts.TotDraws+mvst.Draws
-                    mvst.BlackWins<-mvst.Count-mvst.WhiteWins-mvst.Draws
-                    totsts.TotBlackWins<-totsts.TotBlackWins+mvst.BlackWins
-                    mvst.Score<-float(tr.TotScore)/float(tr.TotCount*2L)
-                    totsts.TotScore<-totsts.TotScore+float(tr.TotScore)/float(totsts.TotCount*2L)
-                    mvst.DrawPc<-float(tr.DrawCount)/float(tr.TotCount)
-                    totsts.TotDrawPc<-totsts.TotDrawPc+float(tr.DrawCount)/float(totsts.TotCount)
-                    mvst.AvElo<-if tr.EloCount<=10L then 0L else tr.TotElo/tr.EloCount
-                    totsts.TotAvElo<-totsts.TotAvElo+tr.TotElo
-                    ect<-ect+tr.EloCount
-                    mvst.Perf<-if tr.PerfCount<=10L then 0L else tr.TotPerf/tr.PerfCount
-                    totsts.TotPerf<-totsts.TotPerf+tr.TotPerf
-                    pct<-pct+tr.PerfCount
-                    mvst.AvYear<-if tr.YearCount<=0L then 0L else tr.TotYear/tr.YearCount
-                    totsts.TotAvYear<-totsts.TotAvYear+tr.TotYear
-                    yct<-yct+tr.YearCount
-                    mvst.Mvstr<-mv
-                    mvsts.Add(mvst)
-
-                totsts.TotAvElo<-if ect=0L then 0L else totsts.TotAvElo/ect
-                totsts.TotPerf<-if pct=0L then 0L else totsts.TotPerf/pct
-                totsts.TotAvYear<-if yct=0L then 0L else totsts.TotAvYear/yct
-                //need to sort by count
-                mvsts.Sort(fun a b -> int(b.Count-a.Count))
-                sts.MvsStats<-mvsts
-                sts.TotStats<-totsts
-                if i%100=0 then 
-                    prg.Value<-i
-                    Application.DoEvents()
-                sts
-            
             let ndlg = new OpenFileDialog(Title="Open Database",Filter="Grampus databases(*.grampus)|*.grampus",InitialDirectory=bfol)
             if ndlg.ShowDialog() = DialogResult.OK then
                 gmpfile <- ndlg.FileName
@@ -375,8 +315,8 @@ module Form =
                 lbl.Text <- "Opening base..."
                 Application.DoEvents()
                 st <- DateTime.Now
-                let gmp = Grampus.Load gmpfile
-                let binfol = getbinfol()
+                gmp <- Grampus.Load gmpfile
+                setbinfol()
                 iea <- Index.Load binfol
                 let numgames = iea.Length
                 totaldict.Clear()
@@ -397,23 +337,18 @@ module Form =
                 lbl.Text <- "Creating arrays..."
                 Application.DoEvents()
                 let mutable posns = Array.zeroCreate numpos 
-                let mutable mvtrees = Array.zeroCreate numpos
+                let mutable gmls = Array.zeroCreate numpos
                 totaldict.Keys.CopyTo(posns,0)
-                totaldict.Values.CopyTo(mvtrees,0)
+                totaldict.Values.CopyTo(gmls,0)
                 totaldict.Clear()
                 log("Created Arrays")
-                lbl.Text <- "Processing " + numpos.ToString() + " positions..."
-                Application.DoEvents()
-                let stsarr = mvtrees|>Array.mapi processPos
-                prg.Value<-0
-                log("Processed Positions")
                 lbl.Text <- "Creating dictionary..."
                 Application.DoEvents()
-                if posns.Length>100000 then StaticTree.CreateBig(binfol)|>ignore else StaticTree.Create(binfol)|>ignore
+                if posns.Length>100000 then Filter.CreateBig(binfol)|>ignore else Filter.Create(binfol)|>ignore
                 log("Created dictionary")
                 lbl.Text <- "Saving dictionary..."
                 Application.DoEvents()
-                StaticTree.Save(posns,stsarr,binfol)|>ignore
+                Filter.Save(posns,gmls,binfol)|>ignore
                 log("Saved dictionary")
                 lbl.Text <- "Initializing View..."
                 Application.DoEvents()
@@ -425,6 +360,8 @@ module Form =
                 log("Loaded View")
                 lbl.Text <- "Ready"
                 Application.DoEvents()
+                gmp <- {gmp with FiltersCreated = Some(DateTime.Now); Ply=plydd.SelectedItem|>unbox}
+                Grampus.Save(gmpfile,gmp)
                 this.Enabled <-true
                     
 
@@ -445,6 +382,7 @@ module Form =
             this.Controls.Add(gmspnl)
             logpnl.Controls.Add(logtb)
             this.Controls.Add(logpnl)
+            ts.Items.Add(impbtn)|>ignore
             ts.Items.Add(crbtn)|>ignore
             ts.Items.Add(crfbtn)|>ignore
             [|-1;20;30;40;50|]
@@ -456,6 +394,7 @@ module Form =
             ts.Items.Add(plydd)|>ignore
             tppnl.Controls.Add(ts)
             this.Controls.Add(tppnl)
+            impbtn.Click.Add(doimp)
             crbtn.Click.Add(docreate)
             crfbtn.Click.Add(docreatef)
             sts.MvSel |> Observable.add domvsel

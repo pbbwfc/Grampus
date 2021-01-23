@@ -5,63 +5,68 @@ open System.IO
 open FsChess
 open MessagePack
 open LightningDB
+open MessagePack.Resolvers
+open MessagePack.FSharp
 
-module StaticTree =
-
+module Filter =
+    let resolver =
+        Resolvers.CompositeResolver.Create(FSharpResolver.Instance,StandardResolver.Instance)
+    let options = MessagePackSerializerOptions.Standard.WithResolver(resolver)
+    
     let Create(ifol) =
-        let fol = ifol + "\\trees"
+        let fol = ifol + "\\filters"
         Directory.CreateDirectory(fol)|>ignore
         use env = new LightningEnvironment(fol)
         env.MaxDatabases <- 1
         env.MapSize <- 100000000L
         env.Open()
         use tx = env.BeginTransaction()
-        use db = tx.OpenDatabase("Trees",new DatabaseConfiguration(Flags = LightningDB.DatabaseOpenFlags.Create))
+        use db = tx.OpenDatabase("Filters",new DatabaseConfiguration(Flags = LightningDB.DatabaseOpenFlags.Create))
         tx.Commit()
     
     let CreateBig(ifol) =
-        let fol = ifol + "\\trees"
+        let fol = ifol + "\\filters"
         Directory.CreateDirectory(fol)|>ignore
         use env = new LightningEnvironment(fol)
         env.MaxDatabases <- 1
         env.MapSize <- 4000000000L
         env.Open()
         use tx = env.BeginTransaction()
-        use db = tx.OpenDatabase("Trees",new DatabaseConfiguration(Flags = LightningDB.DatabaseOpenFlags.Create))
+        use db = tx.OpenDatabase("Filters",new DatabaseConfiguration(Flags = LightningDB.DatabaseOpenFlags.Create))
         tx.Commit()
     
-    let Save(posns:string[],stss:stats[],ifol:string) =
-         let fol = ifol + "\\trees"
-         use env = new LightningEnvironment(fol)
-         env.MaxDatabases <- 1
-         env.Open()
-         use tx = env.BeginTransaction()
-         use db = tx.OpenDatabase("Trees")
-         for i = 0 to posns.Length-1 do
-             let cd = tx.Put(db,MessagePackSerializer.Serialize<string>(posns.[i]),MessagePackSerializer.Serialize<stats>(stss.[i]))
-             if int(cd)<>0 then 
-                 let curr_limit = float(env.MapSize)
-                 let mult = float(posns.Length/i)*1.1
-                 let new_limit = mult * curr_limit
-                 tx.Abort()
-                 failwith (sprintf "Code: %s" (cd.ToString()))
-
-         tx.Commit()
-
-    let ReadArray(posns:string[],ifol:string) =
-        let fol = ifol + "\\trees"
+    let Save(posns:string[],filts:int list [],ifol:string) =
+        let fol = ifol + "\\filters"
         use env = new LightningEnvironment(fol)
         env.MaxDatabases <- 1
         env.Open()
         use tx = env.BeginTransaction()
-        use db = tx.OpenDatabase("Trees")
+        use db = tx.OpenDatabase("Filters")
+        for i = 0 to posns.Length-1 do
+            let cd = tx.Put(db,MessagePackSerializer.Serialize<string>(posns.[i]),MessagePackSerializer.Serialize<int list>(filts.[i],options))
+            if int(cd)<>0 then 
+                let curr_limit = float(env.MapSize)
+                let mult = float(posns.Length/i)*1.1
+                let new_limit = mult * curr_limit
+                tx.Abort()
+                failwith (sprintf "Code: %s" (cd.ToString()))
+
+        tx.Commit()
+
+    let ReadArray(posns:string[],ifol:string) =
+        let fol = ifol + "\\filters"
+        use env = new LightningEnvironment(fol)
+        env.MaxDatabases <- 1
+        env.Open()
+        use tx = env.BeginTransaction()
+        use db = tx.OpenDatabase("Filters")
         let getv (posn:string) =
             let cd,k,v = tx.Get(db,MessagePackSerializer.Serialize<string>(posn)).ToTuple()
             if int(cd)<>0 then 
                 failwith (sprintf "Code: %s" (cd.ToString()))
             else
                 let ro = new ReadOnlyMemory<byte>(v.CopyToNewArray())
-                MessagePackSerializer.Deserialize<stats>(ro)
+                MessagePackSerializer.Deserialize<int list>(ro,options)
         let vs = posns|>Array.map getv
         let cd = tx.Commit()
         if int(cd)<>0 then 
@@ -69,26 +74,26 @@ module StaticTree =
         else vs
    
     let Read(posn:string,ifol:string) =
-        let fol = ifol + "\\trees"
+        let fol = ifol + "\\filters"
         use env = new LightningEnvironment(fol)
         env.MaxDatabases <- 1
         env.Open()
         use tx = env.BeginTransaction()
-        use db = tx.OpenDatabase("Trees")
+        use db = tx.OpenDatabase("Filters")
         let cd,k,v = tx.Get(db,MessagePackSerializer.Serialize<string>(posn)).ToTuple()
         let sts =
             if int(cd)<>0 then 
                 failwith (sprintf "Code: %s" (cd.ToString()))
             else
                 let ro = new ReadOnlyMemory<byte>(v.CopyToNewArray())
-                MessagePackSerializer.Deserialize<stats>(ro)
+                MessagePackSerializer.Deserialize<int list>(ro,options)
         let cd = tx.Commit()
         if int(cd)<>0 then 
             failwith (sprintf "Final Code: %s" (cd.ToString()))
         else sts
     
     let Compact(ifol:string) =
-        let fol = ifol + "\\trees"
+        let fol = ifol + "\\filters"
         let tmpfol = Path.Combine(fol,"temp")
         Directory.CreateDirectory(tmpfol)|>ignore
         use env = new LightningEnvironment(fol)

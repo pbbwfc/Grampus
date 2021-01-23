@@ -201,6 +201,8 @@ module Game =
     ///Gets the Positions and Sans up to the specified ply
     let GetPosnsMoves = FsChessPgn.GameEncoded.GetPosnsMoves
 
+    ///Gets the Positionsup to the specified ply
+    let GetPosns = FsChessPgn.GameEncoded.GetPosns
 
 
 module Repertoire =
@@ -251,6 +253,26 @@ module StaticTree =
     
     ///Compavct the tree storage given a folder
     let Compact = FsChessPgn.StaticTree.Compact
+
+module Filter =
+
+    ///Creates the tree storage given a folder
+    let Create = FsChessPgn.Filter.Create
+
+    ///Creates big tree storage given a folder
+    let CreateBig = FsChessPgn.Filter.CreateBig
+
+    ///Saves the tree storage given an array of positions, an array of stats and a folder
+    let Save = FsChessPgn.Filter.Save
+
+    ///Reads the tree storage given an array of positions and a folder
+    let ReadArray = FsChessPgn.Filter.ReadArray
+
+    ///Reads the tree storage given a position and a folder
+    let Read = FsChessPgn.Filter.Read
+    
+    ///Compavct the tree storage given a folder
+    let Compact = FsChessPgn.Filter.Compact
 
 module Grampus =
     

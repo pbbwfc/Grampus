@@ -13,14 +13,17 @@
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-	  <OutputPath>D:\GitHub\ScincNet\rel\</OutputPath>
+	  <OutputPath>D:\GitHub\Grampus\rel\</OutputPath>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-	  <OutputPath>D:\GitHub\ScincNet\debug\</OutputPath>
+	  <OutputPath>D:\GitHub\Grampus\debug\</OutputPath>
 	</PropertyGroup>
 
 	<ItemGroup>
+    <EmbeddedResource Include="batch.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
     <Compile Include="Form.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
@@ -34,8 +37,6 @@
 	  <_DeploymentManifestIconFile Remove="tree.ico" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <EmbeddedResource Include="tree.ico" />
-	</ItemGroup>
+	<ItemGroup />
 
 </Project>

@@ -783,3 +783,17 @@ module GameEncoded =
                 |_ -> getnext imtel.Tail opns omvs
         let ibd = if gm.BoardSetup.IsSome then gm.BoardSetup.Value else Board.Start
         getnext gm.MoveText [ibd|>Board.ToSimpleStr] []
+
+    let GetPosns (ply:int) (gm:EncodedGame) =
+        let revply = if ply= -1 then 999 else ply
+        let rec getnext (imtel:EncodedMoveTextEntry list) (opns:string list) =
+            if List.isEmpty imtel || opns.Length=revply then opns|>List.rev|>List.toArray
+            else
+                let mte = imtel.Head
+                match mte with
+                |EncodedHalfMoveEntry(_,_,mv) ->
+                    let npns = (mv.PostBrd|>Board.ToSimpleStr)::opns
+                    getnext imtel.Tail npns
+                |_ -> getnext imtel.Tail opns
+        let ibd = if gm.BoardSetup.IsSome then gm.BoardSetup.Value else Board.Start
+        getnext gm.MoveText [ibd|>Board.ToSimpleStr]

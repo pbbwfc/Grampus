@@ -129,6 +129,7 @@
     <Compile Include="RegParse.fs" />
     <Compile Include="PgnGames.fs" />
     <Compile Include="PgnWriter.fs" />
+    <Compile Include="Filter.fs" />
     <Compile Include="StaticTree.fs" />
     <Compile Include="Repertoire.fs" />
     <Compile Include="Grampus.fs" />

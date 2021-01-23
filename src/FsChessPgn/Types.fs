@@ -495,15 +495,17 @@ module Types =
     type GrampusData =
         {
             SourcePgn : string
-            HasTree : bool
-            TreePly : int
+            TreesCreated : System.DateTime option
+            FiltersCreated : System.DateTime option
+            Ply : int
         }
 
     let GrampusDataEMP =
         {
             SourcePgn = ""
-            HasTree = false
-            TreePly = 20
+            TreesCreated = None
+            FiltersCreated = None
+            Ply = 20
         }
     
     type RepOpt =
