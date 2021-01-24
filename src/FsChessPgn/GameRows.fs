@@ -25,3 +25,17 @@ module GameRows =
         let bin = MessagePackSerializer.Serialize<GameRow[]>(gmr,options)
         File.WriteAllBytes(fn,bin)
         
+    let FromGame (gm:CompressedGame) =
+        {
+            White = gm.WhitePlayer
+            W_Elo = gm.WhiteElo
+            Black = gm.BlackPlayer
+            B_Elo = gm.BlackElo
+            Result = gm.Result|>GameResult.ToStr
+            Year = if gm.Year.IsNone then 0 else gm.Year.Value
+            Event = gm.Event
+            ECO = gm.ECO
+        }
+
+    let FromGames gms =
+        gms|>Array.map FromGame

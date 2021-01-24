@@ -280,11 +280,17 @@ module Index =
 
 module GameRows =
     
-    ///Load Index
+    ///Load Game Rows
     let Load = FsChessPgn.GameRows.Load
 
-    ///Save Index
+    ///Save Game Rows
     let Save = FsChessPgn.GameRows.Save
+
+    ///Create Game Row from Compressed Game
+    let FromGame = FsChessPgn.GameRows.FromGame
+    
+    ///Create Game Rows from Compressed Games
+    let FromGames = FsChessPgn.GameRows.FromGames
 
 module Games =
     

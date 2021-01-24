@@ -75,7 +75,7 @@ module Form =
         let domvsel(mvstr) =
             let mv = mvstr|>Move.FromSan bd
             bd <- bd|>Board.Push mv
-            sts.UpdateFen(bd)
+            sts.UpdateStr(bd)
             showfilt(bd)
         
         let doimp(e) =
@@ -99,9 +99,10 @@ module Form =
                 log("Compressed games")
                 lbl.Text <- "Saving games..." 
                 Games.Save binfol 0L cgma
-                gmp <- {GrampusDataEMP with SourcePgn=pgn}
+                gmp <- {GrampusDataEMP with SourcePgn=pgn;BaseCreated=Some(DateTime.Now)}
                 Grampus.Save(gmpfile,gmp)
                 log("Saved games")
+                lbl.Text <- "Ready" 
                 this.Enabled <- true
         
         let docreate(e) =
@@ -275,7 +276,7 @@ module Form =
                 log("Saved dictionary")
                 lbl.Text <- "Initializing View..."
                 Application.DoEvents()
-                sts.InitStatic(Path.Combine(Path.GetDirectoryName(gmpfile),Path.GetFileNameWithoutExtension(gmpfile)))
+                sts.Init(Path.Combine(Path.GetDirectoryName(gmpfile),Path.GetFileNameWithoutExtension(gmpfile)))
                 log("Initialized View")
                 lbl.Text <- "Loading View..."
                 Application.DoEvents()
@@ -348,11 +349,12 @@ module Form =
                 log("Created dictionary")
                 lbl.Text <- "Saving dictionary..."
                 Application.DoEvents()
-                Filter.Save(posns,gmls,binfol)|>ignore
+                let rgmls = gmls|>Array.map(fun l -> List.rev l)
+                Filter.Save(posns,rgmls,binfol)|>ignore
                 log("Saved dictionary")
                 lbl.Text <- "Initializing View..."
                 Application.DoEvents()
-                sts.InitStatic(Path.Combine(Path.GetDirectoryName(gmpfile),Path.GetFileNameWithoutExtension(gmpfile)))
+                sts.Init(Path.Combine(Path.GetDirectoryName(gmpfile),Path.GetFileNameWithoutExtension(gmpfile)))
                 log("Initialized View")
                 lbl.Text <- "Loading View..."
                 Application.DoEvents()
@@ -369,7 +371,7 @@ module Form =
             if ndlg.ShowDialog() = DialogResult.OK then
                 gmpfile <- ndlg.FileName
                 setbinfol()
-                sts.InitStatic(Path.Combine(Path.GetDirectoryName(gmpfile),Path.GetFileNameWithoutExtension(gmpfile)))
+                sts.Init(Path.Combine(Path.GetDirectoryName(gmpfile),Path.GetFileNameWithoutExtension(gmpfile)))
                 sts.Refrsh()
 
         let bgpnl = new Panel(Dock=DockStyle.Fill,BorderStyle=BorderStyle.Fixed3D)

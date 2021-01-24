@@ -35,5 +35,6 @@ module Games =
             {Offset=off;Length=bin.Length}
         let iea = gma|>Seq.mapi svgm|>Seq.toArray
         Index.Save(fol,iea)
-
+        let gmrws = gma|>Seq.map GameRows.FromGame|>Seq.toArray
+        GameRows.Save(fol,gmrws)
         
