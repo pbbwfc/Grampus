@@ -25,8 +25,9 @@ module GameRows =
         let bin = MessagePackSerializer.Serialize<GameRow[]>(gmr,options)
         File.WriteAllBytes(fn,bin)
         
-    let FromGame (gm:CompressedGame) =
+    let FromGame i (gm:CompressedGame) =
         {
+            Num = i
             White = gm.WhitePlayer
             W_Elo = gm.WhiteElo
             Black = gm.BlackPlayer
@@ -39,4 +40,4 @@ module GameRows =
         }
 
     let FromGames gms =
-        gms|>Array.map FromGame
+        gms|>Array.mapi FromGame

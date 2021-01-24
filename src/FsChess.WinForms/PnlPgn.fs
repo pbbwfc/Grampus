@@ -496,15 +496,12 @@ module PnlPgnLib =
         ///Switches to another game with the same position
         member pgnpnl.SwitchGame(rw:int) = 
             gnum <- rw
-            //select game
-            //ScincFuncs.ScidGame.Load(uint32(rw))|>ignore
-            //load game
-            let mutable pgnstr = ""
-            //ScincFuncs.ScidGame.Pgn(&pgnstr)|>ignore
-            let gm = Game.FromStr(pgnstr)
-            //need to check if want to save
+            let fol = nm + "_FILES"
+            let indx = Index.Load fol
+            let gm = Games.LoadGame fol indx.[gnum]
+             //need to check if want to save
             if gmchg then pgnpnl.PromptSaveGame()
-            game <- gm|>Game.Encode
+            game <- gm
             pgn.DocumentText <- mvtags()
             //need to select move that matches current board
             let rec getnxt ci (mtel:EncodedMoveTextEntry list) =

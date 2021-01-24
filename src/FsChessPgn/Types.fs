@@ -486,27 +486,30 @@ module Types =
     type GameRow =
         {
             [<Key(0)>]
-            White : string
+            Num : int
             [<Key(1)>]
-            W_Elo : string
+            White : string
             [<Key(2)>]
-            Black : string
+            W_Elo : string
             [<Key(3)>]
-            B_Elo : string
+            Black : string
             [<Key(4)>]
-            Result : string
+            B_Elo : string
             [<Key(5)>]
-            Year : int
+            Result : string
             [<Key(6)>]
-            Event : string
+            Year : int
             [<Key(7)>]
-            ECO : string
+            Event : string
             [<Key(8)>]
+            ECO : string
+            [<Key(9)>]
             Deleted : string
         }
 
     let GameRowEMP =
         {
+            Num = -1
             White = "?"
             W_Elo = "-"
             Black = "?"
