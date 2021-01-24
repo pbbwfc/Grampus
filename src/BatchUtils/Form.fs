@@ -45,8 +45,8 @@ module Form =
         let crfbtn = new ToolStripButton(Text="Create Filters")
         let plylbl = new ToolStripLabel(Text = "Select Ply (-1 infinite)")
         let plydd = new ToolStripComboBox(AutoSize = false, Width=40)
-        let logtb = new TextBox(Text="Log:",Multiline=true,Dock=DockStyle.Fill)
-        let gmstb = new TextBox(Text = "Games:",Dock=DockStyle.Fill)
+        let logtb = new TextBox(Text="Log:",Multiline=true,Dock=DockStyle.Fill,ReadOnly=true,ScrollBars = ScrollBars.Vertical)
+        let gmstb = new TextBox(Text = "Games:",Dock=DockStyle.Fill,ReadOnly=true)
         let ss = new StatusStrip(LayoutStyle = ToolStripLayoutStyle.HorizontalStackWithOverflow,Dock=DockStyle.Fill)
         let prg = new ToolStripProgressBar(Width=200)
         let lbl = new ToolStripLabel(Text="Ready",Width=200)
@@ -267,7 +267,7 @@ module Form =
                 log("Processed Positions")
                 lbl.Text <- "Creating dictionary..."
                 Application.DoEvents()
-                if posns.Length>100000 then StaticTree.CreateBig(binfol)|>ignore else StaticTree.Create(binfol)|>ignore
+                StaticTree.Create(binfol)|>ignore
                 log("Created dictionary")
                 lbl.Text <- "Saving dictionary..."
                 Application.DoEvents()
@@ -344,7 +344,7 @@ module Form =
                 log("Created Arrays")
                 lbl.Text <- "Creating dictionary..."
                 Application.DoEvents()
-                if posns.Length>100000 then Filter.CreateBig(binfol)|>ignore else Filter.Create(binfol)|>ignore
+                Filter.Create(binfol)|>ignore
                 log("Created dictionary")
                 lbl.Text <- "Saving dictionary..."
                 Application.DoEvents()

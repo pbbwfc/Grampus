@@ -239,9 +239,6 @@ module StaticTree =
     ///Creates the tree storage given a folder
     let Create = FsChessPgn.StaticTree.Create
 
-    ///Creates big tree storage given a folder
-    let CreateBig = FsChessPgn.StaticTree.CreateBig
-
     ///Saves the tree storage given an array of positions, an array of stats and a folder
     let Save = FsChessPgn.StaticTree.Save
 
@@ -250,17 +247,11 @@ module StaticTree =
 
     ///Reads the tree storage given a position and a folder
     let Read = FsChessPgn.StaticTree.Read
-    
-    ///Compavct the tree storage given a folder
-    let Compact = FsChessPgn.StaticTree.Compact
 
 module Filter =
 
     ///Creates the tree storage given a folder
     let Create = FsChessPgn.Filter.Create
-
-    ///Creates big tree storage given a folder
-    let CreateBig = FsChessPgn.Filter.CreateBig
 
     ///Saves the tree storage given an array of positions, an array of stats and a folder
     let Save = FsChessPgn.Filter.Save
@@ -270,9 +261,6 @@ module Filter =
 
     ///Reads the tree storage given a position and a folder
     let Read = FsChessPgn.Filter.Read
-    
-    ///Compavct the tree storage given a folder
-    let Compact = FsChessPgn.Filter.Compact
 
 module Grampus =
     
@@ -289,6 +277,14 @@ module Index =
 
     ///Save Index
     let Save = FsChessPgn.Index.Save
+
+module GameRows =
+    
+    ///Load Index
+    let Load = FsChessPgn.GameRows.Load
+
+    ///Save Index
+    let Save = FsChessPgn.GameRows.Save
 
 module Games =
     

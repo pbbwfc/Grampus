@@ -405,7 +405,6 @@ module Types =
             AdditionalInfo = Map.empty
             MoveText = []
         }
-
     
     [<MessagePackObject>]
     type CompressedMove =
@@ -484,6 +483,39 @@ module Types =
         }
     
     [<MessagePackObject>]
+    type GameRow =
+        {
+            [<Key(0)>]
+            White : string
+            [<Key(1)>]
+            W_Elo : string
+            [<Key(2)>]
+            Black : string
+            [<Key(3)>]
+            B_Elo : string
+            [<Key(4)>]
+            Result : string
+            [<Key(5)>]
+            Year : int
+            [<Key(6)>]
+            Event : string
+            [<Key(7)>]
+            ECO : string
+        }
+
+    let GameRowEMP =
+        {
+            White = "?"
+            W_Elo = "-"
+            Black = "?"
+            B_Elo = "-"
+            Result = "*"
+            Year = 0
+            Event = "?"
+            ECO = ""
+        }
+    
+    [<MessagePackObject>]
     type IndexEntry =
         {
             [<Key(0)>]
@@ -495,6 +527,7 @@ module Types =
     type GrampusData =
         {
             SourcePgn : string
+            BaseCreated : System.DateTime option
             TreesCreated : System.DateTime option
             FiltersCreated : System.DateTime option
             Ply : int
@@ -503,6 +536,7 @@ module Types =
     let GrampusDataEMP =
         {
             SourcePgn = ""
+            BaseCreated = None
             TreesCreated = None
             FiltersCreated = None
             Ply = 20
