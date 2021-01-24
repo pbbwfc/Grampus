@@ -501,6 +501,8 @@ module Types =
             Event : string
             [<Key(7)>]
             ECO : string
+            [<Key(8)>]
+            Deleted : string
         }
 
     let GameRowEMP =
@@ -513,6 +515,7 @@ module Types =
             Year = 0
             Event = "?"
             ECO = ""
+            Deleted = ""
         }
     
     [<MessagePackObject>]

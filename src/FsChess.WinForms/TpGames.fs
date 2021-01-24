@@ -22,20 +22,21 @@ module TpGamesLib =
                         RowHeadersVisible=false, Dock=DockStyle.Fill
                         )
         let mutable crw = -1
-        let mutable gmsui = new System.ComponentModel.BindingList<IndexEntry>()
+        let mutable gmsui = new System.ComponentModel.BindingList<GameRow>()
         let bs = new BindingSource()
         //scinc related
-        let mutable b = 9 //base number
         let mutable nm = "clipbase" //base name
         let mutable gn = 0 //number of games
         let mutable fn = 0 //number of games in filter
+        let mutable filt = []
+        let mutable gmrws = [||]
 
         //events
         let selEvt = new Event<_>()
         let cmpEvt = new Event<_>()
 
         let settxt() =
-            let txt = b.ToString() + "-" + nm + "-" + fn.ToString() + "/" + gn.ToString()
+            let txt = Path.GetFileNameWithoutExtension(nm) + "-" + fn.ToString() + "/" + gn.ToString()
             gmstp.Text <- txt
 
         let color() =
@@ -43,9 +44,9 @@ module TpGamesLib =
                 let rw = rwo:?>DataGridViewRow
                 if rw.Cells.["Deleted"].Value:?>string = "D" then
                     rw.DefaultCellStyle.ForeColor <- Color.Red;
-
+        
         let docmp() =
-            b|>cmpEvt.Trigger
+            nm|>cmpEvt.Trigger
         
         let dodel(rw:int) =
              let gnum = gms.Rows.[rw].Cells.[0].Value:?>int
@@ -101,27 +102,22 @@ module TpGamesLib =
             gms.CellMouseDown.Add(dorightclick)
 
         /// initialise
-        member _.Init() =
-            //ScincFuncs.Base.Getfilename(&nm)|>ignore
-            nm <- Path.GetFileNameWithoutExtension(nm)
-            //b <- ScincFuncs.Base.Current()
-            //gn <- ScincFuncs.Base.NumGames()
-            //fn <- ScincFuncs.Filt.Count()
+        member _.Init(inm:string) =
+            nm <- inm
+            let indx = Index.Load(inm + "_FILES")
+            gn <- indx.Length
+            fn <- gn
+            filt <- []
+            gmrws <- GameRows.Load(inm + "_FILES")
             settxt()
             
         ///Refresh the list
-        member _.Refrsh(fen:string, stsbnum:int) =
+        member _.Refrsh(bdstr:string) =
             gmsui.Clear()
-            //apply filter but only if b<>sts basenum
-            //if b<>stsbnum then
-            //    ScincFuncs.Search.Board(fen,b)|>ignore
-            //let mutable gmsl = new ResizeArray<ScincFuncs.gmui>()
-            //let chunk = ScincFuncs.ScidGame.List(&gmsl,1u,100u)
-            //gmsl|>Seq.iter(fun gmui -> gmsui.Add(gmui))
-            //gms.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells)
-            //update filter count
-            //fn <- ScincFuncs.Filt.Count()
-            //gn <- ScincFuncs.Base.NumGames()
+            filt <- Filter.Read(bdstr,nm + "_FILES")
+            fn <- filt.Length
+            filt|>List.iter(fun i -> gmsui.Add(gmrws.[i]))
+            gms.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells)
             settxt()
             color()
 
@@ -134,7 +130,7 @@ module TpGamesLib =
                     gms.CurrentCell <- rw.Cells.[0]
 
         //get baseNum
-        member _.BaseNum() = b
+        member _.BaseName() = nm
 
         /// close
         member _.Close() =
@@ -148,4 +144,5 @@ module TpGamesLib =
 
         ///Provides the base needing to be compacted
         member __.GmCmp = cmpEvt.Publish
+
         

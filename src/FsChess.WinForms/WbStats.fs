@@ -216,8 +216,6 @@ module WbStatsLib =
                 "</td><td style=\"border-top: 1px solid black;\">" + "</td></tr>" + nl
                 + ftr
 
-
-        
         let onclick(el:HtmlElement) = 
             let i = el.Id|>int
             let san = sans.[i]
@@ -246,6 +244,9 @@ module WbStatsLib =
 
         member stats.Init(nm:string) =
             basenm <- nm
+
+        member stats.BaseName() =
+            basenm
 
         member stats.Close() =
             basenm <- ""

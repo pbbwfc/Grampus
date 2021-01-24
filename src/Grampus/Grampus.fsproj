@@ -1,0 +1,58 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net5.0-windows</TargetFramework>
+		<UseWindowsForms>true</UseWindowsForms>
+		<Platforms>x64</Platforms>
+		<ApplicationIcon>scinc.ico</ApplicationIcon>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<SatelliteResourceLanguages>en</SatelliteResourceLanguages>
+		<PackageIcon>scinc.ico</PackageIcon>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+	  <OutputPath>D:\GitHub\ScincNet\debug\</OutputPath>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+	  <OutputPath>D:\GitHub\ScincNet\rel\</OutputPath>
+	</PropertyGroup>
+
+	<ItemGroup>
+    <EmbeddedResource Include="Icons\scinc.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\black.png" />
+    <EmbeddedResource Include="Images\white.png" />
+    <EmbeddedResource Include="Images\orient.png" />
+    <EmbeddedResource Include="Images\cls.png" />
+    <EmbeddedResource Include="Images\sav.png" />
+    <EmbeddedResource Include="Images\opn.png" />
+    <EmbeddedResource Include="Images\new.png" />
+    <None Include="App.config" />
+    <Compile Include="Recents.fs" />
+    <Compile Include="Form.fs" />
+    <Compile Include="Program.fs" />
+    <None Include="scinc.ico">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="FSharp.Json" Version="0.4.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\FsChess.WinForms\FsChess.WinForms.fsproj" />
+	</ItemGroup>
+
+	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
+	  <Exec Command="if $(ConfigurationName) == Release (&#xD;&#xA;rmdir $(OutDir)Engines\2 /s/q&#xD;&#xA;cd /d $(OutDir)Engines&#xD;&#xA;rename 2Rel 2)" />
+	</Target>
+
+</Project>

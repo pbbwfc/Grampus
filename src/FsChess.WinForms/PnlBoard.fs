@@ -193,6 +193,7 @@ module PnlBoardLib =
                 let c = board.PieceAt.[sqFrom]|>Piece.ToStr
                 cCur <- getcur c
                 sqpnl.Cursor <- cCur
+
                 if pssqs.Length > 0 && (p.DoDragDrop(oimg, DragDropEffects.Move) = DragDropEffects.Move) then 
                     let mvl = psmvs|>List.filter(fun m ->m|>Move.To|>int=sqTo)
                     if mvl.Length=1 then

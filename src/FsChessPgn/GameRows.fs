@@ -35,6 +35,7 @@ module GameRows =
             Year = if gm.Year.IsNone then 0 else gm.Year.Value
             Event = gm.Event
             ECO = gm.ECO
+            Deleted = ""
         }
 
     let FromGames gms =

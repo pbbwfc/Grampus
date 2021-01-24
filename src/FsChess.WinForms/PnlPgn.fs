@@ -29,9 +29,9 @@ module PnlPgnLib =
         let mutable cng = NAG.Null
         let mutable gmchg = false
         
-        //scinc related
-        let mutable gnum = 0
-        let mutable bnum = 0
+        //base related
+        let mutable gnum = -1
+        let mutable nm = ""
 
         //events
         let bdchngEvt = new Event<_>()
@@ -478,10 +478,9 @@ module PnlPgnLib =
         
         ///Saves the Game that is displayed
         member _.SaveGame() = 
-            let pgnstr = Game.ToStr(game)
-            //ScincFuncs.ScidGame.SavePgn(pgnstr,uint(gnum),bnum)|>ignore
-            //need to reset gnum for new game
-            //if gnum=0 then gnum<-ScincFuncs.Base.NumGames()
+            //TODO
+            // to add to end of binary file and change the offset and length 
+            if gnum = -1 then gnum<-9999//ScincFuncs.Base.NumGames()
             gmchg<-false
             gmchg|>gmchngEvt.Trigger
 
@@ -528,35 +527,34 @@ module PnlPgnLib =
             sethdr()
  
         ///Sets the Game to be displayed
-        member pgnpnl.SetGame(gm:UnencodedGame) = 
+        member pgnpnl.SetGame(gm:EncodedGame) = 
             //need to check if want to save
             if gmchg then pgnpnl.PromptSaveGame()
-            game <- gm|>Game.Encode
+            game <- gm
             pgn.DocumentText <- mvtags()
             board <- Board.Start
             oldstyle <- None
             irs <- [-1]
             sethdr()
 
-        member pgnpnl.NewGame(ibnum) =
+        member pgnpnl.NewGame(inm) =
             let gm = Game.Start
             pgnpnl.SetGame(gm)
-            gnum <- 0
-            bnum <- ibnum
+            gnum <- -1
+            nm <- inm
 
-        member pgnpnl.Refrsh(ignum:int,ibnum) =
-            let mutable pgnstr = ""
-            ()
-            //if ScincFuncs.ScidGame.Pgn(&pgnstr)=0 then
-            //    let gm = Game.FromStr(pgnstr)
-            //    pgnpnl.SetGame(gm)
-            //    gnum <- ignum
-            //    bnum <- ibnum
+        member pgnpnl.Refrsh(ignum:int,inm) =
+            let fol = inm + "_FILES"
+            let indx = Index.Load fol
+            let gm = Games.LoadGame fol indx.[ignum]
+            pgnpnl.SetGame(gm)
+            gnum <- ignum
+            nm <- inm
         
         member pgnpnl.SetPgn(pgnstr:string) =
             let gm = Game.FromStr(pgnstr)
             gmchg<-false
-            pgnpnl.SetGame(gm)
+            pgnpnl.SetGame(gm|>Game.Encode)
             gmchg<-true
             gmchg|>gmchngEvt.Trigger
 

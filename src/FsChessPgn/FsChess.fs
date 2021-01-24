@@ -121,7 +121,7 @@ module Move =
 module Game =
 
     ///The starting Game with no moves
-    let Start = FsChessPgn.GameUnencoded.Start
+    let Start = FsChessPgn.GameEncoded.Start
 
     ///Make a SAN Move such as Nf3 for this Game and return the new Game
     let PushSAN = FsChessPgn.GameUnencoded.AddSan

@@ -32,9 +32,8 @@ module Games =
             let bin = MessagePackSerializer.Serialize<CompressedGame>(gm,options)
             if i%1000=0 then printf "%i..." i
             writer.Write(bin)
-            {Offset=off;Length=bin.Length}
-        let iea = gma|>Seq.mapi svgm|>Seq.toArray
+            {Offset=off;Length=bin.Length}, GameRows.FromGame(gm)
+        let iea,gmrws = gma|>Seq.mapi svgm|>Seq.toArray|>Array.unzip
         Index.Save(fol,iea)
-        let gmrws = gma|>Seq.map GameRows.FromGame|>Seq.toArray
         GameRows.Save(fol,gmrws)
         
