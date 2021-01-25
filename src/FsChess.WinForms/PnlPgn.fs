@@ -479,21 +479,15 @@ module PnlPgnLib =
         
         ///Saves the Game that is displayed
         member _.SaveGame() = 
-            //TODO
-            // to add to end of binary file and change the offset and length 
-            let indx = Index.Load(nm)
+            // Add to end of binary file and change the offset and length 
             let fol = nm + "_FILES"
+            let indx = Index.Load(fol)
             if gnum = -1 then 
                 gnum<-indx.Length
                 //need to update index, game rows and binary file
                 Games.AppendGame fol gnum (game|>Game.Compress)
-
             else
-                //TODO
-                ()
-
-
-
+                Games.UpdateGame fol gnum (game|>Game.Compress)
             gmchg<-false
             gmchg|>gmchngEvt.Trigger
 
@@ -543,6 +537,7 @@ module PnlPgnLib =
             game <- gm
             pgn.DocumentText <- mvtags()
             board <- Board.Start
+            board|>bdchngEvt.Trigger
             oldstyle <- None
             irs <- [-1]
             sethdr()

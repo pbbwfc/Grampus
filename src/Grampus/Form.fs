@@ -132,15 +132,14 @@ module Form =
 
         let dosave() =
             SbUpdate("Saving game")
+            let gnum0 = pgn.GetGameNumber()
             pgn.SaveGame()
-            //need to reload gms and select the right row
-            //but only if new game
             let gnum = pgn.GetGameNumber()
-            if true then //gnum=ScincFuncs.Base.NumGames() then
-                SbUpdate("Reloading list of games")
-                let nbd = bd.GetBoard()
-                gmtbs.Refrsh(nbd)
-                gmtbs.SelNum(gnum)
+            //need to reload gms and select the right row
+            SbUpdate("Reloading list of games")
+            let nbd = bd.GetBoard()
+            gmtbs.Refrsh(nbd)
+            gmtbs.SelNum(gnum)
             SbUpdate("Ready")
 
         let doclose() = 
@@ -166,7 +165,7 @@ module Form =
 
         let donewg() =
             SbUpdate("Creating game")
-            //clear pgn and set gnum to 0
+            //clear pgn and set gnum to -1
             let nm = gmtbs.BaseName()
             pgn.NewGame(nm)
             SbUpdate("Ready")

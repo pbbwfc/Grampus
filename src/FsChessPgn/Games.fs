@@ -54,4 +54,19 @@ module Games =
         Index.Save(fol,niea)
         GameRows.Save(fol,ngmrws)
     
+    let UpdateGame (fol:string) (gnum:int) (cgm:CompressedGame) =
+        let fn = Path.Combine(fol,"GAMES")
+        use writer = new BinaryWriter(File.Open(fn, FileMode.OpenOrCreate))
+        writer.Seek(0,SeekOrigin.End)|>ignore
+        let off = writer.BaseStream.Position
+        let bin = MessagePackSerializer.Serialize<CompressedGame>(cgm,options)
+        writer.Write(bin)
+        let ie = {Offset=off;Length=bin.Length}
+        let gmrw = GameRows.FromGame gnum cgm
+        let iea = Index.Load(fol)
+        let gmrws = GameRows.Load(fol)
+        iea.[gnum] <- ie
+        gmrws.[gnum] <- gmrw
+        Index.Save(fol,iea)
+        GameRows.Save(fol,gmrws)
         

@@ -302,3 +302,6 @@ module Games =
     
     ///Append Game
     let AppendGame = FsChessPgn.Games.AppendGame
+
+    ///Update Game
+    let UpdateGame = FsChessPgn.Games.UpdateGame

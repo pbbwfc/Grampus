@@ -114,7 +114,9 @@ module TpGamesLib =
         ///Refresh the list
         member _.Refrsh(bdstr:string) =
             gmsui.Clear()
-            filt <- Filter.Read(bdstr,nm + "_FILES")
+            let fol = nm + "_FILES"
+            filt <- Filter.Read(bdstr,fol)
+            gmrws <- GameRows.Load(fol)
             if filt.Length = 0 then
                 fn <- gmrws.Length
                 let lim = if fn>100 then 100 else fn-1
