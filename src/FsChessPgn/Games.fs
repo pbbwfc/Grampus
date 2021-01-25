@@ -36,4 +36,22 @@ module Games =
         let iea,gmrws = gma|>Seq.mapi svgm|>Seq.toArray|>Array.unzip
         Index.Save(fol,iea)
         GameRows.Save(fol,gmrws)
+
+    let AppendGame (fol:string) (gnum:int) (cgm:CompressedGame) =
+        Directory.CreateDirectory(fol)|>ignore
+        let fn = Path.Combine(fol,"GAMES")
+        use writer = new BinaryWriter(File.Open(fn, FileMode.OpenOrCreate))
+        writer.Seek(0,SeekOrigin.End)|>ignore
+        let off = writer.BaseStream.Position
+        let bin = MessagePackSerializer.Serialize<CompressedGame>(cgm,options)
+        writer.Write(bin)
+        let ie = {Offset=off;Length=bin.Length}
+        let gmrw = GameRows.FromGame gnum cgm
+        let iea = Index.Load(fol)
+        let gmrws = GameRows.Load(fol)
+        let niea = Array.append iea [|ie|]
+        let ngmrws = Array.append gmrws [|gmrw|]
+        Index.Save(fol,niea)
+        GameRows.Save(fol,ngmrws)
+    
         

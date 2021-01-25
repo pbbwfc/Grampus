@@ -37,13 +37,15 @@ module StaticTree =
    
     let Read(posn:string,ifol:string) =
         let fol = ifol + "\\trees"
-        let options = new Options()
-        let db = new DB(options, fol)
-        let v = db.Get(MessagePackSerializer.Serialize<string>(posn))
-        let sts =
-            let ro = new ReadOnlyMemory<byte>(v)
-            MessagePackSerializer.Deserialize<stats>(ro)
-        db.Close()
-        sts
+        if Directory.Exists(fol) then
+            let options = new Options()
+            let db = new DB(options, fol)
+            let v = db.Get(MessagePackSerializer.Serialize<string>(posn))
+            let sts =
+                let ro = new ReadOnlyMemory<byte>(v)
+                MessagePackSerializer.Deserialize<stats>(ro)
+            db.Close()
+            sts
+        else new stats()
     
         

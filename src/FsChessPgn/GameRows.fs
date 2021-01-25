@@ -15,10 +15,12 @@ module GameRows =
 
     let Load (fol:string) =
         let fn = Path.Combine(fol,"ROWS")
-        let bin = File.ReadAllBytes(fn)
-        let ro = new ReadOnlyMemory<byte>(bin)
-        let gmr = MessagePackSerializer.Deserialize<GameRow[]>(ro,options)
-        gmr
+        if File.Exists(fn) then
+            let bin = File.ReadAllBytes(fn)
+            let ro = new ReadOnlyMemory<byte>(bin)
+            let gmr = MessagePackSerializer.Deserialize<GameRow[]>(ro,options)
+            gmr
+        else [||]
 
     let Save (fol:string,gmr:GameRow[]) =
         let fn = Path.Combine(fol,"ROWS")

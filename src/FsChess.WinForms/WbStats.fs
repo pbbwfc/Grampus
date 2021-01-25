@@ -232,10 +232,11 @@ module WbStatsLib =
 
         ///Refresh the stats after board change
         member stats.Refrsh() =
-            let sts = StaticTree.Read(bdstr,basenm + "_FILES")
-            mvsts<-sts.MvsStats
-            tsts <-sts.TotStats
-            stats.DocumentText <- bdsttags()
+            if basenm<>"" then
+                let sts = StaticTree.Read(bdstr,basenm + "_FILES")
+                mvsts<-sts.MvsStats
+                tsts <-sts.TotStats
+                stats.DocumentText <- bdsttags()
 
         member stats.UpdateStr(bd:Brd) =
             isw <- bd.WhosTurn=Player.White

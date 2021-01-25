@@ -115,8 +115,14 @@ module TpGamesLib =
         member _.Refrsh(bdstr:string) =
             gmsui.Clear()
             filt <- Filter.Read(bdstr,nm + "_FILES")
-            fn <- filt.Length
-            filt.[0..100]|>List.iter(fun i -> gmsui.Add(gmrws.[i]))
+            if filt.Length = 0 then
+                fn <- gmrws.Length
+                let lim = if fn>100 then 100 else fn-1
+                [0..lim]|>List.iter(fun i -> gmsui.Add(gmrws.[i]))
+            else
+                fn <- filt.Length
+                let lim = if fn>100 then 100 else fn-1
+                filt.[0..lim]|>List.iter(fun i -> gmsui.Add(gmrws.[i]))
             gms.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells)
             settxt()
             color()

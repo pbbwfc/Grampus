@@ -299,3 +299,6 @@ module Games =
 
     ///Save Games
     let Save = FsChessPgn.Games.Save
+    
+    ///Append Game
+    let AppendGame = FsChessPgn.Games.AppendGame

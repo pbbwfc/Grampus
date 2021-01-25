@@ -272,6 +272,7 @@ module PnlPgnLib =
                 
                 gmchg<-true
                 gmchg|>gmchngEvt.Trigger
+                sethdr()
                 dlg.Close()
 
 
@@ -480,7 +481,19 @@ module PnlPgnLib =
         member _.SaveGame() = 
             //TODO
             // to add to end of binary file and change the offset and length 
-            if gnum = -1 then gnum<-9999//ScincFuncs.Base.NumGames()
+            let indx = Index.Load(nm)
+            let fol = nm + "_FILES"
+            if gnum = -1 then 
+                gnum<-indx.Length
+                //need to update index, game rows and binary file
+                Games.AppendGame fol gnum (game|>Game.Compress)
+
+            else
+                //TODO
+                ()
+
+
+
             gmchg<-false
             gmchg|>gmchngEvt.Trigger
 
@@ -543,9 +556,14 @@ module PnlPgnLib =
         member pgnpnl.Refrsh(ignum:int,inm) =
             let fol = inm + "_FILES"
             let indx = Index.Load fol
-            let gm = Games.LoadGame fol indx.[ignum]
-            pgnpnl.SetGame(gm)
-            gnum <- ignum
+            if indx.Length>0 then
+                let gm = Games.LoadGame fol indx.[ignum]
+                pgnpnl.SetGame(gm)
+                gnum <- ignum
+            else
+                let gm = Game.Start
+                pgnpnl.SetGame(gm)
+                gnum <- -1
             nm <- inm
         
         member pgnpnl.SetPgn(pgnstr:string) =

@@ -300,7 +300,6 @@ module Form =
 
         let dotbselect(e:TabControlEventArgs) =
             let dofun() =
-                let index = e.TabPageIndex
                 //need to set current
                 let basename = gmtbs.BaseName()
                 pgn.Refrsh(0,basename)
@@ -365,10 +364,8 @@ module Form =
             // recents
             let recm = new ToolStripMenuItem(Text = "Recent")
             let rectreem = new ToolStripMenuItem(Text = "Recent as Tree")
-            let recstreem = new ToolStripMenuItem(Text = "Recent Static Tree")
             filem.DropDownItems.Add(recm)|>ignore
             filem.DropDownItems.Add(rectreem)|>ignore
-            filem.DropDownItems.Add(recstreem)|>ignore
             let addrec (rc:string) =
                 let mn = new ToolStripMenuItem(Text = Path.GetFileNameWithoutExtension(rc))
                 mn.Click.Add(fun _ -> doopen(rc,false))

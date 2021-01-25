@@ -15,10 +15,12 @@ module Index =
 
     let Load (fol:string) =
         let fn = Path.Combine(fol,"INDEX")
-        let bin = File.ReadAllBytes(fn)
-        let ro = new ReadOnlyMemory<byte>(bin)
-        let iea = MessagePackSerializer.Deserialize<IndexEntry[]>(ro,options)
-        iea
+        if File.Exists(fn) then
+            let bin = File.ReadAllBytes(fn)
+            let ro = new ReadOnlyMemory<byte>(bin)
+            let iea = MessagePackSerializer.Deserialize<IndexEntry[]>(ro,options)
+            iea
+        else [||]
 
     let Save (fol:string,iea:IndexEntry[]) =
         let fn = Path.Combine(fol,"INDEX")

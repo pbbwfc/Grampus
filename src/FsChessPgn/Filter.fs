@@ -41,13 +41,15 @@ module Filter =
    
     let Read(posn:string,ifol:string) =
         let fol = ifol + "\\filters"
-        let opts = new Options()
-        let db = new DB(opts, fol)
-        let v = db.Get(MessagePackSerializer.Serialize<string>(posn))
-        let sts =
-            let ro = new ReadOnlyMemory<byte>(v)
-            MessagePackSerializer.Deserialize<int list>(ro,options)
-        db.Close()
-        sts
+        if Directory.Exists(fol) then
+            let opts = new Options()
+            let db = new DB(opts, fol)
+            let v = db.Get(MessagePackSerializer.Serialize<string>(posn))
+            let filts =
+                let ro = new ReadOnlyMemory<byte>(v)
+                MessagePackSerializer.Deserialize<int list>(ro,options)
+            db.Close()
+            filts
+        else []
     
         
