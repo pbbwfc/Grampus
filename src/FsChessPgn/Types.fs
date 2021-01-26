@@ -538,3 +538,13 @@ module Types =
     
     type BrdStats = System.Collections.Generic.IDictionary<string,stats>
     
+    type Eco = {Code:string;Desc:string}
+
+    let EcoMap:Map<string,Eco> =
+        let thisExe = System.Reflection.Assembly.GetExecutingAssembly()
+        let strm = thisExe.GetManifestResourceStream("FsChessPgn.eco.json")
+        let reader = new System.IO.StreamReader(strm)
+        let str = reader.ReadToEnd()
+        reader.Close()
+        strm.Close()
+        FSharp.Json.Json.deserialize (str)

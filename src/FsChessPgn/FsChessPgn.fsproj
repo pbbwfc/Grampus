@@ -20,6 +20,7 @@
   </PropertyGroup>
 
 	<ItemGroup>
+    <EmbeddedResource Include="eco.json" />
     <Content Include="imgs\Chess_bdd44.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -126,6 +127,7 @@
     <Compile Include="MoveUtil.fs" />
     <Compile Include="MoveEncoded.fs" />
     <Compile Include="GameEncoded.fs" />
+    <Compile Include="Eco.fs" />
     <Compile Include="Games.fs" />
     <Compile Include="RegParse.fs" />
     <Compile Include="PgnGames.fs" />

@@ -22,8 +22,8 @@ let main argv =
             let ai = gm.AdditionalInfo
             let desc = 
                 if ai.ContainsKey("Variation") then 
-                    gm.AdditionalInfo.["Opening"] + " " + gm.AdditionalInfo.["Variation"]
-                else gm.AdditionalInfo.["Opening"] 
+                    gm.Hdr.Opening// + " " + gm.AdditionalInfo.["Variation"]
+                else gm.Hdr.Opening
             {Code=code;Desc=desc}
         let pns = egma|>Array.mapi getpn 
         let ecos = egma|>Array.map geteco
@@ -36,9 +36,12 @@ let main argv =
         let str = File.ReadAllText(fn)  
         Json.deserialize (str)
 
-    //createeco()
+    createeco()
     let pgnfol = @"d:\pgns" 
     let fn = Path.Combine(pgnfol,"eco.json")
     let map = Load(fn)
+
+    let filt = map|>Map.filter(fun k v -> v.Desc.Length>40)
+
 
     0 // return an integer exit code

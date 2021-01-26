@@ -281,6 +281,11 @@ module Index =
     ///Save Index
     let Save = FsChessPgn.Index.Save
 
+module Eco =
+
+    //Set eco for game
+    let ForGame = FsChessPgn.Eco.ForGame
+
 module Headers =
     
     ///Load Game Rows

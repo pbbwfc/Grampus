@@ -817,12 +817,9 @@ module PnlPgnLib =
 
         ///set ECO for game
         member pgnlpnl.SetECO() =
-            let mutable eco = ""
-            ()
-            //if ScincFuncs.Eco.ScidGame(&eco)=0 then
-            //    game <- {game with ECO=eco}
-            //    gmchg<-true
-            //    gmchg|>gmchngEvt.Trigger
+            game <- Eco.ForGame game
+            hdrchg <- true
+            hdrchg|>hdrchngEvt.Trigger
 
         //publish
         ///Provides the new Board after a change
