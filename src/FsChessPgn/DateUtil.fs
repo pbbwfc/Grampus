@@ -8,12 +8,12 @@ module DateUtil =
     let (-?) (lhs:int option) rhs = (if lhs.IsNone then rhs else lhs.Value.ToString("0000"))
     
     let ToStr(gm:UnencodedGame) =
-        (gm.Year -? "????") + (".") +
+        (if gm.Hdr.Year=0 then "????" else gm.Hdr.Year.ToString()) + (".") +
         (gm.Month |? "??") + (".") +
         (gm.Day |? "??")
 
     let ToStr2(gm:EncodedGame) =
-        (gm.Year -? "????") + (".") +
+        (if gm.Hdr.Year=0 then "????" else gm.Hdr.Year.ToString()) + (".") +
         (gm.Month |? "??") + (".") +
         (gm.Day |? "??")
     

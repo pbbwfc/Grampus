@@ -5,55 +5,7 @@ open FsChess
 module GameEncoded =
 
     let Start = EncodedGameEMP
-
-    let MoveCount(mtel:EncodedMoveTextEntry list) =
-        let mc(mte:EncodedMoveTextEntry) =
-            match mte with
-            |EncodedHalfMoveEntry(_) -> 1
-            |_ -> 0
-        if mtel.IsEmpty then 0
-        else
-            mtel|>List.map mc|>List.reduce(+)
-        
-    let FullMoveCount(mtel:EncodedMoveTextEntry list) = MoveCount(mtel)/2
-
-    let GetMoves(mtel:EncodedMoveTextEntry list) =
-        let gm(mte:EncodedMoveTextEntry) =
-            match mte with
-            |EncodedHalfMoveEntry(_,_,mv) -> [mv]
-            |_ -> []
-        mtel|>List.map gm|>List.concat
     
-    let AddTag (tagstr:string) (gm:EncodedGame) =
-        let k,v = tagstr.Trim().Split([|'"'|])|>Array.map(fun s -> s.Trim())|>fun a -> a.[0],a.[1].Trim('"')
-        match k with
-        | "Event" -> {gm with Event = v}
-        | "Site" -> {gm with Site = v}
-        | "Date" -> 
-            let yop,mop,dop = v|>DateUtil.FromStr
-            {gm with Year = yop; Month = mop; Day = dop}
-        | "Round" -> {gm with Round = v}
-        | "White" -> {gm with WhitePlayer = v}
-        | "Black" -> {gm with BlackPlayer = v}
-        | "Result" -> {gm with Result = v|>GameResult.Parse}
-        | "WhiteElo" -> {gm with WhiteElo = v}
-        | "BlackElo" -> {gm with BlackElo = v}
-        | "ECO" -> {gm with ECO = v}
-        | "FEN" -> {gm with BoardSetup = v|>FEN.Parse|>Board.FromFEN|>Some}
-        | _ ->
-            {gm with AdditionalInfo=gm.AdditionalInfo.Add(k,v)}
-    
-    let AddMoveEntry (mte:EncodedMoveTextEntry) (gm:EncodedGame) =
-        {gm with MoveText=gm.MoveText@[mte]}
-
-    let RemoveMoveEntry (gm:EncodedGame) =
-        let mtel = gm.MoveText
-        let nmtel =
-            if mtel.IsEmpty then mtel
-            else
-                mtel|>List.rev|>List.tail|>List.rev
-        {gm with MoveText=nmtel}
-
     let Encode(gm:UnencodedGame) =
         let rec setemv (pmvl:UnencodedMoveTextEntry list) mct prebd bd oemvl =
             if pmvl|>List.isEmpty then oemvl|>List.rev
@@ -84,18 +36,11 @@ module GameEncoded =
 
         let egm0 = EncodedGameEMP
         let egm1 = {egm0 with
-                        WhitePlayer = gm.WhitePlayer
-                        BlackPlayer = gm.BlackPlayer
-                        Result = gm.Result
-                        Year = gm.Year
+                        Hdr = gm.Hdr
                         Month = gm.Month
                         Day = gm.Day
-                        Event = gm.Event
-                        WhiteElo = gm.WhiteElo
-                        BlackElo = gm. BlackElo
                         Round = gm.Round
                         Site = gm. Site
-                        ECO = gm.ECO
                         BoardSetup = gm.BoardSetup
                         AdditionalInfo = gm.AdditionalInfo
                         MoveText = nmt}
@@ -661,16 +606,16 @@ module GameEncoded =
             writer.Append(value)|>ignore
             writer.AppendLine("\"]")|>ignore
 
-        Tag("Event", game.Event)
+        Tag("Event", game.Hdr.Event)
         Tag("Site", game.Site)
         Tag("Date", game|>DateUtil.ToStr2)
         Tag("Round", game.Round)
-        Tag("White", game.WhitePlayer)
-        Tag("Black", game.BlackPlayer)
-        Tag("Result", ResultString(game.Result))
-        Tag("WhiteElo", game.WhiteElo)
-        Tag("BlackElo", game.BlackElo)
-        Tag("ECO", game.ECO)
+        Tag("White", game.Hdr.White)
+        Tag("Black", game.Hdr.Black)
+        Tag("Result", game.Hdr.Result)
+        Tag("WhiteElo", game.Hdr.W_Elo)
+        Tag("BlackElo", game.Hdr.B_Elo)
+        Tag("ECO", game.Hdr.ECO)
             
         for info in game.AdditionalInfo do
             Tag(info.Key, info.Value)
@@ -707,24 +652,16 @@ module GameEncoded =
 
          let cgm0 = CompressedGameEMP
          let cgm1 = {cgm0 with
-                         WhitePlayer = gm.WhitePlayer
-                         BlackPlayer = gm.BlackPlayer
-                         Result = gm.Result
-                         Year = gm.Year
                          Month = gm.Month
                          Day = gm.Day
-                         Event = gm.Event
-                         WhiteElo = gm.WhiteElo
-                         BlackElo = gm. BlackElo
                          Round = gm.Round
                          Site = gm. Site
-                         ECO = gm.ECO
                          BoardSetup = gm.BoardSetup
                          AdditionalInfo = gm.AdditionalInfo
                          MoveText = nmt}
          cgm1
 
-    let Expand(gm:CompressedGame) =
+    let Expand(gm:CompressedGame,hdr:Header) =
          let rec setemv cbd (pmvl:CompressedMoveTextEntry list) oemvl =
              if pmvl|>List.isEmpty then oemvl|>List.rev
              else
@@ -752,18 +689,11 @@ module GameEncoded =
 
          let egm0 = EncodedGameEMP
          let egm1 = {egm0 with
-                         WhitePlayer = gm.WhitePlayer
-                         BlackPlayer = gm.BlackPlayer
-                         Result = gm.Result
-                         Year = gm.Year
+                         Hdr = hdr
                          Month = gm.Month
                          Day = gm.Day
-                         Event = gm.Event
-                         WhiteElo = gm.WhiteElo
-                         BlackElo = gm. BlackElo
                          Round = gm.Round
                          Site = gm. Site
-                         ECO = gm.ECO
                          BoardSetup = gm.BoardSetup
                          AdditionalInfo = gm.AdditionalInfo
                          MoveText = nmt}

@@ -266,6 +266,11 @@ module Form =
             saveb.Enabled<-ischg
             savem.Enabled<-ischg
 
+        let dohdrchg(ischg) =
+            //set save menus
+            saveb.Enabled<-ischg
+            savem.Enabled<-ischg
+
         let domvsel(mvstr) =
             let dofun() =
                 let board = bd.GetBoard()
@@ -502,6 +507,7 @@ module Form =
             //Events
             pgn.BdChng  |> Observable.add dobdchg 
             pgn.GmChng |> Observable.add dogmchg
+            pgn.HdrChng |> Observable.add dohdrchg
             sts.MvSel |> Observable.add domvsel
             bd.MvMade |> Observable.add domvmade
             gmtbs.GmSel |> Observable.add dogmsel

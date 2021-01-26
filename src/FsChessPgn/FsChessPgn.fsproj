@@ -121,7 +121,7 @@
     <Compile Include="pMove.fs" />
     <Compile Include="MoveTextEntry.fs" />
     <Compile Include="GameUnencoded.fs" />
-    <Compile Include="GameRows.fs" />
+    <Compile Include="Headers.fs" />
     <Compile Include="Index.fs" />
     <Compile Include="MoveUtil.fs" />
     <Compile Include="MoveEncoded.fs" />

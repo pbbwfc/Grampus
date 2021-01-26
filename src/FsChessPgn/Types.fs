@@ -283,6 +283,48 @@ module Types =
         }
         override x.ToString() = x.San
 
+    [<MessagePackObject>]
+    type Header =
+        {
+            [<Key(0)>]
+            Num : int
+            [<Key(1)>]
+            White : string
+            [<Key(2)>]
+            W_Elo : string
+            [<Key(3)>]
+            Black : string
+            [<Key(4)>]
+            B_Elo : string
+            [<Key(5)>]
+            Result : string
+            [<Key(6)>]
+            Year : int
+            [<Key(7)>]
+            Event : string
+            [<Key(8)>]
+            ECO : string
+            [<Key(9)>]
+            Opening : string
+            [<Key(10)>]
+            Deleted : string
+        }
+
+    let HeaderEMP =
+        {
+            Num = -1
+            White = "?"
+            W_Elo = "-"
+            Black = "?"
+            B_Elo = "-"
+            Result = "*"
+            Year = 0
+            Event = "?"
+            ECO = ""
+            Opening = ""
+            Deleted = ""
+        }
+    
     type UnencodedMoveTextEntry =
         |UnencodedHalfMoveEntry of int option * bool * pMove
         |UnencodedCommentEntry of string
@@ -292,18 +334,11 @@ module Types =
     
     type UnencodedGame =
         {
-            WhitePlayer : string
-            BlackPlayer : string
-            Result : GameResult
-            Year : int option
+            Hdr : Header
             Month : int option
             Day : int option
-            Event : string
-            WhiteElo : string
-            BlackElo : string
             Round :string
             Site : string
-            ECO : string
             BoardSetup : Brd option
             AdditionalInfo : Map<string,string>
             MoveText : UnencodedMoveTextEntry list
@@ -311,40 +346,26 @@ module Types =
 
     let UnencodedGameEMP:UnencodedGame =
         {
-            Event = "?"
+            Hdr = HeaderEMP
             Site = "?"
-            Year = None
             Month = None
             Day = None
             Round = "?"
-            WhitePlayer = "?"
-            BlackPlayer = "?"
-            Result = GameResult.Open
-            WhiteElo = "-"
-            BlackElo = "-"
-            ECO = ""
             BoardSetup = None
             AdditionalInfo = Map.empty
             MoveText = []
         }
 
-    [<MessagePackObject>]
     type EncodedMove =
         {
-            [<Key(0)>]
             San : string
-            [<Key(1)>]
             Mno : int
-            [<Key(2)>]
             Isw : bool
-            [<Key(3)>]
             Mv : Move
-            [<Key(4)>]
             PostBrd : Brd
         }
         override x.ToString() = x.San
 
-    [<MessagePackObject>]
     type EncodedMoveTextEntry =
         |EncodedHalfMoveEntry of int option * bool * EncodedMove
         |EncodedCommentEntry of string
@@ -352,55 +373,25 @@ module Types =
         |EncodedNAGEntry of NAG
         |EncodedRAVEntry of EncodedMoveTextEntry list
     
-    [<MessagePackObject>]
     type EncodedGame =
         {
-            [<Key(0)>]
-            WhitePlayer : string
-            [<Key(1)>]
-            BlackPlayer : string
-            [<Key(2)>]
-            Result : GameResult
-            [<Key(3)>]
-            Year : int option
-            [<Key(4)>]
+            Hdr : Header
             Month : int option
-            [<Key(5)>]
             Day : int option
-            [<Key(6)>]
-            Event : string
-            [<Key(7)>]
-            WhiteElo : string
-            [<Key(8)>]
-            BlackElo : string
-            [<Key(9)>]
             Round :string
-            [<Key(10)>]
             Site : string
-            [<Key(11)>]
-            ECO : string
-            [<Key(12)>]
             BoardSetup : Brd option
-            [<Key(13)>]
             AdditionalInfo : Map<string,string>
-            [<Key(14)>]
             MoveText : EncodedMoveTextEntry list
         }
 
     let EncodedGameEMP:EncodedGame =
         {
-            Event = "?"
+            Hdr = HeaderEMP
             Site = "?"
-            Year = None
             Month = None
             Day = None
             Round = "?"
-            WhitePlayer = "?"
-            BlackPlayer = "?"
-            Result = GameResult.Open
-            WhiteElo = "-"
-            BlackElo = "-"
-            ECO = ""
             BoardSetup = None
             AdditionalInfo = Map.empty
             MoveText = []
@@ -432,95 +423,32 @@ module Types =
     type CompressedGame =
         {
             [<Key(0)>]
-            WhitePlayer : string
-            [<Key(1)>]
-            BlackPlayer : string
-            [<Key(2)>]
-            Result : GameResult
-            [<Key(3)>]
-            Year : int option
-            [<Key(4)>]
             Month : int option
-            [<Key(5)>]
+            [<Key(1)>]
             Day : int option
-            [<Key(6)>]
-            Event : string
-            [<Key(7)>]
-            WhiteElo : string
-            [<Key(8)>]
-            BlackElo : string
-            [<Key(9)>]
+            [<Key(2)>]
             Round :string
-            [<Key(10)>]
+            [<Key(3)>]
             Site : string
-            [<Key(11)>]
-            ECO : string
-            [<Key(12)>]
+            [<Key(4)>]
             BoardSetup : Brd option
-            [<Key(13)>]
+            [<Key(5)>]
             AdditionalInfo : Map<string,string>
-            [<Key(14)>]
+            [<Key(6)>]
             MoveText : CompressedMoveTextEntry list
         }
 
     let CompressedGameEMP:CompressedGame =
         {
-            Event = "?"
             Site = "?"
-            Year = None
             Month = None
             Day = None
             Round = "?"
-            WhitePlayer = "?"
-            BlackPlayer = "?"
-            Result = GameResult.Open
-            WhiteElo = "-"
-            BlackElo = "-"
-            ECO = ""
             BoardSetup = None
             AdditionalInfo = Map.empty
             MoveText = []
         }
-    
-    [<MessagePackObject>]
-    type GameRow =
-        {
-            [<Key(0)>]
-            Num : int
-            [<Key(1)>]
-            White : string
-            [<Key(2)>]
-            W_Elo : string
-            [<Key(3)>]
-            Black : string
-            [<Key(4)>]
-            B_Elo : string
-            [<Key(5)>]
-            Result : string
-            [<Key(6)>]
-            Year : int
-            [<Key(7)>]
-            Event : string
-            [<Key(8)>]
-            ECO : string
-            [<Key(9)>]
-            Deleted : string
-        }
 
-    let GameRowEMP =
-        {
-            Num = -1
-            White = "?"
-            W_Elo = "-"
-            Black = "?"
-            B_Elo = "-"
-            Result = "*"
-            Year = 0
-            Event = "?"
-            ECO = ""
-            Deleted = ""
-        }
-    
     [<MessagePackObject>]
     type IndexEntry =
         {

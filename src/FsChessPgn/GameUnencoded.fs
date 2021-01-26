@@ -27,18 +27,36 @@ module GameUnencoded =
     let AddTag (tagstr:string) (gm:UnencodedGame) =
         let k,v = tagstr.Trim().Split([|'"'|])|>Array.map(fun s -> s.Trim())|>fun a -> a.[0],a.[1].Trim('"')
         match k with
-        | "Event" -> {gm with Event = v}
+        | "Event" -> 
+            let hdr = {gm.Hdr with Event = v}
+            {gm with Hdr = hdr}
         | "Site" -> {gm with Site = v}
         | "Date" -> 
             let yop,mop,dop = v|>DateUtil.FromStr
-            {gm with Year = yop; Month = mop; Day = dop}
+            let hdr = {gm.Hdr with Year = if yop.IsNone then 0 else yop.Value}
+            {gm with Month = mop; Day = dop; Hdr = hdr}
         | "Round" -> {gm with Round = v}
-        | "White" -> {gm with WhitePlayer = v}
-        | "Black" -> {gm with BlackPlayer = v}
-        | "Result" -> {gm with Result = v|>GameResult.Parse}
-        | "WhiteElo" -> {gm with WhiteElo = v}
-        | "BlackElo" -> {gm with BlackElo = v}
-        | "ECO" -> {gm with ECO = v}
+        | "White" -> 
+            let hdr = {gm.Hdr with White = v}
+            {gm with Hdr = hdr}
+        | "Black" -> 
+            let hdr = {gm.Hdr with Black = v}
+            {gm with Hdr = hdr}
+        | "Result" -> 
+            let hdr = {gm.Hdr with Result = v|>GameResult.Parse|>GameResult.ToStr}
+            {gm with Hdr = hdr}
+        | "WhiteElo" -> 
+            let hdr = {gm.Hdr with W_Elo = v}
+            {gm with Hdr = hdr}
+        | "BlackElo" -> 
+            let hdr = {gm.Hdr with B_Elo = v}
+            {gm with Hdr = hdr}
+        | "ECO" -> 
+            let hdr = {gm.Hdr with ECO = v}
+            {gm with Hdr = hdr}
+        | "Opening" ->
+            let hdr = {gm.Hdr with Opening = v}
+            {gm with Hdr = hdr}
         | "FEN" -> {gm with BoardSetup = v|>FEN.Parse|>Board.FromFEN|>Some}
         | _ ->
             {gm with AdditionalInfo=gm.AdditionalInfo.Add(k,v)}

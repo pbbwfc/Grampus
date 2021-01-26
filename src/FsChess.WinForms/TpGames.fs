@@ -22,14 +22,14 @@ module TpGamesLib =
                         RowHeadersVisible=false, Dock=DockStyle.Fill
                         )
         let mutable crw = -1
-        let mutable gmsui = new System.ComponentModel.BindingList<GameRow>()
+        let mutable gmsui = new System.ComponentModel.BindingList<Header>()
         let bs = new BindingSource()
         //scinc related
         let mutable nm = "clipbase" //base name
         let mutable gn = 0 //number of games
         let mutable fn = 0 //number of games in filter
         let mutable filt = []
-        let mutable gmrws = [||]
+        let mutable hdrs = [||]
 
         //events
         let selEvt = new Event<_>()
@@ -108,7 +108,7 @@ module TpGamesLib =
             gn <- indx.Length
             fn <- gn
             filt <- []
-            gmrws <- GameRows.Load(inm + "_FILES")
+            hdrs <- Headers.Load(inm + "_FILES")
             settxt()
             
         ///Refresh the list
@@ -116,15 +116,15 @@ module TpGamesLib =
             gmsui.Clear()
             let fol = nm + "_FILES"
             filt <- Filter.Read(bdstr,fol)
-            gmrws <- GameRows.Load(fol)
+            hdrs <- Headers.Load(fol)
             if filt.Length = 0 then
-                fn <- gmrws.Length
+                fn <- hdrs.Length
                 let lim = if fn>100 then 100 else fn-1
-                [0..lim]|>List.iter(fun i -> gmsui.Add(gmrws.[i]))
+                [0..lim]|>List.iter(fun i -> gmsui.Add(hdrs.[i]))
             else
                 fn <- filt.Length
                 let lim = if fn>100 then 100 else fn-1
-                filt.[0..lim]|>List.iter(fun i -> gmsui.Add(gmrws.[i]))
+                filt.[0..lim]|>List.iter(fun i -> gmsui.Add(hdrs.[i]))
             gms.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells)
             settxt()
             color()

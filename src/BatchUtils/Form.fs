@@ -35,6 +35,7 @@ module Form =
         let mutable binfol = ""
         let setbinfol() = binfol <- Path.Combine(Path.GetDirectoryName(gmpfile),Path.GetFileNameWithoutExtension(gmpfile) + "_FILES")
         let mutable iea = [||]
+        let mutable hdra = [||]
         
 
         let sts = new WbStats(Dock=DockStyle.Fill)
@@ -94,11 +95,8 @@ module Form =
                 lbl.Text <- "Encoding games..."
                 let egma = ugma|>Seq.map(Game.Encode)
                 log("Encoded games")
-                lbl.Text <- "Compressing game..."
-                let cgma = egma|>Seq.map(Game.Compress)
-                log("Compressed games")
                 lbl.Text <- "Saving games..." 
-                Games.Save binfol 0L cgma
+                Games.Save binfol 0L egma
                 gmp <- {GrampusDataEMP with SourcePgn=pgn;BaseCreated=Some(DateTime.Now)}
                 Grampus.Save(gmpfile,gmp)
                 log("Saved games")
@@ -109,20 +107,20 @@ module Form =
             let totaldict = new System.Collections.Generic.Dictionary<string,MvTrees>()
             
             let getGmBds i =
-                let gm = Games.LoadGame binfol iea.[i]
+                let gm = Games.LoadGame binfol iea.[i] hdra.[i]
                 let ply = plydd.SelectedItem|>unbox
                 let posns,mvs = Game.GetPosnsMoves ply gm 
-                let welo = gm.WhiteElo
-                let belo = gm.BlackElo
-                let res = gm.Result|>Result.ToInt
+                let welo = gm.Hdr.W_Elo
+                let belo = gm.Hdr.B_Elo
+                let res = gm.Hdr.Result|>Result.Parse|>Result.ToInt
                 //{ "*",  "1-0",  "0-1",  "1/2-1/2" }
-                let yr = gm.Year
+                let yr = gm.Hdr.Year
                 let gminfo =
                     {
                         Gmno = i
                         Welo = if welo="-" then 0 else int(welo)
                         Belo = if belo="-" then 0 else int(belo)
-                        Year = if yr.IsSome then yr.Value else 0
+                        Year = yr
                         Result = res
                     }
                 gminfo,posns,mvs
@@ -237,6 +235,7 @@ module Form =
                 gmp <- Grampus.Load gmpfile
                 setbinfol()
                 iea <- Index.Load binfol
+                hdra <- Headers.Load binfol
                 let numgames = iea.Length
                 totaldict.Clear()
                 prg.Minimum<-0
@@ -292,7 +291,7 @@ module Form =
             let totaldict = new System.Collections.Generic.Dictionary<string,int list>()
             
             let getBds i =
-                let gm = Games.LoadGame binfol iea.[i]
+                let gm = Games.LoadGame binfol iea.[i] hdra.[i]
                 let ply = plydd.SelectedItem|>unbox
                 let posns = Game.GetPosns ply gm 
                 posns

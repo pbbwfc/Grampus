@@ -18,7 +18,7 @@ let main argv =
             let pns = Game.GetPosns i gm
             pns.[pns.Length-1]
         let geteco (gm:EncodedGame) =
-            let code = gm.ECO
+            let code = gm.Hdr.ECO
             let ai = gm.AdditionalInfo
             let desc = 
                 if ai.ContainsKey("Variation") then 
@@ -36,7 +36,7 @@ let main argv =
         let str = File.ReadAllText(fn)  
         Json.deserialize (str)
 
-    createeco()
+    //createeco()
     let pgnfol = @"d:\pgns" 
     let fn = Path.Combine(pgnfol,"eco.json")
     let map = Load(fn)

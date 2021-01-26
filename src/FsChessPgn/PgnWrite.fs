@@ -114,16 +114,16 @@ module PgnWrite =
         writer.WriteLine("\"]")
 
     let Game(game:UnencodedGame, writer:TextWriter) =
-        Tag("Event", game.Event, writer)
+        Tag("Event", game.Hdr.Event, writer)
         Tag("Site", game.Site, writer)
         Tag("Date", game|>DateUtil.ToStr, writer)
         Tag("Round", game.Round, writer)
-        Tag("White", game.WhitePlayer, writer)
-        Tag("Black", game.BlackPlayer, writer)
-        Tag("Result", ResultString(game.Result), writer)
-        Tag("WhiteElo", game.WhiteElo, writer)
-        Tag("BlackElo", game.BlackElo, writer)
-        Tag("ECO", game.ECO, writer)
+        Tag("White", game.Hdr.White, writer)
+        Tag("Black", game.Hdr.Black, writer)
+        Tag("Result", game.Hdr.Result, writer)
+        Tag("WhiteElo", game.Hdr.W_Elo, writer)
+        Tag("BlackElo", game.Hdr.B_Elo, writer)
+        Tag("ECO", game.Hdr.ECO, writer)
         
         for info in game.AdditionalInfo do
             Tag(info.Key, info.Value, writer)

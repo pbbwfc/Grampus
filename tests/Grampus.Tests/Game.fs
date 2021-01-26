@@ -15,7 +15,7 @@ type Game () =
     
     [<TestMethod>]
     member this.``Event to string`` () =
-      let ans = gm.Event
+      let ans = gm.Hdr.Event
       ans |> should equal "London Chess Classic"
 
     [<TestMethod>]
@@ -25,8 +25,7 @@ type Game () =
 
     [<TestMethod>]
     member this.``Date to string`` () =
-      let ans = gm.Year
-      gm.Year.Value |> should equal 2009
+      gm.Hdr.Year |> should equal 2009
       gm.Month.Value |> should equal 12
       gm.Day.Value |> should equal 13
       
@@ -37,18 +36,18 @@ type Game () =
 
     [<TestMethod>]
     member this.``White to string`` () =
-      let ans = gm.WhitePlayer
+      let ans = gm.Hdr.White
       ans |> should equal "Howell, David"
 
     [<TestMethod>]
     member this.``Black to string`` () =
-      let ans = gm.BlackPlayer
+      let ans = gm.Hdr.Black
       ans |> should equal "Kramnik, Vladimir"
 
     [<TestMethod>]
     member this.``Result to string`` () =
-      let ans = gm.Result.ToString()
-      ans |> should equal "Draw"
+      let ans = gm.Hdr.Result
+      ans |> should equal "1/2-1/2"
 
     [<TestMethod>]
     member this.``Game to string length`` () =

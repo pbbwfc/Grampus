@@ -28,6 +28,7 @@ module PnlPgnLib =
         let mutable ccm = ""
         let mutable cng = NAG.Null
         let mutable gmchg = false
+        let mutable hdrchg = false
         
         //base related
         let mutable gnum = -1
@@ -36,10 +37,11 @@ module PnlPgnLib =
         //events
         let bdchngEvt = new Event<_>()
         let gmchngEvt = new Event<_>()
+        let hdrchngEvt = new Event<_>()
         
         //functions
         let sethdr() =
-            gmlbl.Text <- game.WhitePlayer + " v. " + game.BlackPlayer
+            gmlbl.Text <- game.Hdr.White + " v. " + game.Hdr.Black
 
         let hdr = "<html><body>"
         let ftr = "</body></html>"
@@ -223,55 +225,56 @@ module PnlPgnLib =
             let tc = 
                 new TableLayoutPanel(ColumnCount = 2, RowCount = 9, 
                                     Height = 350, Width = 360,Dock=DockStyle.Fill)
+            let hdr = game.Hdr
             let wlbl = new Label(Text="White")
-            let wtb = new TextBox(Text=game.WhitePlayer,Width=200)
-            let blbl = new Label(Text="Black")
-            let btb = new TextBox(Text=game.BlackPlayer,Width=200)
-            let rslbl = new Label(Text="Result")
-            let rscb = new ComboBox(Text=(game.Result|>Result.ToStr),Width=200)
-            let dtlbl = new Label(Text="Date")
-            let dttb = new TextBox(Text=(game|>GameDate.ToStr),Width=200)
-            let evlbl = new Label(Text="Event")
-            let evtb = new TextBox(Text=game.Event,Width=200)
+            let wtb = new TextBox(Text=hdr.White,Width=200)
             let welbl = new Label(Text="White Elo")
-            let wetb = new TextBox(Text=game.WhiteElo,Width=200)
+            let wetb = new TextBox(Text=hdr.W_Elo,Width=200)
+            let blbl = new Label(Text="Black")
+            let btb = new TextBox(Text=hdr.Black,Width=200)
             let belbl = new Label(Text="Black Elo")
-            let betb = new TextBox(Text=game.BlackElo,Width=200)
-            let rdlbl = new Label(Text="Round")
-            let rdtb = new TextBox(Text=game.Round,Width=200)
-            let stlbl = new Label(Text="Site")
-            let sttb = new TextBox(Text=game.Site,Width=200)
+            let betb = new TextBox(Text=hdr.B_Elo,Width=200)
+            let rslbl = new Label(Text="Result")
+            let rscb = new ComboBox(Text=hdr.Result,Width=200)
+            let yrlbl = new Label(Text="Year")
+            let yrtb = new TextBox(Text=(hdr.Year.ToString()),Width=200)
+            let evlbl = new Label(Text="Event")
+            let evtb = new TextBox(Text=hdr.Event,Width=200)
+            let eclbl = new Label(Text="ECO")
+            let ectb = new TextBox(Text=hdr.ECO,Width=200)
+            let oplbl = new Label(Text="Opening")
+            let optb = new TextBox(Text=hdr.Opening,Width=200)
             
             let dook(e) = 
-                let results = [|GameResult.WhiteWins;GameResult.BlackWins;GameResult.Draw;GameResult.Open|]
-                let res = if rscb.SelectedIndex= -1 then game.Result else results.[rscb.SelectedIndex]
+                let results = [|"1-0";"0-1";"1/2-1/2";"*"|]
+                let res = if rscb.SelectedIndex= -1 then hdr.Result else results.[rscb.SelectedIndex]
                 //now update game end if result changed
-                if res<>game.Result then
-                    let chngres (mte:EncodedMoveTextEntry) =
-                        match mte with
-                        |EncodedGameEndEntry(_) -> EncodedGameEndEntry(res)
-                        |_ -> mte
+                if res<>hdr.Result then
+                    let rec updres fnd (imtel:EncodedMoveTextEntry list) (omtel:EncodedMoveTextEntry list) =
+                        if List.isEmpty imtel then
+                            if fnd then omtel|>List.rev
+                            else
+                                (EncodedGameEndEntry(res|>Result.Parse)::omtel)|>List.rev
+                        else
+                            let mte = imtel.Head
+                            match mte with
+                            |EncodedGameEndEntry(_) -> 
+                                let nmte = EncodedGameEndEntry(res|>Result.Parse)
+                                updres true imtel.Tail (nmte::omtel)
+                            |_ -> updres fnd imtel.Tail (mte::omtel)
 
-                    let nmvtxt = game.MoveText|>List.map chngres
+                    let nmvtxt = updres false game.MoveText []
                     game <- {game with MoveText=nmvtxt}
 
-                let yo,mo,dyo =
-                    let bits=dttb.Text.Split([|'.'|])
-                    if bits.Length=3 then
-                        let tryToInt (s:string) = 
-                            match System.Int32.TryParse s with
-                            | true, v -> Some v
-                            | false, _ -> None
-                        
-                        bits.[0]|>tryToInt,bits.[1]|>tryToInt,bits.[2]|>tryToInt
-                    else None,None,None
-                game <- {game with WhitePlayer=wtb.Text;WhiteElo=wetb.Text;
-                                   BlackPlayer=btb.Text;BlackElo=betb.Text;
-                                   Result=res;Year=yo;Month=mo;Day=dyo;
-                                   Event=evtb.Text;Round=rdtb.Text;Site=sttb.Text}
+                let nhdr = {hdr with White=wtb.Text;W_Elo=wetb.Text;
+                                         Black=btb.Text;B_Elo=betb.Text;
+                                         Result=res;
+                                         Year=int(yrtb.Text);Event=evtb.Text;
+                                         ECO=ectb.Text;Opening=optb.Text}
+                game <- {game with Hdr = nhdr}
                 
-                gmchg<-true
-                gmchg|>gmchngEvt.Trigger
+                hdrchg<-true
+                hdrchg|>hdrchngEvt.Trigger
                 sethdr()
                 dlg.Close()
 
@@ -286,25 +289,25 @@ module PnlPgnLib =
                 dlg.Controls.Add(hc2)
                 tc.Controls.Add(wlbl,0,0)
                 tc.Controls.Add(wtb,1,0)
-                tc.Controls.Add(blbl,0,1)
-                tc.Controls.Add(btb,1,1)
-                tc.Controls.Add(rslbl,0,2)
+                tc.Controls.Add(welbl,0,1)
+                tc.Controls.Add(wetb,1,1)
+                tc.Controls.Add(blbl,0,2)
+                tc.Controls.Add(btb,1,2)
+                tc.Controls.Add(belbl,0,3)
+                tc.Controls.Add(betb,1,3)
+                tc.Controls.Add(rslbl,0,4)
                 [|GameResult.WhiteWins;GameResult.BlackWins;GameResult.Draw;GameResult.Open|]
                 |>Array.map(Result.ToStr)
                 |>Array.iter(fun r -> rscb.Items.Add(r)|>ignore)
-                tc.Controls.Add(rscb,1,2)
-                tc.Controls.Add(dtlbl,0,3)
-                tc.Controls.Add(dttb,1,3)
-                tc.Controls.Add(evlbl,0,4)
-                tc.Controls.Add(evtb,1,4)
-                tc.Controls.Add(welbl,0,5)
-                tc.Controls.Add(wetb,1,5)
-                tc.Controls.Add(belbl,0,6)
-                tc.Controls.Add(betb,1,6)
-                tc.Controls.Add(rdlbl,0,7)
-                tc.Controls.Add(rdtb,1,7)
-                tc.Controls.Add(stlbl,0,8)
-                tc.Controls.Add(sttb,1,8)
+                tc.Controls.Add(rscb,1,4)
+                tc.Controls.Add(yrlbl,0,5)
+                tc.Controls.Add(yrtb,1,5)
+                tc.Controls.Add(evlbl,0,6)
+                tc.Controls.Add(evtb,1,6)
+                tc.Controls.Add(eclbl,0,7)
+                tc.Controls.Add(ectb,1,7)
+                tc.Controls.Add(oplbl,0,8)
+                tc.Controls.Add(optb,1,8)
 
                 dlg.Controls.Add(tc)
                 dlg.CancelButton <- cnbtn
@@ -484,12 +487,17 @@ module PnlPgnLib =
             let indx = Index.Load(fol)
             if gnum = -1 then 
                 gnum<-indx.Length
+                let hdr = {game.Hdr with Num=gnum}
+                game <- {game with Hdr=hdr}
                 //need to update index, game rows and binary file
-                Games.AppendGame fol gnum (game|>Game.Compress)
+                Games.AppendGame fol gnum game
             else
-                Games.UpdateGame fol gnum (game|>Game.Compress)
+                Games.UpdateGame fol gnum game
             gmchg<-false
             gmchg|>gmchngEvt.Trigger
+            hdrchg<-false
+            hdrchg|>hdrchngEvt.Trigger
+
 
         ///Saves the game with prompt
         member _.PromptSaveGame() = 
@@ -499,13 +507,17 @@ module PnlPgnLib =
             else
                 gmchg<-false
                 gmchg|>gmchngEvt.Trigger
+                hdrchg<-false
+                hdrchg|>hdrchngEvt.Trigger
+
             
         ///Switches to another game with the same position
         member pgnpnl.SwitchGame(rw:int) = 
             gnum <- rw
             let fol = nm + "_FILES"
             let indx = Index.Load fol
-            let gm = Games.LoadGame fol indx.[gnum]
+            let hdrs = Headers.Load fol
+            let gm = Games.LoadGame fol indx.[gnum] hdrs.[gnum]
              //need to check if want to save
             if gmchg then pgnpnl.PromptSaveGame()
             game <- gm
@@ -552,7 +564,8 @@ module PnlPgnLib =
             let fol = inm + "_FILES"
             let indx = Index.Load fol
             if indx.Length>0 then
-                let gm = Games.LoadGame fol indx.[ignum]
+                let hdrs = Headers.Load fol
+                let gm = Games.LoadGame fol indx.[ignum] hdrs.[ignum]
                 pgnpnl.SetGame(gm)
                 gnum <- ignum
             else
@@ -567,6 +580,9 @@ module PnlPgnLib =
             pgnpnl.SetGame(gm|>Game.Encode)
             gmchg<-true
             gmchg|>gmchngEvt.Trigger
+            hdrchg<-true
+            hdrchg|>hdrchngEvt.Trigger
+
 
         member pgnpnl.GetPgn() =
             let pgnstr = Game.ToStr(game)
@@ -814,3 +830,7 @@ module PnlPgnLib =
 
         ///Provides the new Game after a change
         member __.GmChng = gmchngEvt.Publish
+
+        ///Provides the new Game after a change of hdr
+        member __.HdrChng = hdrchngEvt.Publish
+

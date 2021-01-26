@@ -36,11 +36,6 @@
     <Compile Include="Recents.fs" />
     <Compile Include="Form.fs" />
     <Compile Include="Program.fs" />
-    <None Include="scinc.ico">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
 
 	<ItemGroup>

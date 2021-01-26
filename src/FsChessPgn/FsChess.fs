@@ -11,6 +11,9 @@ module Result =
     ///Gets the string symbol for a Result
     let ToStr = FsChessPgn.GameResult.ToStr
 
+    ///Gets the GameResult type from a string
+    let Parse = FsChessPgn.GameResult.Parse
+
     ///Gets the integer value (2 for white win, 0 for blackwin, 1 otherwise) for a Result
     let ToInt = FsChessPgn.GameResult.ToInt
 
@@ -278,19 +281,13 @@ module Index =
     ///Save Index
     let Save = FsChessPgn.Index.Save
 
-module GameRows =
+module Headers =
     
     ///Load Game Rows
-    let Load = FsChessPgn.GameRows.Load
+    let Load = FsChessPgn.Headers.Load
 
     ///Save Game Rows
-    let Save = FsChessPgn.GameRows.Save
-
-    ///Create Game Row from Compressed Game
-    let FromGame = FsChessPgn.GameRows.FromGame
-    
-    ///Create Game Rows from Compressed Games
-    let FromGames = FsChessPgn.GameRows.FromGames
+    let Save = FsChessPgn.Headers.Save
 
 module Games =
     

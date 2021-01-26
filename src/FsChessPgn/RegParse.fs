@@ -19,7 +19,7 @@ module RegParse =
         | Invalid
         | FinishedInvalid
     
-    let rec private NextGameRdr(sr : StreamReader) :UnencodedGame = 
+    let rec private NextGameRdr (sr : StreamReader) :UnencodedGame = 
         let nl = System.Environment.NewLine
         let rec proclin st cstr s (gm:UnencodedGame) = 
             if s = "" then 
@@ -148,10 +148,13 @@ module RegParse =
     
     let AllGamesRdr(sr : System.IO.StreamReader) = 
         seq { 
+            let mutable i = 0
             while not sr.EndOfStream do
-                let gm = NextGameRdr(sr)
+                let gm = NextGameRdr (sr)
                 if gm<>UnencodedGameEMP then
-                    yield gm
+                    let hdr = {gm.Hdr with Num=i}
+                    i <- i + 1
+                    yield {gm with Hdr=hdr}
                 
         }
     
