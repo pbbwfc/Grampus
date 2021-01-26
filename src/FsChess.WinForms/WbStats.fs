@@ -256,11 +256,11 @@ module WbStatsLib =
             
         member stats.LoadWhiteRep(shw) =
             whtld <- shw
-            //stats.DocumentText <- bdsttags()
+            stats.DocumentText <- bdsttags()
         
         member stats.LoadBlackRep(shb) =
             blkld <- shb
-            //stats.DocumentText <- bdsttags()
+            stats.DocumentText <- bdsttags()
         
         //publish
         ///Provides the selected move in SAN format

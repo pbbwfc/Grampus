@@ -228,11 +228,11 @@ module Repertoire =
     ///Load Black Repertoire
     let LoadBlack = FsChessPgn.Repertoire.LoadBlack
     
-    /////Update White Repertoire from database
-    //let UpdateWhite = FsChessPgn.Repertoire.UpdateWhite
+    ///Update White Repertoire from database
+    let UpdateWhite = FsChessPgn.Repertoire.UpdateWhite
     
-    /////Update Black Repertoire from database
-    //let UpdateBlack = FsChessPgn.Repertoire.UpdateBlack
+    ///Update Black Repertoire from database
+    let UpdateBlack = FsChessPgn.Repertoire.UpdateBlack
 
     ///Options contaion SAN
     let OptsHaveSan = FsChessPgn.Repertoire.optsHasSan

@@ -227,7 +227,7 @@ module Form =
         
         let doupdatewhite() =
             SbUpdate("Updating white repertoire")
-            let numerrs = 0//FsChess.Repertoire.UpdateWhite()
+            let numerrs = FsChess.Repertoire.UpdateWhite()
             if numerrs<>0 then
                 MessageBox.Show("Errors found iduring conversion. Please review contents of: " + FsChess.Repertoire.WhiteErrFile(),"Repertoire Errors")|>ignore
             SbUpdate("Ready")
@@ -239,7 +239,7 @@ module Form =
 
         let doupdateblack() =
             SbUpdate("Updating black repertoire")
-            let numerrs = 0//FsChess.Repertoire.UpdateBlack()
+            let numerrs = FsChess.Repertoire.UpdateBlack()
             if numerrs<>0 then
                 MessageBox.Show("Errors found iduring conversion. Please review contents of: " + FsChess.Repertoire.BlackErrFile(),"Repertoire Errors")|>ignore
             SbUpdate("Ready")
