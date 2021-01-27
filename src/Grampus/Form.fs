@@ -172,9 +172,13 @@ module Form =
  
         let docompact() =
             SbUpdate("Compacting base")
-            //if ScincFuncs.Compact.Games()=0 then
-            //    SbUpdate("Reloading list of games")
-            //    gmtbs.Refrsh(bd.GetBoard(),sts.BaseNum())
+            let nm = gmtbs.BaseName()
+            Games.Compact(nm + "_FILES")
+            SbUpdate("Reloading list of games")
+            let nbd = bd.GetBoard()
+            gmtbs.Refrsh(nbd)
+            let gnum = pgn.GetGameNumber()
+            gmtbs.SelNum(gnum)
             SbUpdate("Ready")
 
         let doimppgn() =

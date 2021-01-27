@@ -50,11 +50,13 @@ module TpGamesLib =
         
         let dodel(rw:int) =
              let gnum = gms.Rows.[rw].Cells.[0].Value:?>int
-             ()
-             //if ScincFuncs.ScidGame.Delete(uint(gnum))=0 then
-             //   gms.Rows.[rw].Cells.["Deleted"].Value<-"D"
-             //   gms.Rows.[rw].DefaultCellStyle.ForeColor <- Color.Red;
- 
+             let hdr = hdrs.[gnum]
+             let nhdr = {hdr with Deleted="D"}
+             hdrs.[gnum] <- nhdr
+             Headers.Save(nm + "_FILES",hdrs)
+             gmsui.[rw] <- nhdr
+             gms.Rows.[rw].DefaultCellStyle.ForeColor <- Color.Red;
+             
         let doload(rw:int) =
             gms.CurrentCell <- gms.Rows.[rw].Cells.[0]
             crw <- gms.Rows.[rw].Cells.[0].Value:?>int

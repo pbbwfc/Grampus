@@ -72,4 +72,42 @@ module Games =
         hdrs.[gnum] <- hdr
         Index.Save(fol,iea)
         Headers.Save(fol,hdrs)
+
+    let Compact (fol:string) =
+        //create temp folder to do the compact
+        let tmpfol = Path.Combine(fol,"temp")
+        Directory.CreateDirectory(tmpfol)|>ignore
+        let ofn = Path.Combine(tmpfol,"GAMES")
+        use writer = new BinaryWriter(File.Open(ofn, FileMode.OpenOrCreate))
+        //load all the current files
+        let ifn = Path.Combine(fol,"GAMES")
+        use reader = new BinaryReader(File.Open(ifn, FileMode.Open, FileAccess.Read, FileShare.Read))
+        let iea = Index.Load(fol)
+        let hdrs = Headers.Load(fol)
+        //write in compacted format
+        let svgm i =
+            let ie = iea.[i]
+            let hdr = hdrs.[i]
+            let keep = hdr.Deleted<>"D"
+            if keep then
+                reader.BaseStream.Position <- ie.Offset
+                let bin = reader.ReadBytes(ie.Length)
+                let off = writer.BaseStream.Position
+                if i%1000=0 then printf "%i..." i
+                writer.Write(bin)
+                keep,{Offset=off;Length=bin.Length}, hdr
+            else keep,{Offset=0L;Length=0}, hdr
+        let kihs = [|0..iea.Length-1|]|>Array.map svgm
+        let niea,nhdrs = 
+            kihs|>Array.filter(fun (k,i,h) -> k)
+            |>Array.map(fun (k,i,h) -> i,h)
+            |>Array.unzip
+        Index.Save(tmpfol,niea)
+        Headers.Save(tmpfol,nhdrs)
+        reader.Close()
+        writer.Close()
+        //now overwrite with compacted versions
+        File.Move(ofn,ifn,true)
+        File.Move(Path.Combine(tmpfol,"INDEX"),Path.Combine(fol,"INDEX"),true)
+        File.Move(Path.Combine(tmpfol,"ROWS"),Path.Combine(fol,"ROWS"),true)
         

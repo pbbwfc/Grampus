@@ -307,3 +307,6 @@ module Games =
 
     ///Update Game
     let UpdateGame = FsChessPgn.Games.UpdateGame
+
+    ///Compact base
+    let Compact = FsChessPgn.Games.Compact
