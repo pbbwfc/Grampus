@@ -286,6 +286,9 @@ module Eco =
     //Set eco for game
     let ForGame = FsChessPgn.Eco.ForGame
 
+    //Set eco for games
+    let ForBase = FsChessPgn.Eco.ForBase
+
 module Headers =
     
     ///Load Game Rows
@@ -302,6 +305,9 @@ module Games =
     ///Save Games
     let Save = FsChessPgn.Games.Save
     
+    ///Add Games
+    let Add = FsChessPgn.Games.Add
+ 
     ///Append Game
     let AppendGame = FsChessPgn.Games.AppendGame
 

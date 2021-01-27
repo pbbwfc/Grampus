@@ -1,6 +1,7 @@
 ﻿namespace FsChessPgn
 
 open System
+open System.IO
 open FsChess
 
 module Eco =
@@ -23,3 +24,16 @@ module Eco =
                 {gm with Hdr=nhdr}
         ngm
 
+    let ForBase (fol:string) =
+        //load all the current files
+        let iea = Index.Load(fol)
+        let hdrs = Headers.Load(fol)
+        //write in compacted format
+        let updhdr i =
+            let ie = iea.[i]
+            let hdr = hdrs.[i]
+            let gm = Games.LoadGame fol ie hdr
+            let ngm = gm|>ForGame
+            ngm.Hdr
+        let nhdrs = [|0..iea.Length-1|]|>Array.map updhdr
+        Headers.Save(fol,nhdrs)

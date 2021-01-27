@@ -184,28 +184,31 @@ module Form =
         let doimppgn() =
             let ndlg = new OpenFileDialog(Title="Import PGN File",Filter="Pgn Files(*.pgn)|*.pgn",InitialDirectory=bfol)
             if ndlg.ShowDialog() = DialogResult.OK then
-                let pgn = ndlg.FileName
-                SbUpdate("Importing pgn file: " + pgn)
-                let mutable num = 0
-                let mutable msgs = ""
-                ()
-                //if ScincFuncs.Base.Import(&num,&msgs,pgn)=0 then
-                //    SbUpdate("Reloading list of games")
-                //    gmtbs.Refrsh(bd.GetBoard(),sts.BaseNum())
-                //    if ScincFuncs.Base.Current()=sts.BaseNum() then 
-                //        SbUpdate("Reloading tree")
-                //        sts.Refrsh()
+                let pgnf = ndlg.FileName
+                SbUpdate("Importing pgn file: " + pgnf)
+                let ugma = Pgn.Games.ReadSeqFromFile pgnf
+                SbUpdate("Encoding games...")
+                let egma = ugma|>Seq.map(Game.Encode)
+                SbUpdate("Adding games...")
+                let nm = gmtbs.BaseName()
+                Games.Add (nm + "_FILES") egma
+                SbUpdate("Reloading list of games")
+                let nbd = bd.GetBoard()
+                gmtbs.Refrsh(nbd)
+                let gnum = pgn.GetGameNumber()
+                gmtbs.SelNum(gnum)
             SbUpdate("Ready")
 
 
         let doeco() =
             SbUpdate("Adding ECO classifiers")
-            //let mutable msgs = ""
-            //if ScincFuncs.Eco.Base(&msgs)=0 then
-            //    SbUpdate("Reloading list of games")
-            //    gmtbs.Refrsh(bd.GetBoard(),sts.BaseNum())
-            //else
-            //    MessageBox.Show("Process had issues: " + msgs,"Set ECO Issues")|>ignore
+            let nm = gmtbs.BaseName()
+            Eco.ForBase (nm + "_FILES")
+            SbUpdate("Reloading list of games")
+            let nbd = bd.GetBoard()
+            gmtbs.Refrsh(nbd)
+            let gnum = pgn.GetGameNumber()
+            gmtbs.SelNum(gnum)
             SbUpdate("Ready")
 
         let docopypgn() =
