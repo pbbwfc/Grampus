@@ -1,7 +1,7 @@
 # Grampus
-![logo](~/docs/images/logo.png "Logo")
+![logo](docs/images/logo.png "Logo")
 
-![screen](~/docs/images/Screen.png "Screen")
+![screen](docs/images/Screen.png "Screen")
 
 
 For further details, see the documentation:
