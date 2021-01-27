@@ -61,8 +61,7 @@ module Form =
             showbm.Enabled<-gmtbs.TabCount>1
 
         let updateTitle() =
-            let gmpfile = ""//gmtbs.Getfilename() 
-            this.Text <- "Grampus - " + Path.GetFileNameWithoutExtension(gmpfile)
+            this.Text <- "Grampus - " + gmtbs.BaseName()
         
         let refreshWindows() =
             updateMenuStates()
@@ -464,14 +463,14 @@ module Form =
             onl.Click.Add
                 (fun _ -> 
                 System.Diagnostics.Process.Start
-                    (new System.Diagnostics.ProcessStartInfo("https://pbbwfc.github.io/ScincNet/", UseShellExecute = true)) |> ignore)
+                    (new System.Diagnostics.ProcessStartInfo("https://pbbwfc.github.io/Grampus/", UseShellExecute = true)) |> ignore)
             abtm.DropDownItems.Add(onl) |> ignore
             // source code
             let src = new ToolStripMenuItem("Source Code")
             src.Click.Add
                 (fun _ -> 
                 System.Diagnostics.Process.Start
-                    (new System.Diagnostics.ProcessStartInfo("https://github.com/pbbwfc/ScincNet", UseShellExecute = true)) |> ignore)
+                    (new System.Diagnostics.ProcessStartInfo("https://github.com/pbbwfc/Grampus", UseShellExecute = true)) |> ignore)
             abtm.DropDownItems.Add(src) |> ignore
             
           
