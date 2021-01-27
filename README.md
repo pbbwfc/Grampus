@@ -1,7 +1,7 @@
 # Grampus
-![alt text](https://github.com/pbbwfc/ScincNet/blob/main/docs/images/Logo.png "Logo")
+![logo](https://github.com/pbbwfc/ScincNet/blob/main/docs/images/logo.png "Logo")
 
-![alt text](https://github.com/pbbwfc/ScincNet/blob/main/docs/images/Screen.png "Screen")
+![screen](https://github.com/pbbwfc/ScincNet/blob/main/docs/images/Screen.png "Screen")
 
 
 For further details, see the documentation:
