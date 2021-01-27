@@ -17,7 +17,7 @@ module Form =
         new Icon(file)
 
     type FrmMain() as this =
-        inherit Form(Text = "Grampus", WindowState = FormWindowState.Maximized, IsMdiContainer = true, Icon = ico "scinc.ico")
+        inherit Form(Text = "Grampus", WindowState = FormWindowState.Maximized, IsMdiContainer = true, Icon = ico "grampus.ico")
 
         let bfol = 
             let pth = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments),"Grampus\\bases")

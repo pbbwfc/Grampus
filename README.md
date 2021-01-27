@@ -1,4 +1,5 @@
 # Grampus
+![alt text](https://github.com/pbbwfc/ScincNet/blob/main/docs/images/Logo.png "Logo")
 
 ![alt text](https://github.com/pbbwfc/ScincNet/blob/main/docs/images/Screen.png "Screen")
 
