@@ -14,15 +14,15 @@
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-	  <OutputPath>D:\GitHub\ScincNet\debug\</OutputPath>
+	  <OutputPath>D:\GitHub\Grampus\debug\</OutputPath>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-	  <OutputPath>D:\GitHub\ScincNet\rel\</OutputPath>
+	  <OutputPath>D:\GitHub\Grampus\rel\</OutputPath>
 	</PropertyGroup>
 
 	<ItemGroup>
-    <EmbeddedResource Include="Icons\grampus.ico">
+    <EmbeddedResource Include="grampus.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Images\black.png" />

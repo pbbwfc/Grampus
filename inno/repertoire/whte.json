@@ -1,0 +1,474 @@
+[
+  {
+    "R.B..RK......PBPPPN...P...PQ...............pbn..pp..bppp..rq.rk. w": [
+      {
+        "San": "b6",
+        "Nag": "Null",
+        "Comm": ""
+      }
+    ],
+    "R.BQ.RK......PBPPPN...P...PN..............npbn..pp..bppp..rq.rk. w": [
+      {
+        "San": "Nxd4",
+        "Nag": "Null",
+        "Comm": ""
+      }
+    ],
+    "R.BQ.RK.....NPBPPPN...P...PP..............npbn..pp..bppp..rq.rk. w": [
+      {
+        "San": "exd4",
+        "Nag": "Null",
+        "Comm": ""
+      }
+    ],
+    "R.BQ.RK.....NPBPPPN.P.P...PP......p.......npbn..pp..bppp..rq.rk. w": [
+      {
+        "San": "cxd4",
+        "Nag": "Null",
+        "Comm": ""
+      }
+    ],
+    "R.BQ.RK....PNPBPPPN.P.P...P.......p.......npbn..pp..bpppr..q.rk. w": [
+      {
+        "San": "Rc8",
+        "Nag": "Null",
+        "Comm": ""
+      }
+    ],
+    "R.BQ.RK..P.PNPBPP.N.P.P...P.......p.......np.n..pp..bpppr.bq.rk. w": [
+      {
+        "San": "Be6",
+        "Nag": "Null",
+        "Comm": ""
+      }
+    ],
+    "R.BQ.RK.P...NPBP..PPP.P...P.........p.....npbn..ppp..pppr..q.rk. b": [
+      {
+        "San": "Qd7",
+        "Nag": "Null",
+        "Comm": ""
+      }
+    ],
+    "R.BQ.RK.P..PNPBP..P.P.P...P.........p.....np.n..ppp..pppr.bq.rk. b": [
+      {
+        "San": "Be6",
+        "Nag": "Null",
+        "Comm": ""
+      }
+    ],
+    "R.BQ.RK.PP...PBP..N.P.P...P........Ppp....npb...ppp...ppr..qk..r w": [
+      {
+        "San": "Bxd5",
+        "Nag": "Null",
+        "Comm": ""
+      }
+    ],
+    "R.BQ.RK.PP...PBP..N.P.P..b.N.............nn.....ppp..pppr.bq.rk. w": [
+      {
+        "San": "Nxd4",
+        "Nag": "Null",
+        "Comm": ""
+      }
+    ],
+    "R.BQ.RK.PP..NPBP..N.P.P...PP......b.pp....npb...ppp...ppr..qk..r w": [
+      {
+        "San": "Bb4",
+        "Nag": "Null",
+        "Comm": ""
+      }
+    ],
+    "R.BQ.RK.PP..NPBP..N.P.P..b.P........p....nn.....ppp..pppr.bq.rk. w": [
+      {
+        "San": "exd4",
+        "Nag": "Null",
+        "Comm": ""
+      }
+    ],
+    "R.BQ.RK.PP..NPBP..N.P.P..bP........Ppp....npb...ppp...ppr..qk..r w": [
+      {
+        "San": "Bxc3",
+        "Nag": "Null",
+        "Comm": ""
+      }
+    ],
+    "R.BQ.RK.PP.PNPBP..N.P.P...P.......b.pp....np....ppp...ppr.bqk..r w": [
+      {
+        "San": "Be6",
+        "Nag": "Null",
+        "Comm": ""
+      }
+    ],
+    "R.BQ.RK.PP.PNPBP..N.P.P..b..........p....nn.....ppp..pppr.bqk..r w": [
+      {
+        "San": "O-O",
+        "Nag": "Null",
+        "Comm": ""
+      }
+    ],
+    "R.BQK..R.P.PNPBPP.N.P.P...P.......p.......np.n..pp..bpppr.bqk..r w": [
+      {
+        "San": "O-O",
+        "Nag": "Null",
+        "Comm": ""
+      }
+    ],
+    "R.BQK..RP..PNPBP..P.P.P...P.........p.....n..n..pppp.pppr.bq.rk. b": [
+      {
+        "San": "d6",
+        "Nag": "Null",
+        "Comm": ""
+      }
+    ],
+    "R.BQK..RPP.PNPBP..N.P.P...P.......b.pp....n.....pppp..ppr.bqk..r w": [
+      {
+        "San": "d6",
+        "Nag": "Null",
+        "Comm": ""
+      }
+    ],
+    "R.BQK..RPP.PNPBP..N.P.P..b..........p....nn.....ppp..pppr.bqk..r w": [
+      {
+        "San": "Be7",
+        "Nag": "Null",
+        "Comm": ""
+      }
+    ],
+    "R.BQK.NR.P.P.PBPP.N.P.P...P.......p.......np.n..pp...pppr.bqkb.r w": [
+      {
+        "San": "Be7",
+        "Nag": "Null",
+        "Comm": ""
+      }
+    ],
+    "R.BQK.NR.P.PPPBPP.N...P...P.......p.......np....pp...pppr.bqkbnr w": [
+      {
+        "San": "Nf6",
+        "Nag": "Null",
+        "Comm": ""
+      }
+    ],
+    "R.BQK.NRP..P.PBP..P.P.P...P.........p.....n..n..pppp.pppr.bqk..r b": [
+      {
+        "San": "O-O",
+        "Nag": "Null",
+        "Comm": ""
+      }
+    ],
+    "R.BQK.NRP..PPPBP..P...P...P.........p........n..pppp.ppprnbqk..r b": [
+      {
+        "San": "Nc6",
+        "Nag": "Null",
+        "Comm": ""
+      }
+    ],
+    "R.BQK.NRPP.P.PBP..N.P.P...P.......b.pp..........pppp..pprnbqk..r w": [
+      {
+        "San": "Nc6",
+        "Nag": "Null",
+        "Comm": ""
+      }
+    ],
+    "R.BQK.NRPP.P.PBP..N.P.P..b..........p....n......ppp..ppprnbqk..r w": [
+      {
+        "San": "Nc6",
+        "Nag": "Null",
+        "Comm": ""
+      }
+    ],
+    "R.BQK.NRPP.PPPBP..N...P...P.........pp..........pppp..pprnbqkb.r w": [
+      {
+        "San": "Bc5",
+        "Nag": "Null",
+        "Comm": ""
+      }
+    ],
+    "R.BQK.NRPP.PPPBP..N...P...P.......p.......n.....pp.p.pppr.bqkbnr w": [
+      {
+        "San": "d6",
+        "Nag": "Null",
+        "Comm": ""
+      }
+    ],
+    "R.BQK.NRPP.PPPBP..N...P..b.........np...........ppp..ppprnbqk..r w": [
+      {
+        "San": "Nb6",
+        "Nag": "Null",
+        "Comm": ""
+      }
+    ],
+    "R.BQK.NRPP.PPPBP..N...P..bP.........p........n..pppp.ppprnbqk..r b": [
+      {
+        "San": "Bxc3",
+        "Nag": "Null",
+        "Comm": ""
+      }
+    ],
+    "R.BQKBNRPP.PPP.P..N...P...P.........p........n..pppp.ppprnbqkb.r b": [
+      {
+        "San": "Bb4",
+        "Nag": "Null",
+        "Comm": ""
+      }
+    ],
+    "R.BQKBNRPP.PPP.P..N...P...P.........pp.......n..pppp..pprnbqkb.r w": [
+      {
+        "San": "Nf6",
+        "Nag": "Null",
+        "Comm": ""
+      }
+    ],
+    "R.BQKBNRPP.PPP.P..N...P...P.......p.p.....n.....pp.p.pppr.bqkbnr w": [
+      {
+        "San": "e5",
+        "Nag": "Null",
+        "Comm": ""
+      }
+    ],
+    "R.BQKBNRPP.PPP.P..N...P..b.........Pp........n..ppp..ppprnbqk..r w": [
+      {
+        "San": "Nxd5",
+        "Nag": "Null",
+        "Comm": ""
+      }
+    ],
+    "R.BQKBNRPP.PPP.P..N...P..bP.........p........n..pppp.ppprnbqk..r w": [
+      {
+        "San": "d5",
+        "Nag": "Null",
+        "Comm": ""
+      }
+    ],
+    "R.BQKBNRPP.PPPPP..N.......P.........p...........pppp.ppprnbqkbnr b": [
+      {
+        "San": "Nf6",
+        "Nag": "Null",
+        "Comm": ""
+      }
+    ],
+    "R.BQKBNRPP.PPPPP..N.......P.........p........n..pppp.ppprnbqkb.r w": [
+      {
+        "San": "f5",
+        "Nag": "Null",
+        "Comm": ""
+      }
+    ],
+    "R.BQKBNRPP.PPPPP..N.......P.......p.p...........pp.p.ppprnbqkbnr w": [
+      {
+        "San": "Nc6",
+        "Nag": "Null",
+        "Comm": ""
+      }
+    ],
+    "RNBQKBNRPP.PPPPP..........P.....................pppppppprnbqkbnr b": [
+      {
+        "San": "e5",
+        "Nag": "Null",
+        "Comm": ""
+      }
+    ],
+    "RNBQKBNRPP.PPPPP..........P.........p...........pppp.ppprnbqkbnr w": [
+      {
+        "San": "c5",
+        "Nag": "Null",
+        "Comm": ""
+      }
+    ]
+  },
+  {
+    "R.B..RK......PBPPPN...P...PQ.............p.pbn..p...bppp..rq.rk. b": {
+      "San": "Bd2",
+      "Nag": "Null",
+      "Comm": ""
+    },
+    "R.BQ.RK......PBPPPN...P...Pn...............pbn..pp..bppp..rq.rk. b": {
+      "San": "Qxd4",
+      "Nag": "Null",
+      "Comm": ""
+    },
+    "R.BQ.RK.....NPBPPPN...P...P...............npbn..pp..bppp..rq.rk. b": {
+      "San": "Nxd4",
+      "Nag": "Null",
+      "Comm": ""
+    },
+    "R.BQ.RK.....NPBPPPN.P.P...Pp..............npbn..pp..bppp..rq.rk. b": {
+      "San": "exd4",
+      "Nag": "Null",
+      "Comm": ""
+    },
+    "R.BQ.RK....PNPBPPPN.P.P...P.......p.......npbn..pp..bppp..rq.rk. b": {
+      "San": "d4",
+      "Nag": "Null",
+      "Comm": ""
+    },
+    "R.BQ.RK..P.PNPBPP.N.P.P...P.......p.......npbn..pp..bpppr..q.rk. b": {
+      "San": "b3",
+      "Nag": "Null",
+      "Comm": ""
+    },
+    "R.BQ.RK.P..PNPBP..P.P.P...P.........p.....npbn..ppp..pppr..q.rk. w": {
+      "San": "d3",
+      "Nag": "Null",
+      "Comm": ""
+    },
+    "R.BQ.RK.PP...PBP..N.P.P...P........bpp....np....ppp...ppr..qk..r b": {
+      "San": "cxd5",
+      "Nag": "Null",
+      "Comm": ""
+    },
+    "R.BQ.RK.PP...PBP..N.P.P..b.n.............n......ppp..pppr.bq.rk. b": {
+      "San": "Qxd4",
+      "Nag": "Null",
+      "Comm": ""
+    },
+    "R.BQ.RK.PP..NPBP..N.P.P..b.p.............nn.....ppp..pppr.bq.rk. b": {
+      "San": "Nxd4",
+      "Nag": "Null",
+      "Comm": ""
+    },
+    "R.BQ.RK.PP..NPBP..N.P.P..bPP........pp....npb...ppp...ppr..qk..r b": {
+      "San": "d5",
+      "Nag": "Null",
+      "Comm": ""
+    },
+    "R.BQ.RK.PP..NPBP..b.P.P...P........Ppp....npb...ppp...ppr..qk..r b": {
+      "San": "Nxc3",
+      "Nag": "Null",
+      "Comm": ""
+    },
+    "R.BQ.RK.PP.PNPBP..N.P.P...P.......b.pp....npb...ppp...ppr..qk..r b": {
+      "San": "d4",
+      "Nag": "Null",
+      "Comm": ""
+    },
+    "R.BQ.RK.PP.PNPBP..N.P.P..b..........p....nn.....ppp..pppr.bq.rk. b": {
+      "San": "d4",
+      "Nag": "Null",
+      "Comm": ""
+    },
+    "R.BQK..R.P.PNPBPP.N.P.P...P.......p.......np.n..pp..bpppr.bq.rk. b": {
+      "San": "O-O",
+      "Nag": "Null",
+      "Comm": ""
+    },
+    "R.BQK..RP..PNPBP..P.P.P...P.........p.....np.n..ppp..pppr.bq.rk. w": {
+      "San": "O-O",
+      "Nag": "Null",
+      "Comm": ""
+    },
+    "R.BQK..RPP.PNPBP..N.P.P...P.......b.pp....np....ppp...ppr.bqk..r b": {
+      "San": "O-O",
+      "Nag": "Null",
+      "Comm": ""
+    },
+    "R.BQK..RPP.PNPBP..N.P.P..b..........p....nn.....ppp..pppr.bqk..r b": {
+      "San": "O-O",
+      "Nag": "Null",
+      "Comm": ""
+    },
+    "R.BQK.NR.P.P.PBPP.N.P.P...P.......p.......np.n..pp..bpppr.bqk..r b": {
+      "San": "Nge2",
+      "Nag": "Null",
+      "Comm": ""
+    },
+    "R.BQK.NR.P.PPPBPP.N...P...P.......p.......np.n..pp...pppr.bqkb.r b": {
+      "San": "e3",
+      "Nag": "Null",
+      "Comm": ""
+    },
+    "R.BQK.NRP..P.PBP..P.P.P...P.........p.....n..n..pppp.pppr.bq.rk. w": {
+      "San": "Ne2",
+      "Nag": "Null",
+      "Comm": ""
+    },
+    "R.BQK.NRP..PPPBP..P...P...P.........p.....n..n..pppp.pppr.bqk..r w": {
+      "San": "e3",
+      "Nag": "Null",
+      "Comm": ""
+    },
+    "R.BQK.NRPP.P.PBP..N.P.P...P.......b.pp....n.....pppp..ppr.bqk..r b": {
+      "San": "Nge2",
+      "Nag": "Null",
+      "Comm": ""
+    },
+    "R.BQK.NRPP.P.PBP..N.P.P..b..........p....nn.....ppp..pppr.bqk..r b": {
+      "San": "Nge2",
+      "Nag": "Null",
+      "Comm": ""
+    },
+    "R.BQK.NRPP.PPPBP..N...P...P.......b.pp..........pppp..pprnbqk..r b": {
+      "San": "e3",
+      "Nag": "Null",
+      "Comm": ""
+    },
+    "R.BQK.NRPP.PPPBP..N...P...P.......p.......np....pp...pppr.bqkbnr b": {
+      "San": "a3",
+      "Nag": "Null",
+      "Comm": ""
+    },
+    "R.BQK.NRPP.PPPBP..N...P..b..........p....n......ppp..ppprnbqk..r b": {
+      "San": "e3",
+      "Nag": "Null",
+      "Comm": ""
+    },
+    "R.BQK.NRPP.PPPBP..b...P...P.........p........n..pppp.ppprnbqk..r w": {
+      "San": "bxc3",
+      "Nag": "Null",
+      "Comm": ""
+    },
+    "R.BQKBNRPP.PPP.P..N...P...P.........pp..........pppp..pprnbqkb.r b": {
+      "San": "Bg2",
+      "Nag": "Null",
+      "Comm": ""
+    },
+    "R.BQKBNRPP.PPP.P..N...P...P.......p.......n.....pp.p.pppr.bqkbnr b": {
+      "San": "Bg2",
+      "Nag": "Null",
+      "Comm": ""
+    },
+    "R.BQKBNRPP.PPP.P..N...P..b.........np...........ppp..ppprnbqk..r b": {
+      "San": "Bg2",
+      "Nag": "Null",
+      "Comm": ""
+    },
+    "R.BQKBNRPP.PPP.P..N...P..bP.........p........n..pppp.ppprnbqk..r w": {
+      "San": "Bg2",
+      "Nag": "Null",
+      "Comm": ""
+    },
+    "R.BQKBNRPP.PPP.P..N...P..bP........pp........n..ppp..ppprnbqk..r b": {
+      "San": "cxd5",
+      "Nag": "Null",
+      "Comm": ""
+    },
+    "R.BQKBNRPP.PPPPP..N.......P.........p........n..pppp.ppprnbqkb.r w": {
+      "San": "g3",
+      "Nag": "Null",
+      "Comm": ""
+    },
+    "R.BQKBNRPP.PPPPP..N.......P.........pp.......n..pppp..pprnbqkb.r b": {
+      "San": "g3",
+      "Nag": "Null",
+      "Comm": ""
+    },
+    "R.BQKBNRPP.PPPPP..N.......P.......p.p.....n.....pp.p.pppr.bqkbnr b": {
+      "San": "g3",
+      "Nag": "Null",
+      "Comm": ""
+    },
+    "RNBQKBNRPP.PPPPP..........P.........p...........pppp.ppprnbqkbnr w": {
+      "San": "Nc3",
+      "Nag": "Null",
+      "Comm": ""
+    },
+    "RNBQKBNRPP.PPPPP..........P.......p.p...........pp.p.ppprnbqkbnr b": {
+      "San": "Nc3",
+      "Nag": "Null",
+      "Comm": ""
+    },
+    "RNBQKBNRPPPPPPPP................................pppppppprnbqkbnr w": {
+      "San": "c4",
+      "Nag": "Null",
+      "Comm": ""
+    }
+  }
+]

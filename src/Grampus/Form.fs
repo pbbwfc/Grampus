@@ -13,7 +13,7 @@ module Form =
         Image.FromStream(file)
     let ico nm =
         let thisExe = System.Reflection.Assembly.GetExecutingAssembly()
-        let file = thisExe.GetManifestResourceStream("Grampus.Icons." + nm)
+        let file = thisExe.GetManifestResourceStream("Grampus." + nm)
         new Icon(file)
 
     type FrmMain() as this =

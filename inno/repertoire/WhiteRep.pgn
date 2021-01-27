@@ -1,0 +1,26 @@
+[Event "?"]
+[Site "?"]
+[Date "2017.09.21"]
+[Round "?"]
+[White "?"]
+[Black "?"]
+[Result "*"]
+[ECO "A21"]
+[EventDate "2017.??.??"]
+[Annotator "Bogdan,Lucian"]
+[PlyCount "18"]
+[SourceDate "2017.09.21"]
+[SourceVersionDate "2017.09.21"]
+
+1. c4 e5 
+    ( 1. ... c5 2. Nc3 Nc6 3. g3 e5 4. Bg2 d6 5. a3 Nf6 6. e3 Be7 7. Nge2 
+    O-O 8. O-O Be6 9. b3 Rc8 10. d4 cxd4 11. exd4 exd4 12. Nxd4 Nxd4 13. 
+    Qxd4 b6 14. Bd2 )
+2. Nc3 Nf6 
+    ( 2. ... f5 3. g3 Nf6 4. Bg2 Bc5 5. e3 Nc6 6. Nge2 d6 7. O-O Be6 8. d4
+    Bb4 9. d5 Bxc3 10. Nxc3 Bxd5 11. cxd5 )
+3. g3 Bb4 
+    ( 3. ... d5 4. cxd5 Nxd5 5. Bg2 Nb6 6. e3 Nc6 7. Nge2 Be7 8. O-O O-O 
+    9. d4 exd4 10. Nxd4 Nxd4 11. Qxd4 )
+4. Bg2 Bxc3 5. bxc3 Nc6 6. e3 O-O 7. Ne2 d6 8. O-O Be6 9. d3 Qd7 *
+
