@@ -1,14 +1,14 @@
 # Using the Repertoire Feature
 
-ScincNet includes a feature to help creating and using opening repertoires.
+Grampus includes a feature to help creating and using opening repertoires.
 
 This allows you to create two repertoires, one as White and one as Black.
 
 ## How are they stored?
 
-The repertoires are stored in the folder **Documents\ScincNet\repertoire**. They consist of three elements:
+The repertoires are stored in the folder **Documents\Grampus\repertoire**. They consist of three elements:
 
-- Scid bases holding the moves called **WhiteRep** and **BlackRep**.
+- Grampus bases holding the moves called **WhiteRep** and **BlackRep**.
 - The repertoire tree in JSON format in the files **whte.json** and **blck.json**.
 - Text files holding a list of issues found in the repertoires, if any, called **whteerrs.txt** and **blckerrs.txt**.
 
