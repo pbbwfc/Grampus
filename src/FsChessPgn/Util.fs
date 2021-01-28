@@ -2,6 +2,9 @@
 
 open FsChess
 
+/// <summary>This type is for implementation purposes.</summary>
+///
+/// <exclude />
 [<AutoOpen>]
 module Util =
     let CasFlg i = enum<CstlFlgs> (i)
