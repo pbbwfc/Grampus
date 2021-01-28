@@ -1,0 +1,829 @@
+<div>
+  <h1>
+    pMove Module
+  </h1>
+  <p>
+    Namespace: 
+    <a href="/reference/fschesspgn.html">
+      FsChessPgn
+    </a>
+  </p>
+  <p>
+    Assembly: FsChessPgn.dll
+  </p>
+  <div class="fsdocs-xmldoc">
+    
+  </div>
+  <div>
+    <h3>
+      Functions and values
+    </h3>
+    <table class="table outer-list fsdocs-member-list">
+      <thead>
+        <tr>
+          <td class="fsdocs-member-list-header">
+            Function or value
+          </td>
+          <td class="fsdocs-member-list-header">
+            Description
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '480', 480)" onmouseover="showTip(event, '480', 480)">
+                <p>
+                  <a id="Create">
+                    <a href="#Create">
+                      <code><span>Create&#32;<span><span>(<span>mt,&#32;tgs,&#32;pc,&#32;san</span>)</span></span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="480">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>Create&#32;<span><span>(<span>mt,&#32;tgs,&#32;pc,&#32;san</span>)</span></span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        mt
+                      </b>
+                      :
+                      <code><a href="/reference/fschess-types-movetype.html">MoveType</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        tgs
+                      </b>
+                      :
+                      <code><a href="/reference/fschess-types-square.html">Square</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        pc
+                      </b>
+                      :
+                      <code><span><a href="/reference/fschess-types-piecetype.html">PieceType</a>&#32;option</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        san
+                      </b>
+                      :
+                      <code>string</code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="/reference/fschess-types-pmove.html">pMove</a></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              
+            </p>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  mt
+                </span>
+                :
+                <code><a href="/reference/fschess-types-movetype.html">MoveType</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  tgs
+                </span>
+                :
+                <code><a href="/reference/fschess-types-square.html">Square</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  pc
+                </span>
+                :
+                <code><span><a href="/reference/fschess-types-piecetype.html">PieceType</a>&#32;option</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  san
+                </span>
+                :
+                <code>string</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns:
+                </span>
+                <code><a href="/reference/fschess-types-pmove.html">pMove</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '481', 481)" onmouseover="showTip(event, '481', 481)">
+                <p>
+                  <a id="CreateAll">
+                    <a href="#CreateAll">
+                      <code><span>CreateAll&#32;<span><span>(<span>mt,&#32;tgs,&#32;pc,&#32;orf,&#32;orr,&#32;pp,&#32;ic,&#32;id,&#32;im,&#32;san</span>)</span></span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="481">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>CreateAll&#32;<span><span>(<span>mt,&#32;tgs,&#32;pc,&#32;orf,&#32;orr,&#32;pp,&#32;ic,&#32;id,&#32;im,&#32;san</span>)</span></span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        mt
+                      </b>
+                      :
+                      <code><a href="/reference/fschess-types-movetype.html">MoveType</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        tgs
+                      </b>
+                      :
+                      <code><a href="/reference/fschess-types-square.html">Square</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        pc
+                      </b>
+                      :
+                      <code><span><a href="/reference/fschess-types-piecetype.html">PieceType</a>&#32;option</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        orf
+                      </b>
+                      :
+                      <code><span><a href="/reference/fschess-types-file.html">File</a>&#32;option</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        orr
+                      </b>
+                      :
+                      <code><span><a href="/reference/fschess-types-rank.html">Rank</a>&#32;option</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        pp
+                      </b>
+                      :
+                      <code><span><a href="/reference/fschess-types-piecetype.html">PieceType</a>&#32;option</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ic
+                      </b>
+                      :
+                      <code>bool</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        id
+                      </b>
+                      :
+                      <code>bool</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        im
+                      </b>
+                      :
+                      <code>bool</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        san
+                      </b>
+                      :
+                      <code>string</code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="/reference/fschess-types-pmove.html">pMove</a></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              
+            </p>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  mt
+                </span>
+                :
+                <code><a href="/reference/fschess-types-movetype.html">MoveType</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  tgs
+                </span>
+                :
+                <code><a href="/reference/fschess-types-square.html">Square</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  pc
+                </span>
+                :
+                <code><span><a href="/reference/fschess-types-piecetype.html">PieceType</a>&#32;option</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  orf
+                </span>
+                :
+                <code><span><a href="/reference/fschess-types-file.html">File</a>&#32;option</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  orr
+                </span>
+                :
+                <code><span><a href="/reference/fschess-types-rank.html">Rank</a>&#32;option</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  pp
+                </span>
+                :
+                <code><span><a href="/reference/fschess-types-piecetype.html">PieceType</a>&#32;option</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ic
+                </span>
+                :
+                <code>bool</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  id
+                </span>
+                :
+                <code>bool</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  im
+                </span>
+                :
+                <code>bool</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  san
+                </span>
+                :
+                <code>string</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns:
+                </span>
+                <code><a href="/reference/fschess-types-pmove.html">pMove</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '482', 482)" onmouseover="showTip(event, '482', 482)">
+                <p>
+                  <a id="CreateCastle">
+                    <a href="#CreateCastle">
+                      <code><span>CreateCastle&#32;<span><span>(<span>mt,&#32;san</span>)</span></span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="482">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>CreateCastle&#32;<span><span>(<span>mt,&#32;san</span>)</span></span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        mt
+                      </b>
+                      :
+                      <code><a href="/reference/fschess-types-movetype.html">MoveType</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        san
+                      </b>
+                      :
+                      <code>string</code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="/reference/fschess-types-pmove.html">pMove</a></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              
+            </p>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  mt
+                </span>
+                :
+                <code><a href="/reference/fschess-types-movetype.html">MoveType</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  san
+                </span>
+                :
+                <code>string</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns:
+                </span>
+                <code><a href="/reference/fschess-types-pmove.html">pMove</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '483', 483)" onmouseover="showTip(event, '483', 483)">
+                <p>
+                  <a id="CreateOrig">
+                    <a href="#CreateOrig">
+                      <code><span>CreateOrig&#32;<span><span>(<span>mt,&#32;tgs,&#32;pc,&#32;orf,&#32;orr,&#32;san</span>)</span></span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="483">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>CreateOrig&#32;<span><span>(<span>mt,&#32;tgs,&#32;pc,&#32;orf,&#32;orr,&#32;san</span>)</span></span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        mt
+                      </b>
+                      :
+                      <code><a href="/reference/fschess-types-movetype.html">MoveType</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        tgs
+                      </b>
+                      :
+                      <code><a href="/reference/fschess-types-square.html">Square</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        pc
+                      </b>
+                      :
+                      <code><span><a href="/reference/fschess-types-piecetype.html">PieceType</a>&#32;option</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        orf
+                      </b>
+                      :
+                      <code><span><a href="/reference/fschess-types-file.html">File</a>&#32;option</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        orr
+                      </b>
+                      :
+                      <code><span><a href="/reference/fschess-types-rank.html">Rank</a>&#32;option</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        san
+                      </b>
+                      :
+                      <code>string</code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="/reference/fschess-types-pmove.html">pMove</a></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              
+            </p>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  mt
+                </span>
+                :
+                <code><a href="/reference/fschess-types-movetype.html">MoveType</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  tgs
+                </span>
+                :
+                <code><a href="/reference/fschess-types-square.html">Square</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  pc
+                </span>
+                :
+                <code><span><a href="/reference/fschess-types-piecetype.html">PieceType</a>&#32;option</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  orf
+                </span>
+                :
+                <code><span><a href="/reference/fschess-types-file.html">File</a>&#32;option</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  orr
+                </span>
+                :
+                <code><span><a href="/reference/fschess-types-rank.html">Rank</a>&#32;option</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  san
+                </span>
+                :
+                <code>string</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns:
+                </span>
+                <code><a href="/reference/fschess-types-pmove.html">pMove</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '484', 484)" onmouseover="showTip(event, '484', 484)">
+                <p>
+                  <a id="Encode">
+                    <a href="#Encode">
+                      <code><span>Encode&#32;<span>bd&#32;mno&#32;pmv</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="484">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>Encode&#32;<span>bd&#32;mno&#32;pmv</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        bd
+                      </b>
+                      :
+                      <code><a href="/reference/fschess-types-brd.html">Brd</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        mno
+                      </b>
+                      :
+                      <code>int</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        pmv
+                      </b>
+                      :
+                      <code><a href="/reference/fschess-types-pmove.html">pMove</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="/reference/fschess-types-encodedmove.html">EncodedMove</a></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              
+            </p>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  bd
+                </span>
+                :
+                <code><a href="/reference/fschess-types-brd.html">Brd</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  mno
+                </span>
+                :
+                <code>int</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  pmv
+                </span>
+                :
+                <code><a href="/reference/fschess-types-pmove.html">pMove</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns:
+                </span>
+                <code><a href="/reference/fschess-types-encodedmove.html">EncodedMove</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '485', 485)" onmouseover="showTip(event, '485', 485)">
+                <p>
+                  <a id="Parse">
+                    <a href="#Parse">
+                      <code><span>Parse&#32;<span>s</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="485">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>Parse&#32;<span>s</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        s
+                      </b>
+                      :
+                      <code>string</code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="/reference/fschess-types-pmove.html">pMove</a></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              
+            </p>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  s
+                </span>
+                :
+                <code>string</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns:
+                </span>
+                <code><a href="/reference/fschess-types-pmove.html">pMove</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '486', 486)" onmouseover="showTip(event, '486', 486)">
+                <p>
+                  <a id="ToMove">
+                    <a href="#ToMove">
+                      <code><span>ToMove&#32;<span>bd&#32;pmv</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="486">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>ToMove&#32;<span>bd&#32;pmv</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        bd
+                      </b>
+                      :
+                      <code><a href="/reference/fschess-types-brd.html">Brd</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        pmv
+                      </b>
+                      :
+                      <code><a href="/reference/fschess-types-pmove.html">pMove</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="/reference/fschess-types-move.html">Move</a></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              
+            </p>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  bd
+                </span>
+                :
+                <code><a href="/reference/fschess-types-brd.html">Brd</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  pmv
+                </span>
+                :
+                <code><a href="/reference/fschess-types-pmove.html">pMove</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns:
+                </span>
+                <code><a href="/reference/fschess-types-move.html">Move</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+</div>
+

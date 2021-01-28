@@ -5,6 +5,32 @@ open System.IO
 open FsChess
 
 module Eco =
+    //Backup code if need to rebuild
+    //let createeco() =
+    //    let pgnfol = @"d:\pgns" 
+    //    let nm = "eco.pgn"
+    //    let pgn = Path.Combine(pgnfol,nm)
+    //    let ugma = Pgn.Games.ReadSeqFromFile pgn
+    //    let egma = ugma|>Seq.map(Game.Encode)|>Seq.toArray
+    //    let getpn i (gm:EncodedGame) =
+    //        let pns = Game.GetPosns i gm
+    //        pns.[pns.Length-1]
+    //    let geteco (gm:EncodedGame) =
+    //        let code = gm.Hdr.ECO
+    //        let ai = gm.AdditionalInfo
+    //        let desc = 
+    //            if ai.ContainsKey("Variation") then 
+    //                gm.Hdr.Opening// + " " + gm.AdditionalInfo.["Variation"]
+    //            else gm.Hdr.Opening
+    //        {Code=code;Desc=desc}
+    //    let pns = egma|>Array.mapi getpn 
+    //    let ecos = egma|>Array.map geteco
+    //    let map = Array.zip pns ecos|>Map.ofArray
+    //    let json = Json.serialize map
+    //    let ecofil = Path.Combine(pgnfol,"eco.json")
+    //    File.WriteAllText(ecofil,json)
+
+    
     let ForGame (gm:EncodedGame) =
         let rec findeco (ipl:string list) =
             if List.isEmpty ipl then None
