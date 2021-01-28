@@ -3,6 +3,8 @@ open System
 open System.IO
 open FsChess
 open FSharp.Formatting.ApiDocs
+open FSharp.Formatting.Templating
+
 
 
 [<EntryPoint>]
@@ -17,7 +19,13 @@ let main argv =
           collectionName="FsChessPgn",
           libDirs = [bin],
           root = "/Grampus/",
-          //template=Path.Combine(root, "templates", "template.html"),
-          substitutions=[])|>ignore
+          template=Path.Combine(root, "src/Test", "_template.html"),
+          substitutions=[ParamKeys.``root``, "/Grampus/";
+                         ParamKeys.``fsdocs-authors``, "pbbwfc";
+                         ParamKeys.``fsdocs-navbar-position``, "fixed-right";
+                         ParamKeys.``fsdocs-theme``, "default";
+                         ParamKeys.``fsdocs-watch-script``, "";
+                         ])
+          |>ignore
 
     0 // return an integer exit code
