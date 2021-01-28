@@ -19,7 +19,7 @@ let main argv =
           collectionName="FsChessPgn",
           libDirs = [bin],
           root = "/Grampus/",
-          template=Path.Combine(root, "src/Test", "_template.html"),
+          template=Path.Combine(root, "src/GenDocs", "_template.html"),
           substitutions=[ParamKeys.``root``, "/Grampus/";
                          ParamKeys.``fsdocs-authors``, "pbbwfc";
                          ParamKeys.``fsdocs-navbar-position``, "fixed-right";
