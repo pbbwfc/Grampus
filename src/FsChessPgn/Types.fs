@@ -6,7 +6,7 @@ module AssemblyInfo=
 
     open System.Runtime.CompilerServices
 
-    [<assembly: InternalsVisibleTo("Tests")>]
+    [<assembly: InternalsVisibleTo("Grampus.Tests")>]
     do()
 
 [<AutoOpen>]
