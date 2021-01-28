@@ -1,8 +1,10 @@
 ﻿namespace FsChessPgn
 
 open FsChess
-open System.Text.RegularExpressions
 
+/// <summary>This type is for implementation purposes.</summary>
+///
+/// <exclude />
 module MoveEncoded =
     
     let FromMove (bd:Brd) mno (mv:Move) =

@@ -2,6 +2,9 @@
 
 open FsChess
 
+/// <summary>This type is for implementation purposes.</summary>
+///
+/// <exclude />
 module Move = 
     let Create (pfrom : Square) (pto : Square) (piece : Piece) (captured : Piece) :Move = 
         (uint32 (pfrom) ||| (uint32 (pto) <<< 6) ||| (uint32 (piece) <<< 12) ||| (uint32 (captured) <<< 16))

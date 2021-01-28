@@ -4,6 +4,9 @@ open FsChess
 open System.IO
 open System.Text
 
+/// <summary>This type is for implementation purposes.</summary>
+///
+/// <exclude />
 module PgnGames =
 
     let ReadFromStream(stream : Stream) = 

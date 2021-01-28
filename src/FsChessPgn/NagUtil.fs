@@ -2,6 +2,9 @@
 
 open FsChess
 
+/// <summary>This type is for implementation purposes.</summary>
+///
+/// <exclude />
 module NagUtil = 
     
     let All = [0..6]@[10]@[14..19]|>List.map Ng

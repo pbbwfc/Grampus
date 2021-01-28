@@ -2,6 +2,9 @@ namespace FsChessPgn
 
 open FsChess
 
+/// <summary>This type is for implementation purposes.</summary>
+///
+/// <exclude />
 module DateUtil = 
     
     let (|?) (lhs:int option) rhs = (if lhs.IsNone then rhs else lhs.Value.ToString("00"))

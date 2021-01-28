@@ -6,6 +6,9 @@ open FsChess
 open MessagePack
 open LevelDB
 
+/// <summary>This type is for implementation purposes.</summary>
+///
+/// <exclude />
 module StaticTree =
 
     let Create(ifol) =

@@ -3,6 +3,9 @@
 open FsChess
 open System.Text
 
+/// <summary>This type is for implementation purposes.</summary>
+///
+/// <exclude />
 module MoveUtil = 
     
     let toUci(move : Move) = 

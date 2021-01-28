@@ -4,6 +4,9 @@ open FsChess
 open System.IO
 open FSharp.Json
 
+/// <summary>This type is for implementation purposes.</summary>
+///
+/// <exclude />
 module Grampus =
     
     let Load(nm):GrampusData =

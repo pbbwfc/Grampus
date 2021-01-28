@@ -3,6 +3,9 @@
 open FsChess
 open System.IO
 
+/// <summary>This type is for implementation purposes.</summary>
+///
+/// <exclude />
 module Png =
     
     ///Creates a PNG image file with the specified name(nm), flipped if specified for the given Board(bd) 

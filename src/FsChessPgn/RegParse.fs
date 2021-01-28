@@ -4,6 +4,9 @@ open FsChess
 open System.Text
 open System.IO
 
+/// <summary>This type is for implementation purposes.</summary>
+///
+/// <exclude />
 module RegParse = 
     type private State = 
         | Unknown

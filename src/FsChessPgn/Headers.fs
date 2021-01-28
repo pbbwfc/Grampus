@@ -7,6 +7,9 @@ open MessagePack
 open MessagePack.Resolvers
 open MessagePack.FSharp
 
+/// <summary>This type is for implementation purposes.</summary>
+///
+/// <exclude />
 module Headers =
     
     let resolver =

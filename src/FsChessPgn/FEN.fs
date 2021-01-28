@@ -15,6 +15,9 @@ type Fen =
       Fiftymove : int
       Fullmove : int }
 
+/// <summary>This type is for implementation purposes.</summary>
+///
+/// <exclude />
 module FEN = 
     let ToStr(fen : Fen) = 
         let sb = new StringBuilder(50)

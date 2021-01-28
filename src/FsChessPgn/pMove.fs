@@ -3,6 +3,9 @@
 open FsChess
 open System.Text.RegularExpressions
 
+/// <summary>This type is for implementation purposes.</summary>
+///
+/// <exclude />
 module pMove =
 
     let CreateAll(mt,tgs,pc,orf,orr,pp,ic,id,im,san) =

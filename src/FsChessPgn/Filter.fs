@@ -7,6 +7,9 @@ open LevelDB
 open MessagePack.Resolvers
 open MessagePack.FSharp
 
+/// <summary>This type is for implementation purposes.</summary>
+///
+/// <exclude />
 module Filter =
     let resolver =
         Resolvers.CompositeResolver.Create(FSharpResolver.Instance,StandardResolver.Instance)

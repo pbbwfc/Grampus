@@ -1,11 +1,7 @@
 ﻿
-open System
 open System.IO
-open FsChess
 open FSharp.Formatting.ApiDocs
 open FSharp.Formatting.Templating
-
-
 
 [<EntryPoint>]
 let main argv =

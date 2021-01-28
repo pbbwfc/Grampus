@@ -3,6 +3,9 @@
 open FsChess
 open System.IO
 
+/// <summary>This type is for implementation purposes.</summary>
+///
+/// <exclude />
 module PgnWriter =
 
     let WriteStream(stream:Stream,pgnDatabase:UnencodedGame list) =

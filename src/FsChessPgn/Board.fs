@@ -2,6 +2,9 @@
 
 open FsChess
 
+/// <summary>This type is for implementation purposes.</summary>
+///
+/// <exclude />
 module Board = 
     
     let private PieceMove (mfrom : Square) mto (bd : Brd) = 

@@ -2,6 +2,9 @@
 
 open FsChess
 
+/// <summary>This type is for implementation purposes.</summary>
+///
+/// <exclude />
 module MoveGenerate = 
     
     let private legal (bd: Brd) (mvs:Move list) =

@@ -4,6 +4,9 @@ open System
 open System.IO
 open FsChess
 
+/// <summary>This type is for implementation purposes.</summary>
+///
+/// <exclude />
 module Eco =
     //Backup code if need to rebuild
     //let createeco() =
