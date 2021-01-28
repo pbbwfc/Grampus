@@ -23,6 +23,9 @@ type Dirn =
     | DirWWN = 6
     | DirNNW = 15
 
+/// <summary>This type is for implementation purposes.</summary>
+///
+/// <exclude />
 module Direction =
 
     let AllDirectionsKnight = 

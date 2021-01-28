@@ -2,6 +2,9 @@
 
 open FsChess
 
+/// <summary>This type is for implementation purposes.</summary>
+///
+/// <exclude />
 module Player = 
     let AllPlayers = [| Player.White; Player.Black |]
     let PlayerOther(player : Player) = (int (player) ^^^ 1) |> Plyr
