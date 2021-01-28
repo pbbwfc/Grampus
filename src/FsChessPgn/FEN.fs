@@ -4,6 +4,7 @@ open FsChess
 open System.Text
 open System.Text.RegularExpressions
 
+/// <exclude />
 type Fen = 
     { Pieceat : Piece list
       Whosturn : Player
