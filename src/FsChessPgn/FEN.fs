@@ -4,6 +4,8 @@ open FsChess
 open System.Text
 open System.Text.RegularExpressions
 
+/// <summary>This type is for implementation purposes.</summary>
+///
 /// <exclude />
 type Fen = 
     { Pieceat : Piece list

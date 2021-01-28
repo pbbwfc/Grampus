@@ -5,6 +5,8 @@ open FsChess
 /// <namespacedoc>
 ///   <summary>This is not for direct use and is undocumented.</summary>
 /// </namespacedoc>
+/// <summary>This type is for implementation purposes.</summary>
+///
 /// <exclude />
 type Dirn = 
     | DirN = 8
