@@ -25,6 +25,10 @@ let main argv =
                          ParamKeys.``fsdocs-navbar-position``, "fixed-right";
                          ParamKeys.``fsdocs-theme``, "default";
                          ParamKeys.``fsdocs-watch-script``, "";
+                         ParamKeys.``fsdocs-collection-name``, "Grampus";
+                         ParamKeys.``fsdocs-list-of-documents``, "";
+                         ParamKeys.``fsdocs-logo-link``,"https://pbbwfc.github.io/Grampus/";
+                         ParamKeys.``fsdocs-logo-src``,"https://pbbwfc.github.io/Grampus/images/logo64.png";
                          ])
           |>ignore
 
