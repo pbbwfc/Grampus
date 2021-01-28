@@ -16,6 +16,7 @@ let main argv =
           output=Path.Combine(root, "docs"),
           collectionName="FsChessPgn",
           libDirs = [bin],
+          root = "/Grampus/",
           //template=Path.Combine(root, "templates", "template.html"),
           substitutions=[])|>ignore
 
