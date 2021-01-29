@@ -45,16 +45,19 @@ module Types =
         | BKing = 14
         | EMPTY = 0
     
+    /// <summary>Enum holding each type of player e.g. 1 for Black.</summary>
     type Player =
         | White = 0
         | Black = 1
     
+    /// <summary>Enum holding each type of result e.g. 0 for Draw.</summary>
     type GameResult =
         | Draw = 0
         | WhiteWins = 1
         | BlackWins = -1
         | Open = 9
     
+    /// <summary>Short encoded to hold File.</summary>
     type File = int16
     
     let FileA, FileB, FileC, FileD, FileE, FileF, FileG, FileH : File * File * File * File * File * File * File * File =
@@ -63,6 +66,7 @@ module Types =
     let FILE_NAMES = [ "a"; "b"; "c"; "d"; "e"; "f"; "g"; "h" ]
     let FILE_EMPTY : File = 8s
     
+    /// <summary>Short encoded to hold Rank.</summary>
     type Rank = int16
     
     let Rank1, Rank2, Rank3, Rank4, Rank5, Rank6, Rank7, Rank8 : Rank * Rank * Rank * Rank * Rank * Rank * Rank * Rank =
@@ -71,6 +75,7 @@ module Types =
     let RANK_NAMES = [ "1"; "2"; "3"; "4"; "5"; "6"; "7"; "8" ]
     let RANK_EMPTY : Rank = 8s
     
+    /// <summary>Short encoded to hold Square.</summary>
     type Square = int16
     
     let A1, B1, C1, D1, E1, F1, G1, H1 : Square * Square * Square * Square * Square * Square * Square * Square =
@@ -103,6 +108,7 @@ module Types =
     let Sq(f : File, r : Rank) : Square = r * 8s + f
     
     [<System.Flags>]
+    /// <summary>Enum holding each type of castling e.g. 1 for WhiteShort.</summary>
     type CstlFlgs =
         | EMPTY = 0
         | WhiteShort = 1
@@ -112,6 +118,7 @@ module Types =
         | All = 15
     
     [<System.Flags>]
+    /// <summary>Enum holding bitboards for squares/ranks, e.g. 1UL for A1.</summary>
     type Bitboard =
         | A1 = 1UL
         | B1 = 2UL
@@ -196,12 +203,14 @@ module Types =
         | Empty = 0UL
         | Full = 18446744073709551615UL
     
+    /// <summary>Option holding each type of move e.g. Capture.</summary>
     type MoveType =
         | Simple
         | Capture
         | CastleKingSide
         | CastleQueenSide
     
+    /// <summary>Enum holding each type of NAG e.g. 1 for Good.</summary>
     type NAG =
         | Null = 0
         | Good = 1
@@ -219,6 +228,7 @@ module Types =
         | Bdecisive = 19
     
     [<MessagePackObject>]
+    /// <summary>Record type holding board details such as pieces on each square.</summary>
     type Brd =
         { [<Key(0)>]
           PieceAt : Piece list
@@ -292,6 +302,7 @@ module Types =
           Fiftymove = 0
           Fullmove = 0 }
     
+    /// <summary>Record type holding details of an unencoded move such as pieces the target square.</summary>
     type pMove =
         { Mtype : MoveType
           TargetSquare : Square
@@ -306,6 +317,7 @@ module Types =
         override x.ToString() = x.San
     
     [<MessagePackObject>]
+    /// <summary>Record type holding header information such as the White ELO.</summary>
     type Header =
         { [<Key(0)>]
           Num : int
@@ -343,6 +355,7 @@ module Types =
           Opening = ""
           Deleted = "" }
     
+    /// <summary>Discriminated Union type holding options for each possible item in game moves, such as a comment.</summary>
     type UnencodedMoveTextEntry =
         | UnencodedHalfMoveEntry of int option * bool * pMove
         | UnencodedCommentEntry of string
@@ -350,6 +363,7 @@ module Types =
         | UnencodedNAGEntry of NAG
         | UnencodedRAVEntry of UnencodedMoveTextEntry list
     
+    /// <summary>Record type holding unencoded game details such as the list of moves.</summary>
     type UnencodedGame =
         { Hdr : Header
           Month : int option
@@ -370,6 +384,7 @@ module Types =
           AdditionalInfo = Map.empty
           MoveText = [] }
     
+    /// <summary>Record type holding details of an encoded move such as the move and the move number.</summary>
     type EncodedMove =
         { San : string
           Mno : int
@@ -378,6 +393,7 @@ module Types =
           PostBrd : Brd }
         override x.ToString() = x.San
     
+    /// <summary>Discriminated Union type holding options for each possible item in game moves, such as a comment.</summary>
     type EncodedMoveTextEntry =
         | EncodedHalfMoveEntry of int option * bool * EncodedMove
         | EncodedCommentEntry of string
@@ -385,6 +401,7 @@ module Types =
         | EncodedNAGEntry of NAG
         | EncodedRAVEntry of EncodedMoveTextEntry list
     
+    /// <summary>Record type holding unencoded game details such as the list of moves.</summary>
     type EncodedGame =
         { Hdr : Header
           Month : int option
@@ -406,6 +423,7 @@ module Types =
           MoveText = [] }
     
     [<MessagePackObject>]
+    /// <summary>Record type holding details of a compressed move for storage.</summary>
     type CompressedMove =
         { [<Key(0)>]
           San : string
@@ -418,6 +436,7 @@ module Types =
         override x.ToString() = x.San
     
     [<MessagePackObject>]
+    /// <summary>Discriminated Union type holding options for each possible item in game moves, such as a comment.</summary>
     type CompressedMoveTextEntry =
         | CompressedHalfMoveEntry of int option * bool * CompressedMove
         | CompressedCommentEntry of string
@@ -426,6 +445,7 @@ module Types =
         | CompressedRAVEntry of CompressedMoveTextEntry list
     
     [<MessagePackObject>]
+    /// <summary>Record type holding compressed game details such as the list of moves.</summary>
     type CompressedGame =
         { [<Key(0)>]
           Month : int option
@@ -452,12 +472,14 @@ module Types =
           MoveText = [] }
     
     [<MessagePackObject>]
+    /// <summary>Record type holding the index of a game in the storage.</summary>
     type IndexEntry =
         { [<Key(0)>]
           Offset : int64
           [<Key(1)>]
           Length : int }
     
+    /// <summary>Record type holding summary data for a grampus base.</summary>
     type GrampusData =
         { SourcePgn : string
           BaseCreated : System.DateTime option
@@ -472,16 +494,20 @@ module Types =
           FiltersCreated = None
           Ply = 20 }
     
+    /// <summary>Record type holding low level repertoire data.</summary>
     type RepOpt =
         { San : string
           Nag : NAG
           Comm : string }
     
+    /// <summary>Map allowing lookup up of alternatives in a repertoire for a position.</summary>
     type RepOpts = Map<string, RepOpt list>
     
+    /// <summary>Map allowing lookup up of preferred move in a repertoire for a position.</summary>
     type RepMove = Map<string, RepOpt>
     
     [<MessagePackObject>]
+    /// <summary>Record type holding tree data related to a particular move.</summary>
     type mvstats() =
         
         [<Key(0)>]
@@ -518,6 +544,7 @@ module Types =
         member val AvYear = 0L with get, set
     
     [<MessagePackObject>]
+    /// <summary>Record type holding tree data summed over all moves.</summary>
     type totstats() =
         
         [<Key(0)>]
