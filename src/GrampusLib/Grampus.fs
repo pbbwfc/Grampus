@@ -1,7 +1,9 @@
 namespace Grampus
 
 module GameDate =
-    ///Gets the string symbol for a Piece
+    /// <summary>Gets the string symbol for a Date.</summary>
+    /// <param name="gm">Theencoded game.</param>
+    /// <returns>The date as a string, such as 2020.01.01</returns>
     let ToStr = GrampusInternal.DateUtil.ToStr2
 
 module Result =
