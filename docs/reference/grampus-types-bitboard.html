@@ -1,0 +1,3042 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Bitboard (Grampus)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="pbbwfc">
+
+    <link rel="stylesheet" id="theme_link" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.3.1/materia/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script> -->
+
+    <link type="text/css" rel="stylesheet" href="/Grampus/content/navbar-fixed-right.css" />
+    <link type="text/css" rel="stylesheet" href="/Grampus/content/fsdocs-default.css" />
+    <link type="text/css" rel="stylesheet" href="/Grampus/content/fsdocs-custom.css" />
+    <script type="text/javascript" src="/Grampus/content/fsdocs-tips.js"></script>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
+    <!-- END SEARCH BOX: this adds support for the search box -->
+    
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md navbar-light bg-secondary fixed-right" id="fsdocs-menu">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+            <a href="https://pbbwfc.github.io/Grampus/"><img id="fsdocs-logo" src="https://pbbwfc.github.io/Grampus/images/logo64.png" /></a>
+            <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+            <div id="header">
+                <div class="searchbox" id="fsdocs-searchbox">
+                    <label for="search-by">
+                        <i class="fas fa-search"></i>
+                    </label>
+                    <input data-search-input="" id="search-by" type="search" placeholder="Search..." />
+                    <span data-search-clear="">
+                        <i class="fas fa-times"></i>
+                    </span>
+                </div>
+            </div>
+
+            <!-- END SEARCH BOX: this adds support for the search box -->
+            <ul class="navbar-nav">
+                <li class="nav-header">Links</li>
+                <li class="nav-item" id="fsdocs-license-link"><a class="nav-link" href="https://github.com/pbbwfc/Grampus/blob/main/License.txt">License (Apache 2.0)</a></li>
+                <li class="nav-item" id="fsdocs-release-notes-link"><a class="nav-link" href="https://github.com/pbbwfc/Grampus/releases">Release Notes</a></li>
+                <li class="nav-item" id="fsdocs-repository-link"><a class="nav-link" href="https://github.com/pbbwfc/Grampus/">Source Repository</a></li>
+                <li class="nav-header">
+  Documentation
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="/Grampus/getstrt.html">
+    Getting Started
+
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="/Grampus/repertoire.html">
+    Using the Repertoire Feature
+
+  </a>
+</li>
+                <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="/Grampus/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="masthead">
+            <h3 class="muted"><a href="/Grampus/">Grampus</a></h3>
+        </div>
+        <hr />
+        <div class="container" id="fsdocs-content">
+            <div>
+  <h1>
+    Bitboard Type
+  </h1>
+  <p>
+    Namespace: 
+    <a href="/Grampus/reference/grampus.html">
+      Grampus
+    </a>
+  </p>
+  <p>
+    Assembly: GrampusLib.dll
+  </p>
+  <span>
+    Parent Module: 
+    <a href="/Grampus/reference/grampus-types.html">
+      Types
+    </a>
+  </span>
+  <p>
+    Base Type: 
+    <code><a href="https://docs.microsoft.com/dotnet/api/system.enum">Enum</a></code>
+  </p>
+  <p>
+    All Interfaces: 
+    <code><a href="https://docs.microsoft.com/dotnet/api/system.icomparable">IComparable</a></code>
+    , 
+    <code><a href="https://docs.microsoft.com/dotnet/api/system.iconvertible">IConvertible</a></code>
+    , 
+    <code><a href="https://docs.microsoft.com/dotnet/api/system.iformattable">IFormattable</a></code>
+  </p>
+  <p>
+    Kind: Struct
+  </p>
+  <p>
+    This is an enum type definition
+  </p>
+  <div class="fsdocs-xmldoc">
+    
+  </div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div>
+    <h3>
+      Record fields
+    </h3>
+    <table class="table outer-list fsdocs-member-list">
+      <thead>
+        <tr>
+          <td class="fsdocs-member-list-header">
+            Record Field
+          </td>
+          <td class="fsdocs-member-list-header">
+            Description
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '487', 487)" onmouseover="showTip(event, '487', 487)">
+                <p>
+                  <a id="A1">
+                    <a href="#A1">
+                      <code>A1</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="487">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>A1</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Types.fs#L97-97" class="fsdocs-source-link">
+                <img src="/Grampus/content/img/github.png" class="normal"/>
+                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '488', 488)" onmouseover="showTip(event, '488', 488)">
+                <p>
+                  <a id="A2">
+                    <a href="#A2">
+                      <code>A2</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="488">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>A2</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Types.fs#L105-105" class="fsdocs-source-link">
+                <img src="/Grampus/content/img/github.png" class="normal"/>
+                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '489', 489)" onmouseover="showTip(event, '489', 489)">
+                <p>
+                  <a id="A3">
+                    <a href="#A3">
+                      <code>A3</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="489">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>A3</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Types.fs#L113-113" class="fsdocs-source-link">
+                <img src="/Grampus/content/img/github.png" class="normal"/>
+                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '490', 490)" onmouseover="showTip(event, '490', 490)">
+                <p>
+                  <a id="A4">
+                    <a href="#A4">
+                      <code>A4</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="490">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>A4</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Types.fs#L121-121" class="fsdocs-source-link">
+                <img src="/Grampus/content/img/github.png" class="normal"/>
+                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '491', 491)" onmouseover="showTip(event, '491', 491)">
+                <p>
+                  <a id="A5">
+                    <a href="#A5">
+                      <code>A5</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="491">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>A5</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Types.fs#L129-129" class="fsdocs-source-link">
+                <img src="/Grampus/content/img/github.png" class="normal"/>
+                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '492', 492)" onmouseover="showTip(event, '492', 492)">
+                <p>
+                  <a id="A6">
+                    <a href="#A6">
+                      <code>A6</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="492">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>A6</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Types.fs#L137-137" class="fsdocs-source-link">
+                <img src="/Grampus/content/img/github.png" class="normal"/>
+                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '493', 493)" onmouseover="showTip(event, '493', 493)">
+                <p>
+                  <a id="A7">
+                    <a href="#A7">
+                      <code>A7</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="493">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>A7</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Types.fs#L145-145" class="fsdocs-source-link">
+                <img src="/Grampus/content/img/github.png" class="normal"/>
+                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '494', 494)" onmouseover="showTip(event, '494', 494)">
+                <p>
+                  <a id="A8">
+                    <a href="#A8">
+                      <code>A8</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="494">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>A8</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Types.fs#L153-153" class="fsdocs-source-link">
+                <img src="/Grampus/content/img/github.png" class="normal"/>
+                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '495', 495)" onmouseover="showTip(event, '495', 495)">
+                <p>
+                  <a id="B1">
+                    <a href="#B1">
+                      <code>B1</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="495">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>B1</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Types.fs#L98-98" class="fsdocs-source-link">
+                <img src="/Grampus/content/img/github.png" class="normal"/>
+                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '496', 496)" onmouseover="showTip(event, '496', 496)">
+                <p>
+                  <a id="B2">
+                    <a href="#B2">
+                      <code>B2</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="496">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>B2</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Types.fs#L106-106" class="fsdocs-source-link">
+                <img src="/Grampus/content/img/github.png" class="normal"/>
+                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '497', 497)" onmouseover="showTip(event, '497', 497)">
+                <p>
+                  <a id="B3">
+                    <a href="#B3">
+                      <code>B3</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="497">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>B3</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Types.fs#L114-114" class="fsdocs-source-link">
+                <img src="/Grampus/content/img/github.png" class="normal"/>
+                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '498', 498)" onmouseover="showTip(event, '498', 498)">
+                <p>
+                  <a id="B4">
+                    <a href="#B4">
+                      <code>B4</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="498">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>B4</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Types.fs#L122-122" class="fsdocs-source-link">
+                <img src="/Grampus/content/img/github.png" class="normal"/>
+                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '499', 499)" onmouseover="showTip(event, '499', 499)">
+                <p>
+                  <a id="B5">
+                    <a href="#B5">
+                      <code>B5</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="499">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>B5</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Types.fs#L130-130" class="fsdocs-source-link">
+                <img src="/Grampus/content/img/github.png" class="normal"/>
+                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '500', 500)" onmouseover="showTip(event, '500', 500)">
+                <p>
+                  <a id="B6">
+                    <a href="#B6">
+                      <code>B6</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="500">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>B6</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Types.fs#L138-138" class="fsdocs-source-link">
+                <img src="/Grampus/content/img/github.png" class="normal"/>
+                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '501', 501)" onmouseover="showTip(event, '501', 501)">
+                <p>
+                  <a id="B7">
+                    <a href="#B7">
+                      <code>B7</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="501">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>B7</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Types.fs#L146-146" class="fsdocs-source-link">
+                <img src="/Grampus/content/img/github.png" class="normal"/>
+                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '502', 502)" onmouseover="showTip(event, '502', 502)">
+                <p>
+                  <a id="B8">
+                    <a href="#B8">
+                      <code>B8</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="502">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>B8</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Types.fs#L154-154" class="fsdocs-source-link">
+                <img src="/Grampus/content/img/github.png" class="normal"/>
+                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '503', 503)" onmouseover="showTip(event, '503', 503)">
+                <p>
+                  <a id="C1">
+                    <a href="#C1">
+                      <code>C1</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="503">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>C1</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Types.fs#L99-99" class="fsdocs-source-link">
+                <img src="/Grampus/content/img/github.png" class="normal"/>
+                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '504', 504)" onmouseover="showTip(event, '504', 504)">
+                <p>
+                  <a id="C2">
+                    <a href="#C2">
+                      <code>C2</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="504">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>C2</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Types.fs#L107-107" class="fsdocs-source-link">
+                <img src="/Grampus/content/img/github.png" class="normal"/>
+                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '505', 505)" onmouseover="showTip(event, '505', 505)">
+                <p>
+                  <a id="C3">
+                    <a href="#C3">
+                      <code>C3</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="505">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>C3</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Types.fs#L115-115" class="fsdocs-source-link">
+                <img src="/Grampus/content/img/github.png" class="normal"/>
+                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '506', 506)" onmouseover="showTip(event, '506', 506)">
+                <p>
+                  <a id="C4">
+                    <a href="#C4">
+                      <code>C4</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="506">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>C4</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Types.fs#L123-123" class="fsdocs-source-link">
+                <img src="/Grampus/content/img/github.png" class="normal"/>
+                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '507', 507)" onmouseover="showTip(event, '507', 507)">
+                <p>
+                  <a id="C5">
+                    <a href="#C5">
+                      <code>C5</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="507">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>C5</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Types.fs#L131-131" class="fsdocs-source-link">
+                <img src="/Grampus/content/img/github.png" class="normal"/>
+                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '508', 508)" onmouseover="showTip(event, '508', 508)">
+                <p>
+                  <a id="C6">
+                    <a href="#C6">
+                      <code>C6</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="508">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>C6</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Types.fs#L139-139" class="fsdocs-source-link">
+                <img src="/Grampus/content/img/github.png" class="normal"/>
+                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '509', 509)" onmouseover="showTip(event, '509', 509)">
+                <p>
+                  <a id="C7">
+                    <a href="#C7">
+                      <code>C7</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="509">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>C7</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Types.fs#L147-147" class="fsdocs-source-link">
+                <img src="/Grampus/content/img/github.png" class="normal"/>
+                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '510', 510)" onmouseover="showTip(event, '510', 510)">
+                <p>
+                  <a id="C8">
+                    <a href="#C8">
+                      <code>C8</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="510">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>C8</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Types.fs#L155-155" class="fsdocs-source-link">
+                <img src="/Grampus/content/img/github.png" class="normal"/>
+                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '511', 511)" onmouseover="showTip(event, '511', 511)">
+                <p>
+                  <a id="D1">
+                    <a href="#D1">
+                      <code>D1</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="511">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>D1</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Types.fs#L100-100" class="fsdocs-source-link">
+                <img src="/Grampus/content/img/github.png" class="normal"/>
+                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '512', 512)" onmouseover="showTip(event, '512', 512)">
+                <p>
+                  <a id="D2">
+                    <a href="#D2">
+                      <code>D2</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="512">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>D2</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Types.fs#L108-108" class="fsdocs-source-link">
+                <img src="/Grampus/content/img/github.png" class="normal"/>
+                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '513', 513)" onmouseover="showTip(event, '513', 513)">
+                <p>
+                  <a id="D3">
+                    <a href="#D3">
+                      <code>D3</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="513">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>D3</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Types.fs#L116-116" class="fsdocs-source-link">
+                <img src="/Grampus/content/img/github.png" class="normal"/>
+                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '514', 514)" onmouseover="showTip(event, '514', 514)">
+                <p>
+                  <a id="D4">
+                    <a href="#D4">
+                      <code>D4</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="514">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>D4</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Types.fs#L124-124" class="fsdocs-source-link">
+                <img src="/Grampus/content/img/github.png" class="normal"/>
+                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '515', 515)" onmouseover="showTip(event, '515', 515)">
+                <p>
+                  <a id="D5">
+                    <a href="#D5">
+                      <code>D5</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="515">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>D5</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Types.fs#L132-132" class="fsdocs-source-link">
+                <img src="/Grampus/content/img/github.png" class="normal"/>
+                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '516', 516)" onmouseover="showTip(event, '516', 516)">
+                <p>
+                  <a id="D6">
+                    <a href="#D6">
+                      <code>D6</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="516">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>D6</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Types.fs#L140-140" class="fsdocs-source-link">
+                <img src="/Grampus/content/img/github.png" class="normal"/>
+                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '517', 517)" onmouseover="showTip(event, '517', 517)">
+                <p>
+                  <a id="D7">
+                    <a href="#D7">
+                      <code>D7</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="517">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>D7</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Types.fs#L148-148" class="fsdocs-source-link">
+                <img src="/Grampus/content/img/github.png" class="normal"/>
+                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '518', 518)" onmouseover="showTip(event, '518', 518)">
+                <p>
+                  <a id="D8">
+                    <a href="#D8">
+                      <code>D8</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="518">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>D8</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Types.fs#L156-156" class="fsdocs-source-link">
+                <img src="/Grampus/content/img/github.png" class="normal"/>
+                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '519', 519)" onmouseover="showTip(event, '519', 519)">
+                <p>
+                  <a id="E1">
+                    <a href="#E1">
+                      <code>E1</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="519">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>E1</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Types.fs#L101-101" class="fsdocs-source-link">
+                <img src="/Grampus/content/img/github.png" class="normal"/>
+                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '520', 520)" onmouseover="showTip(event, '520', 520)">
+                <p>
+                  <a id="E2">
+                    <a href="#E2">
+                      <code>E2</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="520">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>E2</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Types.fs#L109-109" class="fsdocs-source-link">
+                <img src="/Grampus/content/img/github.png" class="normal"/>
+                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '521', 521)" onmouseover="showTip(event, '521', 521)">
+                <p>
+                  <a id="E3">
+                    <a href="#E3">
+                      <code>E3</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="521">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>E3</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Types.fs#L117-117" class="fsdocs-source-link">
+                <img src="/Grampus/content/img/github.png" class="normal"/>
+                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '522', 522)" onmouseover="showTip(event, '522', 522)">
+                <p>
+                  <a id="E4">
+                    <a href="#E4">
+                      <code>E4</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="522">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>E4</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Types.fs#L125-125" class="fsdocs-source-link">
+                <img src="/Grampus/content/img/github.png" class="normal"/>
+                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '523', 523)" onmouseover="showTip(event, '523', 523)">
+                <p>
+                  <a id="E5">
+                    <a href="#E5">
+                      <code>E5</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="523">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>E5</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Types.fs#L133-133" class="fsdocs-source-link">
+                <img src="/Grampus/content/img/github.png" class="normal"/>
+                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '524', 524)" onmouseover="showTip(event, '524', 524)">
+                <p>
+                  <a id="E6">
+                    <a href="#E6">
+                      <code>E6</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="524">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>E6</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Types.fs#L141-141" class="fsdocs-source-link">
+                <img src="/Grampus/content/img/github.png" class="normal"/>
+                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '525', 525)" onmouseover="showTip(event, '525', 525)">
+                <p>
+                  <a id="E7">
+                    <a href="#E7">
+                      <code>E7</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="525">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>E7</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Types.fs#L149-149" class="fsdocs-source-link">
+                <img src="/Grampus/content/img/github.png" class="normal"/>
+                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '526', 526)" onmouseover="showTip(event, '526', 526)">
+                <p>
+                  <a id="E8">
+                    <a href="#E8">
+                      <code>E8</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="526">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>E8</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Types.fs#L157-157" class="fsdocs-source-link">
+                <img src="/Grampus/content/img/github.png" class="normal"/>
+                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '527', 527)" onmouseover="showTip(event, '527', 527)">
+                <p>
+                  <a id="Empty">
+                    <a href="#Empty">
+                      <code>Empty</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="527">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>Empty</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Types.fs#L177-177" class="fsdocs-source-link">
+                <img src="/Grampus/content/img/github.png" class="normal"/>
+                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '528', 528)" onmouseover="showTip(event, '528', 528)">
+                <p>
+                  <a id="F1">
+                    <a href="#F1">
+                      <code>F1</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="528">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>F1</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Types.fs#L102-102" class="fsdocs-source-link">
+                <img src="/Grampus/content/img/github.png" class="normal"/>
+                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '529', 529)" onmouseover="showTip(event, '529', 529)">
+                <p>
+                  <a id="F2">
+                    <a href="#F2">
+                      <code>F2</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="529">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>F2</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Types.fs#L110-110" class="fsdocs-source-link">
+                <img src="/Grampus/content/img/github.png" class="normal"/>
+                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '530', 530)" onmouseover="showTip(event, '530', 530)">
+                <p>
+                  <a id="F3">
+                    <a href="#F3">
+                      <code>F3</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="530">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>F3</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Types.fs#L118-118" class="fsdocs-source-link">
+                <img src="/Grampus/content/img/github.png" class="normal"/>
+                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '531', 531)" onmouseover="showTip(event, '531', 531)">
+                <p>
+                  <a id="F4">
+                    <a href="#F4">
+                      <code>F4</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="531">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>F4</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Types.fs#L126-126" class="fsdocs-source-link">
+                <img src="/Grampus/content/img/github.png" class="normal"/>
+                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '532', 532)" onmouseover="showTip(event, '532', 532)">
+                <p>
+                  <a id="F5">
+                    <a href="#F5">
+                      <code>F5</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="532">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>F5</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Types.fs#L134-134" class="fsdocs-source-link">
+                <img src="/Grampus/content/img/github.png" class="normal"/>
+                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '533', 533)" onmouseover="showTip(event, '533', 533)">
+                <p>
+                  <a id="F6">
+                    <a href="#F6">
+                      <code>F6</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="533">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>F6</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Types.fs#L142-142" class="fsdocs-source-link">
+                <img src="/Grampus/content/img/github.png" class="normal"/>
+                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '534', 534)" onmouseover="showTip(event, '534', 534)">
+                <p>
+                  <a id="F7">
+                    <a href="#F7">
+                      <code>F7</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="534">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>F7</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Types.fs#L150-150" class="fsdocs-source-link">
+                <img src="/Grampus/content/img/github.png" class="normal"/>
+                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '535', 535)" onmouseover="showTip(event, '535', 535)">
+                <p>
+                  <a id="F8">
+                    <a href="#F8">
+                      <code>F8</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="535">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>F8</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Types.fs#L158-158" class="fsdocs-source-link">
+                <img src="/Grampus/content/img/github.png" class="normal"/>
+                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '536', 536)" onmouseover="showTip(event, '536', 536)">
+                <p>
+                  <a id="FileA">
+                    <a href="#FileA">
+                      <code>FileA</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="536">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>FileA</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Types.fs#L169-169" class="fsdocs-source-link">
+                <img src="/Grampus/content/img/github.png" class="normal"/>
+                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '537', 537)" onmouseover="showTip(event, '537', 537)">
+                <p>
+                  <a id="FileB">
+                    <a href="#FileB">
+                      <code>FileB</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="537">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>FileB</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Types.fs#L170-170" class="fsdocs-source-link">
+                <img src="/Grampus/content/img/github.png" class="normal"/>
+                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '538', 538)" onmouseover="showTip(event, '538', 538)">
+                <p>
+                  <a id="FileC">
+                    <a href="#FileC">
+                      <code>FileC</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="538">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>FileC</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Types.fs#L171-171" class="fsdocs-source-link">
+                <img src="/Grampus/content/img/github.png" class="normal"/>
+                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '539', 539)" onmouseover="showTip(event, '539', 539)">
+                <p>
+                  <a id="FileD">
+                    <a href="#FileD">
+                      <code>FileD</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="539">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>FileD</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Types.fs#L172-172" class="fsdocs-source-link">
+                <img src="/Grampus/content/img/github.png" class="normal"/>
+                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '540', 540)" onmouseover="showTip(event, '540', 540)">
+                <p>
+                  <a id="FileE">
+                    <a href="#FileE">
+                      <code>FileE</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="540">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>FileE</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Types.fs#L173-173" class="fsdocs-source-link">
+                <img src="/Grampus/content/img/github.png" class="normal"/>
+                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '541', 541)" onmouseover="showTip(event, '541', 541)">
+                <p>
+                  <a id="FileF">
+                    <a href="#FileF">
+                      <code>FileF</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="541">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>FileF</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Types.fs#L174-174" class="fsdocs-source-link">
+                <img src="/Grampus/content/img/github.png" class="normal"/>
+                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '542', 542)" onmouseover="showTip(event, '542', 542)">
+                <p>
+                  <a id="FileG">
+                    <a href="#FileG">
+                      <code>FileG</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="542">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>FileG</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Types.fs#L175-175" class="fsdocs-source-link">
+                <img src="/Grampus/content/img/github.png" class="normal"/>
+                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '543', 543)" onmouseover="showTip(event, '543', 543)">
+                <p>
+                  <a id="FileH">
+                    <a href="#FileH">
+                      <code>FileH</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="543">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>FileH</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Types.fs#L176-176" class="fsdocs-source-link">
+                <img src="/Grampus/content/img/github.png" class="normal"/>
+                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '544', 544)" onmouseover="showTip(event, '544', 544)">
+                <p>
+                  <a id="Full">
+                    <a href="#Full">
+                      <code>Full</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="544">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>Full</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Types.fs#L178-178" class="fsdocs-source-link">
+                <img src="/Grampus/content/img/github.png" class="normal"/>
+                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '545', 545)" onmouseover="showTip(event, '545', 545)">
+                <p>
+                  <a id="G1">
+                    <a href="#G1">
+                      <code>G1</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="545">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>G1</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Types.fs#L103-103" class="fsdocs-source-link">
+                <img src="/Grampus/content/img/github.png" class="normal"/>
+                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '546', 546)" onmouseover="showTip(event, '546', 546)">
+                <p>
+                  <a id="G2">
+                    <a href="#G2">
+                      <code>G2</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="546">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>G2</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Types.fs#L111-111" class="fsdocs-source-link">
+                <img src="/Grampus/content/img/github.png" class="normal"/>
+                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '547', 547)" onmouseover="showTip(event, '547', 547)">
+                <p>
+                  <a id="G3">
+                    <a href="#G3">
+                      <code>G3</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="547">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>G3</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Types.fs#L119-119" class="fsdocs-source-link">
+                <img src="/Grampus/content/img/github.png" class="normal"/>
+                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '548', 548)" onmouseover="showTip(event, '548', 548)">
+                <p>
+                  <a id="G4">
+                    <a href="#G4">
+                      <code>G4</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="548">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>G4</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Types.fs#L127-127" class="fsdocs-source-link">
+                <img src="/Grampus/content/img/github.png" class="normal"/>
+                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '549', 549)" onmouseover="showTip(event, '549', 549)">
+                <p>
+                  <a id="G5">
+                    <a href="#G5">
+                      <code>G5</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="549">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>G5</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Types.fs#L135-135" class="fsdocs-source-link">
+                <img src="/Grampus/content/img/github.png" class="normal"/>
+                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '550', 550)" onmouseover="showTip(event, '550', 550)">
+                <p>
+                  <a id="G6">
+                    <a href="#G6">
+                      <code>G6</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="550">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>G6</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Types.fs#L143-143" class="fsdocs-source-link">
+                <img src="/Grampus/content/img/github.png" class="normal"/>
+                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '551', 551)" onmouseover="showTip(event, '551', 551)">
+                <p>
+                  <a id="G7">
+                    <a href="#G7">
+                      <code>G7</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="551">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>G7</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Types.fs#L151-151" class="fsdocs-source-link">
+                <img src="/Grampus/content/img/github.png" class="normal"/>
+                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '552', 552)" onmouseover="showTip(event, '552', 552)">
+                <p>
+                  <a id="G8">
+                    <a href="#G8">
+                      <code>G8</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="552">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>G8</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Types.fs#L159-159" class="fsdocs-source-link">
+                <img src="/Grampus/content/img/github.png" class="normal"/>
+                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '553', 553)" onmouseover="showTip(event, '553', 553)">
+                <p>
+                  <a id="H1">
+                    <a href="#H1">
+                      <code>H1</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="553">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>H1</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Types.fs#L104-104" class="fsdocs-source-link">
+                <img src="/Grampus/content/img/github.png" class="normal"/>
+                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '554', 554)" onmouseover="showTip(event, '554', 554)">
+                <p>
+                  <a id="H2">
+                    <a href="#H2">
+                      <code>H2</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="554">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>H2</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Types.fs#L112-112" class="fsdocs-source-link">
+                <img src="/Grampus/content/img/github.png" class="normal"/>
+                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '555', 555)" onmouseover="showTip(event, '555', 555)">
+                <p>
+                  <a id="H3">
+                    <a href="#H3">
+                      <code>H3</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="555">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>H3</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Types.fs#L120-120" class="fsdocs-source-link">
+                <img src="/Grampus/content/img/github.png" class="normal"/>
+                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '556', 556)" onmouseover="showTip(event, '556', 556)">
+                <p>
+                  <a id="H4">
+                    <a href="#H4">
+                      <code>H4</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="556">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>H4</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Types.fs#L128-128" class="fsdocs-source-link">
+                <img src="/Grampus/content/img/github.png" class="normal"/>
+                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '557', 557)" onmouseover="showTip(event, '557', 557)">
+                <p>
+                  <a id="H5">
+                    <a href="#H5">
+                      <code>H5</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="557">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>H5</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Types.fs#L136-136" class="fsdocs-source-link">
+                <img src="/Grampus/content/img/github.png" class="normal"/>
+                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '558', 558)" onmouseover="showTip(event, '558', 558)">
+                <p>
+                  <a id="H6">
+                    <a href="#H6">
+                      <code>H6</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="558">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>H6</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Types.fs#L144-144" class="fsdocs-source-link">
+                <img src="/Grampus/content/img/github.png" class="normal"/>
+                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '559', 559)" onmouseover="showTip(event, '559', 559)">
+                <p>
+                  <a id="H7">
+                    <a href="#H7">
+                      <code>H7</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="559">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>H7</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Types.fs#L152-152" class="fsdocs-source-link">
+                <img src="/Grampus/content/img/github.png" class="normal"/>
+                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '560', 560)" onmouseover="showTip(event, '560', 560)">
+                <p>
+                  <a id="H8">
+                    <a href="#H8">
+                      <code>H8</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="560">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>H8</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Types.fs#L160-160" class="fsdocs-source-link">
+                <img src="/Grampus/content/img/github.png" class="normal"/>
+                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '561', 561)" onmouseover="showTip(event, '561', 561)">
+                <p>
+                  <a id="Rank1">
+                    <a href="#Rank1">
+                      <code>Rank1</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="561">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>Rank1</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Types.fs#L168-168" class="fsdocs-source-link">
+                <img src="/Grampus/content/img/github.png" class="normal"/>
+                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '562', 562)" onmouseover="showTip(event, '562', 562)">
+                <p>
+                  <a id="Rank2">
+                    <a href="#Rank2">
+                      <code>Rank2</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="562">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>Rank2</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Types.fs#L167-167" class="fsdocs-source-link">
+                <img src="/Grampus/content/img/github.png" class="normal"/>
+                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '563', 563)" onmouseover="showTip(event, '563', 563)">
+                <p>
+                  <a id="Rank3">
+                    <a href="#Rank3">
+                      <code>Rank3</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="563">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>Rank3</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Types.fs#L166-166" class="fsdocs-source-link">
+                <img src="/Grampus/content/img/github.png" class="normal"/>
+                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '564', 564)" onmouseover="showTip(event, '564', 564)">
+                <p>
+                  <a id="Rank4">
+                    <a href="#Rank4">
+                      <code>Rank4</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="564">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>Rank4</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Types.fs#L165-165" class="fsdocs-source-link">
+                <img src="/Grampus/content/img/github.png" class="normal"/>
+                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '565', 565)" onmouseover="showTip(event, '565', 565)">
+                <p>
+                  <a id="Rank5">
+                    <a href="#Rank5">
+                      <code>Rank5</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="565">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>Rank5</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Types.fs#L164-164" class="fsdocs-source-link">
+                <img src="/Grampus/content/img/github.png" class="normal"/>
+                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '566', 566)" onmouseover="showTip(event, '566', 566)">
+                <p>
+                  <a id="Rank6">
+                    <a href="#Rank6">
+                      <code>Rank6</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="566">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>Rank6</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Types.fs#L163-163" class="fsdocs-source-link">
+                <img src="/Grampus/content/img/github.png" class="normal"/>
+                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '567', 567)" onmouseover="showTip(event, '567', 567)">
+                <p>
+                  <a id="Rank7">
+                    <a href="#Rank7">
+                      <code>Rank7</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="567">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>Rank7</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Types.fs#L162-162" class="fsdocs-source-link">
+                <img src="/Grampus/content/img/github.png" class="normal"/>
+                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '568', 568)" onmouseover="showTip(event, '568', 568)">
+                <p>
+                  <a id="Rank8">
+                    <a href="#Rank8">
+                      <code>Rank8</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="568">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>Rank8</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Types.fs#L161-161" class="fsdocs-source-link">
+                <img src="/Grampus/content/img/github.png" class="normal"/>
+                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+</div>
+            
+        </div>
+
+        <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
+        <script type="text/javascript">var fsdocs_search_baseurl = '/Grampus/';</script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.8/lunr.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.min.js"></script>
+        <script type="text/javascript" src="/Grampus/content/fsdocs-search.js"></script>
+        <!-- END SEARCH BOX: this adds support for the search box -->
+    </div>
+</body>
+
+</html>
+
+

@@ -8,7 +8,7 @@
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <OtherFlags />
-    <DocumentationFile>bin\debug\Grampus.xml</DocumentationFile>
+    <DocumentationFile>bin\debug\net5.0\GrampusLib.xml</DocumentationFile>
     <OutputPath />
   </PropertyGroup>
 
