@@ -16,6 +16,7 @@ module Types =
     type Move = uint32
     let MoveEmpty:Move = 0u
     
+    /// <summary>Enum holding each type of piece e.g. 1 for Pawn.</summary>
     type PieceType = 
         | EMPTY = 0
         | Pawn = 1
@@ -25,6 +26,7 @@ module Types =
         | Queen = 5
         | King = 6
     
+    /// <summary>Enum holding each type of piece for each colour e.g. 1 for WPawn.</summary>
     type Piece = 
         | WPawn = 1
         | WKnight = 2
