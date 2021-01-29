@@ -3,7 +3,7 @@
     <FsDocsLicenseLink>https://github.com/pbbwfc/Grampus/blob/main/License.txt</FsDocsLicenseLink>
     <FsDocsReleaseNotesLink>https://github.com/pbbwfc/Grampus/releases</FsDocsReleaseNotesLink>
     <Version>0.02</Version>
-    <RepositoryUrl>https://github.com/pbbwfc/Grampus/</RepositoryUrl>
+    <RepositoryUrl>https://github.com/pbbwfc/Grampus/tree/master</RepositoryUrl>
 	<Authors>pbbwfc</Authors>
 	<FsDocsLogoLink>https://pbbwfc.github.io/Grampus/</FsDocsLogoLink>
 	<FsDocsLogoSource>https://pbbwfc.github.io/Grampus/images/logo64.png</FsDocsLogoSource>
