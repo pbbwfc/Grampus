@@ -135,15 +135,12 @@ module TpGamesLib =
                     crw <- num
                     gms.CurrentCell <- rw.Cells.[0]
         
-        //get baseNum
+        ///get baseNum
         member gmstp.BaseName() = nm
         
         /// close
         member gmstp.Close() = ()
         
-        //update the treecach file before closing
-        //ScincFuncs.Tree.Write(b)|>ignore
-        //ScincFuncs.Base.Close()|>ignore
         ///Provides the selected Game
         member __.GmSel = selEvt.Publish
         
