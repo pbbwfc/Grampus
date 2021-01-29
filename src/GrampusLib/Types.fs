@@ -533,15 +533,16 @@ module Types =
         member val TotPerf = 0L with get, set
         [<Key(9)>]
         member val TotAvYear = 0L with get, set
+    
     [<MessagePackObject>]
+    /// <summary>Holds summary data used in the tree.</summary>
     type stats() =
         [<Key(0)>]
         member val MvsStats = new System.Collections.Generic.List<mvstats>() with get, set
         [<Key(1)>]
         member val TotStats = new totstats() with get, set
     
-    type BrdStats = System.Collections.Generic.IDictionary<string,stats>
-    
+    /// <summary>Record type for holding Eco code and longer description.</summary>
     type Eco = {Code:string;Desc:string}
 
     let EcoMap:Map<string,Eco> =
