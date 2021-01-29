@@ -10,6 +10,9 @@ module AssemblyInfo=
     do()
 
 [<AutoOpen>]
+/// <namespacedoc>
+///   <summary>This is the namespace containing all Grampus backend functionality.</summary>
+/// </namespacedoc>
 /// <summary>Holds all the main types used by Grampus.</summary>
 module Types = 
     /// <summary>Unsigned integer encoded to hold Move information.</summary>
@@ -511,6 +514,7 @@ module Types =
         member val Perf = 0L with get, set
         [<Key(10)>]
         member val AvYear = 0L with get, set
+    
     [<MessagePackObject>]
     type totstats() =
         [<Key(0)>]
