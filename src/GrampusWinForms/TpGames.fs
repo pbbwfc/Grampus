@@ -1,4 +1,4 @@
-﻿namespace GrampusWinForms
+namespace GrampusWinForms
 
 open System.Drawing
 open System.IO
