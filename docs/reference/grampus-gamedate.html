@@ -100,7 +100,7 @@
     Assembly: GrampusLib.dll
   </p>
   <div class="fsdocs-xmldoc">
-    
+    Holds the functions related to the Game Date.
   </div>
   <div>
     <h3>
@@ -125,7 +125,7 @@
                 <p>
                   <a id="ToStr">
                     <a href="#ToStr">
-                      <code><span>ToStr&#32;<span></span></span></code>
+                      <code><span>ToStr&#32;<span>gm</span></span></code>
                     </a>
                   </a>
                 </p>
@@ -133,12 +133,26 @@
               <div class="fsdocs-tip" id="51">
                 <div class="member-tooltip">
                   Full Usage: 
-                  <code><span>ToStr&#32;<span></span></span></code>
+                  <code><span>ToStr&#32;<span>gm</span></span></code>
                   <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        gm
+                      </b>
+                      :
+                      <code><a href="/Grampus/reference/grampus-types-encodedgame.html">EncodedGame</a></code>
+                       - 
+                      The encoded game.
+                    </span>
+                    <br/>
+                  </ul>
                   <br/>
                   <span>
                     Returns: 
-                    <code><span><a href="/Grampus/reference/grampus-types-encodedgame.html">EncodedGame</a>&#32;->&#32;string</span></code>
+                    <code>string</code>
                   </span>
                   The date as a string, such as 2020.01.01
                   <br/>
@@ -148,18 +162,32 @@
           </td>
           <td class="fsdocs-xmldoc">
             <p class="fsdocs-summary">
-              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L7-7" class="fsdocs-source-link">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L8-8" class="fsdocs-source-link">
                 <img src="/Grampus/content/img/github.png" class="normal"/>
                 <img src="/Grampus/content/img/github-blue.png" class="hover"/>
               </a>
               Gets the string symbol for a Date.
             </p>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  gm
+                </span>
+                :
+                <code><a href="/Grampus/reference/grampus-types-encodedgame.html">EncodedGame</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  The encoded game.
+                </p>
+              </dd>
+            </dl>
             <dl class="fsdocs-returns">
               <dt>
                 <span class="fsdocs-return-name">
                   Returns:
                 </span>
-                <code><span><a href="/Grampus/reference/grampus-types-encodedgame.html">EncodedGame</a>&#32;->&#32;string</span></code>
+                <code>string</code>
               </dt>
               <dd class="fsdocs-return-docs">
                 <p>
