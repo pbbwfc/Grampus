@@ -1,12 +1,12 @@
-﻿namespace GrampusInternal
+namespace GrampusInternal
 
 open Grampus
 
 /// <summary>This type is for implementation purposes.</summary>
 ///
 /// <exclude />
-module PieceType = 
-    let Parse(c : char) = 
+module PieceType =
+    let Parse(c : char) =
         match c with
         | 'P' -> PieceType.Pawn
         | 'N' -> PieceType.Knight
@@ -22,6 +22,5 @@ module PieceType =
         | 'k' -> PieceType.King
         | _ -> failwith (c.ToString() + " is not a valid piece")
     
-    let ForPlayer (player : Player) (pt : PieceType) : Piece = (int (pt) ||| (int (player) <<< 3)) |> Pc
-    
-
+    let ForPlayer (player : Player) (pt : PieceType) : Piece =
+        (int (pt) ||| (int (player) <<< 3)) |> Pc

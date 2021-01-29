@@ -1,4 +1,4 @@
-﻿namespace GrampusInternal
+namespace GrampusInternal
 
 open Grampus
 
@@ -7,7 +7,7 @@ open Grampus
 ///   <summary>This is not for direct use and is undocumented.</summary>
 /// </namespacedoc>
 /// <exclude />
-type Dirn = 
+type Dirn =
     | DirN = 8
     | DirE = 1
     | DirS = -8
@@ -29,40 +29,38 @@ type Dirn =
 ///
 /// <exclude />
 module Direction =
-
-    let AllDirectionsKnight = 
-        [| Dirn.DirNNE; Dirn.DirEEN; Dirn.DirEES; Dirn.DirSSE; Dirn.DirSSW; Dirn.DirWWS; 
-           Dirn.DirWWN; Dirn.DirNNW |]
+    let AllDirectionsKnight =
+        [| Dirn.DirNNE; Dirn.DirEEN; Dirn.DirEES; Dirn.DirSSE; Dirn.DirSSW; 
+           Dirn.DirWWS; Dirn.DirWWN; Dirn.DirNNW |]
     let AllDirectionsRook = [| Dirn.DirN; Dirn.DirE; Dirn.DirS; Dirn.DirW |]
-    let AllDirectionsBishop = [| Dirn.DirNE; Dirn.DirSE; Dirn.DirSW; Dirn.DirNW |]
-    let AllDirectionsQueen = 
+    let AllDirectionsBishop =
+        [| Dirn.DirNE; Dirn.DirSE; Dirn.DirSW; Dirn.DirNW |]
+    let AllDirectionsQueen =
         [| Dirn.DirN; Dirn.DirE; Dirn.DirS; Dirn.DirW; Dirn.DirNE; Dirn.DirSE; 
            Dirn.DirSW; Dirn.DirNW |]
-    let AllDirections = 
+    let AllDirections =
         [| Dirn.DirN; Dirn.DirE; Dirn.DirS; Dirn.DirW; Dirn.DirNE; Dirn.DirSE; 
-           Dirn.DirSW; Dirn.DirNW; Dirn.DirNNE; Dirn.DirEEN; Dirn.DirEES; Dirn.DirSSE; 
-           Dirn.DirSSW; Dirn.DirWWS; Dirn.DirWWN; Dirn.DirNNW |]
-
-    let IsDirectionRook(dir : Dirn) = 
+           Dirn.DirSW; Dirn.DirNW; Dirn.DirNNE; Dirn.DirEEN; Dirn.DirEES; 
+           Dirn.DirSSE; Dirn.DirSSW; Dirn.DirWWS; Dirn.DirWWN; Dirn.DirNNW |]
+    
+    let IsDirectionRook(dir : Dirn) =
         match dir with
         | Dirn.DirN | Dirn.DirE | Dirn.DirS | Dirn.DirW -> true
         | _ -> false
-
-    let IsDirectionBishop(dir : Dirn) = 
+    
+    let IsDirectionBishop(dir : Dirn) =
         match dir with
         | Dirn.DirNW | Dirn.DirNE | Dirn.DirSW | Dirn.DirSE -> true
         | _ -> false
-
-    let IsDirectionKnight(dir : Dirn) = 
+    
+    let IsDirectionKnight(dir : Dirn) =
         match dir with
-        | Dirn.DirNNE | Dirn.DirEEN | Dirn.DirEES | Dirn.DirSSE 
-        | Dirn.DirSSW | Dirn.DirWWS | Dirn.DirWWN | Dirn.DirNNW -> 
+        | Dirn.DirNNE | Dirn.DirEEN | Dirn.DirEES | Dirn.DirSSE | Dirn.DirSSW | Dirn.DirWWS | Dirn.DirWWN | Dirn.DirNNW -> 
             true
         | _ -> false
-
-    let Opposite(dir : Dirn) :Dirn = -int (dir)|>enum<Dirn>
-
-    let MyNorth(player : Player) = 
+    
+    let Opposite(dir : Dirn) : Dirn = -int (dir) |> enum<Dirn>
+    
+    let MyNorth(player : Player) =
         if player = Player.White then Dirn.DirN
-
         else Dirn.DirS

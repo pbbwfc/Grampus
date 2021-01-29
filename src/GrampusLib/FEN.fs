@@ -1,4 +1,4 @@
-﻿namespace GrampusInternal
+namespace GrampusInternal
 
 open Grampus
 open System.Text
@@ -7,7 +7,7 @@ open System.Text.RegularExpressions
 /// <summary>This type is for implementation purposes.</summary>
 ///
 /// <exclude />
-type Fen = 
+type Fen =
     { Pieceat : Piece list
       Whosturn : Player
       CastleWS : bool
@@ -21,16 +21,16 @@ type Fen =
 /// <summary>This type is for implementation purposes.</summary>
 ///
 /// <exclude />
-module FEN = 
-    let ToStr(fen : Fen) = 
+module FEN =
+    let ToStr(fen : Fen) =
         let sb = new StringBuilder(50)
         for irank = 7 downto 0 do
-            let rec getect ect ifile = 
+            let rec getect ect ifile =
                 if ifile > 7 then ect
                 else 
                     let rank = RANKS.[irank]
                     let file = FILES.[ifile]
-                    let piece = fen.Pieceat.[int(Sq(file,rank))] 
+                    let piece = fen.Pieceat.[int (Sq(file, rank))]
                     if piece = Piece.EMPTY then getect (ect + 1) (ifile + 1)
                     else 
                         if ect > 0 then sb.Append(ect.ToString()) |> ignore
@@ -48,13 +48,14 @@ module FEN =
             if fen.CastleBS then sb.Append("k") |> ignore
             if fen.CastleBL then sb.Append("q") |> ignore
         else sb.Append("-") |> ignore
-        if fen.Enpassant |> Square.IsInBounds then sb.Append(" " + (fen.Enpassant |> Square.Name)) |> ignore
+        if fen.Enpassant |> Square.IsInBounds then 
+            sb.Append(" " + (fen.Enpassant |> Square.Name)) |> ignore
         else sb.Append(" -") |> ignore
         sb.Append(" " + fen.Fiftymove.ToString()) |> ignore
         sb.Append(" " + fen.Fullmove.ToString()) |> ignore
         sb.ToString()
     
-    let FromBd(bd : Brd) = 
+    let FromBd(bd : Brd) =
         { Pieceat = bd.PieceAt
           Whosturn = bd.WhosTurn
           CastleWS = int (bd.CastleRights &&& CstlFlgs.WhiteShort) <> 0
@@ -65,7 +66,7 @@ module FEN =
           Fiftymove = bd.Fiftymove
           Fullmove = bd.Fullmove }
     
-    let Parse(sFEN : string) = 
+    let Parse(sFEN : string) =
         let pieceat = Array.create 64 Piece.EMPTY
         let sbPattern = new StringBuilder()
         sbPattern.Append(@"(?<R8>[\w]{1,8})/") |> ignore
@@ -87,25 +88,34 @@ module FEN =
         if matches.Count = 0 then failwith "No valid fen found"
         if matches.Count > 1 then failwith "Multiple FENs in string"
         let matchr = matches.[0]
-        let sRanks = RANKS|>List.map(fun r -> matchr.Groups.["R" + (r |> Rank.RankToString)].Value)
+        let sRanks =
+            RANKS 
+            |> List.map 
+                   (fun r -> 
+                   matchr.Groups.["R" + (r |> Rank.RankToString)].Value)
         let sPlayer = matchr.Groups.["Player"].Value
         let sCastle = matchr.Groups.["Castle"].Value
         let sEnpassant = matchr.Groups.["Enpassant"].Value
         let sFiftyMove = matchr.Groups.["FiftyMove"].Value
         let sFullMove = matchr.Groups.["FullMove"].Value
         for rank in RANKS do
-            let rec getpc (cl : char list) ifl = 
+            let rec getpc (cl : char list) ifl =
                 if not (List.isEmpty cl) then 
-                    if ifl > 7 then failwith ("too many pieces in rank " + (rank |> Rank.RankToString))
+                    if ifl > 7 then 
+                        failwith 
+                            ("too many pieces in rank " 
+                             + (rank |> Rank.RankToString))
                     let c = cl.Head
-                    if "1234567890".IndexOf(c) >= 0 then getpc cl.Tail (ifl + System.Int32.Parse(c.ToString()))
+                    if "1234567890".IndexOf(c) >= 0 then 
+                        getpc cl.Tail (ifl + System.Int32.Parse(c.ToString()))
                     else 
-                        pieceat.[int(Sq(FILES.[ifl],rank))] <- Piece.Parse(c)//OK
+                        pieceat.[int (Sq(FILES.[ifl], rank))] <- Piece.Parse(c) //OK
                         getpc cl.Tail (ifl + 1)
             
-            let srank = sRanks.[System.Int32.Parse(rank |> Rank.RankToString) - 1]
+            let srank =
+                sRanks.[System.Int32.Parse(rank |> Rank.RankToString) - 1]
             getpc (srank.ToCharArray() |> List.ofArray) 0
-        let whosTurn = 
+        let whosTurn =
             if sPlayer = "w" then Player.White
             elif sPlayer = "b" then Player.Black
             else failwith (sPlayer + " is not a valid player")
@@ -115,19 +125,19 @@ module FEN =
         let castleBS = sCastle.IndexOf("k") >= 0
         let castleBL = sCastle.IndexOf("q") >= 0
         
-        let enpassant = 
+        let enpassant =
             if sEnpassant <> "-" then Square.Parse(sEnpassant)
             else OUTOFBOUNDS
         
-        let fiftyMove = 
+        let fiftyMove =
             if sFiftyMove <> "-" then System.Int32.Parse(sFiftyMove)
             else 0
         
-        let fullMove = 
+        let fullMove =
             if sFullMove <> "-" then System.Int32.Parse(sFullMove)
             else 0
         
-        { Pieceat = pieceat|>List.ofArray
+        { Pieceat = pieceat |> List.ofArray
           Whosturn = whosTurn
           CastleWS = castleWS
           CastleWL = castleWL

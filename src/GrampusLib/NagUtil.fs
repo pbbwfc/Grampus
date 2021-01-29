@@ -1,15 +1,14 @@
-﻿namespace GrampusInternal
+namespace GrampusInternal
 
 open Grampus
 
 /// <summary>This type is for implementation purposes.</summary>
 ///
 /// <exclude />
-module NagUtil = 
+module NagUtil =
+    let All = [ 0..6 ] @ [ 10 ] @ [ 14..19 ] |> List.map Ng
     
-    let All = [0..6]@[10]@[14..19]|>List.map Ng
-
-    let ToStr(nag:NAG) =
+    let ToStr(nag : NAG) =
         match nag with
         | NAG.Good -> "!"
         | NAG.Poor -> "?"
@@ -24,14 +23,18 @@ module NagUtil =
         | NAG.Bmoderate -> "∓"
         | NAG.Wdecisive -> "+−"
         | NAG.Bdecisive -> "−+"
-        |_ -> ""
-
-    let FromStr(str:string) =
-        let stra = All|>List.map ToStr|>List.toArray
-        let indx = stra|>Array.findIndex(fun s -> s=str)
+        | _ -> ""
+    
+    let FromStr(str : string) =
+        let stra =
+            All
+            |> List.map ToStr
+            |> List.toArray
+        
+        let indx = stra |> Array.findIndex (fun s -> s = str)
         All.[indx]
-
-    let ToHtm(nag:NAG) =
+    
+    let ToHtm(nag : NAG) =
         match nag with
         | NAG.Good -> "&#33;"
         | NAG.Poor -> "&#63;"
@@ -46,9 +49,9 @@ module NagUtil =
         | NAG.Bmoderate -> "&#8723;"
         | NAG.Wdecisive -> "&#43;&minus;"
         | NAG.Bdecisive -> "&minus;&#43;"
-        |_ -> ""
-
-    let Desc(nag:NAG) =
+        | _ -> ""
+    
+    let Desc(nag : NAG) =
         match nag with
         | NAG.Good -> "Good"
         | NAG.Poor -> "Poor"
@@ -57,10 +60,10 @@ module NagUtil =
         | NAG.Speculative -> "Speculative"
         | NAG.Questionable -> "Questionable"
         | NAG.Even -> "Even"
-        | NAG.Wslight -> "W slight adv" 
+        | NAG.Wslight -> "W slight adv"
         | NAG.Bslight -> "B slight adv"
         | NAG.Wmoderate -> "W mod adv"
         | NAG.Bmoderate -> "B mod adv"
         | NAG.Wdecisive -> "W dec adv"
         | NAG.Bdecisive -> "B dec adv"
-        |_ -> "None"
+        | _ -> "None"

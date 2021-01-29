@@ -1,4 +1,4 @@
-﻿namespace GrampusInternal
+namespace GrampusInternal
 
 open System
 open Grampus
@@ -11,22 +11,22 @@ open MessagePack.FSharp
 ///
 /// <exclude />
 module Index =
-    
     let resolver =
-        Resolvers.CompositeResolver.Create(FSharpResolver.Instance,StandardResolver.Instance)
+        Resolvers.CompositeResolver.Create
+            (FSharpResolver.Instance, StandardResolver.Instance)
     let options = MessagePackSerializerOptions.Standard.WithResolver(resolver)
-
-    let Load (fol:string) =
-        let fn = Path.Combine(fol,"INDEX")
-        if File.Exists(fn) then
+    
+    let Load(fol : string) =
+        let fn = Path.Combine(fol, "INDEX")
+        if File.Exists(fn) then 
             let bin = File.ReadAllBytes(fn)
             let ro = new ReadOnlyMemory<byte>(bin)
-            let iea = MessagePackSerializer.Deserialize<IndexEntry[]>(ro,options)
+            let iea =
+                MessagePackSerializer.Deserialize<IndexEntry []>(ro, options)
             iea
         else [||]
-
-    let Save (fol:string,iea:IndexEntry[]) =
-        let fn = Path.Combine(fol,"INDEX")
-        let bin = MessagePackSerializer.Serialize<IndexEntry[]>(iea,options)
-        File.WriteAllBytes(fn,bin)
-        
+    
+    let Save(fol : string, iea : IndexEntry []) =
+        let fn = Path.Combine(fol, "INDEX")
+        let bin = MessagePackSerializer.Serialize<IndexEntry []>(iea, options)
+        File.WriteAllBytes(fn, bin)

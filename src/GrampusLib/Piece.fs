@@ -1,13 +1,12 @@
-﻿namespace GrampusInternal
+namespace GrampusInternal
 
 open Grampus
 
 /// <summary>This type is for implementation purposes.</summary>
 ///
 /// <exclude />
-module Piece = 
-    
-    let Parse(c : char) = 
+module Piece =
+    let Parse(c : char) =
         match c with
         | 'P' -> Piece.WPawn
         | 'N' -> Piece.WKnight
@@ -24,7 +23,7 @@ module Piece =
         | '.' -> Piece.EMPTY
         | _ -> failwith (c.ToString() + " is not a valid piece")
     
-    let PieceToString(piece : Piece) = 
+    let PieceToString(piece : Piece) =
         match piece with
         | Piece.WPawn -> "P"
         | Piece.WKnight -> "N"
@@ -42,9 +41,10 @@ module Piece =
         | _ -> failwith ("not a valid piece")
     
     let ToPieceType(piece : Piece) = (int (piece) &&& 7) |> PcTp
-    let ParseAsPiece (player : Player) (c : char) = (Parse(c) |> ToPieceType)|>PieceType.ForPlayer(player)
+    let ParseAsPiece (player : Player) (c : char) =
+        (Parse(c) |> ToPieceType) |> PieceType.ForPlayer(player)
     
-    let ToOppositePlayer(piece : Piece) = 
+    let ToOppositePlayer(piece : Piece) =
         if piece = Piece.EMPTY then Piece.EMPTY
         else (int (piece) ^^^ 8) |> Pc
     

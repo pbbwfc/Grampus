@@ -1,4 +1,4 @@
-﻿namespace GrampusInternal
+namespace GrampusInternal
 
 open Grampus
 
@@ -6,20 +6,19 @@ open Grampus
 ///
 /// <exclude />
 module MoveTextEntry =
-
     let Parse(s : string) =
         let mn =
-            if System.Char.IsNumber(s.[0]) then
-                let bits = s.Split([|'.'|])
-                bits.[0]|>int|>Some
+            if System.Char.IsNumber(s.[0]) then 
+                let bits = s.Split([| '.' |])
+                bits.[0]
+                |> int
+                |> Some
             else None
         
-        let ic = s.Contains("...") 
-
+        let ic = s.Contains("...")
+        
         let mv =
-            let bits = s.Trim().Split([|' ';'.'|])
-            let mvtxt = bits.[bits.Length-1].Trim()
+            let bits = s.Trim().Split([| ' '; '.' |])
+            let mvtxt = bits.[bits.Length - 1].Trim()
             pMove.Parse(mvtxt)
-
-        UnencodedHalfMoveEntry(mn,ic,mv)
-    
+        UnencodedHalfMoveEntry(mn, ic, mv)
