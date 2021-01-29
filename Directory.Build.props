@@ -1,0 +1,11 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <FsDocsLicenseLink>https://github.com/pbbwfc/Grampus/blob/main/License.txt</FsDocsLicenseLink>
+    <FsDocsReleaseNotesLink>https://github.com/pbbwfc/Grampus/releases</FsDocsReleaseNotesLink>
+    <Version>0.02</Version>
+    <RepositoryUrl>https://github.com/pbbwfc/Grampus/</RepositoryUrl>
+	<Authors>pbbwfc</Authors>
+	<FsDocsLogoLink>https://pbbwfc.github.io/Grampus/</FsDocsLogoLink>
+	<FsDocsLogoSource>https://pbbwfc.github.io/Grampus/images/logo64.png</FsDocsLogoSource>
+  </PropertyGroup>
+</Project>

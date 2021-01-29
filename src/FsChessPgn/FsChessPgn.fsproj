@@ -2,13 +2,20 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
-    <Platforms>x64</Platforms>
+    <Platforms>x64;AnyCPU</Platforms>
+	<GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OtherFlags />
-    <DocumentationFile>D:\GitHub\Grampus\debug\FsChessPgn.XML</DocumentationFile>
-    <OutputPath>D:\GitHub\Grampus\debug</OutputPath>
+    <DocumentationFile>FsChessPgn.XML</DocumentationFile>
+    <OutputPath></OutputPath>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <OtherFlags />
+    <DocumentationFile>FsChessPgn.XML</DocumentationFile>
+    <OutputPath />
   </PropertyGroup>
 
   <PropertyGroup>
@@ -16,6 +23,10 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutputPath>D:\GitHub\Grampus\rel</OutputPath>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <OutputPath>D:\GitHub\Grampus\rel</OutputPath>
   </PropertyGroup>
 
