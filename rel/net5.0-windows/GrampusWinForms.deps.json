@@ -6,13 +6,13 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v5.0": {
-      "FsChess.WinForms/0.02": {
+      "GrampusWinForms/0.02": {
         "dependencies": {
           "FSharp.Core": "5.0.0",
           "GrampusLib": "0.2.0"
         },
         "runtime": {
-          "FsChess.WinForms.dll": {}
+          "GrampusWinForms.dll": {}
         }
       },
       "FSharp.Core/5.0.0": {
@@ -158,7 +158,7 @@
     }
   },
   "libraries": {
-    "FsChess.WinForms/0.02": {
+    "GrampusWinForms/0.02": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
