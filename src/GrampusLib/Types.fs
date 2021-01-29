@@ -10,7 +10,9 @@ module AssemblyInfo=
     do()
 
 [<AutoOpen>]
+/// <summary>Holds all the main types used by Grampus.</summary>
 module Types = 
+    /// <summary>Unsigned integer encoded to hold Move information.</summary>
     type Move = uint32
     let MoveEmpty:Move = 0u
     
