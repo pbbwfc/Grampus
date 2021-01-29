@@ -3,7 +3,7 @@
 open System.IO
 open System.Drawing
 open System.Windows.Forms
-open FsChess.WinForms
+open GrampusWinForms
 open Grampus
 
 module Form =

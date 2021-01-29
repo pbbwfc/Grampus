@@ -4,7 +4,7 @@ open System
 open System.IO
 open System.Drawing
 open System.Windows.Forms
-open FsChess.WinForms
+open GrampusWinForms
 open Grampus
 
 type private GameInfo = {Gmno:int;Welo:int;Belo:int;Year:int;Result:int}

@@ -1,4 +1,4 @@
-﻿namespace FsChess.WinForms
+﻿namespace GrampusWinForms
 
 open System.Windows.Forms
 open System.Drawing
@@ -8,7 +8,7 @@ open Grampus
 module PnlPgnLib =
     let private img nm =
         let thisExe = System.Reflection.Assembly.GetExecutingAssembly()
-        let file = thisExe.GetManifestResourceStream("FsChess.WinForms.Images." + nm)
+        let file = thisExe.GetManifestResourceStream("GrampusWinForms.Images." + nm)
         Image.FromStream(file)
 
     type PnlPgn() as pgnpnl =

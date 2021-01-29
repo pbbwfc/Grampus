@@ -1,4 +1,4 @@
-﻿namespace FsChess.WinForms
+﻿namespace GrampusWinForms
 
 open System.Drawing
 open System.Windows.Forms
@@ -9,13 +9,13 @@ module PnlBoardLib =
     
     let private img nm =
         let thisExe = System.Reflection.Assembly.GetExecutingAssembly()
-        let file = thisExe.GetManifestResourceStream("FsChess.WinForms.Images." + nm)
+        let file = thisExe.GetManifestResourceStream("GrampusWinForms.Images." + nm)
         Image.FromStream(file)
 
     let private cur nm =
         let thisExe = System.Reflection.Assembly.GetExecutingAssembly()
         //let nms = thisExe.GetManifestResourceNames()
-        let file = thisExe.GetManifestResourceStream("FsChess.WinForms.Cursors." + nm)
+        let file = thisExe.GetManifestResourceStream("GrampusWinForms.Cursors." + nm)
         new Cursor(file)
  
     type PnlBoard() as bd =

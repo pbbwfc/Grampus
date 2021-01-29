@@ -1,4 +1,4 @@
-﻿namespace FsChess.WinForms
+﻿namespace GrampusWinForms
 
 open System.Drawing
 open System.IO
