@@ -30,7 +30,7 @@
 
 	<ItemGroup>
 	  <ProjectReference Include="..\FsChess.WinForms\FsChess.WinForms.fsproj" />
-	  <ProjectReference Include="..\FsChessPgn\FsChessPgn.fsproj" />
+	  <ProjectReference Include="..\GrampusLib\GrampusLib.fsproj" />
 	</ItemGroup>
 
 	<ItemGroup>

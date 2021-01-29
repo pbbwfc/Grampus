@@ -95,7 +95,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\FsChessPgn\FsChessPgn.fsproj" />
+    <ProjectReference Include="..\GrampusLib\GrampusLib.fsproj" />
   </ItemGroup>
 
 </Project>

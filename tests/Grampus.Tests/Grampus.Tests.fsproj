@@ -30,7 +30,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\FsChessPgn\FsChessPgn.fsproj" />
+    <ProjectReference Include="..\..\src\GrampusLib\GrampusLib.fsproj" />
   </ItemGroup>
 
 </Project>

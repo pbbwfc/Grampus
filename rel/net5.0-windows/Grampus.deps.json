@@ -146,13 +146,13 @@
       "FsChess.WinForms/0.2.0": {
         "dependencies": {
           "FSharp.Core": "5.0.0",
-          "FsChessPgn": "0.2.0"
+          "GrampusLib": "0.2.0"
         },
         "runtime": {
           "FsChess.WinForms.dll": {}
         }
       },
-      "FsChessPgn/0.2.0": {
+      "GrampusLib/0.2.0": {
         "dependencies": {
           "FSharp.Core": "5.0.0",
           "FSharp.Json": "0.4.0",
@@ -162,7 +162,7 @@
           "System.Drawing.Common": "5.0.0"
         },
         "runtime": {
-          "FsChessPgn.dll": {}
+          "GrampusLib.dll": {}
         }
       }
     }
@@ -290,7 +290,7 @@
       "serviceable": false,
       "sha512": ""
     },
-    "FsChessPgn/0.2.0": {
+    "GrampusLib/0.2.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

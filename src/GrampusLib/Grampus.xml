@@ -1,0 +1,778 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc>
+<assembly><name>GrampusLib</name></assembly>
+<members>
+<member name="T:GrampusInternal.Dirn">
+ <summary>This type is for implementation purposes.</summary>
+ <namespacedoc>
+   <summary>This is not for direct use and is undocumented.</summary>
+ </namespacedoc>
+ <exclude />
+</member>
+<member name="T:GrampusInternal.Fen">
+ <summary>This type is for implementation purposes.</summary>
+
+ <exclude />
+</member>
+<member name="T:GrampusInternal.Util">
+ <summary>This type is for implementation purposes.</summary>
+
+ <exclude />
+</member>
+<member name="T:GrampusInternal.Direction">
+ <summary>This type is for implementation purposes.</summary>
+
+ <exclude />
+</member>
+<member name="T:GrampusInternal.Player">
+ <summary>This type is for implementation purposes.</summary>
+
+ <exclude />
+</member>
+<member name="T:GrampusInternal.PieceType">
+ <summary>This type is for implementation purposes.</summary>
+
+ <exclude />
+</member>
+<member name="T:GrampusInternal.Piece">
+ <summary>This type is for implementation purposes.</summary>
+
+ <exclude />
+</member>
+<member name="T:GrampusInternal.Rank">
+ <summary>This type is for implementation purposes.</summary>
+
+ <exclude />
+</member>
+<member name="T:GrampusInternal.File">
+ <summary>This type is for implementation purposes.</summary>
+
+ <exclude />
+</member>
+<member name="T:GrampusInternal.Square">
+ <summary>This type is for implementation purposes.</summary>
+
+ <exclude />
+</member>
+<member name="T:GrampusInternal.GameResult">
+ <summary>This type is for implementation purposes.</summary>
+
+ <exclude />
+</member>
+<member name="T:GrampusInternal.DateUtil">
+ <summary>This type is for implementation purposes.</summary>
+
+ <exclude />
+</member>
+<member name="T:GrampusInternal.NagUtil">
+ <summary>This type is for implementation purposes.</summary>
+
+ <exclude />
+</member>
+<member name="T:GrampusInternal.Bitboard">
+ <summary>This type is for implementation purposes.</summary>
+
+ <exclude />
+</member>
+<member name="T:GrampusInternal.Attacks">
+ <summary>This type is for implementation purposes.</summary>
+
+ <exclude />
+</member>
+<member name="T:GrampusInternal.FEN">
+ <summary>This type is for implementation purposes.</summary>
+
+ <exclude />
+</member>
+<member name="T:GrampusInternal.Move">
+ <summary>This type is for implementation purposes.</summary>
+
+ <exclude />
+</member>
+<member name="P:GrampusInternal.Board.Start">
+<summary>
+The starting Board at the beginning of a game
+</summary>
+</member>
+<member name="M:GrampusInternal.Board.PrintAscii(Grampus.Types.Brd)">
+<summary>
+Prints an ASCII version of this Board(bd) 
+</summary>
+</member>
+<member name="M:GrampusInternal.Board.ToSimpleStr(Grampus.Types.Brd)">
+<summary>
+Produces a simple string of characters plus whether white or black to move
+</summary>
+</member>
+<member name="M:GrampusInternal.Board.FromSimpleStr(System.String)">
+<summary>
+Create a new Board given a simple string(str)
+</summary>
+</member>
+<member name="M:GrampusInternal.Board.ToStr(Grampus.Types.Brd)">
+<summary>
+Gets a FEN string for this Board(bd) 
+</summary>
+</member>
+<member name="M:GrampusInternal.Board.FromStr(System.String)">
+<summary>
+Create a new Board given a FEN string(str)
+</summary>
+</member>
+<member name="M:GrampusInternal.Board.FromFEN(GrampusInternal.Fen)">
+<summary>
+Create a new Board given a Fen(fen)
+</summary>
+</member>
+<member name="M:GrampusInternal.Board.IsChck(Grampus.Types.Player,Grampus.Types.Brd)">
+<summary>
+Is there a check on Player(kingplayer) on the Board(bd)
+</summary>
+</member>
+<member name="M:GrampusInternal.Board.IsChk(Grampus.Types.Brd)">
+<summary>
+Is there a check on the Board(bd)
+</summary>
+</member>
+<member name="M:GrampusInternal.Board.MoveApply(System.UInt32,Grampus.Types.Brd)">
+<summary>
+Make an encoded Move(move) for this Board(bd) and return the new Board
+</summary>
+</member>
+<member name="M:GrampusInternal.Board.SquareAttacked(System.Int16,Grampus.Types.Player,Grampus.Types.Brd)">
+<summary>
+Is the Square(mto) attacked by the specified Player(by) for this Board(bd)
+</summary>
+</member>
+<member name="M:GrampusInternal.Board.SquareAttacksTo(System.Int16,Grampus.Types.Player,Grampus.Types.Brd)">
+<summary>
+Gets the Squares that attack the specified Square(mto) by the specified Player(by) for this Board(bd) 
+</summary>
+</member>
+<member name="M:GrampusInternal.Board.AttacksTo(System.Int16,Grampus.Types.Player,Grampus.Types.Brd)">
+<summary>
+Gets the Bitboard that defines the squares that attack the specified Square(mto) by the specified Player(by) for this Board(bd) 
+</summary>
+</member>
+<member name="T:GrampusInternal.Board">
+ <summary>This type is for implementation purposes.</summary>
+
+ <exclude />
+</member>
+<member name="M:GrampusInternal.Png.BoardToPng(System.String,System.Boolean,Grampus.Types.Brd)">
+<summary>
+Creates a PNG image file with the specified name(nm), flipped if specified for the given Board(bd) 
+</summary>
+</member>
+<member name="T:GrampusInternal.Png">
+ <summary>This type is for implementation purposes.</summary>
+
+ <exclude />
+</member>
+<member name="M:GrampusInternal.MoveGenerate.AllMoves(Grampus.Types.Brd)">
+<summary>
+Gets all legal moves for this Board(bd)
+</summary>
+</member>
+<member name="T:GrampusInternal.MoveGenerate">
+ <summary>This type is for implementation purposes.</summary>
+
+ <exclude />
+</member>
+<member name="T:GrampusInternal.PgnWrite">
+ <summary>This type is for implementation purposes.</summary>
+
+ <exclude />
+</member>
+<member name="T:GrampusInternal.pMove">
+ <summary>This type is for implementation purposes.</summary>
+
+ <exclude />
+</member>
+<member name="T:GrampusInternal.MoveTextEntry">
+ <summary>This type is for implementation purposes.</summary>
+
+ <exclude />
+</member>
+<member name="T:GrampusInternal.GameUnencoded">
+ <summary>This type is for implementation purposes.</summary>
+
+ <exclude />
+</member>
+<member name="T:GrampusInternal.Headers">
+ <summary>This type is for implementation purposes.</summary>
+
+ <exclude />
+</member>
+<member name="T:GrampusInternal.Index">
+ <summary>This type is for implementation purposes.</summary>
+
+ <exclude />
+</member>
+<member name="M:GrampusInternal.MoveUtil.ApplySAN(System.String,Grampus.Types.Brd)">
+<summary>
+Make a SAN Move(move) such as Nf3 for this Board(bd) and return the new Board
+</summary>
+</member>
+<member name="M:GrampusInternal.MoveUtil.fromSAN(Grampus.Types.Brd,System.String)">
+<summary>
+Get an encoded move from a SAN Move(move) such as Nf3 for this Board(bd)
+</summary>
+</member>
+<member name="T:GrampusInternal.MoveUtil">
+ <summary>This type is for implementation purposes.</summary>
+
+ <exclude />
+</member>
+<member name="T:GrampusInternal.MoveEncoded">
+ <summary>This type is for implementation purposes.</summary>
+
+ <exclude />
+</member>
+<member name="T:GrampusInternal.GameEncoded">
+ <summary>This type is for implementation purposes.</summary>
+
+ <exclude />
+</member>
+<member name="T:GrampusInternal.Games">
+ <summary>This type is for implementation purposes.</summary>
+
+ <exclude />
+</member>
+<member name="T:GrampusInternal.Eco">
+ <summary>This type is for implementation purposes.</summary>
+
+ <exclude />
+</member>
+<member name="T:GrampusInternal.RegParse">
+ <summary>This type is for implementation purposes.</summary>
+
+ <exclude />
+</member>
+<member name="T:GrampusInternal.PgnGames">
+ <summary>This type is for implementation purposes.</summary>
+
+ <exclude />
+</member>
+<member name="T:GrampusInternal.PgnWriter">
+ <summary>This type is for implementation purposes.</summary>
+
+ <exclude />
+</member>
+<member name="T:GrampusInternal.Filter">
+ <summary>This type is for implementation purposes.</summary>
+
+ <exclude />
+</member>
+<member name="T:GrampusInternal.StaticTree">
+ <summary>This type is for implementation purposes.</summary>
+
+ <exclude />
+</member>
+<member name="T:GrampusInternal.Repertoire">
+ <summary>This type is for implementation purposes.</summary>
+
+ <exclude />
+</member>
+<member name="T:GrampusInternal.Grampus">
+ <summary>This type is for implementation purposes.</summary>
+
+ <exclude />
+</member>
+<member name="P:Grampus.PgnGames.Encode">
+<summary>
+Encodes a sequence of Unencoded Games
+</summary>
+</member>
+<member name="P:Grampus.PgnGames.WriteFile">
+<summary>
+Write a list of Games to a file
+</summary>
+</member>
+<member name="P:Grampus.PgnGames.ReadSeqFromFile">
+<summary>
+Get a Sequence of Games from a file
+</summary>
+</member>
+<member name="P:Grampus.PgnGames.ReadIndexListFromFile">
+<summary>
+Get a list of index * Game from a file
+</summary>
+</member>
+<member name="P:Grampus.PgnGames.ReadListFromFile">
+<summary>
+Get a list of Games from a file
+</summary>
+</member>
+<member name="P:Grampus.PgnGames.ReadArrayFromFile">
+<summary>
+Get an array of Games from a file
+</summary>
+</member>
+<member name="P:Grampus.Games.Compact">
+<summary>
+Compact base
+</summary>
+</member>
+<member name="P:Grampus.Games.UpdateGame">
+<summary>
+Update Game
+</summary>
+</member>
+<member name="P:Grampus.Games.AppendGame">
+<summary>
+Append Game
+</summary>
+</member>
+<member name="P:Grampus.Games.Add">
+<summary>
+Add Games
+</summary>
+</member>
+<member name="P:Grampus.Games.Save">
+<summary>
+Save Games
+</summary>
+</member>
+<member name="P:Grampus.Games.LoadGame">
+<summary>
+Load Game
+</summary>
+</member>
+<member name="P:Grampus.Headers.Save">
+<summary>
+Save Game Rows
+</summary>
+</member>
+<member name="P:Grampus.Headers.Load">
+<summary>
+Load Game Rows
+</summary>
+</member>
+<member name="P:Grampus.Index.Save">
+<summary>
+Save Index
+</summary>
+</member>
+<member name="P:Grampus.Index.Load">
+<summary>
+Load Index
+</summary>
+</member>
+<member name="P:Grampus.Grampus.Save">
+<summary>
+Save Grampus File
+</summary>
+</member>
+<member name="P:Grampus.Grampus.Load">
+<summary>
+Load Garmpus File
+</summary>
+</member>
+<member name="P:Grampus.Filter.Read">
+<summary>
+Reads the tree storage given a position and a folder
+</summary>
+</member>
+<member name="P:Grampus.Filter.ReadArray">
+<summary>
+Reads the tree storage given an array of positions and a folder
+</summary>
+</member>
+<member name="P:Grampus.Filter.Save">
+<summary>
+Saves the tree storage given an array of positions, an array of stats and a folder
+</summary>
+</member>
+<member name="P:Grampus.Filter.Create">
+<summary>
+Creates the tree storage given a folder
+</summary>
+</member>
+<member name="P:Grampus.StaticTree.Read">
+<summary>
+Reads the tree storage given a position and a folder
+</summary>
+</member>
+<member name="P:Grampus.StaticTree.ReadArray">
+<summary>
+Reads the tree storage given an array of positions and a folder
+</summary>
+</member>
+<member name="P:Grampus.StaticTree.Save">
+<summary>
+Saves the tree storage given an array of positions, an array of stats and a folder
+</summary>
+</member>
+<member name="P:Grampus.StaticTree.Create">
+<summary>
+Creates the tree storage given a folder
+</summary>
+</member>
+<member name="P:Grampus.Repertoire.OptsHaveSan">
+<summary>
+Options contaion SAN
+</summary>
+</member>
+<member name="P:Grampus.Repertoire.UpdateBlack">
+<summary>
+Update Black Repertoire from database
+</summary>
+</member>
+<member name="P:Grampus.Repertoire.UpdateWhite">
+<summary>
+Update White Repertoire from database
+</summary>
+</member>
+<member name="P:Grampus.Repertoire.LoadBlack">
+<summary>
+Load Black Repertoire
+</summary>
+</member>
+<member name="P:Grampus.Repertoire.LoadWhite">
+<summary>
+Load White Repertoire
+</summary>
+</member>
+<member name="M:Grampus.Repertoire.BlackErrFile">
+<summary>
+Black Error File
+</summary>
+</member>
+<member name="M:Grampus.Repertoire.WhiteErrFile">
+<summary>
+White Error File
+</summary>
+</member>
+<member name="M:Grampus.Repertoire.Black">
+<summary>
+Black Repertoire
+</summary>
+</member>
+<member name="M:Grampus.Repertoire.White">
+<summary>
+White Repertoire
+</summary>
+</member>
+<member name="P:Grampus.Game.GetPosns">
+<summary>
+Gets the Positionsup to the specified ply
+</summary>
+</member>
+<member name="P:Grampus.Game.GetPosnsMoves">
+<summary>
+Gets the Positions and Sans up to the specified ply
+</summary>
+</member>
+<member name="P:Grampus.Game.Expand">
+<summary>
+Expands a Compressed Game
+</summary>
+</member>
+<member name="P:Grampus.Game.Compress">
+<summary>
+Compresses an Encoded Game
+</summary>
+</member>
+<member name="P:Grampus.Game.ToStr">
+<summary>
+Convert to a PGN string
+</summary>
+</member>
+<member name="P:Grampus.Game.FromStr">
+<summary>
+Get from a PGN string
+</summary>
+</member>
+<member name="P:Grampus.Game.DeleteComment">
+<summary>
+Deletes a comment in the Encoded Game at the address provided
+</summary>
+</member>
+<member name="P:Grampus.Game.EditComment">
+<summary>
+Edits a comment to the Encoded Game at the address provided
+</summary>
+</member>
+<member name="P:Grampus.Game.CommentAfter">
+<summary>
+Adds a comment to the Encoded Game after the address provided
+</summary>
+</member>
+<member name="P:Grampus.Game.CommentBefore">
+<summary>
+Adds a comment to the Encoded Game before the address provided
+</summary>
+</member>
+<member name="P:Grampus.Game.Strip">
+<summary>
+Strips moves until end of game at the address provided
+</summary>
+</member>
+<member name="P:Grampus.Game.DeleteRav">
+<summary>
+Deletes a RAV in the EncodedGame at the address provided
+</summary>
+</member>
+<member name="P:Grampus.Game.AddRav">
+<summary>
+Adds a RAV to the Game given the Encoded Move is contains and its address
+</summary>
+</member>
+<member name="P:Grampus.Game.AddMv">
+<summary>
+Adds an EncodedMove to the Game given its address
+</summary>
+</member>
+<member name="P:Grampus.Game.Encode">
+<summary>
+Encodes the Game
+</summary>
+</member>
+<member name="P:Grampus.Game.MovesStr">
+<summary>
+Gets the moves text as a string given the Game.MoveText
+</summary>
+</member>
+<member name="P:Grampus.Game.EditNag">
+<summary>
+Edits a Nag in the Encoded Game at the address provided
+</summary>
+</member>
+<member name="P:Grampus.Game.DeleteNag">
+<summary>
+Deletes a Nag in the Encoded Game at the address provided
+</summary>
+</member>
+<member name="P:Grampus.Game.AddNag">
+<summary>
+Adds a Nag in the EncodedGame after the address provided
+</summary>
+</member>
+<member name="P:Grampus.Game.NAGlist">
+<summary>
+Gets a list of all NAGs supported
+</summary>
+</member>
+<member name="P:Grampus.Game.NAGDesc">
+<summary>
+Gets a NAG as a description such as Very Good given one of the list from Game.MoveText
+</summary>
+</member>
+<member name="P:Grampus.Game.NAGHtm">
+<summary>
+Gets a NAG as HTML such as ?? given one of the list from Game.MoveText
+</summary>
+</member>
+<member name="P:Grampus.Game.NAGFromStr">
+<summary>
+Gets a NAG from a string such as ?? 
+</summary>
+</member>
+<member name="P:Grampus.Game.NAGStr">
+<summary>
+Gets a NAG as a string such as ?? given one of the list from Game.MoveText
+</summary>
+</member>
+<member name="P:Grampus.Game.MoveStr">
+<summary>
+Gets a single move as a string given one of the list from Game.MoveText
+</summary>
+</member>
+<member name="P:Grampus.Game.Pop">
+<summary>
+Pops a move of the end for this Game and return the new Game
+</summary>
+</member>
+<member name="P:Grampus.Game.PushSAN">
+<summary>
+Make a SAN Move such as Nf3 for this Game and return the new Game
+</summary>
+</member>
+<member name="P:Grampus.Game.Start">
+<summary>
+The starting Game with no moves
+</summary>
+</member>
+<member name="P:Grampus.Move.ToSan">
+<summary>
+Get the SAN string such as Nf3 for a move for this board
+</summary>
+</member>
+<member name="P:Grampus.Move.ToeMove">
+<summary>
+Get the Encoded Move for a move for this board
+</summary>
+</member>
+<member name="P:Grampus.Move.TopMove">
+<summary>
+Get the pMove for a move for this board
+</summary>
+</member>
+<member name="P:Grampus.Move.ToUci">
+<summary>
+Get the UCI string such as g1f3 for a move
+</summary>
+</member>
+<member name="P:Grampus.Move.FromUcis">
+<summary>
+Get a string of encoded moves from a string of UCIs for this Board
+</summary>
+</member>
+<member name="P:Grampus.Move.FromUci">
+<summary>
+Get an encoded move from a UCI string such as g1f3 for this Board
+</summary>
+</member>
+<member name="P:Grampus.Move.FromSan">
+<summary>
+Get an encoded move from a SAN string such as Nf3 for this Board
+</summary>
+</member>
+<member name="P:Grampus.Move.PromPcTp">
+<summary>
+Get the promoted PieceType for an encoded Move
+</summary>
+</member>
+<member name="P:Grampus.Move.To">
+<summary>
+Get the target Square for an encoded Move
+</summary>
+</member>
+<member name="P:Grampus.Move.From">
+<summary>
+Get the source Square for an encoded Move
+</summary>
+</member>
+<member name="P:Grampus.Board.Print">
+<summary>
+Prints an ASCII version of this Board 
+</summary>
+</member>
+<member name="P:Grampus.Board.ToPng">
+<summary>
+Creates a PNG image ith specified name, flipped if specified for the given Board 
+</summary>
+</member>
+<member name="P:Grampus.Board.SquareAttackers">
+<summary>
+The Squares that attack the specified Square by the specified Player for this Board
+</summary>
+</member>
+<member name="P:Grampus.Board.SquareAttacked">
+<summary>
+Is the Square attacked by the specified Player for this Board
+</summary>
+</member>
+<member name="P:Grampus.Board.IsStaleMate">
+<summary>
+Is the current position on the Board stalemate?
+</summary>
+</member>
+<member name="P:Grampus.Board.IsCheckMate">
+<summary>
+Is the current position on the Board checkmate?
+</summary>
+</member>
+<member name="P:Grampus.Board.IsCheck">
+<summary>
+Is there a check on the Board
+</summary>
+</member>
+<member name="P:Grampus.Board.PushSAN">
+<summary>
+Make a SAN Move such as Nf3 for this Board and return the new Board
+</summary>
+</member>
+<member name="P:Grampus.Board.Push">
+<summary>
+Make an encoded Move for this Board and return the new Board
+</summary>
+</member>
+<member name="P:Grampus.Board.PossMoves">
+<summary>
+Gets all possible moves for this Board from the specified Square
+</summary>
+</member>
+<member name="P:Grampus.Board.AllMoves">
+<summary>
+Gets all legal moves for this Board
+</summary>
+</member>
+<member name="P:Grampus.Board.Start">
+<summary>
+The starting Board at the beginning of a game
+</summary>
+</member>
+<member name="P:Grampus.Board.ToSimpleStr">
+<summary>
+Create a simple string from this Board 
+</summary>
+</member>
+<member name="P:Grampus.Board.FromSimpleStr">
+<summary>
+Create a new Board given a simple string
+</summary>
+</member>
+<member name="P:Grampus.Board.ToStr">
+<summary>
+Create a FEN string from this Board 
+</summary>
+</member>
+<member name="P:Grampus.Board.FromStr">
+<summary>
+Create a new Board given a FEN string
+</summary>
+</member>
+<member name="P:Grampus.Piece.ToPlayer">
+<summary>
+Gets the player for a Piece
+</summary>
+</member>
+<member name="P:Grampus.Piece.ToStr">
+<summary>
+Gets the string symbol for a Piece
+</summary>
+</member>
+<member name="P:Grampus.Square.Name">
+<summary>
+Gets the Name for a Square
+</summary>
+</member>
+<member name="P:Grampus.Square.ToRank">
+<summary>
+Gets the Rank for a Square
+</summary>
+</member>
+<member name="P:Grampus.Square.ToFile">
+<summary>
+Gets the File for a Square
+</summary>
+</member>
+<member name="P:Grampus.Result.ToUnicode">
+<summary>
+Gets the string symbol for a Result
+</summary>
+</member>
+<member name="P:Grampus.Result.ToInt">
+<summary>
+Gets the integer value (2 for white win, 0 for blackwin, 1 otherwise) for a Result
+</summary>
+</member>
+<member name="P:Grampus.Result.Parse">
+<summary>
+Gets the GameResult type from a string
+</summary>
+</member>
+<member name="P:Grampus.Result.ToStr">
+<summary>
+Gets the string symbol for a Result
+</summary>
+</member>
+<member name="P:Grampus.GameDate.ToStr">
+<summary>
+Gets the string symbol for a Piece
+</summary>
+</member>
+</members>
+</doc>

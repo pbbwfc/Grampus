@@ -5,12 +5,12 @@
 		<TargetFramework>net5.0-windows</TargetFramework>
 		<UseWindowsForms>true</UseWindowsForms>
 		<Platforms>AnyCPU</Platforms>
-		<ApplicationIcon>scinc.ico</ApplicationIcon>
+		<ApplicationIcon>grampus.ico</ApplicationIcon>
 	</PropertyGroup>
 
 	<PropertyGroup>
 		<SatelliteResourceLanguages>en</SatelliteResourceLanguages>
-		<PackageIcon>scinc.ico</PackageIcon>
+		<PackageIcon>grampus.ico</PackageIcon>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
