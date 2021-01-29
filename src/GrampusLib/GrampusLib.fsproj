@@ -8,7 +8,7 @@
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <OtherFlags />
-    <DocumentationFile>Grampus.xml</DocumentationFile>
+    <DocumentationFile>bin\debug\Grampus.xml</DocumentationFile>
     <OutputPath />
   </PropertyGroup>
 
@@ -18,7 +18,7 @@
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <OutputPath></OutputPath>
-    <DocumentationFile>FsChessPgn.xml</DocumentationFile>
+    <DocumentationFile></DocumentationFile>
   </PropertyGroup>
 
 	<ItemGroup>
@@ -137,8 +137,8 @@
     <Compile Include="Filter.fs" />
     <Compile Include="StaticTree.fs" />
     <Compile Include="Repertoire.fs" />
+    <Compile Include="GrampusFile.fs" />
     <Compile Include="Grampus.fs" />
-    <Compile Include="FsChess.fs" />
   </ItemGroup>
 
   <ItemGroup>

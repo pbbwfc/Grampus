@@ -542,7 +542,7 @@ module Types =
 
     let EcoMap:Map<string,Eco> =
         let thisExe = System.Reflection.Assembly.GetExecutingAssembly()
-        let strm = thisExe.GetManifestResourceStream("FsChessPgn.eco.json")
+        let strm = thisExe.GetManifestResourceStream("GrampusLib.eco.json")
         let reader = new System.IO.StreamReader(strm)
         let str = reader.ReadToEnd()
         reader.Close()

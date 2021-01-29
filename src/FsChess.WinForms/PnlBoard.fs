@@ -21,7 +21,7 @@ module PnlBoardLib =
     type PnlBoard() as bd =
         inherit Panel(Width = 400, Height = 420)
 
-        let mutable board = Board.Start
+        let mutable board = Grampus.Board.Start
         let mutable sqTo = -1
         let mutable cCur = Cursors.Default
         let mutable prompctp = PieceType.EMPTY
