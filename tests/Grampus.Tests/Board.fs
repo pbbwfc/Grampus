@@ -2,7 +2,7 @@
 
 open FsUnit.MsTest
 open Microsoft.VisualStudio.TestTools.UnitTesting
-open FsChess
+open Grampus
 
 [<TestClass>]
 type Board () =

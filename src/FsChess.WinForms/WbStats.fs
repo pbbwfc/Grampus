@@ -2,7 +2,7 @@ namespace FsChess.WinForms
 
 open System.Windows.Forms
 open System.IO
-open FsChess
+open Grampus
 
 [<AutoOpen>]
 module WbStatsLib =

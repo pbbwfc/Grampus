@@ -1,7 +1,7 @@
 ﻿namespace GrampusInternal
 
 open System
-open FsChess
+open Grampus
 open System.IO
 open MessagePack
 open MessagePack.Resolvers

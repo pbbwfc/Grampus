@@ -4,7 +4,7 @@ open System.IO
 open System.Drawing
 open System.Windows.Forms
 open FsChess.WinForms
-open FsChess
+open Grampus
 
 module Form =
     let img nm =
@@ -219,7 +219,7 @@ module Form =
                 SbUpdate("Pasting game")
                 pgn.SetPgn(pgnstr)
                 SbUpdate("Reloading list of games")
-                let nbd = FsChess.Board.Start
+                let nbd = Board.Start
                 gmtbs.Refrsh(nbd)
                 bd.SetBoard(nbd)
                 SbUpdate("Reloading tree")
@@ -233,9 +233,9 @@ module Form =
         
         let doupdatewhite() =
             SbUpdate("Updating white repertoire")
-            let numerrs = FsChess.Repertoire.UpdateWhite()
+            let numerrs = Repertoire.UpdateWhite()
             if numerrs<>0 then
-                MessageBox.Show("Errors found iduring conversion. Please review contents of: " + FsChess.Repertoire.WhiteErrFile(),"Repertoire Errors")|>ignore
+                MessageBox.Show("Errors found iduring conversion. Please review contents of: " + Repertoire.WhiteErrFile(),"Repertoire Errors")|>ignore
             SbUpdate("Ready")
         
         let doshowwhite() =
@@ -245,9 +245,9 @@ module Form =
 
         let doupdateblack() =
             SbUpdate("Updating black repertoire")
-            let numerrs = FsChess.Repertoire.UpdateBlack()
+            let numerrs = Repertoire.UpdateBlack()
             if numerrs<>0 then
-                MessageBox.Show("Errors found iduring conversion. Please review contents of: " + FsChess.Repertoire.BlackErrFile(),"Repertoire Errors")|>ignore
+                MessageBox.Show("Errors found iduring conversion. Please review contents of: " + Repertoire.BlackErrFile(),"Repertoire Errors")|>ignore
             SbUpdate("Ready")
         
         let doshowblack() =
@@ -280,7 +280,7 @@ module Form =
         let domvsel(mvstr) =
             let dofun() =
                 let board = bd.GetBoard()
-                let mv = mvstr|>FsChess.Move.FromSan board
+                let mv = mvstr|>Move.FromSan board
                 bd.DoMove(mvstr)
                 pgn.DoMove(mv)
                 let nbd = bd.GetBoard()
@@ -313,7 +313,7 @@ module Form =
                 //need to set current
                 let basename = gmtbs.BaseName()
                 pgn.Refrsh(0,basename)
-                let nbd = FsChess.Board.Start
+                let nbd = Board.Start
                 bd.SetBoard(nbd)
                 SbUpdate("Reloading tree")
                 sts.UpdateStr(nbd)

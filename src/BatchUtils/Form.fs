@@ -5,7 +5,7 @@ open System.IO
 open System.Drawing
 open System.Windows.Forms
 open FsChess.WinForms
-open FsChess
+open Grampus
 
 type private GameInfo = {Gmno:int;Welo:int;Belo:int;Year:int;Result:int}
 type private TreeData = {TotElo:int64;EloCount:int64;TotPerf:int64;PerfCount:int64;TotYear:int64;YearCount:int64;TotScore:int64;DrawCount:int64;TotCount:int64}

@@ -1,4 +1,4 @@
-﻿namespace FsChess
+﻿namespace Grampus
 
 module GameDate =
 

@@ -1,6 +1,6 @@
 ﻿namespace GrampusInternal
 
-open FsChess
+open Grampus
 
 /// <summary>This type is for implementation purposes.</summary>
 ///

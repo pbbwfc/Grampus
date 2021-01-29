@@ -1,4 +1,4 @@
-﻿namespace FsChess
+﻿namespace Grampus
 
 open MessagePack
 

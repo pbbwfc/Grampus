@@ -2,7 +2,7 @@
 
 open System
 open System.IO
-open FsChess
+open Grampus
 
 /// <summary>This type is for implementation purposes.</summary>
 ///

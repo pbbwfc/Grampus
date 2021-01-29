@@ -1,7 +1,7 @@
 ﻿namespace FsChess.WinForms
 
 open System.Windows.Forms
-open FsChess
+open Grampus
 
 [<AutoOpen>]
 module TcGamesLib =

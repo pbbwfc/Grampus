@@ -1,6 +1,6 @@
 namespace GrampusInternal
 
-open FsChess
+open Grampus
 open System.IO
 open System.Text
 

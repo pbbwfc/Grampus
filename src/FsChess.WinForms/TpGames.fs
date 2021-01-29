@@ -3,7 +3,7 @@
 open System.Drawing
 open System.IO
 open System.Windows.Forms
-open FsChess
+open Grampus
 
 [<AutoOpen>]
 module TpGamesLib =

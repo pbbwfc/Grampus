@@ -2,7 +2,7 @@
 
 open System.Windows.Forms
 open System.Drawing
-open FsChess
+open Grampus
 
 [<AutoOpen>]
 module PnlPgnLib =
