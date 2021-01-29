@@ -2,312 +2,282 @@
 <doc>
 <assembly><name>FsChessPgn</name></assembly>
 <members>
-<member name="T:GrampusInternal.Dirn">
+<member name="T:FsChessPgn.Dirn">
  <summary>This type is for implementation purposes.</summary>
  <namespacedoc>
    <summary>This is not for direct use and is undocumented.</summary>
  </namespacedoc>
  <exclude />
 </member>
-<member name="T:GrampusInternal.Fen">
+<member name="T:FsChessPgn.Fen">
  <summary>This type is for implementation purposes.</summary>
 
  <exclude />
 </member>
-<member name="T:GrampusInternal.Util">
+<member name="T:FsChessPgn.Util">
  <summary>This type is for implementation purposes.</summary>
 
  <exclude />
 </member>
-<member name="T:GrampusInternal.Direction">
+<member name="T:FsChessPgn.Direction">
  <summary>This type is for implementation purposes.</summary>
 
  <exclude />
 </member>
-<member name="T:GrampusInternal.Player">
+<member name="T:FsChessPgn.Player">
  <summary>This type is for implementation purposes.</summary>
 
  <exclude />
 </member>
-<member name="T:GrampusInternal.PieceType">
+<member name="T:FsChessPgn.PieceType">
  <summary>This type is for implementation purposes.</summary>
 
  <exclude />
 </member>
-<member name="T:GrampusInternal.Piece">
+<member name="T:FsChessPgn.Piece">
  <summary>This type is for implementation purposes.</summary>
 
  <exclude />
 </member>
-<member name="T:GrampusInternal.Rank">
+<member name="T:FsChessPgn.Rank">
  <summary>This type is for implementation purposes.</summary>
 
  <exclude />
 </member>
-<member name="T:GrampusInternal.File">
+<member name="T:FsChessPgn.File">
  <summary>This type is for implementation purposes.</summary>
 
  <exclude />
 </member>
-<member name="T:GrampusInternal.Square">
+<member name="T:FsChessPgn.Square">
  <summary>This type is for implementation purposes.</summary>
 
  <exclude />
 </member>
-<member name="T:GrampusInternal.GameResult">
+<member name="T:FsChessPgn.GameResult">
  <summary>This type is for implementation purposes.</summary>
 
  <exclude />
 </member>
-<member name="T:GrampusInternal.DateUtil">
+<member name="T:FsChessPgn.DateUtil">
  <summary>This type is for implementation purposes.</summary>
 
  <exclude />
 </member>
-<member name="T:GrampusInternal.NagUtil">
+<member name="T:FsChessPgn.NagUtil">
  <summary>This type is for implementation purposes.</summary>
 
  <exclude />
 </member>
-<member name="T:GrampusInternal.Bitboard">
+<member name="T:FsChessPgn.Bitboard">
  <summary>This type is for implementation purposes.</summary>
 
  <exclude />
 </member>
-<member name="T:GrampusInternal.Attacks">
+<member name="T:FsChessPgn.Attacks">
  <summary>This type is for implementation purposes.</summary>
 
  <exclude />
 </member>
-<member name="T:GrampusInternal.FEN">
+<member name="T:FsChessPgn.FEN">
  <summary>This type is for implementation purposes.</summary>
 
  <exclude />
 </member>
-<member name="T:GrampusInternal.Move">
+<member name="T:FsChessPgn.Move">
  <summary>This type is for implementation purposes.</summary>
 
  <exclude />
 </member>
-<member name="P:GrampusInternal.Board.Start">
+<member name="P:FsChessPgn.Board.Start">
 <summary>
 The starting Board at the beginning of a game
 </summary>
 </member>
-<member name="M:GrampusInternal.Board.PrintAscii(FsChess.Types.Brd)">
+<member name="M:FsChessPgn.Board.PrintAscii(FsChess.Types.Brd)">
 <summary>
 Prints an ASCII version of this Board(bd) 
 </summary>
 </member>
-<member name="M:GrampusInternal.Board.ToSimpleStr(FsChess.Types.Brd)">
+<member name="M:FsChessPgn.Board.ToSimpleStr(FsChess.Types.Brd)">
 <summary>
 Produces a simple string of characters plus whether white or black to move
 </summary>
 </member>
-<member name="M:GrampusInternal.Board.FromSimpleStr(System.String)">
+<member name="M:FsChessPgn.Board.FromSimpleStr(System.String)">
 <summary>
 Create a new Board given a simple string(str)
 </summary>
 </member>
-<member name="M:GrampusInternal.Board.ToStr(FsChess.Types.Brd)">
+<member name="M:FsChessPgn.Board.ToStr(FsChess.Types.Brd)">
 <summary>
 Gets a FEN string for this Board(bd) 
 </summary>
 </member>
-<member name="M:GrampusInternal.Board.FromStr(System.String)">
+<member name="M:FsChessPgn.Board.FromStr(System.String)">
 <summary>
 Create a new Board given a FEN string(str)
 </summary>
 </member>
-<member name="M:GrampusInternal.Board.FromFEN(GrampusInternal.Fen)">
+<member name="M:FsChessPgn.Board.FromFEN(FsChessPgn.Fen)">
 <summary>
 Create a new Board given a Fen(fen)
 </summary>
 </member>
-<member name="M:GrampusInternal.Board.IsChck(FsChess.Types.Player,FsChess.Types.Brd)">
+<member name="M:FsChessPgn.Board.IsChck(FsChess.Types.Player,FsChess.Types.Brd)">
 <summary>
 Is there a check on Player(kingplayer) on the Board(bd)
 </summary>
 </member>
-<member name="M:GrampusInternal.Board.IsChk(FsChess.Types.Brd)">
+<member name="M:FsChessPgn.Board.IsChk(FsChess.Types.Brd)">
 <summary>
 Is there a check on the Board(bd)
 </summary>
 </member>
-<member name="M:GrampusInternal.Board.MoveApply(System.UInt32,FsChess.Types.Brd)">
+<member name="M:FsChessPgn.Board.MoveApply(System.UInt32,FsChess.Types.Brd)">
 <summary>
 Make an encoded Move(move) for this Board(bd) and return the new Board
 </summary>
 </member>
-<member name="M:GrampusInternal.Board.SquareAttacked(System.Int16,FsChess.Types.Player,FsChess.Types.Brd)">
+<member name="M:FsChessPgn.Board.SquareAttacked(System.Int16,FsChess.Types.Player,FsChess.Types.Brd)">
 <summary>
 Is the Square(mto) attacked by the specified Player(by) for this Board(bd)
 </summary>
 </member>
-<member name="M:GrampusInternal.Board.SquareAttacksTo(System.Int16,FsChess.Types.Player,FsChess.Types.Brd)">
+<member name="M:FsChessPgn.Board.SquareAttacksTo(System.Int16,FsChess.Types.Player,FsChess.Types.Brd)">
 <summary>
 Gets the Squares that attack the specified Square(mto) by the specified Player(by) for this Board(bd) 
 </summary>
 </member>
-<member name="M:GrampusInternal.Board.AttacksTo(System.Int16,FsChess.Types.Player,FsChess.Types.Brd)">
+<member name="M:FsChessPgn.Board.AttacksTo(System.Int16,FsChess.Types.Player,FsChess.Types.Brd)">
 <summary>
 Gets the Bitboard that defines the squares that attack the specified Square(mto) by the specified Player(by) for this Board(bd) 
 </summary>
 </member>
-<member name="T:GrampusInternal.Board">
+<member name="T:FsChessPgn.Board">
  <summary>This type is for implementation purposes.</summary>
 
  <exclude />
 </member>
-<member name="M:GrampusInternal.Png.BoardToPng(System.String,System.Boolean,FsChess.Types.Brd)">
+<member name="M:FsChessPgn.Png.BoardToPng(System.String,System.Boolean,FsChess.Types.Brd)">
 <summary>
 Creates a PNG image file with the specified name(nm), flipped if specified for the given Board(bd) 
 </summary>
 </member>
-<member name="T:GrampusInternal.Png">
+<member name="T:FsChessPgn.Png">
  <summary>This type is for implementation purposes.</summary>
 
  <exclude />
 </member>
-<member name="M:GrampusInternal.MoveGenerate.AllMoves(FsChess.Types.Brd)">
+<member name="M:FsChessPgn.MoveGenerate.AllMoves(FsChess.Types.Brd)">
 <summary>
 Gets all legal moves for this Board(bd)
 </summary>
 </member>
-<member name="T:GrampusInternal.MoveGenerate">
+<member name="T:FsChessPgn.MoveGenerate">
  <summary>This type is for implementation purposes.</summary>
 
  <exclude />
 </member>
-<member name="T:GrampusInternal.PgnWrite">
+<member name="T:FsChessPgn.PgnWrite">
  <summary>This type is for implementation purposes.</summary>
 
  <exclude />
 </member>
-<member name="T:GrampusInternal.pMove">
+<member name="T:FsChessPgn.pMove">
  <summary>This type is for implementation purposes.</summary>
 
  <exclude />
 </member>
-<member name="T:GrampusInternal.MoveTextEntry">
+<member name="T:FsChessPgn.MoveTextEntry">
  <summary>This type is for implementation purposes.</summary>
 
  <exclude />
 </member>
-<member name="T:GrampusInternal.GameUnencoded">
+<member name="T:FsChessPgn.GameUnencoded">
  <summary>This type is for implementation purposes.</summary>
 
  <exclude />
 </member>
-<member name="T:GrampusInternal.Headers">
+<member name="T:FsChessPgn.Headers">
  <summary>This type is for implementation purposes.</summary>
 
  <exclude />
 </member>
-<member name="T:GrampusInternal.Index">
+<member name="T:FsChessPgn.Index">
  <summary>This type is for implementation purposes.</summary>
 
  <exclude />
 </member>
-<member name="M:GrampusInternal.MoveUtil.ApplySAN(System.String,FsChess.Types.Brd)">
+<member name="M:FsChessPgn.MoveUtil.ApplySAN(System.String,FsChess.Types.Brd)">
 <summary>
 Make a SAN Move(move) such as Nf3 for this Board(bd) and return the new Board
 </summary>
 </member>
-<member name="M:GrampusInternal.MoveUtil.fromSAN(FsChess.Types.Brd,System.String)">
+<member name="M:FsChessPgn.MoveUtil.fromSAN(FsChess.Types.Brd,System.String)">
 <summary>
 Get an encoded move from a SAN Move(move) such as Nf3 for this Board(bd)
 </summary>
 </member>
-<member name="T:GrampusInternal.MoveUtil">
+<member name="T:FsChessPgn.MoveUtil">
  <summary>This type is for implementation purposes.</summary>
 
  <exclude />
 </member>
-<member name="T:GrampusInternal.MoveEncoded">
+<member name="T:FsChessPgn.MoveEncoded">
  <summary>This type is for implementation purposes.</summary>
 
  <exclude />
 </member>
-<member name="T:GrampusInternal.GameEncoded">
+<member name="T:FsChessPgn.GameEncoded">
  <summary>This type is for implementation purposes.</summary>
 
  <exclude />
 </member>
-<member name="T:GrampusInternal.Games">
+<member name="T:FsChessPgn.Games">
  <summary>This type is for implementation purposes.</summary>
 
  <exclude />
 </member>
-<member name="T:GrampusInternal.Eco">
+<member name="T:FsChessPgn.Eco">
  <summary>This type is for implementation purposes.</summary>
 
  <exclude />
 </member>
-<member name="T:GrampusInternal.RegParse">
+<member name="T:FsChessPgn.RegParse">
  <summary>This type is for implementation purposes.</summary>
 
  <exclude />
 </member>
-<member name="T:GrampusInternal.PgnGames">
+<member name="T:FsChessPgn.PgnGames">
  <summary>This type is for implementation purposes.</summary>
 
  <exclude />
 </member>
-<member name="T:GrampusInternal.PgnWriter">
+<member name="T:FsChessPgn.PgnWriter">
  <summary>This type is for implementation purposes.</summary>
 
  <exclude />
 </member>
-<member name="T:GrampusInternal.Filter">
+<member name="T:FsChessPgn.Filter">
  <summary>This type is for implementation purposes.</summary>
 
  <exclude />
 </member>
-<member name="T:GrampusInternal.StaticTree">
+<member name="T:FsChessPgn.StaticTree">
  <summary>This type is for implementation purposes.</summary>
 
  <exclude />
 </member>
-<member name="T:GrampusInternal.Repertoire">
+<member name="T:FsChessPgn.Repertoire">
  <summary>This type is for implementation purposes.</summary>
 
  <exclude />
 </member>
-<member name="T:GrampusInternal.Grampus">
+<member name="T:FsChessPgn.Grampus">
  <summary>This type is for implementation purposes.</summary>
 
  <exclude />
-</member>
-<member name="P:FsChess.PgnGames.Encode">
-<summary>
-Encodes a sequence of Unencoded Games
-</summary>
-</member>
-<member name="P:FsChess.PgnGames.WriteFile">
-<summary>
-Write a list of Games to a file
-</summary>
-</member>
-<member name="P:FsChess.PgnGames.ReadSeqFromFile">
-<summary>
-Get a Sequence of Games from a file
-</summary>
-</member>
-<member name="P:FsChess.PgnGames.ReadIndexListFromFile">
-<summary>
-Get a list of index * Game from a file
-</summary>
-</member>
-<member name="P:FsChess.PgnGames.ReadListFromFile">
-<summary>
-Get a list of Games from a file
-</summary>
-</member>
-<member name="P:FsChess.PgnGames.ReadArrayFromFile">
-<summary>
-Get an array of Games from a file
-</summary>
 </member>
 <member name="P:FsChess.Games.Compact">
 <summary>
@@ -772,6 +742,36 @@ Gets the string symbol for a Result
 <member name="P:FsChess.GameDate.ToStr">
 <summary>
 Gets the string symbol for a Piece
+</summary>
+</member>
+<member name="P:FsChess.Pgn.Games.Encode">
+<summary>
+Encodes a sequence of Unencoded Games
+</summary>
+</member>
+<member name="P:FsChess.Pgn.Games.WriteFile">
+<summary>
+Write a list of Games to a file
+</summary>
+</member>
+<member name="P:FsChess.Pgn.Games.ReadSeqFromFile">
+<summary>
+Get a Sequence of Games from a file
+</summary>
+</member>
+<member name="P:FsChess.Pgn.Games.ReadIndexListFromFile">
+<summary>
+Get a list of index * Game from a file
+</summary>
+</member>
+<member name="P:FsChess.Pgn.Games.ReadListFromFile">
+<summary>
+Get a list of Games from a file
+</summary>
+</member>
+<member name="P:FsChess.Pgn.Games.ReadArrayFromFile">
+<summary>
+Get an array of Games from a file
 </summary>
 </member>
 </members>

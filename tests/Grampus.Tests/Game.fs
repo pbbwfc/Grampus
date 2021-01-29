@@ -10,7 +10,7 @@ type Game () =
     let nl = System.Environment.NewLine
     let fol = @"D:\GitHub\Grampus\Tests\data\"
     let fl = Path.Combine(fol,"simple-game.pgn")
-    let db = Pgn.Games.ReadListFromFile fl
+    let db = PgnGames.ReadListFromFile fl
     let gm = db.Head|>Game.Encode 
     
     [<TestMethod>]

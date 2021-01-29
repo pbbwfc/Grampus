@@ -1,4 +1,4 @@
-namespace FsChessPgn
+namespace GrampusInternal
 
 open FsChess
 open System.IO

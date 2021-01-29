@@ -185,7 +185,7 @@ module Form =
             if ndlg.ShowDialog() = DialogResult.OK then
                 let pgnf = ndlg.FileName
                 SbUpdate("Importing pgn file: " + pgnf)
-                let ugma = Pgn.Games.ReadSeqFromFile pgnf
+                let ugma = PgnGames.ReadSeqFromFile pgnf
                 SbUpdate("Encoding games...")
                 let egma = ugma|>Seq.map(Game.Encode)
                 SbUpdate("Adding games...")

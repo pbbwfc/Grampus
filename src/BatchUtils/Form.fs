@@ -90,7 +90,7 @@ module Form =
                 lbl.Text <- "Importing games..."
                 Application.DoEvents()
                 st <- DateTime.Now
-                let ugma = Pgn.Games.ReadSeqFromFile pgn
+                let ugma = PgnGames.ReadSeqFromFile pgn
                 log("Imported games")
                 lbl.Text <- "Encoding games..."
                 let egma = ugma|>Seq.map(Game.Encode)

@@ -1,4 +1,4 @@
-﻿namespace FsChessPgn
+﻿namespace GrampusInternal
 
 open System
 open FsChess

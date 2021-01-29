@@ -1,4 +1,4 @@
-﻿namespace FsChessPgn
+﻿namespace GrampusInternal
 
 open FsChess
 
@@ -198,7 +198,7 @@ module Board =
         getpospc 1 (from|>Square.PositionInDirection(dir)) Piece.EMPTY
     
     ///Create a new Board given a Fen(fen)
-    let FromFEN (fen : FsChessPgn.Fen) = 
+    let FromFEN (fen : Fen) = 
         let bd = BrdEMP
 
         let rec addpc posl ibd = 

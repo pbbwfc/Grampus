@@ -2,19 +2,13 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
-    <Platforms>x64;AnyCPU</Platforms>
+    <Platforms>AnyCPU</Platforms>
 	<GenerateDocumentationFile>true</GenerateDocumentationFile>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OtherFlags />
-    <DocumentationFile>FsChessPgn.XML</DocumentationFile>
-    <OutputPath></OutputPath>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <OtherFlags />
-    <DocumentationFile>FsChessPgn.XML</DocumentationFile>
+    <DocumentationFile>FsChessPgn.xml</DocumentationFile>
     <OutputPath />
   </PropertyGroup>
 
@@ -22,12 +16,9 @@
 	<SatelliteResourceLanguages>en</SatelliteResourceLanguages>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <OutputPath>D:\GitHub\Grampus\rel</OutputPath>
-  </PropertyGroup>
-
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <OutputPath>D:\GitHub\Grampus\rel</OutputPath>
+    <OutputPath></OutputPath>
+    <DocumentationFile>FsChessPgn.xml</DocumentationFile>
   </PropertyGroup>
 
 	<ItemGroup>
@@ -148,7 +139,6 @@
     <Compile Include="Repertoire.fs" />
     <Compile Include="Grampus.fs" />
     <Compile Include="FsChess.fs" />
-    <Compile Include="FsChess.Pgn.fs" />
   </ItemGroup>
 
   <ItemGroup>
