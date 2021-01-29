@@ -2,13 +2,13 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Grampus"
-#define MyAppName2 "BatchUtils"
-#define MyAppVersion "0.01"
+#define MyAppName2 "GrampusBatch"
+#define MyAppVersion "0.02"
 #define MyAppPublisher "pbbwfc"
 #define MyAppURL "https://pbbwfc.github.io/Grampus/"
 #define MyAppExeName "Grampus.exe"
 #define MyAppIcoName "grampus.ico"
-#define MyAppExeName2 "BatchUtils.exe"
+#define MyAppExeName2 "GrampusBatch.exe"
 #define MyAppIcoName2 "batch.ico"
 
 [Setup]

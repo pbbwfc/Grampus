@@ -11,6 +11,7 @@
 	<PropertyGroup>
 		<SatelliteResourceLanguages>en</SatelliteResourceLanguages>
 		<PackageIcon>grampus.ico</PackageIcon>
+		<RunPostBuildEvent>0</RunPostBuildEvent>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

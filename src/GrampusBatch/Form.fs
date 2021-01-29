@@ -15,15 +15,15 @@ type private MvTrees = System.Collections.Generic.Dictionary<string,TreeData>
 module Form =
     let img nm =
         let thisExe = System.Reflection.Assembly.GetExecutingAssembly()
-        let file = thisExe.GetManifestResourceStream("BatchUtils." + nm)
+        let file = thisExe.GetManifestResourceStream("GrampusBatch." + nm)
         Image.FromStream(file)
     let ico nm =
         let thisExe = System.Reflection.Assembly.GetExecutingAssembly()
-        let file = thisExe.GetManifestResourceStream("BatchUtils." + nm)
+        let file = thisExe.GetManifestResourceStream("GrampusBatch." + nm)
         new Icon(file)
 
     type FrmMain() as this =
-        inherit Form(Text = "TreeUtils", Icon = ico "batch.ico", Width=800, Height=700, FormBorderStyle = FormBorderStyle.FixedDialog, MaximizeBox = false, StartPosition = FormStartPosition.CenterScreen)
+        inherit Form(Text = "Grampus Batch", Icon = ico "batch.ico", Width=800, Height=700, FormBorderStyle = FormBorderStyle.FixedDialog, MaximizeBox = false, StartPosition = FormStartPosition.CenterScreen)
         let bfol = 
             let pth = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments),"Grampus\\bases")
             Directory.CreateDirectory(pth)|>ignore
