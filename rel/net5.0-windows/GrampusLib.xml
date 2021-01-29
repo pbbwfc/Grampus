@@ -279,6 +279,27 @@ Get an encoded move from a SAN Move(move) such as Nf3 for this Board(bd)
 
  <exclude />
 </member>
+<member name="T:Grampus.Types.Eco">
+ <summary>Record type for holding Eco code and longer description.</summary>
+</member>
+<member name="T:Grampus.Types.stats">
+ <summary>Holds summary data used in the tree.</summary>
+</member>
+<member name="T:Grampus.Types.Piece">
+ <summary>Enum holding each type of piece for each colour e.g. 1 for WPawn.</summary>
+</member>
+<member name="T:Grampus.Types.PieceType">
+ <summary>Enum holding each type of piece e.g. 1 for Pawn.</summary>
+</member>
+<member name="T:Grampus.Types.Move">
+ <summary>Unsigned integer encoded to hold Move information.</summary>
+</member>
+<member name="T:Grampus.Types">
+ <namespacedoc>
+   <summary>This is the namespace containing all Grampus backend functionality.</summary>
+ </namespacedoc>
+ <summary>Holds all the main types used by Grampus.</summary>
+</member>
 <member name="P:Grampus.PgnGames.Encode">
 <summary>
 Encodes a sequence of Unencoded Games

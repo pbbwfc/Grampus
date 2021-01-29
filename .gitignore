@@ -373,3 +373,4 @@ src/FsChess.WinForms/Engines/2rel/komodo.cmd
 src/GrampusWinForms/Engines/2/lc0-v0.26.3-windows-gpu-nvidia-cudnn.zip
 src/GrampusWinForms/Engines/2/LS15-20x256SE-jj-9-75000000.pb.gz
 src/GrampusWinForms/Engines/1/stockfish_12_win_x64_modern.zip
+rel/net5.0-windows/Engines/2/LS15-20x256SE-jj-9-75000000.pb.gz

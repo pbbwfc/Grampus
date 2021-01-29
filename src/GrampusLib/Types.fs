@@ -1,26 +1,26 @@
-﻿namespace Grampus
+namespace Grampus
 
 open MessagePack
 
-module AssemblyInfo=
-
+module AssemblyInfo =
     open System.Runtime.CompilerServices
-
-    [<assembly: InternalsVisibleTo("Grampus.Tests")>]
-    do()
+    
+    [<assembly:InternalsVisibleTo("Grampus.Tests")>]
+    do ()
 
 [<AutoOpen>]
 /// <namespacedoc>
 ///   <summary>This is the namespace containing all Grampus backend functionality.</summary>
 /// </namespacedoc>
 /// <summary>Holds all the main types used by Grampus.</summary>
-module Types = 
+module Types =
     /// <summary>Unsigned integer encoded to hold Move information.</summary>
     type Move = uint32
-    let MoveEmpty:Move = 0u
+    
+    let MoveEmpty : Move = 0u
     
     /// <summary>Enum holding each type of piece e.g. 1 for Pawn.</summary>
-    type PieceType = 
+    type PieceType =
         | EMPTY = 0
         | Pawn = 1
         | Knight = 2
@@ -30,7 +30,7 @@ module Types =
         | King = 6
     
     /// <summary>Enum holding each type of piece for each colour e.g. 1 for WPawn.</summary>
-    type Piece = 
+    type Piece =
         | WPawn = 1
         | WKnight = 2
         | WBishop = 3
@@ -45,53 +45,65 @@ module Types =
         | BKing = 14
         | EMPTY = 0
     
-    type Player = 
+    type Player =
         | White = 0
         | Black = 1
     
-    type GameResult = 
+    type GameResult =
         | Draw = 0
         | WhiteWins = 1
         | BlackWins = -1
         | Open = 9
     
     type File = int16
-    let FileA, FileB, FileC, FileD, FileE, FileF, FileG, FileH :File * File * File * File * File * File * File * File = 0s,1s,2s,3s,4s,5s,6s,7s
-    let FILES = [FileA; FileB; FileC; FileD; FileE; FileF; FileG; FileH]
-    let FILE_NAMES = ["a"; "b"; "c"; "d"; "e"; "f"; "g"; "h"]
-    let FILE_EMPTY :File = 8s
-
+    
+    let FileA, FileB, FileC, FileD, FileE, FileF, FileG, FileH : File * File * File * File * File * File * File * File =
+        0s, 1s, 2s, 3s, 4s, 5s, 6s, 7s
+    let FILES = [ FileA; FileB; FileC; FileD; FileE; FileF; FileG; FileH ]
+    let FILE_NAMES = [ "a"; "b"; "c"; "d"; "e"; "f"; "g"; "h" ]
+    let FILE_EMPTY : File = 8s
+    
     type Rank = int16
-    let Rank1, Rank2, Rank3, Rank4, Rank5, Rank6, Rank7, Rank8 :Rank * Rank * Rank * Rank * Rank * Rank * Rank * Rank = 0s,1s,2s,3s,4s,5s,6s,7s
-    let RANKS = [Rank1; Rank2; Rank3; Rank4; Rank5; Rank6; Rank7; Rank8]
-    let RANK_NAMES = ["1"; "2"; "3"; "4"; "5"; "6"; "7"; "8"]
-    let RANK_EMPTY :Rank = 8s
-
+    
+    let Rank1, Rank2, Rank3, Rank4, Rank5, Rank6, Rank7, Rank8 : Rank * Rank * Rank * Rank * Rank * Rank * Rank * Rank =
+        0s, 1s, 2s, 3s, 4s, 5s, 6s, 7s
+    let RANKS = [ Rank1; Rank2; Rank3; Rank4; Rank5; Rank6; Rank7; Rank8 ]
+    let RANK_NAMES = [ "1"; "2"; "3"; "4"; "5"; "6"; "7"; "8" ]
+    let RANK_EMPTY : Rank = 8s
+    
     type Square = int16
-    let A1, B1, C1, D1, E1, F1, G1, H1 :Square * Square * Square * Square * Square * Square * Square * Square =  0s,1s,2s,3s,4s,5s,6s,7s
-    let A2, B2, C2, D2, E2, F2, G2, H2 = A1+8s, B1+8s, C1+8s, D1+8s, E1+8s, F1+8s, G1+8s, H1+8s 
-    let A3, B3, C3, D3, E3, F3, G3, H3 = A2+8s, B2+8s, C2+8s, D2+8s, E2+8s, F2+8s, G2+8s, H2+8s 
-    let A4, B4, C4, D4, E4, F4, G4, H4 = A3+8s, B3+8s, C3+8s, D3+8s, E3+8s, F3+8s, G3+8s, H3+8s 
-    let A5, B5, C5, D5, E5, F5, G5, H5 = A4+8s, B4+8s, C4+8s, D4+8s, E4+8s, F4+8s, G4+8s, H4+8s 
-    let A6, B6, C6, D6, E6, F6, G6, H6 = A5+8s, B5+8s, C5+8s, D5+8s, E5+8s, F5+8s, G5+8s, H5+8s 
-    let A7, B7, C7, D7, E7, F7, G7, H7 = A6+8s, B6+8s, C6+8s, D6+8s, E6+8s, F6+8s, G6+8s, H6+8s 
-    let A8, B8, C8, D8, E8, F8, G8, H8 = A7+8s, B7+8s, C7+8s, D7+8s, E7+8s, F7+8s, G7+8s, H7+8s
-    let OUTOFBOUNDS:Square = 64s
-    let SQUARES = [
-        A1; B1; C1; D1; E1; F1; G1; H1
-        A2; B2; C2; D2; E2; F2; G2; H2;
-        A3; B3; C3; D3; E3; F3; G3; H3;
-        A4; B4; C4; D4; E4; F4; G4; H4;
-        A5; B5; C5; D5; E5; F5; G5; H5;
-        A6; B6; C6; D6; E6; F6; G6; H6;
-        A7; B7; C7; D7; E7; F7; G7; H7;
-        A8; B8; C8; D8; E8; F8; G8; H8;
-        ] 
-    let SQUARE_NAMES = [for r in RANK_NAMES do for f in FILE_NAMES -> f+r]
-    let Sq(f:File,r:Rank) :Square = r * 8s + f
+    
+    let A1, B1, C1, D1, E1, F1, G1, H1 : Square * Square * Square * Square * Square * Square * Square * Square =
+        0s, 1s, 2s, 3s, 4s, 5s, 6s, 7s
+    let A2, B2, C2, D2, E2, F2, G2, H2 =
+        A1 + 8s, B1 + 8s, C1 + 8s, D1 + 8s, E1 + 8s, F1 + 8s, G1 + 8s, H1 + 8s
+    let A3, B3, C3, D3, E3, F3, G3, H3 =
+        A2 + 8s, B2 + 8s, C2 + 8s, D2 + 8s, E2 + 8s, F2 + 8s, G2 + 8s, H2 + 8s
+    let A4, B4, C4, D4, E4, F4, G4, H4 =
+        A3 + 8s, B3 + 8s, C3 + 8s, D3 + 8s, E3 + 8s, F3 + 8s, G3 + 8s, H3 + 8s
+    let A5, B5, C5, D5, E5, F5, G5, H5 =
+        A4 + 8s, B4 + 8s, C4 + 8s, D4 + 8s, E4 + 8s, F4 + 8s, G4 + 8s, H4 + 8s
+    let A6, B6, C6, D6, E6, F6, G6, H6 =
+        A5 + 8s, B5 + 8s, C5 + 8s, D5 + 8s, E5 + 8s, F5 + 8s, G5 + 8s, H5 + 8s
+    let A7, B7, C7, D7, E7, F7, G7, H7 =
+        A6 + 8s, B6 + 8s, C6 + 8s, D6 + 8s, E6 + 8s, F6 + 8s, G6 + 8s, H6 + 8s
+    let A8, B8, C8, D8, E8, F8, G8, H8 =
+        A7 + 8s, B7 + 8s, C7 + 8s, D7 + 8s, E7 + 8s, F7 + 8s, G7 + 8s, H7 + 8s
+    let OUTOFBOUNDS : Square = 64s
+    let SQUARES =
+        [ A1; B1; C1; D1; E1; F1; G1; H1; A2; B2; C2; D2; E2; F2; G2; H2; A3; B3; 
+          C3; D3; E3; F3; G3; H3; A4; B4; C4; D4; E4; F4; G4; H4; A5; B5; C5; D5; 
+          E5; F5; G5; H5; A6; B6; C6; D6; E6; F6; G6; H6; A7; B7; C7; D7; E7; F7; 
+          G7; H7; A8; B8; C8; D8; E8; F8; G8; H8 ]
+    
+    let SQUARE_NAMES =
+        [ for r in RANK_NAMES do
+              for f in FILE_NAMES -> f + r ]
+    
+    let Sq(f : File, r : Rank) : Square = r * 8s + f
     
     [<System.Flags>]
-    type CstlFlgs = 
+    type CstlFlgs =
         | EMPTY = 0
         | WhiteShort = 1
         | WhiteLong = 2
@@ -100,7 +112,7 @@ module Types =
         | All = 15
     
     [<System.Flags>]
-    type Bitboard = 
+    type Bitboard =
         | A1 = 1UL
         | B1 = 2UL
         | C1 = 4UL
@@ -183,60 +195,59 @@ module Types =
         | FileH = 9259542123273814144UL
         | Empty = 0UL
         | Full = 18446744073709551615UL
-
+    
     type MoveType =
         | Simple
         | Capture
         | CastleKingSide
         | CastleQueenSide
-
+    
     type NAG =
-        |Null = 0
-        |Good = 1
-        |Poor = 2
-        |VeryGood = 3
-        |VeryPoor = 4
-        |Speculative = 5
-        |Questionable = 6
-        |Even = 10
-        |Wslight = 14
-        |Bslight = 15
-        |Wmoderate = 16
-        |Bmoderate =17
-        |Wdecisive = 18
-        |Bdecisive = 19
-
+        | Null = 0
+        | Good = 1
+        | Poor = 2
+        | VeryGood = 3
+        | VeryPoor = 4
+        | Speculative = 5
+        | Questionable = 6
+        | Even = 10
+        | Wslight = 14
+        | Bslight = 15
+        | Wmoderate = 16
+        | Bmoderate =17
+        | Wdecisive = 18
+        | Bdecisive = 19
+    
     [<MessagePackObject>]
-    type Brd = 
-        { 
-            [<Key(0)>]
-            PieceAt : Piece list
-            [<Key(1)>]
-            WtKingPos : Square
-            [<Key(2)>]
-            BkKingPos : Square
-            [<Key(3)>]
-            PieceTypes : Bitboard list
-            [<Key(4)>]
-            WtPrBds : Bitboard
-            [<Key(5)>]
-            BkPrBds : Bitboard
-            [<Key(6)>]
-            PieceLocationsAll : Bitboard
-            [<Key(7)>]
-            Checkers : Bitboard
-            [<Key(8)>]
-            WhosTurn : Player
-            [<Key(9)>]
-            CastleRights : CstlFlgs
-            [<Key(10)>]
-            EnPassant : Square
-            [<Key(11)>]
-            Fiftymove : int
-            [<Key(12)>]
-            Fullmove : int
-        }
-        member bd.Item with get(sq:Square) = bd.PieceAt.[int(sq)]
+    type Brd =
+        { [<Key(0)>]
+          PieceAt : Piece list
+          [<Key(1)>]
+          WtKingPos : Square
+          [<Key(2)>]
+          BkKingPos : Square
+          [<Key(3)>]
+          PieceTypes : Bitboard list
+          [<Key(4)>]
+          WtPrBds : Bitboard
+          [<Key(5)>]
+          BkPrBds : Bitboard
+          [<Key(6)>]
+          PieceLocationsAll : Bitboard
+          [<Key(7)>]
+          Checkers : Bitboard
+          [<Key(8)>]
+          WhosTurn : Player
+          [<Key(9)>]
+          CastleRights : CstlFlgs
+          [<Key(10)>]
+          EnPassant : Square
+          [<Key(11)>]
+          Fiftymove : int
+          [<Key(12)>]
+          Fullmove : int }
+        member bd.Item
+            with get (sq : Square) = bd.PieceAt.[int (sq)]
         override bd.ToString() =
             let pctostr pc =
                 match pc with
@@ -253,303 +264,308 @@ module Types =
                 | Piece.BQueen -> "q"
                 | Piece.BKing -> "k"
                 | Piece.EMPTY -> "."
-                |_ -> failwith "invalid piece"
-            let bdstr = bd.PieceAt|>List.map(fun p -> p|>pctostr)|>List.reduce(+)
-            let tomv = if bd.WhosTurn=Player.White then " w" else " b"
+                | _ -> failwith "invalid piece"
+            
+            let bdstr =
+                bd.PieceAt
+                |> List.map (fun p -> p |> pctostr)
+                |> List.reduce (+)
+            
+            let tomv =
+                if bd.WhosTurn = Player.White then " w"
+                else " b"
+            
             bdstr + tomv
-         
-    let BrdEMP = 
-        { 
-            PieceAt = Array.create 64 Piece.EMPTY|>List.ofArray
-            WtKingPos = OUTOFBOUNDS
-            BkKingPos = OUTOFBOUNDS
-            PieceTypes = Array.create 7 Bitboard.Empty|>List.ofArray
-            WtPrBds = Bitboard.Empty
-            BkPrBds = Bitboard.Empty
-            PieceLocationsAll = Bitboard.Empty
-            Checkers = Bitboard.Empty
-            WhosTurn = Player.White
-            CastleRights = CstlFlgs.EMPTY
-            EnPassant = OUTOFBOUNDS
-            Fiftymove = 0
-            Fullmove = 0
-        }
-
-    type pMove = 
-        {
-             Mtype:MoveType 
-             TargetSquare:Square 
-             Piece: PieceType option
-             OriginFile:File option
-             OriginRank:Rank option
-             PromotedPiece: PieceType option
-             IsCheck:bool
-             IsDoubleCheck:bool
-             IsCheckMate:bool
-             San:string
-        }
+    
+    let BrdEMP =
+        { PieceAt = Array.create 64 Piece.EMPTY |> List.ofArray
+          WtKingPos = OUTOFBOUNDS
+          BkKingPos = OUTOFBOUNDS
+          PieceTypes = Array.create 7 Bitboard.Empty |> List.ofArray
+          WtPrBds = Bitboard.Empty
+          BkPrBds = Bitboard.Empty
+          PieceLocationsAll = Bitboard.Empty
+          Checkers = Bitboard.Empty
+          WhosTurn = Player.White
+          CastleRights = CstlFlgs.EMPTY
+          EnPassant = OUTOFBOUNDS
+          Fiftymove = 0
+          Fullmove = 0 }
+    
+    type pMove =
+        { Mtype : MoveType
+          TargetSquare : Square
+          Piece : PieceType option
+          OriginFile : File option
+          OriginRank : Rank option
+          PromotedPiece : PieceType option
+          IsCheck : bool
+          IsDoubleCheck : bool
+          IsCheckMate : bool
+          San : string }
         override x.ToString() = x.San
-
+    
     [<MessagePackObject>]
     type Header =
-        {
-            [<Key(0)>]
-            Num : int
-            [<Key(1)>]
-            White : string
-            [<Key(2)>]
-            W_Elo : string
-            [<Key(3)>]
-            Black : string
-            [<Key(4)>]
-            B_Elo : string
-            [<Key(5)>]
-            Result : string
-            [<Key(6)>]
-            Year : int
-            [<Key(7)>]
-            Event : string
-            [<Key(8)>]
-            ECO : string
-            [<Key(9)>]
-            Opening : string
-            [<Key(10)>]
-            Deleted : string
-        }
-
+        { [<Key(0)>]
+          Num : int
+          [<Key(1)>]
+          White : string
+          [<Key(2)>]
+          W_Elo : string
+          [<Key(3)>]
+          Black : string
+          [<Key(4)>]
+          B_Elo : string
+          [<Key(5)>]
+          Result : string
+          [<Key(6)>]
+          Year : int
+          [<Key(7)>]
+          Event : string
+          [<Key(8)>]
+          ECO : string
+          [<Key(9)>]
+          Opening : string
+          [<Key(10)>]
+          Deleted : string }
+    
     let HeaderEMP =
-        {
-            Num = -1
-            White = "?"
-            W_Elo = "-"
-            Black = "?"
-            B_Elo = "-"
-            Result = "*"
-            Year = 0
-            Event = "?"
-            ECO = ""
-            Opening = ""
-            Deleted = ""
-        }
+        { Num = -1
+          White = "?"
+          W_Elo = "-"
+          Black = "?"
+          B_Elo = "-"
+          Result = "*"
+          Year = 0
+          Event = "?"
+          ECO = ""
+          Opening = ""
+          Deleted = "" }
     
     type UnencodedMoveTextEntry =
-        |UnencodedHalfMoveEntry of int option * bool * pMove
-        |UnencodedCommentEntry of string
-        |UnencodedGameEndEntry of GameResult
-        |UnencodedNAGEntry of NAG
-        |UnencodedRAVEntry of UnencodedMoveTextEntry list
+        | UnencodedHalfMoveEntry of int option * bool * pMove
+        | UnencodedCommentEntry of string
+        | UnencodedGameEndEntry of GameResult
+        | UnencodedNAGEntry of NAG
+        | UnencodedRAVEntry of UnencodedMoveTextEntry list
     
     type UnencodedGame =
-        {
-            Hdr : Header
-            Month : int option
-            Day : int option
-            Round :string
-            Site : string
-            BoardSetup : Brd option
-            AdditionalInfo : Map<string,string>
-            MoveText : UnencodedMoveTextEntry list
-        }
-
-    let UnencodedGameEMP:UnencodedGame =
-        {
-            Hdr = HeaderEMP
-            Site = "?"
-            Month = None
-            Day = None
-            Round = "?"
-            BoardSetup = None
-            AdditionalInfo = Map.empty
-            MoveText = []
-        }
-
+        { Hdr : Header
+          Month : int option
+          Day : int option
+          Round : string
+          Site : string
+          BoardSetup : Brd option
+          AdditionalInfo : Map<string, string>
+          MoveText : UnencodedMoveTextEntry list }
+    
+    let UnencodedGameEMP : UnencodedGame =
+        { Hdr = HeaderEMP
+          Site = "?"
+          Month = None
+          Day = None
+          Round = "?"
+          BoardSetup = None
+          AdditionalInfo = Map.empty
+          MoveText = [] }
+    
     type EncodedMove =
-        {
-            San : string
-            Mno : int
-            Isw : bool
-            Mv : Move
-            PostBrd : Brd
-        }
+        { San : string
+          Mno : int
+          Isw : bool
+          Mv : Move
+          PostBrd : Brd }
         override x.ToString() = x.San
-
+    
     type EncodedMoveTextEntry =
-        |EncodedHalfMoveEntry of int option * bool * EncodedMove
-        |EncodedCommentEntry of string
-        |EncodedGameEndEntry of GameResult
-        |EncodedNAGEntry of NAG
-        |EncodedRAVEntry of EncodedMoveTextEntry list
+        | EncodedHalfMoveEntry of int option * bool * EncodedMove
+        | EncodedCommentEntry of string
+        | EncodedGameEndEntry of GameResult
+        | EncodedNAGEntry of NAG
+        | EncodedRAVEntry of EncodedMoveTextEntry list
     
     type EncodedGame =
-        {
-            Hdr : Header
-            Month : int option
-            Day : int option
-            Round :string
-            Site : string
-            BoardSetup : Brd option
-            AdditionalInfo : Map<string,string>
-            MoveText : EncodedMoveTextEntry list
-        }
-
-    let EncodedGameEMP:EncodedGame =
-        {
-            Hdr = HeaderEMP
-            Site = "?"
-            Month = None
-            Day = None
-            Round = "?"
-            BoardSetup = None
-            AdditionalInfo = Map.empty
-            MoveText = []
-        }
+        { Hdr : Header
+          Month : int option
+          Day : int option
+          Round : string
+          Site : string
+          BoardSetup : Brd option
+          AdditionalInfo : Map<string, string>
+          MoveText : EncodedMoveTextEntry list }
+    
+    let EncodedGameEMP : EncodedGame =
+        { Hdr = HeaderEMP
+          Site = "?"
+          Month = None
+          Day = None
+          Round = "?"
+          BoardSetup = None
+          AdditionalInfo = Map.empty
+          MoveText = [] }
     
     [<MessagePackObject>]
     type CompressedMove =
-        {
-            [<Key(0)>]
-            San : string
-            [<Key(1)>]
-            Mno : int
-            [<Key(2)>]
-            Isw : bool
-            [<Key(3)>]
-            Mv : Move
-        }
+        { [<Key(0)>]
+          San : string
+          [<Key(1)>]
+          Mno : int
+          [<Key(2)>]
+          Isw : bool
+          [<Key(3)>]
+          Mv : Move }
         override x.ToString() = x.San
-
+    
     [<MessagePackObject>]
     type CompressedMoveTextEntry =
-        |CompressedHalfMoveEntry of int option * bool * CompressedMove
-        |CompressedCommentEntry of string
-        |CompressedGameEndEntry of GameResult
-        |CompressedNAGEntry of NAG
-        |CompressedRAVEntry of CompressedMoveTextEntry list
+        | CompressedHalfMoveEntry of int option * bool * CompressedMove
+        | CompressedCommentEntry of string
+        | CompressedGameEndEntry of GameResult
+        | CompressedNAGEntry of NAG
+        | CompressedRAVEntry of CompressedMoveTextEntry list
     
     [<MessagePackObject>]
     type CompressedGame =
-        {
-            [<Key(0)>]
-            Month : int option
-            [<Key(1)>]
-            Day : int option
-            [<Key(2)>]
-            Round :string
-            [<Key(3)>]
-            Site : string
-            [<Key(4)>]
-            BoardSetup : Brd option
-            [<Key(5)>]
-            AdditionalInfo : Map<string,string>
-            [<Key(6)>]
-            MoveText : CompressedMoveTextEntry list
-        }
-
-    let CompressedGameEMP:CompressedGame =
-        {
-            Site = "?"
-            Month = None
-            Day = None
-            Round = "?"
-            BoardSetup = None
-            AdditionalInfo = Map.empty
-            MoveText = []
-        }
-
+        { [<Key(0)>]
+          Month : int option
+          [<Key(1)>]
+          Day : int option
+          [<Key(2)>]
+          Round : string
+          [<Key(3)>]
+          Site : string
+          [<Key(4)>]
+          BoardSetup : Brd option
+          [<Key(5)>]
+          AdditionalInfo : Map<string, string>
+          [<Key(6)>]
+          MoveText : CompressedMoveTextEntry list }
+    
+    let CompressedGameEMP : CompressedGame =
+        { Site = "?"
+          Month = None
+          Day = None
+          Round = "?"
+          BoardSetup = None
+          AdditionalInfo = Map.empty
+          MoveText = [] }
+    
     [<MessagePackObject>]
     type IndexEntry =
-        {
-            [<Key(0)>]
-            Offset:int64
-            [<Key(1)>]
-            Length:int
-        }
-
+        { [<Key(0)>]
+          Offset : int64
+          [<Key(1)>]
+          Length : int }
+    
     type GrampusData =
-        {
-            SourcePgn : string
-            BaseCreated : System.DateTime option
-            TreesCreated : System.DateTime option
-            FiltersCreated : System.DateTime option
-            Ply : int
-        }
-
+        { SourcePgn : string
+          BaseCreated : System.DateTime option
+          TreesCreated : System.DateTime option
+          FiltersCreated : System.DateTime option
+          Ply : int }
+    
     let GrampusDataEMP =
-        {
-            SourcePgn = ""
-            BaseCreated = None
-            TreesCreated = None
-            FiltersCreated = None
-            Ply = 20
-        }
+        { SourcePgn = ""
+          BaseCreated = None
+          TreesCreated = None
+          FiltersCreated = None
+          Ply = 20 }
     
     type RepOpt =
-        {San : string; Nag : NAG; Comm: string}
+        { San : string
+          Nag : NAG
+          Comm : string }
     
-    type RepOpts = Map<string,RepOpt list>
-
-    type RepMove = Map<string,RepOpt>
-
+    type RepOpts = Map<string, RepOpt list>
+    
+    type RepMove = Map<string, RepOpt>
+    
     [<MessagePackObject>]
     type mvstats() =
+        
         [<Key(0)>]
         member val Mvstr = "" with get, set
+        
         [<Key(1)>]
         member val Count = 0L with get, set
+        
         [<Key(2)>]
         member val Freq = 0.0 with get, set
+        
         [<Key(3)>]
         member val WhiteWins = 0L with get, set
+        
         [<Key(4)>]
         member val Draws = 0L with get, set
+        
         [<Key(5)>]
         member val BlackWins = 0L with get, set
+        
         [<Key(6)>]
         member val Score = 0.0 with get, set
+        
         [<Key(7)>]
         member val DrawPc = 0.0 with get, set
+        
         [<Key(8)>]
         member val AvElo = 0L with get, set
+        
         [<Key(9)>]
         member val Perf = 0L with get, set
+        
         [<Key(10)>]
         member val AvYear = 0L with get, set
     
     [<MessagePackObject>]
     type totstats() =
+        
         [<Key(0)>]
         member val TotCount = 0L with get, set
+        
         [<Key(1)>]
         member val TotFreq = 0.0 with get, set
+        
         [<Key(2)>]
         member val TotWhiteWins = 0L with get, set
+        
         [<Key(3)>]
         member val TotDraws = 0L with get, set
+        
         [<Key(4)>]
         member val TotBlackWins = 0L with get, set
+        
         [<Key(5)>]
         member val TotScore = 0.0 with get, set
+        
         [<Key(6)>]
         member val TotDrawPc = 0.0 with get, set
+        
         [<Key(7)>]
         member val TotAvElo = 0L with get, set
+        
         [<Key(8)>]
         member val TotPerf = 0L with get, set
+        
         [<Key(9)>]
         member val TotAvYear = 0L with get, set
     
     [<MessagePackObject>]
     /// <summary>Holds summary data used in the tree.</summary>
     type stats() =
+        
         [<Key(0)>]
         member val MvsStats = new System.Collections.Generic.List<mvstats>() with get, set
+        
         [<Key(1)>]
         member val TotStats = new totstats() with get, set
     
     /// <summary>Record type for holding Eco code and longer description.</summary>
-    type Eco = {Code:string;Desc:string}
-
-    let EcoMap:Map<string,Eco> =
+    type Eco =
+        { Code : string
+          Desc : string }
+    
+    let EcoMap : Map<string, Eco> =
         let thisExe = System.Reflection.Assembly.GetExecutingAssembly()
         let strm = thisExe.GetManifestResourceStream("GrampusLib.eco.json")
         let reader = new System.IO.StreamReader(strm)
