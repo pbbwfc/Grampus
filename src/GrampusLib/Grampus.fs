@@ -87,36 +87,69 @@ module Board =
     /// <returns>The new Board as a Brd type.</returns>
     let Push mv bd = GrampusInternal.Board.MoveApply mv bd
 
+/// <summary>
+/// Holds the functions related to a Move.
+/// </summary>
 module Move =
-    ///Get the source Square for an encoded Move
-    let From = GrampusInternal.Move.From
+    /// <summary>
+    /// Get the source Square for an encoded Move.
+    /// </summary>
+    /// <param name="mv">The move as a Move type.</param>
+    /// <returns>The source square.</returns>
+    let From(mv) = GrampusInternal.Move.From(mv)
     
-    ///Get the target Square for an encoded Move
-    let To = GrampusInternal.Move.To
+    /// <summary>
+    /// Get the target Square for an encoded Move.
+    /// </summary>
+    /// <param name="mv">The move as a Move type.</param>
+    /// <returns>The target square.</returns>
+    let To(mv) = GrampusInternal.Move.To(mv)
     
-    ///Get the promoted PieceType for an encoded Move
-    let PromPcTp = GrampusInternal.Move.PromoteType
+    /// <summary>
+    /// Get the promoted PieceType for an encoded Move.
+    /// </summary>
+    /// <param name="mv">The move as a Move type.</param>
+    /// <returns>The promoted piece type as a PieceType type.</returns>
+    let PromPcTp(mv) = GrampusInternal.Move.PromoteType(mv)
     
-    ///Get an encoded move from a SAN string such as Nf3 for this Board
-    let FromSan = GrampusInternal.MoveUtil.fromSAN
+    /// <summary>
+    /// Get an encoded move from a SAN string such as Nf3 for this Board.
+    /// </summary>
+    /// <param name="bd">The Board as a Brd type.</param>
+    /// <param name="san">The SAN string, such as Nf3.</param>
+    /// <returns>The move as a Move type.</returns>
+    let FromSan bd san = GrampusInternal.MoveUtil.fromSAN bd san
     
-    ///Get an encoded move from a UCI string such as g1f3 for this Board
-    let FromUci = GrampusInternal.MoveUtil.fromUci
+    /// <summary>
+    /// Get an encoded move from a UCI string such as g1f3 for this Board.
+    /// </summary>
+    /// <param name="bd">The Board as a Brd type.</param>
+    /// <param name="uci">The SAN string, such as g1f3.</param>
+    /// <returns>The move as a Move type.</returns>
+    let FromUci bd uci = GrampusInternal.MoveUtil.fromUci bd uci
     
-    ///Get a string of encoded moves from a string of UCIs for this Board
-    let FromUcis = GrampusInternal.MoveUtil.UcisToSans
+    /// <summary>
+    /// Get a string of multiple SAN strings from a string of UCIs for this Board.
+    /// </summary>
+    /// <param name="bd">The Board as a Brd type.</param>
+    /// <param name="ucis">The string of UCI strings, such as g1f3 g8f6.</param>
+    /// <returns>The string of multiple SAN strings, such as Nf3 Nf6.</returns>
+    let FromUcis bd ucis = GrampusInternal.MoveUtil.UcisToSans bd ucis
     
-    ///Get the UCI string such as g1f3 for a move
-    let ToUci = GrampusInternal.MoveUtil.toUci
+    /// <summary>
+    /// Get the UCI string such as g1f3 for a move.
+    /// </summary>
+    /// <param name="mv">The move as a Move type.</param>
+    /// <returns>The UCI string, such as g1f3.</returns>
+    let ToUci(mv) = GrampusInternal.MoveUtil.toUci (mv)
     
-    ///Get the pMove for a move for this board
-    let TopMove = GrampusInternal.MoveUtil.topMove
-    
-    ///Get the Encoded Move for a move for this board
-    let ToeMove = GrampusInternal.MoveEncoded.FromMove
-    
-    ///Get the SAN string such as Nf3 for a move for this board
-    let ToSan = GrampusInternal.MoveUtil.toPgn
+    /// <summary>
+    /// Get the SAN string such as Nf3 for a move for this board.
+    /// </summary>
+    /// <param name="bd">The Board as a Brd type.</param>
+    /// <param name="mv">The move as a Move type.</param>
+    /// <returns>The SAN string, such as Nf3.</returns>
+    let ToSan bd mv = GrampusInternal.MoveUtil.toPgn bd mv
 
 module Game =
     ///The starting Game with no moves

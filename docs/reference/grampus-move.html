@@ -101,6 +101,8 @@
   </p>
   <div class="fsdocs-xmldoc">
     
+ Holds the functions related to a Move.
+ 
   </div>
   <div>
     <h3>
@@ -125,7 +127,7 @@
                 <p>
                   <a id="From">
                     <a href="#From">
-                      <code><span>From&#32;<span></span></span></code>
+                      <code><span>From&#32;<span>mv</span></span></code>
                     </a>
                   </a>
                 </p>
@@ -133,13 +135,28 @@
               <div class="fsdocs-tip" id="54">
                 <div class="member-tooltip">
                   Full Usage: 
-                  <code><span>From&#32;<span></span></span></code>
+                  <code><span>From&#32;<span>mv</span></span></code>
                   <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        mv
+                      </b>
+                      :
+                      <code><a href="/Grampus/reference/grampus-types-move.html">Move</a></code>
+                       - 
+                      The move as a Move type.
+                    </span>
+                    <br/>
+                  </ul>
                   <br/>
                   <span>
                     Returns: 
-                    <code><span><a href="/Grampus/reference/grampus-types-move.html">Move</a>&#32;->&#32;<a href="/Grampus/reference/grampus-types-square.html">Square</a></span></code>
+                    <code><a href="/Grampus/reference/grampus-types-square.html">Square</a></code>
                   </span>
+                  The source square.
                   <br/>
                 </div>
               </div>
@@ -147,22 +164,40 @@
           </td>
           <td class="fsdocs-xmldoc">
             <p class="fsdocs-summary">
-              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L92-92" class="fsdocs-source-link">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L99-99" class="fsdocs-source-link">
                 <img src="/Grampus/content/img/github.png" class="normal"/>
                 <img src="/Grampus/content/img/github-blue.png" class="hover"/>
               </a>
               
-Get the source Square for an encoded Move
-
+ Get the source Square for an encoded Move.
+ 
             </p>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  mv
+                </span>
+                :
+                <code><a href="/Grampus/reference/grampus-types-move.html">Move</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  The move as a Move type.
+                </p>
+              </dd>
+            </dl>
             <dl class="fsdocs-returns">
               <dt>
                 <span class="fsdocs-return-name">
                   Returns:
                 </span>
-                <code><span><a href="/Grampus/reference/grampus-types-move.html">Move</a>&#32;->&#32;<a href="/Grampus/reference/grampus-types-square.html">Square</a></span></code>
+                <code><a href="/Grampus/reference/grampus-types-square.html">Square</a></code>
               </dt>
-              <dd class="fsdocs-return-docs"></dd>
+              <dd class="fsdocs-return-docs">
+                <p>
+                  The source square.
+                </p>
+              </dd>
             </dl>
           </td>
         </tr>
@@ -173,7 +208,7 @@ Get the source Square for an encoded Move
                 <p>
                   <a id="FromSan">
                     <a href="#FromSan">
-                      <code><span>FromSan&#32;<span></span></span></code>
+                      <code><span>FromSan&#32;<span>bd&#32;san</span></span></code>
                     </a>
                   </a>
                 </p>
@@ -181,13 +216,38 @@ Get the source Square for an encoded Move
               <div class="fsdocs-tip" id="55">
                 <div class="member-tooltip">
                   Full Usage: 
-                  <code><span>FromSan&#32;<span></span></span></code>
+                  <code><span>FromSan&#32;<span>bd&#32;san</span></span></code>
                   <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        bd
+                      </b>
+                      :
+                      <code><a href="/Grampus/reference/grampus-types-brd.html">Brd</a></code>
+                       - 
+                      The Board as a Brd type.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        san
+                      </b>
+                      :
+                      <code>string</code>
+                       - 
+                      The SAN string, such as Nf3.
+                    </span>
+                    <br/>
+                  </ul>
                   <br/>
                   <span>
                     Returns: 
-                    <code><span><a href="/Grampus/reference/grampus-types-brd.html">Brd</a>&#32;->&#32;string&#32;->&#32;<a href="/Grampus/reference/grampus-types-move.html">Move</a></span></code>
+                    <code><a href="/Grampus/reference/grampus-types-move.html">Move</a></code>
                   </span>
+                  The move as a Move type.
                   <br/>
                 </div>
               </div>
@@ -195,22 +255,52 @@ Get the source Square for an encoded Move
           </td>
           <td class="fsdocs-xmldoc">
             <p class="fsdocs-summary">
-              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L101-101" class="fsdocs-source-link">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L121-121" class="fsdocs-source-link">
                 <img src="/Grampus/content/img/github.png" class="normal"/>
                 <img src="/Grampus/content/img/github-blue.png" class="hover"/>
               </a>
               
-Get an encoded move from a SAN string such as Nf3 for this Board
-
+ Get an encoded move from a SAN string such as Nf3 for this Board.
+ 
             </p>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  bd
+                </span>
+                :
+                <code><a href="/Grampus/reference/grampus-types-brd.html">Brd</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  The Board as a Brd type.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  san
+                </span>
+                :
+                <code>string</code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  The SAN string, such as Nf3.
+                </p>
+              </dd>
+            </dl>
             <dl class="fsdocs-returns">
               <dt>
                 <span class="fsdocs-return-name">
                   Returns:
                 </span>
-                <code><span><a href="/Grampus/reference/grampus-types-brd.html">Brd</a>&#32;->&#32;string&#32;->&#32;<a href="/Grampus/reference/grampus-types-move.html">Move</a></span></code>
+                <code><a href="/Grampus/reference/grampus-types-move.html">Move</a></code>
               </dt>
-              <dd class="fsdocs-return-docs"></dd>
+              <dd class="fsdocs-return-docs">
+                <p>
+                  The move as a Move type.
+                </p>
+              </dd>
             </dl>
           </td>
         </tr>
@@ -221,7 +311,7 @@ Get an encoded move from a SAN string such as Nf3 for this Board
                 <p>
                   <a id="FromUci">
                     <a href="#FromUci">
-                      <code><span>FromUci&#32;<span></span></span></code>
+                      <code><span>FromUci&#32;<span>bd&#32;uci</span></span></code>
                     </a>
                   </a>
                 </p>
@@ -229,13 +319,38 @@ Get an encoded move from a SAN string such as Nf3 for this Board
               <div class="fsdocs-tip" id="56">
                 <div class="member-tooltip">
                   Full Usage: 
-                  <code><span>FromUci&#32;<span></span></span></code>
+                  <code><span>FromUci&#32;<span>bd&#32;uci</span></span></code>
                   <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        bd
+                      </b>
+                      :
+                      <code><a href="/Grampus/reference/grampus-types-brd.html">Brd</a></code>
+                       - 
+                      The Board as a Brd type.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        uci
+                      </b>
+                      :
+                      <code>string</code>
+                       - 
+                      The SAN string, such as g1f3.
+                    </span>
+                    <br/>
+                  </ul>
                   <br/>
                   <span>
                     Returns: 
-                    <code><span><a href="/Grampus/reference/grampus-types-brd.html">Brd</a>&#32;->&#32;string&#32;->&#32;<a href="/Grampus/reference/grampus-types-move.html">Move</a></span></code>
+                    <code><a href="/Grampus/reference/grampus-types-move.html">Move</a></code>
                   </span>
+                  The move as a Move type.
                   <br/>
                 </div>
               </div>
@@ -243,22 +358,52 @@ Get an encoded move from a SAN string such as Nf3 for this Board
           </td>
           <td class="fsdocs-xmldoc">
             <p class="fsdocs-summary">
-              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L104-104" class="fsdocs-source-link">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L129-129" class="fsdocs-source-link">
                 <img src="/Grampus/content/img/github.png" class="normal"/>
                 <img src="/Grampus/content/img/github-blue.png" class="hover"/>
               </a>
               
-Get an encoded move from a UCI string such as g1f3 for this Board
-
+ Get an encoded move from a UCI string such as g1f3 for this Board.
+ 
             </p>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  bd
+                </span>
+                :
+                <code><a href="/Grampus/reference/grampus-types-brd.html">Brd</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  The Board as a Brd type.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  uci
+                </span>
+                :
+                <code>string</code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  The SAN string, such as g1f3.
+                </p>
+              </dd>
+            </dl>
             <dl class="fsdocs-returns">
               <dt>
                 <span class="fsdocs-return-name">
                   Returns:
                 </span>
-                <code><span><a href="/Grampus/reference/grampus-types-brd.html">Brd</a>&#32;->&#32;string&#32;->&#32;<a href="/Grampus/reference/grampus-types-move.html">Move</a></span></code>
+                <code><a href="/Grampus/reference/grampus-types-move.html">Move</a></code>
               </dt>
-              <dd class="fsdocs-return-docs"></dd>
+              <dd class="fsdocs-return-docs">
+                <p>
+                  The move as a Move type.
+                </p>
+              </dd>
             </dl>
           </td>
         </tr>
@@ -269,7 +414,7 @@ Get an encoded move from a UCI string such as g1f3 for this Board
                 <p>
                   <a id="FromUcis">
                     <a href="#FromUcis">
-                      <code><span>FromUcis&#32;<span></span></span></code>
+                      <code><span>FromUcis&#32;<span>bd&#32;ucis</span></span></code>
                     </a>
                   </a>
                 </p>
@@ -277,13 +422,38 @@ Get an encoded move from a UCI string such as g1f3 for this Board
               <div class="fsdocs-tip" id="57">
                 <div class="member-tooltip">
                   Full Usage: 
-                  <code><span>FromUcis&#32;<span></span></span></code>
+                  <code><span>FromUcis&#32;<span>bd&#32;ucis</span></span></code>
                   <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        bd
+                      </b>
+                      :
+                      <code><a href="/Grampus/reference/grampus-types-brd.html">Brd</a></code>
+                       - 
+                      The Board as a Brd type.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ucis
+                      </b>
+                      :
+                      <code>string</code>
+                       - 
+                      The string of UCI strings, such as g1f3 g8f6.
+                    </span>
+                    <br/>
+                  </ul>
                   <br/>
                   <span>
                     Returns: 
-                    <code><span><a href="/Grampus/reference/grampus-types-brd.html">Brd</a>&#32;->&#32;string&#32;->&#32;string</span></code>
+                    <code>string</code>
                   </span>
+                  The string of multiple SAN strings, such as Nf3 Nf6.
                   <br/>
                 </div>
               </div>
@@ -291,22 +461,52 @@ Get an encoded move from a UCI string such as g1f3 for this Board
           </td>
           <td class="fsdocs-xmldoc">
             <p class="fsdocs-summary">
-              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L107-107" class="fsdocs-source-link">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L137-137" class="fsdocs-source-link">
                 <img src="/Grampus/content/img/github.png" class="normal"/>
                 <img src="/Grampus/content/img/github-blue.png" class="hover"/>
               </a>
               
-Get a string of encoded moves from a string of UCIs for this Board
-
+ Get a string of multiple SAN strings from a string of UCIs for this Board.
+ 
             </p>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  bd
+                </span>
+                :
+                <code><a href="/Grampus/reference/grampus-types-brd.html">Brd</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  The Board as a Brd type.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ucis
+                </span>
+                :
+                <code>string</code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  The string of UCI strings, such as g1f3 g8f6.
+                </p>
+              </dd>
+            </dl>
             <dl class="fsdocs-returns">
               <dt>
                 <span class="fsdocs-return-name">
                   Returns:
                 </span>
-                <code><span><a href="/Grampus/reference/grampus-types-brd.html">Brd</a>&#32;->&#32;string&#32;->&#32;string</span></code>
+                <code>string</code>
               </dt>
-              <dd class="fsdocs-return-docs"></dd>
+              <dd class="fsdocs-return-docs">
+                <p>
+                  The string of multiple SAN strings, such as Nf3 Nf6.
+                </p>
+              </dd>
             </dl>
           </td>
         </tr>
@@ -317,7 +517,7 @@ Get a string of encoded moves from a string of UCIs for this Board
                 <p>
                   <a id="PromPcTp">
                     <a href="#PromPcTp">
-                      <code><span>PromPcTp&#32;<span></span></span></code>
+                      <code><span>PromPcTp&#32;<span>mv</span></span></code>
                     </a>
                   </a>
                 </p>
@@ -325,253 +525,28 @@ Get a string of encoded moves from a string of UCIs for this Board
               <div class="fsdocs-tip" id="58">
                 <div class="member-tooltip">
                   Full Usage: 
-                  <code><span>PromPcTp&#32;<span></span></span></code>
+                  <code><span>PromPcTp&#32;<span>mv</span></span></code>
                   <br/>
                   <br/>
-                  <span>
-                    Returns: 
-                    <code><span><a href="/Grampus/reference/grampus-types-move.html">Move</a>&#32;->&#32;<a href="/Grampus/reference/grampus-types-piecetype.html">PieceType</a></span></code>
-                  </span>
-                  <br/>
-                </div>
-              </div>
-            </div>
-          </td>
-          <td class="fsdocs-xmldoc">
-            <p class="fsdocs-summary">
-              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L98-98" class="fsdocs-source-link">
-                <img src="/Grampus/content/img/github.png" class="normal"/>
-                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
-              </a>
-              
-Get the promoted PieceType for an encoded Move
-
-            </p>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns:
-                </span>
-                <code><span><a href="/Grampus/reference/grampus-types-move.html">Move</a>&#32;->&#32;<a href="/Grampus/reference/grampus-types-piecetype.html">PieceType</a></span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
-          </td>
-        </tr>
-        <tr>
-          <td class="fsdocs-member-name">
-            <div>
-              <code onmouseout="hideTip(event, '59', 59)" onmouseover="showTip(event, '59', 59)">
-                <p>
-                  <a id="To">
-                    <a href="#To">
-                      <code><span>To&#32;<span></span></span></code>
-                    </a>
-                  </a>
-                </p>
-              </code>
-              <div class="fsdocs-tip" id="59">
-                <div class="member-tooltip">
-                  Full Usage: 
-                  <code><span>To&#32;<span></span></span></code>
-                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        mv
+                      </b>
+                      :
+                      <code><a href="/Grampus/reference/grampus-types-move.html">Move</a></code>
+                       - 
+                      The move as a Move type.
+                    </span>
+                    <br/>
+                  </ul>
                   <br/>
                   <span>
                     Returns: 
-                    <code><span><a href="/Grampus/reference/grampus-types-move.html">Move</a>&#32;->&#32;<a href="/Grampus/reference/grampus-types-square.html">Square</a></span></code>
+                    <code><a href="/Grampus/reference/grampus-types-piecetype.html">PieceType</a></code>
                   </span>
-                  <br/>
-                </div>
-              </div>
-            </div>
-          </td>
-          <td class="fsdocs-xmldoc">
-            <p class="fsdocs-summary">
-              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L95-95" class="fsdocs-source-link">
-                <img src="/Grampus/content/img/github.png" class="normal"/>
-                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
-              </a>
-              
-Get the target Square for an encoded Move
-
-            </p>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns:
-                </span>
-                <code><span><a href="/Grampus/reference/grampus-types-move.html">Move</a>&#32;->&#32;<a href="/Grampus/reference/grampus-types-square.html">Square</a></span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
-          </td>
-        </tr>
-        <tr>
-          <td class="fsdocs-member-name">
-            <div>
-              <code onmouseout="hideTip(event, '60', 60)" onmouseover="showTip(event, '60', 60)">
-                <p>
-                  <a id="ToSan">
-                    <a href="#ToSan">
-                      <code><span>ToSan&#32;<span></span></span></code>
-                    </a>
-                  </a>
-                </p>
-              </code>
-              <div class="fsdocs-tip" id="60">
-                <div class="member-tooltip">
-                  Full Usage: 
-                  <code><span>ToSan&#32;<span></span></span></code>
-                  <br/>
-                  <br/>
-                  <span>
-                    Returns: 
-                    <code><span><a href="/Grampus/reference/grampus-types-brd.html">Brd</a>&#32;->&#32;<a href="/Grampus/reference/grampus-types-move.html">Move</a>&#32;->&#32;string</span></code>
-                  </span>
-                  <br/>
-                </div>
-              </div>
-            </div>
-          </td>
-          <td class="fsdocs-xmldoc">
-            <p class="fsdocs-summary">
-              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L119-119" class="fsdocs-source-link">
-                <img src="/Grampus/content/img/github.png" class="normal"/>
-                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
-              </a>
-              
-Get the SAN string such as Nf3 for a move for this board
-
-            </p>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns:
-                </span>
-                <code><span><a href="/Grampus/reference/grampus-types-brd.html">Brd</a>&#32;->&#32;<a href="/Grampus/reference/grampus-types-move.html">Move</a>&#32;->&#32;string</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
-          </td>
-        </tr>
-        <tr>
-          <td class="fsdocs-member-name">
-            <div>
-              <code onmouseout="hideTip(event, '61', 61)" onmouseover="showTip(event, '61', 61)">
-                <p>
-                  <a id="ToUci">
-                    <a href="#ToUci">
-                      <code><span>ToUci&#32;<span></span></span></code>
-                    </a>
-                  </a>
-                </p>
-              </code>
-              <div class="fsdocs-tip" id="61">
-                <div class="member-tooltip">
-                  Full Usage: 
-                  <code><span>ToUci&#32;<span></span></span></code>
-                  <br/>
-                  <br/>
-                  <span>
-                    Returns: 
-                    <code><span><a href="/Grampus/reference/grampus-types-move.html">Move</a>&#32;->&#32;string</span></code>
-                  </span>
-                  <br/>
-                </div>
-              </div>
-            </div>
-          </td>
-          <td class="fsdocs-xmldoc">
-            <p class="fsdocs-summary">
-              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L110-110" class="fsdocs-source-link">
-                <img src="/Grampus/content/img/github.png" class="normal"/>
-                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
-              </a>
-              
-Get the UCI string such as g1f3 for a move
-
-            </p>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns:
-                </span>
-                <code><span><a href="/Grampus/reference/grampus-types-move.html">Move</a>&#32;->&#32;string</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
-          </td>
-        </tr>
-        <tr>
-          <td class="fsdocs-member-name">
-            <div>
-              <code onmouseout="hideTip(event, '62', 62)" onmouseover="showTip(event, '62', 62)">
-                <p>
-                  <a id="ToeMove">
-                    <a href="#ToeMove">
-                      <code><span>ToeMove&#32;<span></span></span></code>
-                    </a>
-                  </a>
-                </p>
-              </code>
-              <div class="fsdocs-tip" id="62">
-                <div class="member-tooltip">
-                  Full Usage: 
-                  <code><span>ToeMove&#32;<span></span></span></code>
-                  <br/>
-                  <br/>
-                  <span>
-                    Returns: 
-                    <code><span><a href="/Grampus/reference/grampus-types-brd.html">Brd</a>&#32;->&#32;int&#32;->&#32;<a href="/Grampus/reference/grampus-types-move.html">Move</a>&#32;->&#32;<a href="/Grampus/reference/grampus-types-encodedmove.html">EncodedMove</a></span></code>
-                  </span>
-                  <br/>
-                </div>
-              </div>
-            </div>
-          </td>
-          <td class="fsdocs-xmldoc">
-            <p class="fsdocs-summary">
-              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L116-116" class="fsdocs-source-link">
-                <img src="/Grampus/content/img/github.png" class="normal"/>
-                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
-              </a>
-              
-Get the Encoded Move for a move for this board
-
-            </p>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns:
-                </span>
-                <code><span><a href="/Grampus/reference/grampus-types-brd.html">Brd</a>&#32;->&#32;int&#32;->&#32;<a href="/Grampus/reference/grampus-types-move.html">Move</a>&#32;->&#32;<a href="/Grampus/reference/grampus-types-encodedmove.html">EncodedMove</a></span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
-          </td>
-        </tr>
-        <tr>
-          <td class="fsdocs-member-name">
-            <div>
-              <code onmouseout="hideTip(event, '63', 63)" onmouseover="showTip(event, '63', 63)">
-                <p>
-                  <a id="TopMove">
-                    <a href="#TopMove">
-                      <code><span>TopMove&#32;<span></span></span></code>
-                    </a>
-                  </a>
-                </p>
-              </code>
-              <div class="fsdocs-tip" id="63">
-                <div class="member-tooltip">
-                  Full Usage: 
-                  <code><span>TopMove&#32;<span></span></span></code>
-                  <br/>
-                  <br/>
-                  <span>
-                    Returns: 
-                    <code><span><a href="/Grampus/reference/grampus-types-brd.html">Brd</a>&#32;->&#32;<a href="/Grampus/reference/grampus-types-move.html">Move</a>&#32;->&#32;<a href="/Grampus/reference/grampus-types-pmove.html">pMove</a></span></code>
-                  </span>
+                  The promoted piece type as a PieceType type.
                   <br/>
                 </div>
               </div>
@@ -584,17 +559,300 @@ Get the Encoded Move for a move for this board
                 <img src="/Grampus/content/img/github-blue.png" class="hover"/>
               </a>
               
-Get the pMove for a move for this board
-
+ Get the promoted PieceType for an encoded Move.
+ 
             </p>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  mv
+                </span>
+                :
+                <code><a href="/Grampus/reference/grampus-types-move.html">Move</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  The move as a Move type.
+                </p>
+              </dd>
+            </dl>
             <dl class="fsdocs-returns">
               <dt>
                 <span class="fsdocs-return-name">
                   Returns:
                 </span>
-                <code><span><a href="/Grampus/reference/grampus-types-brd.html">Brd</a>&#32;->&#32;<a href="/Grampus/reference/grampus-types-move.html">Move</a>&#32;->&#32;<a href="/Grampus/reference/grampus-types-pmove.html">pMove</a></span></code>
+                <code><a href="/Grampus/reference/grampus-types-piecetype.html">PieceType</a></code>
               </dt>
-              <dd class="fsdocs-return-docs"></dd>
+              <dd class="fsdocs-return-docs">
+                <p>
+                  The promoted piece type as a PieceType type.
+                </p>
+              </dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '59', 59)" onmouseover="showTip(event, '59', 59)">
+                <p>
+                  <a id="To">
+                    <a href="#To">
+                      <code><span>To&#32;<span>mv</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="59">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>To&#32;<span>mv</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        mv
+                      </b>
+                      :
+                      <code><a href="/Grampus/reference/grampus-types-move.html">Move</a></code>
+                       - 
+                      The move as a Move type.
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="/Grampus/reference/grampus-types-square.html">Square</a></code>
+                  </span>
+                  The target square.
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L106-106" class="fsdocs-source-link">
+                <img src="/Grampus/content/img/github.png" class="normal"/>
+                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+ Get the target Square for an encoded Move.
+ 
+            </p>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  mv
+                </span>
+                :
+                <code><a href="/Grampus/reference/grampus-types-move.html">Move</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  The move as a Move type.
+                </p>
+              </dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns:
+                </span>
+                <code><a href="/Grampus/reference/grampus-types-square.html">Square</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs">
+                <p>
+                  The target square.
+                </p>
+              </dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '60', 60)" onmouseover="showTip(event, '60', 60)">
+                <p>
+                  <a id="ToSan">
+                    <a href="#ToSan">
+                      <code><span>ToSan&#32;<span>bd&#32;mv</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="60">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>ToSan&#32;<span>bd&#32;mv</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        bd
+                      </b>
+                      :
+                      <code><a href="/Grampus/reference/grampus-types-brd.html">Brd</a></code>
+                       - 
+                      The Board as a Brd type.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        mv
+                      </b>
+                      :
+                      <code><a href="/Grampus/reference/grampus-types-move.html">Move</a></code>
+                       - 
+                      The move as a Move type.
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code>string</code>
+                  </span>
+                  The SAN string, such as Nf3.
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L152-152" class="fsdocs-source-link">
+                <img src="/Grampus/content/img/github.png" class="normal"/>
+                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+ Get the SAN string such as Nf3 for a move for this board.
+ 
+            </p>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  bd
+                </span>
+                :
+                <code><a href="/Grampus/reference/grampus-types-brd.html">Brd</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  The Board as a Brd type.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  mv
+                </span>
+                :
+                <code><a href="/Grampus/reference/grampus-types-move.html">Move</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  The move as a Move type.
+                </p>
+              </dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns:
+                </span>
+                <code>string</code>
+              </dt>
+              <dd class="fsdocs-return-docs">
+                <p>
+                  The SAN string, such as Nf3.
+                </p>
+              </dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '61', 61)" onmouseover="showTip(event, '61', 61)">
+                <p>
+                  <a id="ToUci">
+                    <a href="#ToUci">
+                      <code><span>ToUci&#32;<span>mv</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="61">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>ToUci&#32;<span>mv</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        mv
+                      </b>
+                      :
+                      <code><a href="/Grampus/reference/grampus-types-move.html">Move</a></code>
+                       - 
+                      The move as a Move type.
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code>string</code>
+                  </span>
+                  The UCI string, such as g1f3.
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L144-144" class="fsdocs-source-link">
+                <img src="/Grampus/content/img/github.png" class="normal"/>
+                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+ Get the UCI string such as g1f3 for a move.
+ 
+            </p>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  mv
+                </span>
+                :
+                <code><a href="/Grampus/reference/grampus-types-move.html">Move</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  The move as a Move type.
+                </p>
+              </dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns:
+                </span>
+                <code>string</code>
+              </dt>
+              <dd class="fsdocs-return-docs">
+                <p>
+                  The UCI string, such as g1f3.
+                </p>
+              </dd>
             </dl>
           </td>
         </tr>

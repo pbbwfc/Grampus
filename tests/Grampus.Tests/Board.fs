@@ -64,6 +64,13 @@ type Board () =
     [<TestMethod>]
     member this.``Get Knight Move`` () =
       let pos = Board.FromFenStr s1
+      let ans = Move.FromUcis pos "g1f3 g8f6"
+      ans|> should equal "Nf3 Nf6"
+      let ans = Move.FromUci pos "g1f3"
+      ans|>Move.ToSan pos|> should equal "Nf3"
+      ans|>Move.ToUci|> should equal "g1f3"
+      ans|>Move.From |> should equal G1
+      ans|>Move.To |> should equal F3
       let ans = Move.FromSan pos "Nf3"
       ans|>Move.ToSan pos|> should equal "Nf3"
       ans|>Move.From |> should equal G1
@@ -188,6 +195,7 @@ type Board () =
       ans|>Move.ToSan pos|> should equal "dxc8=Q"
       ans|>Move.From |> should equal D7
       ans|>Move.To |> should equal C8
+      ans|>Move.PromPcTp|>should equal PieceType.Queen
       let npos = pos|>Board.Push ans
       npos|>Board.ToFenStr|>should equal "r1Qq1bnr/p1p2kp1/n3p2p/5pP1/Pp6/2N4P/1PPP1P2/R1BQKBNR b KQkq - 0 1"
 
