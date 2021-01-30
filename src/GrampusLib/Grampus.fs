@@ -215,17 +215,30 @@ module Game =
     /// <returns>The changed Encoded Game.</returns>
     let EditNag gm irs nag = GrampusInternal.GameEncoded.EditNag gm irs nag
     
-    ///Gets the moves text as a string given the Game.MoveText
-    let MovesStr = GrampusInternal.PgnWrite.MoveTextStr
+    /// <summary>
+    /// Encodes the Game.
+    /// </summary>
+    /// <param name="ugm">The Unencoded Game.</param>
+    /// <returns>The Encoded Game.</returns>
+    let Encode(ugm) = GrampusInternal.GameEncoded.Encode(ugm)
     
-    ///Encodes the Game
-    let Encode = GrampusInternal.GameEncoded.Encode
+    /// <summary>
+    /// Adds a Move to the Game given its address.
+    /// </summary>
+    /// <param name="gm">The Encoded Game.</param>
+    /// <param name="irs">The address within the game as an int list type.</param>
+    /// <param name="mv">The Move.</param>
+    /// <returns>The changed Encoded Game and the new address.</returns>
+    let AddMv gm irs mv = GrampusInternal.GameEncoded.AddMv gm irs mv
     
-    ///Adds an EncodedMove to the Game given its address
-    let AddMv = GrampusInternal.GameEncoded.AddMv
-    
-    ///Adds a RAV to the Game given the Encoded Move is contains and its address
-    let AddRav = GrampusInternal.GameEncoded.AddRav
+    /// <summary>
+    /// Adds a RAV to the Game given the Move is contains and its address.
+    /// </summary>
+    /// <param name="gm">The Encoded Game.</param>
+    /// <param name="irs">The address within the game as an int list type.</param>
+    /// <param name="mv">The Move.</param>
+    /// <returns>The changed Encoded Game and the new address.</returns>
+    let AddRav gm irs mv = GrampusInternal.GameEncoded.AddRav gm irs mv
     
     ///Deletes a RAV in the EncodedGame at the address provided
     let DeleteRav = GrampusInternal.GameEncoded.DeleteRav

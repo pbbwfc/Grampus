@@ -106,3 +106,36 @@ type Game () =
       let ans = ngm|>Game.ToStr
       ans.Length |> should equal 868
       ngm.MoveText.[2] |> should equal (EncodedNAGEntry(NAG.Poor))
+
+    [<TestMethod>]
+    member this.``AddMv`` () =
+        let mv =
+            let mte = gm.MoveText.[105]
+            match mte with
+            |EncodedHalfMoveEntry (_,_,mv) -> Some(mv)
+            |_ -> None
+        mv.Value.San|>should equal "Kg6"
+        let bd = mv.Value.PostBrd
+        let nmv = Move.FromSan bd "Kxf4"
+        let ngm,nirs = Game.AddMv gm [105] nmv
+        nirs.Head |>should equal 106
+        let ans = ngm|>Game.ToStr
+        ans.Length |> should equal 874
+
+    [<TestMethod>]
+    member this.``AddRav`` () =
+        let mv =
+            let mte = gm.MoveText.[0]
+            match mte with
+            |EncodedHalfMoveEntry (_,_,mv) -> Some(mv)
+            |_ -> None
+        mv.Value.San|>should equal "e4"
+        let bd = mv.Value.PostBrd
+        let nmv = Move.FromSan bd "e6"
+        let ngm,nirs = Game.AddRav gm [0] nmv
+        nirs.Head |>should equal 2
+        nirs.Tail.Head |>should equal 0
+        let ans = ngm|>Game.ToStr
+        ans.Length |> should equal 879
+
+      
