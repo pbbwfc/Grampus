@@ -54,3 +54,55 @@ type Game () =
       let ans = gm|>Game.ToStr
       ans.Length |> should equal 865
 
+    [<TestMethod>]
+    member this.``NAGStr`` () =
+      let ans = NAG.Good|>Game.NAGStr
+      ans |> should equal "!"
+
+    [<TestMethod>]
+    member this.``NAGFromStr`` () =
+      let ans = "!"|>Game.NAGFromStr
+      ans |> should equal NAG.Good
+
+    [<TestMethod>]
+    member this.``NAGHtm`` () =
+      let ans = NAG.Good|>Game.NAGHtm
+      ans |> should equal "&#33;"
+
+    [<TestMethod>]
+    member this.``NAGDesc`` () =
+      let ans = NAG.Good|>Game.NAGDesc
+      ans |> should equal "Good"
+
+    [<TestMethod>]
+    member this.``NAGlist`` () =
+      let ans = Game.NAGlist
+      ans.Length |> should equal 14
+
+    [<TestMethod>]
+    member this.``AddNag`` () =
+      let ngm = Game.AddNag gm [1] NAG.Good
+      let ans = ngm|>Game.ToStr
+      ans.Length |> should equal 868
+      ngm.MoveText.[2] |> should equal (EncodedNAGEntry(NAG.Good))
+
+    [<TestMethod>]
+    member this.``DeleteNag`` () =
+      let ngm = Game.AddNag gm [1] NAG.Good
+      let ans = ngm|>Game.ToStr
+      ans.Length |> should equal 868
+      ngm.MoveText.[2] |> should equal (EncodedNAGEntry(NAG.Good))
+      let ngm = Game.DeleteNag ngm [2]
+      let ans = ngm|>Game.ToStr
+      ans.Length |> should equal (gm|>Game.ToStr).Length
+      
+    [<TestMethod>]
+    member this.``EditNag`` () =
+      let ngm = Game.AddNag gm [1] NAG.Good
+      let ans = ngm|>Game.ToStr
+      ans.Length |> should equal 868
+      ngm.MoveText.[2] |> should equal (EncodedNAGEntry(NAG.Good))
+      let ngm = Game.EditNag ngm [2] NAG.Poor
+      let ans = ngm|>Game.ToStr
+      ans.Length |> should equal 868
+      ngm.MoveText.[2] |> should equal (EncodedNAGEntry(NAG.Poor))

@@ -16,7 +16,6 @@
     <Compile Include="Piece.fs" />
     <Compile Include="Board.fs" />
     <Compile Include="Game.fs" />
-    <Compile Include="MoveEntry.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
 

@@ -151,42 +151,69 @@ module Move =
     /// <returns>The SAN string, such as Nf3.</returns>
     let ToSan bd mv = GrampusInternal.MoveUtil.toPgn bd mv
 
+/// <summary>
+/// Holds the functions related to a Move.
+/// </summary>
 module Game =
     ///The starting Game with no moves
     let Start = GrampusInternal.GameEncoded.Start
     
-    ///Make a SAN Move such as Nf3 for this Game and return the new Game
-    let PushSAN = GrampusInternal.GameUnencoded.AddSan
+    /// <summary>
+    /// Gets a NAG as a string such as ?? given one of the list from Game.MoveText.
+    /// </summary>
+    /// <param name="nag">The NAG as a NAG type.</param>
+    /// <returns>The NAG string.</returns>
+    let NAGStr(nag) = GrampusInternal.NagUtil.ToStr(nag)
     
-    ///Pops a move of the end for this Game and return the new Game
-    let Pop = GrampusInternal.GameUnencoded.RemoveMoveEntry
+    /// <summary>
+    /// Gets a NAG from a string such as ??.
+    /// </summary>
+    /// <param name="str">The NAG string.</param>
+    /// <returns>The NAG type, such as NAG.Good.</returns>
+    let NAGFromStr(str) = GrampusInternal.NagUtil.FromStr(str)
     
-    ///Gets a single move as a string given one of the list from Game.MoveText
-    let MoveStr = GrampusInternal.PgnWrite.MoveTextEntryStr
+    /// <summary>
+    /// Gets a NAG as HTML such as ?? given one of the list from Game.MoveText.
+    /// </summary>
+    /// <param name="nag">The NAG as a NAG type.</param>
+    /// <returns>The NAG HTML string.</returns>
+    let NAGHtm(nag) = GrampusInternal.NagUtil.ToHtm(nag)
     
-    ///Gets a NAG as a string such as ?? given one of the list from Game.MoveText
-    let NAGStr = GrampusInternal.NagUtil.ToStr
-    
-    ///Gets a NAG from a string such as ?? 
-    let NAGFromStr = GrampusInternal.NagUtil.FromStr
-    
-    ///Gets a NAG as HTML such as ?? given one of the list from Game.MoveText
-    let NAGHtm = GrampusInternal.NagUtil.ToHtm
-    
-    ///Gets a NAG as a description such as Very Good given one of the list from Game.MoveText
-    let NAGDesc = GrampusInternal.NagUtil.Desc
+    /// <summary>
+    /// Gets a NAG as a description such as Good given one of the list from Game.MoveText.
+    /// </summary>
+    /// <param name="nag">The NAG as a NAG type.</param>
+    /// <returns>The NAG description.</returns>
+    let NAGDesc(nag) = GrampusInternal.NagUtil.Desc(nag)
     
     ///Gets a list of all NAGs supported
     let NAGlist = GrampusInternal.NagUtil.All
     
-    ///Adds a Nag in the EncodedGame after the address provided
-    let AddNag = GrampusInternal.GameEncoded.AddNag
+    /// <summary>
+    /// Adds a NAG in the EncodedGame after the address provided.
+    /// </summary>
+    /// <param name="gm">The Encoded Game.</param>
+    /// <param name="irs">The address within the game as an int list type.</param>
+    /// <param name="nag">The NAG as a NAG type.</param>
+    /// <returns>The changed Encoded Game.</returns>
+    let AddNag gm irs nag = GrampusInternal.GameEncoded.AddNag gm irs nag
     
-    ///Deletes a Nag in the Encoded Game at the address provided
-    let DeleteNag = GrampusInternal.GameEncoded.DeleteNag
+    /// <summary>
+    /// Deletes a NAG in the Encoded Game at the address provided.
+    /// </summary>
+    /// <param name="gm">The Encoded Game.</param>
+    /// <param name="irs">The address within the game as an int list type.</param>
+    /// <returns>The changed Encoded Game.</returns>
+    let DeleteNag gm irs = GrampusInternal.GameEncoded.DeleteNag gm irs
     
-    ///Edits a Nag in the Encoded Game at the address provided
-    let EditNag = GrampusInternal.GameEncoded.EditNag
+    /// <summary>
+    /// Edits a NAG in the Encoded Game at the address provided.
+    /// </summary>
+    /// <param name="gm">The Encoded Game.</param>
+    /// <param name="irs">The address within the game as an int list type.</param>
+    /// <param name="nag">The NAG as a NAG type.</param>
+    /// <returns>The changed Encoded Game.</returns>
+    let EditNag gm irs nag = GrampusInternal.GameEncoded.EditNag gm irs nag
     
     ///Gets the moves text as a string given the Game.MoveText
     let MovesStr = GrampusInternal.PgnWrite.MoveTextStr
