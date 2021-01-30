@@ -101,6 +101,8 @@
   </p>
   <div class="fsdocs-xmldoc">
     
+ Holds the functions related to a Move.
+ 
   </div>
   <div>
     <h3>
@@ -147,7 +149,7 @@
           </td>
           <td class="fsdocs-xmldoc">
             <p class="fsdocs-summary">
-              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L198-198" class="fsdocs-source-link">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L225-225" class="fsdocs-source-link">
                 <img src="/Grampus/content/img/github.png" class="normal"/>
                 <img src="/Grampus/content/img/github-blue.png" class="hover"/>
               </a>
@@ -173,7 +175,7 @@ Adds an EncodedMove to the Game given its address
                 <p>
                   <a id="AddNag">
                     <a href="#AddNag">
-                      <code><span>AddNag&#32;<span></span></span></code>
+                      <code><span>AddNag&#32;<span>gm&#32;irs&#32;nag</span></span></code>
                     </a>
                   </a>
                 </p>
@@ -181,13 +183,48 @@ Adds an EncodedMove to the Game given its address
               <div class="fsdocs-tip" id="15">
                 <div class="member-tooltip">
                   Full Usage: 
-                  <code><span>AddNag&#32;<span></span></span></code>
+                  <code><span>AddNag&#32;<span>gm&#32;irs&#32;nag</span></span></code>
                   <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        gm
+                      </b>
+                      :
+                      <code><a href="/Grampus/reference/grampus-types-encodedgame.html">EncodedGame</a></code>
+                       - 
+                      The Encoded Game.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        irs
+                      </b>
+                      :
+                      <code><span>int&#32;list</span></code>
+                       - 
+                      The address within the game as an int list type.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        nag
+                      </b>
+                      :
+                      <code><a href="/Grampus/reference/grampus-types-nag.html">NAG</a></code>
+                       - 
+                      The NAG as a NAG type.
+                    </span>
+                    <br/>
+                  </ul>
                   <br/>
                   <span>
                     Returns: 
-                    <code><span><a href="/Grampus/reference/grampus-types-encodedgame.html">EncodedGame</a>&#32;->&#32;<span>int&#32;list</span>&#32;->&#32;<a href="/Grampus/reference/grampus-types-nag.html">NAG</a>&#32;->&#32;<a href="/Grampus/reference/grampus-types-encodedgame.html">EncodedGame</a></span></code>
+                    <code><a href="/Grampus/reference/grampus-types-encodedgame.html">EncodedGame</a></code>
                   </span>
+                  The changed Encoded Game.
                   <br/>
                 </div>
               </div>
@@ -195,22 +232,64 @@ Adds an EncodedMove to the Game given its address
           </td>
           <td class="fsdocs-xmldoc">
             <p class="fsdocs-summary">
-              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L183-183" class="fsdocs-source-link">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L199-199" class="fsdocs-source-link">
                 <img src="/Grampus/content/img/github.png" class="normal"/>
                 <img src="/Grampus/content/img/github-blue.png" class="hover"/>
               </a>
               
-Adds a Nag in the EncodedGame after the address provided
-
+ Adds a NAG in the EncodedGame after the address provided.
+ 
             </p>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  gm
+                </span>
+                :
+                <code><a href="/Grampus/reference/grampus-types-encodedgame.html">EncodedGame</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  The Encoded Game.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  irs
+                </span>
+                :
+                <code><span>int&#32;list</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  The address within the game as an int list type.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  nag
+                </span>
+                :
+                <code><a href="/Grampus/reference/grampus-types-nag.html">NAG</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  The NAG as a NAG type.
+                </p>
+              </dd>
+            </dl>
             <dl class="fsdocs-returns">
               <dt>
                 <span class="fsdocs-return-name">
                   Returns:
                 </span>
-                <code><span><a href="/Grampus/reference/grampus-types-encodedgame.html">EncodedGame</a>&#32;->&#32;<span>int&#32;list</span>&#32;->&#32;<a href="/Grampus/reference/grampus-types-nag.html">NAG</a>&#32;->&#32;<a href="/Grampus/reference/grampus-types-encodedgame.html">EncodedGame</a></span></code>
+                <code><a href="/Grampus/reference/grampus-types-encodedgame.html">EncodedGame</a></code>
               </dt>
-              <dd class="fsdocs-return-docs"></dd>
+              <dd class="fsdocs-return-docs">
+                <p>
+                  The changed Encoded Game.
+                </p>
+              </dd>
             </dl>
           </td>
         </tr>
@@ -243,7 +322,7 @@ Adds a Nag in the EncodedGame after the address provided
           </td>
           <td class="fsdocs-xmldoc">
             <p class="fsdocs-summary">
-              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L201-201" class="fsdocs-source-link">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L228-228" class="fsdocs-source-link">
                 <img src="/Grampus/content/img/github.png" class="normal"/>
                 <img src="/Grampus/content/img/github-blue.png" class="hover"/>
               </a>
@@ -291,7 +370,7 @@ Adds a RAV to the Game given the Encoded Move is contains and its address
           </td>
           <td class="fsdocs-xmldoc">
             <p class="fsdocs-summary">
-              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L213-213" class="fsdocs-source-link">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L240-240" class="fsdocs-source-link">
                 <img src="/Grampus/content/img/github.png" class="normal"/>
                 <img src="/Grampus/content/img/github-blue.png" class="hover"/>
               </a>
@@ -339,7 +418,7 @@ Adds a comment to the Encoded Game after the address provided
           </td>
           <td class="fsdocs-xmldoc">
             <p class="fsdocs-summary">
-              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L210-210" class="fsdocs-source-link">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L237-237" class="fsdocs-source-link">
                 <img src="/Grampus/content/img/github.png" class="normal"/>
                 <img src="/Grampus/content/img/github-blue.png" class="hover"/>
               </a>
@@ -387,7 +466,7 @@ Adds a comment to the Encoded Game before the address provided
           </td>
           <td class="fsdocs-xmldoc">
             <p class="fsdocs-summary">
-              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L228-228" class="fsdocs-source-link">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L255-255" class="fsdocs-source-link">
                 <img src="/Grampus/content/img/github.png" class="normal"/>
                 <img src="/Grampus/content/img/github-blue.png" class="hover"/>
               </a>
@@ -435,7 +514,7 @@ Compresses an Encoded Game
           </td>
           <td class="fsdocs-xmldoc">
             <p class="fsdocs-summary">
-              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L219-219" class="fsdocs-source-link">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L246-246" class="fsdocs-source-link">
                 <img src="/Grampus/content/img/github.png" class="normal"/>
                 <img src="/Grampus/content/img/github-blue.png" class="hover"/>
               </a>
@@ -461,7 +540,7 @@ Deletes a comment in the Encoded Game at the address provided
                 <p>
                   <a id="DeleteNag">
                     <a href="#DeleteNag">
-                      <code><span>DeleteNag&#32;<span></span></span></code>
+                      <code><span>DeleteNag&#32;<span>gm&#32;irs</span></span></code>
                     </a>
                   </a>
                 </p>
@@ -469,13 +548,38 @@ Deletes a comment in the Encoded Game at the address provided
               <div class="fsdocs-tip" id="21">
                 <div class="member-tooltip">
                   Full Usage: 
-                  <code><span>DeleteNag&#32;<span></span></span></code>
+                  <code><span>DeleteNag&#32;<span>gm&#32;irs</span></span></code>
                   <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        gm
+                      </b>
+                      :
+                      <code><a href="/Grampus/reference/grampus-types-encodedgame.html">EncodedGame</a></code>
+                       - 
+                      The Encoded Game.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        irs
+                      </b>
+                      :
+                      <code><span>int&#32;list</span></code>
+                       - 
+                      The address within the game as an int list type.
+                    </span>
+                    <br/>
+                  </ul>
                   <br/>
                   <span>
                     Returns: 
-                    <code><span><a href="/Grampus/reference/grampus-types-encodedgame.html">EncodedGame</a>&#32;->&#32;<span>int&#32;list</span>&#32;->&#32;<a href="/Grampus/reference/grampus-types-encodedgame.html">EncodedGame</a></span></code>
+                    <code><a href="/Grampus/reference/grampus-types-encodedgame.html">EncodedGame</a></code>
                   </span>
+                  The changed Encoded Game.
                   <br/>
                 </div>
               </div>
@@ -483,22 +587,52 @@ Deletes a comment in the Encoded Game at the address provided
           </td>
           <td class="fsdocs-xmldoc">
             <p class="fsdocs-summary">
-              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L186-186" class="fsdocs-source-link">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L207-207" class="fsdocs-source-link">
                 <img src="/Grampus/content/img/github.png" class="normal"/>
                 <img src="/Grampus/content/img/github-blue.png" class="hover"/>
               </a>
               
-Deletes a Nag in the Encoded Game at the address provided
-
+ Deletes a NAG in the Encoded Game at the address provided.
+ 
             </p>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  gm
+                </span>
+                :
+                <code><a href="/Grampus/reference/grampus-types-encodedgame.html">EncodedGame</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  The Encoded Game.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  irs
+                </span>
+                :
+                <code><span>int&#32;list</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  The address within the game as an int list type.
+                </p>
+              </dd>
+            </dl>
             <dl class="fsdocs-returns">
               <dt>
                 <span class="fsdocs-return-name">
                   Returns:
                 </span>
-                <code><span><a href="/Grampus/reference/grampus-types-encodedgame.html">EncodedGame</a>&#32;->&#32;<span>int&#32;list</span>&#32;->&#32;<a href="/Grampus/reference/grampus-types-encodedgame.html">EncodedGame</a></span></code>
+                <code><a href="/Grampus/reference/grampus-types-encodedgame.html">EncodedGame</a></code>
               </dt>
-              <dd class="fsdocs-return-docs"></dd>
+              <dd class="fsdocs-return-docs">
+                <p>
+                  The changed Encoded Game.
+                </p>
+              </dd>
             </dl>
           </td>
         </tr>
@@ -531,7 +665,7 @@ Deletes a Nag in the Encoded Game at the address provided
           </td>
           <td class="fsdocs-xmldoc">
             <p class="fsdocs-summary">
-              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L204-204" class="fsdocs-source-link">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L231-231" class="fsdocs-source-link">
                 <img src="/Grampus/content/img/github.png" class="normal"/>
                 <img src="/Grampus/content/img/github-blue.png" class="hover"/>
               </a>
@@ -579,7 +713,7 @@ Deletes a RAV in the EncodedGame at the address provided
           </td>
           <td class="fsdocs-xmldoc">
             <p class="fsdocs-summary">
-              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L216-216" class="fsdocs-source-link">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L243-243" class="fsdocs-source-link">
                 <img src="/Grampus/content/img/github.png" class="normal"/>
                 <img src="/Grampus/content/img/github-blue.png" class="hover"/>
               </a>
@@ -605,7 +739,7 @@ Edits a comment to the Encoded Game at the address provided
                 <p>
                   <a id="EditNag">
                     <a href="#EditNag">
-                      <code><span>EditNag&#32;<span></span></span></code>
+                      <code><span>EditNag&#32;<span>gm&#32;irs&#32;nag</span></span></code>
                     </a>
                   </a>
                 </p>
@@ -613,13 +747,48 @@ Edits a comment to the Encoded Game at the address provided
               <div class="fsdocs-tip" id="24">
                 <div class="member-tooltip">
                   Full Usage: 
-                  <code><span>EditNag&#32;<span></span></span></code>
+                  <code><span>EditNag&#32;<span>gm&#32;irs&#32;nag</span></span></code>
                   <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        gm
+                      </b>
+                      :
+                      <code><a href="/Grampus/reference/grampus-types-encodedgame.html">EncodedGame</a></code>
+                       - 
+                      The Encoded Game.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        irs
+                      </b>
+                      :
+                      <code><span>int&#32;list</span></code>
+                       - 
+                      The address within the game as an int list type.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        nag
+                      </b>
+                      :
+                      <code><a href="/Grampus/reference/grampus-types-nag.html">NAG</a></code>
+                       - 
+                      The NAG as a NAG type.
+                    </span>
+                    <br/>
+                  </ul>
                   <br/>
                   <span>
                     Returns: 
-                    <code><span><a href="/Grampus/reference/grampus-types-encodedgame.html">EncodedGame</a>&#32;->&#32;<span>int&#32;list</span>&#32;->&#32;<a href="/Grampus/reference/grampus-types-nag.html">NAG</a>&#32;->&#32;<a href="/Grampus/reference/grampus-types-encodedgame.html">EncodedGame</a></span></code>
+                    <code><a href="/Grampus/reference/grampus-types-encodedgame.html">EncodedGame</a></code>
                   </span>
+                  The changed Encoded Game.
                   <br/>
                 </div>
               </div>
@@ -627,22 +796,64 @@ Edits a comment to the Encoded Game at the address provided
           </td>
           <td class="fsdocs-xmldoc">
             <p class="fsdocs-summary">
-              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L189-189" class="fsdocs-source-link">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L216-216" class="fsdocs-source-link">
                 <img src="/Grampus/content/img/github.png" class="normal"/>
                 <img src="/Grampus/content/img/github-blue.png" class="hover"/>
               </a>
               
-Edits a Nag in the Encoded Game at the address provided
-
+ Edits a NAG in the Encoded Game at the address provided.
+ 
             </p>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  gm
+                </span>
+                :
+                <code><a href="/Grampus/reference/grampus-types-encodedgame.html">EncodedGame</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  The Encoded Game.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  irs
+                </span>
+                :
+                <code><span>int&#32;list</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  The address within the game as an int list type.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  nag
+                </span>
+                :
+                <code><a href="/Grampus/reference/grampus-types-nag.html">NAG</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  The NAG as a NAG type.
+                </p>
+              </dd>
+            </dl>
             <dl class="fsdocs-returns">
               <dt>
                 <span class="fsdocs-return-name">
                   Returns:
                 </span>
-                <code><span><a href="/Grampus/reference/grampus-types-encodedgame.html">EncodedGame</a>&#32;->&#32;<span>int&#32;list</span>&#32;->&#32;<a href="/Grampus/reference/grampus-types-nag.html">NAG</a>&#32;->&#32;<a href="/Grampus/reference/grampus-types-encodedgame.html">EncodedGame</a></span></code>
+                <code><a href="/Grampus/reference/grampus-types-encodedgame.html">EncodedGame</a></code>
               </dt>
-              <dd class="fsdocs-return-docs"></dd>
+              <dd class="fsdocs-return-docs">
+                <p>
+                  The changed Encoded Game.
+                </p>
+              </dd>
             </dl>
           </td>
         </tr>
@@ -675,7 +886,7 @@ Edits a Nag in the Encoded Game at the address provided
           </td>
           <td class="fsdocs-xmldoc">
             <p class="fsdocs-summary">
-              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L195-195" class="fsdocs-source-link">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L222-222" class="fsdocs-source-link">
                 <img src="/Grampus/content/img/github.png" class="normal"/>
                 <img src="/Grampus/content/img/github-blue.png" class="hover"/>
               </a>
@@ -723,7 +934,7 @@ Encodes the Game
           </td>
           <td class="fsdocs-xmldoc">
             <p class="fsdocs-summary">
-              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L231-231" class="fsdocs-source-link">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L258-258" class="fsdocs-source-link">
                 <img src="/Grampus/content/img/github.png" class="normal"/>
                 <img src="/Grampus/content/img/github-blue.png" class="hover"/>
               </a>
@@ -771,7 +982,7 @@ Expands a Compressed Game
           </td>
           <td class="fsdocs-xmldoc">
             <p class="fsdocs-summary">
-              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L222-222" class="fsdocs-source-link">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L249-249" class="fsdocs-source-link">
                 <img src="/Grampus/content/img/github.png" class="normal"/>
                 <img src="/Grampus/content/img/github-blue.png" class="hover"/>
               </a>
@@ -819,7 +1030,7 @@ Get from a PGN string
           </td>
           <td class="fsdocs-xmldoc">
             <p class="fsdocs-summary">
-              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L237-237" class="fsdocs-source-link">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L264-264" class="fsdocs-source-link">
                 <img src="/Grampus/content/img/github.png" class="normal"/>
                 <img src="/Grampus/content/img/github-blue.png" class="hover"/>
               </a>
@@ -867,7 +1078,7 @@ Gets the Positionsup to the specified ply
           </td>
           <td class="fsdocs-xmldoc">
             <p class="fsdocs-summary">
-              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L234-234" class="fsdocs-source-link">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L261-261" class="fsdocs-source-link">
                 <img src="/Grampus/content/img/github.png" class="normal"/>
                 <img src="/Grampus/content/img/github-blue.png" class="hover"/>
               </a>
@@ -891,54 +1102,6 @@ Gets the Positions and Sans up to the specified ply
             <div>
               <code onmouseout="hideTip(event, '30', 30)" onmouseover="showTip(event, '30', 30)">
                 <p>
-                  <a id="MoveStr">
-                    <a href="#MoveStr">
-                      <code><span>MoveStr&#32;<span></span></span></code>
-                    </a>
-                  </a>
-                </p>
-              </code>
-              <div class="fsdocs-tip" id="30">
-                <div class="member-tooltip">
-                  Full Usage: 
-                  <code><span>MoveStr&#32;<span></span></span></code>
-                  <br/>
-                  <br/>
-                  <span>
-                    Returns: 
-                    <code><span><a href="/Grampus/reference/grampus-types-unencodedmovetextentry.html">UnencodedMoveTextEntry</a>&#32;->&#32;string</span></code>
-                  </span>
-                  <br/>
-                </div>
-              </div>
-            </div>
-          </td>
-          <td class="fsdocs-xmldoc">
-            <p class="fsdocs-summary">
-              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L165-165" class="fsdocs-source-link">
-                <img src="/Grampus/content/img/github.png" class="normal"/>
-                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
-              </a>
-              
-Gets a single move as a string given one of the list from Game.MoveText
-
-            </p>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns:
-                </span>
-                <code><span><a href="/Grampus/reference/grampus-types-unencodedmovetextentry.html">UnencodedMoveTextEntry</a>&#32;->&#32;string</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
-          </td>
-        </tr>
-        <tr>
-          <td class="fsdocs-member-name">
-            <div>
-              <code onmouseout="hideTip(event, '31', 31)" onmouseover="showTip(event, '31', 31)">
-                <p>
                   <a id="MovesStr">
                     <a href="#MovesStr">
                       <code><span>MovesStr&#32;<span></span></span></code>
@@ -946,7 +1109,7 @@ Gets a single move as a string given one of the list from Game.MoveText
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="31">
+              <div class="fsdocs-tip" id="30">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>MovesStr&#32;<span></span></span></code>
@@ -963,7 +1126,7 @@ Gets a single move as a string given one of the list from Game.MoveText
           </td>
           <td class="fsdocs-xmldoc">
             <p class="fsdocs-summary">
-              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L192-192" class="fsdocs-source-link">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L219-219" class="fsdocs-source-link">
                 <img src="/Grampus/content/img/github.png" class="normal"/>
                 <img src="/Grampus/content/img/github-blue.png" class="hover"/>
               </a>
@@ -985,25 +1148,40 @@ Gets the moves text as a string given the Game.MoveText
         <tr>
           <td class="fsdocs-member-name">
             <div>
-              <code onmouseout="hideTip(event, '32', 32)" onmouseover="showTip(event, '32', 32)">
+              <code onmouseout="hideTip(event, '31', 31)" onmouseover="showTip(event, '31', 31)">
                 <p>
                   <a id="NAGDesc">
                     <a href="#NAGDesc">
-                      <code><span>NAGDesc&#32;<span></span></span></code>
+                      <code><span>NAGDesc&#32;<span>nag</span></span></code>
                     </a>
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="32">
+              <div class="fsdocs-tip" id="31">
                 <div class="member-tooltip">
                   Full Usage: 
-                  <code><span>NAGDesc&#32;<span></span></span></code>
+                  <code><span>NAGDesc&#32;<span>nag</span></span></code>
                   <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        nag
+                      </b>
+                      :
+                      <code><a href="/Grampus/reference/grampus-types-nag.html">NAG</a></code>
+                       - 
+                      The NAG as a NAG type.
+                    </span>
+                    <br/>
+                  </ul>
                   <br/>
                   <span>
                     Returns: 
-                    <code><span><a href="/Grampus/reference/grampus-types-nag.html">NAG</a>&#32;->&#32;string</span></code>
+                    <code>string</code>
                   </span>
+                  The NAG description.
                   <br/>
                 </div>
               </div>
@@ -1011,22 +1189,121 @@ Gets the moves text as a string given the Game.MoveText
           </td>
           <td class="fsdocs-xmldoc">
             <p class="fsdocs-summary">
-              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L177-177" class="fsdocs-source-link">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L187-187" class="fsdocs-source-link">
                 <img src="/Grampus/content/img/github.png" class="normal"/>
                 <img src="/Grampus/content/img/github-blue.png" class="hover"/>
               </a>
               
-Gets a NAG as a description such as Very Good given one of the list from Game.MoveText
-
+ Gets a NAG as a description such as Good given one of the list from Game.MoveText.
+ 
             </p>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  nag
+                </span>
+                :
+                <code><a href="/Grampus/reference/grampus-types-nag.html">NAG</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  The NAG as a NAG type.
+                </p>
+              </dd>
+            </dl>
             <dl class="fsdocs-returns">
               <dt>
                 <span class="fsdocs-return-name">
                   Returns:
                 </span>
-                <code><span><a href="/Grampus/reference/grampus-types-nag.html">NAG</a>&#32;->&#32;string</span></code>
+                <code>string</code>
               </dt>
-              <dd class="fsdocs-return-docs"></dd>
+              <dd class="fsdocs-return-docs">
+                <p>
+                  The NAG description.
+                </p>
+              </dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '32', 32)" onmouseover="showTip(event, '32', 32)">
+                <p>
+                  <a id="NAGFromStr">
+                    <a href="#NAGFromStr">
+                      <code><span>NAGFromStr&#32;<span>str</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="32">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>NAGFromStr&#32;<span>str</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        str
+                      </b>
+                      :
+                      <code>string</code>
+                       - 
+                      The NAG string.
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="/Grampus/reference/grampus-types-nag.html">NAG</a></code>
+                  </span>
+                  The NAG type, such as NAG.Good.
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L173-173" class="fsdocs-source-link">
+                <img src="/Grampus/content/img/github.png" class="normal"/>
+                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+ Gets a NAG from a string such as ??.
+ 
+            </p>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  str
+                </span>
+                :
+                <code>string</code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  The NAG string.
+                </p>
+              </dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns:
+                </span>
+                <code><a href="/Grampus/reference/grampus-types-nag.html">NAG</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs">
+                <p>
+                  The NAG type, such as NAG.Good.
+                </p>
+              </dd>
             </dl>
           </td>
         </tr>
@@ -1035,9 +1312,9 @@ Gets a NAG as a description such as Very Good given one of the list from Game.Mo
             <div>
               <code onmouseout="hideTip(event, '33', 33)" onmouseover="showTip(event, '33', 33)">
                 <p>
-                  <a id="NAGFromStr">
-                    <a href="#NAGFromStr">
-                      <code><span>NAGFromStr&#32;<span></span></span></code>
+                  <a id="NAGHtm">
+                    <a href="#NAGHtm">
+                      <code><span>NAGHtm&#32;<span>nag</span></span></code>
                     </a>
                   </a>
                 </p>
@@ -1045,13 +1322,28 @@ Gets a NAG as a description such as Very Good given one of the list from Game.Mo
               <div class="fsdocs-tip" id="33">
                 <div class="member-tooltip">
                   Full Usage: 
-                  <code><span>NAGFromStr&#32;<span></span></span></code>
+                  <code><span>NAGHtm&#32;<span>nag</span></span></code>
                   <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        nag
+                      </b>
+                      :
+                      <code><a href="/Grampus/reference/grampus-types-nag.html">NAG</a></code>
+                       - 
+                      The NAG as a NAG type.
+                    </span>
+                    <br/>
+                  </ul>
                   <br/>
                   <span>
                     Returns: 
-                    <code><span>string&#32;->&#32;<a href="/Grampus/reference/grampus-types-nag.html">NAG</a></span></code>
+                    <code>string</code>
                   </span>
+                  The NAG HTML string.
                   <br/>
                 </div>
               </div>
@@ -1059,22 +1351,40 @@ Gets a NAG as a description such as Very Good given one of the list from Game.Mo
           </td>
           <td class="fsdocs-xmldoc">
             <p class="fsdocs-summary">
-              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L171-171" class="fsdocs-source-link">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L180-180" class="fsdocs-source-link">
                 <img src="/Grampus/content/img/github.png" class="normal"/>
                 <img src="/Grampus/content/img/github-blue.png" class="hover"/>
               </a>
               
-Gets a NAG from a string such as ?? 
-
+ Gets a NAG as HTML such as ?? given one of the list from Game.MoveText.
+ 
             </p>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  nag
+                </span>
+                :
+                <code><a href="/Grampus/reference/grampus-types-nag.html">NAG</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  The NAG as a NAG type.
+                </p>
+              </dd>
+            </dl>
             <dl class="fsdocs-returns">
               <dt>
                 <span class="fsdocs-return-name">
                   Returns:
                 </span>
-                <code><span>string&#32;->&#32;<a href="/Grampus/reference/grampus-types-nag.html">NAG</a></span></code>
+                <code>string</code>
               </dt>
-              <dd class="fsdocs-return-docs"></dd>
+              <dd class="fsdocs-return-docs">
+                <p>
+                  The NAG HTML string.
+                </p>
+              </dd>
             </dl>
           </td>
         </tr>
@@ -1083,9 +1393,9 @@ Gets a NAG from a string such as ??
             <div>
               <code onmouseout="hideTip(event, '34', 34)" onmouseover="showTip(event, '34', 34)">
                 <p>
-                  <a id="NAGHtm">
-                    <a href="#NAGHtm">
-                      <code><span>NAGHtm&#32;<span></span></span></code>
+                  <a id="NAGStr">
+                    <a href="#NAGStr">
+                      <code><span>NAGStr&#32;<span>nag</span></span></code>
                     </a>
                   </a>
                 </p>
@@ -1093,13 +1403,28 @@ Gets a NAG from a string such as ??
               <div class="fsdocs-tip" id="34">
                 <div class="member-tooltip">
                   Full Usage: 
-                  <code><span>NAGHtm&#32;<span></span></span></code>
+                  <code><span>NAGStr&#32;<span>nag</span></span></code>
                   <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        nag
+                      </b>
+                      :
+                      <code><a href="/Grampus/reference/grampus-types-nag.html">NAG</a></code>
+                       - 
+                      The NAG as a NAG type.
+                    </span>
+                    <br/>
+                  </ul>
                   <br/>
                   <span>
                     Returns: 
-                    <code><span><a href="/Grampus/reference/grampus-types-nag.html">NAG</a>&#32;->&#32;string</span></code>
+                    <code>string</code>
                   </span>
+                  The NAG string.
                   <br/>
                 </div>
               </div>
@@ -1107,22 +1432,40 @@ Gets a NAG from a string such as ??
           </td>
           <td class="fsdocs-xmldoc">
             <p class="fsdocs-summary">
-              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L174-174" class="fsdocs-source-link">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L166-166" class="fsdocs-source-link">
                 <img src="/Grampus/content/img/github.png" class="normal"/>
                 <img src="/Grampus/content/img/github-blue.png" class="hover"/>
               </a>
               
-Gets a NAG as HTML such as ?? given one of the list from Game.MoveText
-
+ Gets a NAG as a string such as ?? given one of the list from Game.MoveText.
+ 
             </p>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  nag
+                </span>
+                :
+                <code><a href="/Grampus/reference/grampus-types-nag.html">NAG</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  The NAG as a NAG type.
+                </p>
+              </dd>
+            </dl>
             <dl class="fsdocs-returns">
               <dt>
                 <span class="fsdocs-return-name">
                   Returns:
                 </span>
-                <code><span><a href="/Grampus/reference/grampus-types-nag.html">NAG</a>&#32;->&#32;string</span></code>
+                <code>string</code>
               </dt>
-              <dd class="fsdocs-return-docs"></dd>
+              <dd class="fsdocs-return-docs">
+                <p>
+                  The NAG string.
+                </p>
+              </dd>
             </dl>
           </td>
         </tr>
@@ -1131,54 +1474,6 @@ Gets a NAG as HTML such as ?? given one of the list from Game.MoveText
             <div>
               <code onmouseout="hideTip(event, '35', 35)" onmouseover="showTip(event, '35', 35)">
                 <p>
-                  <a id="NAGStr">
-                    <a href="#NAGStr">
-                      <code><span>NAGStr&#32;<span></span></span></code>
-                    </a>
-                  </a>
-                </p>
-              </code>
-              <div class="fsdocs-tip" id="35">
-                <div class="member-tooltip">
-                  Full Usage: 
-                  <code><span>NAGStr&#32;<span></span></span></code>
-                  <br/>
-                  <br/>
-                  <span>
-                    Returns: 
-                    <code><span><a href="/Grampus/reference/grampus-types-nag.html">NAG</a>&#32;->&#32;string</span></code>
-                  </span>
-                  <br/>
-                </div>
-              </div>
-            </div>
-          </td>
-          <td class="fsdocs-xmldoc">
-            <p class="fsdocs-summary">
-              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L168-168" class="fsdocs-source-link">
-                <img src="/Grampus/content/img/github.png" class="normal"/>
-                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
-              </a>
-              
-Gets a NAG as a string such as ?? given one of the list from Game.MoveText
-
-            </p>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns:
-                </span>
-                <code><span><a href="/Grampus/reference/grampus-types-nag.html">NAG</a>&#32;->&#32;string</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
-          </td>
-        </tr>
-        <tr>
-          <td class="fsdocs-member-name">
-            <div>
-              <code onmouseout="hideTip(event, '36', 36)" onmouseover="showTip(event, '36', 36)">
-                <p>
                   <a id="NAGlist">
                     <a href="#NAGlist">
                       <code><span>NAGlist&#32;<span></span></span></code>
@@ -1186,7 +1481,7 @@ Gets a NAG as a string such as ?? given one of the list from Game.MoveText
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="36">
+              <div class="fsdocs-tip" id="35">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>NAGlist&#32;<span></span></span></code>
@@ -1203,7 +1498,7 @@ Gets a NAG as a string such as ?? given one of the list from Game.MoveText
           </td>
           <td class="fsdocs-xmldoc">
             <p class="fsdocs-summary">
-              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L180-180" class="fsdocs-source-link">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L190-190" class="fsdocs-source-link">
                 <img src="/Grampus/content/img/github.png" class="normal"/>
                 <img src="/Grampus/content/img/github-blue.png" class="hover"/>
               </a>
@@ -1225,103 +1520,7 @@ Gets a list of all NAGs supported
         <tr>
           <td class="fsdocs-member-name">
             <div>
-              <code onmouseout="hideTip(event, '37', 37)" onmouseover="showTip(event, '37', 37)">
-                <p>
-                  <a id="Pop">
-                    <a href="#Pop">
-                      <code><span>Pop&#32;<span></span></span></code>
-                    </a>
-                  </a>
-                </p>
-              </code>
-              <div class="fsdocs-tip" id="37">
-                <div class="member-tooltip">
-                  Full Usage: 
-                  <code><span>Pop&#32;<span></span></span></code>
-                  <br/>
-                  <br/>
-                  <span>
-                    Returns: 
-                    <code><span><a href="/Grampus/reference/grampus-types-unencodedgame.html">UnencodedGame</a>&#32;->&#32;<a href="/Grampus/reference/grampus-types-unencodedgame.html">UnencodedGame</a></span></code>
-                  </span>
-                  <br/>
-                </div>
-              </div>
-            </div>
-          </td>
-          <td class="fsdocs-xmldoc">
-            <p class="fsdocs-summary">
-              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L162-162" class="fsdocs-source-link">
-                <img src="/Grampus/content/img/github.png" class="normal"/>
-                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
-              </a>
-              
-Pops a move of the end for this Game and return the new Game
-
-            </p>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns:
-                </span>
-                <code><span><a href="/Grampus/reference/grampus-types-unencodedgame.html">UnencodedGame</a>&#32;->&#32;<a href="/Grampus/reference/grampus-types-unencodedgame.html">UnencodedGame</a></span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
-          </td>
-        </tr>
-        <tr>
-          <td class="fsdocs-member-name">
-            <div>
-              <code onmouseout="hideTip(event, '38', 38)" onmouseover="showTip(event, '38', 38)">
-                <p>
-                  <a id="PushSAN">
-                    <a href="#PushSAN">
-                      <code><span>PushSAN&#32;<span></span></span></code>
-                    </a>
-                  </a>
-                </p>
-              </code>
-              <div class="fsdocs-tip" id="38">
-                <div class="member-tooltip">
-                  Full Usage: 
-                  <code><span>PushSAN&#32;<span></span></span></code>
-                  <br/>
-                  <br/>
-                  <span>
-                    Returns: 
-                    <code><span>string&#32;->&#32;<a href="/Grampus/reference/grampus-types-unencodedgame.html">UnencodedGame</a>&#32;->&#32;<a href="/Grampus/reference/grampus-types-unencodedgame.html">UnencodedGame</a></span></code>
-                  </span>
-                  <br/>
-                </div>
-              </div>
-            </div>
-          </td>
-          <td class="fsdocs-xmldoc">
-            <p class="fsdocs-summary">
-              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L159-159" class="fsdocs-source-link">
-                <img src="/Grampus/content/img/github.png" class="normal"/>
-                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
-              </a>
-              
-Make a SAN Move such as Nf3 for this Game and return the new Game
-
-            </p>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns:
-                </span>
-                <code><span>string&#32;->&#32;<a href="/Grampus/reference/grampus-types-unencodedgame.html">UnencodedGame</a>&#32;->&#32;<a href="/Grampus/reference/grampus-types-unencodedgame.html">UnencodedGame</a></span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
-          </td>
-        </tr>
-        <tr>
-          <td class="fsdocs-member-name">
-            <div>
-              <code onmouseout="hideTip(event, '39', 39)" onmouseover="showTip(event, '39', 39)">
+              <code onmouseout="hideTip(event, '36', 36)" onmouseover="showTip(event, '36', 36)">
                 <p>
                   <a id="Start">
                     <a href="#Start">
@@ -1330,7 +1529,7 @@ Make a SAN Move such as Nf3 for this Game and return the new Game
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="39">
+              <div class="fsdocs-tip" id="36">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>Start&#32;<span></span></span></code>
@@ -1347,7 +1546,7 @@ Make a SAN Move such as Nf3 for this Game and return the new Game
           </td>
           <td class="fsdocs-xmldoc">
             <p class="fsdocs-summary">
-              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L156-156" class="fsdocs-source-link">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L159-159" class="fsdocs-source-link">
                 <img src="/Grampus/content/img/github.png" class="normal"/>
                 <img src="/Grampus/content/img/github-blue.png" class="hover"/>
               </a>
@@ -1369,7 +1568,7 @@ The starting Game with no moves
         <tr>
           <td class="fsdocs-member-name">
             <div>
-              <code onmouseout="hideTip(event, '40', 40)" onmouseover="showTip(event, '40', 40)">
+              <code onmouseout="hideTip(event, '37', 37)" onmouseover="showTip(event, '37', 37)">
                 <p>
                   <a id="Strip">
                     <a href="#Strip">
@@ -1378,7 +1577,7 @@ The starting Game with no moves
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="40">
+              <div class="fsdocs-tip" id="37">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>Strip&#32;<span></span></span></code>
@@ -1395,7 +1594,7 @@ The starting Game with no moves
           </td>
           <td class="fsdocs-xmldoc">
             <p class="fsdocs-summary">
-              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L207-207" class="fsdocs-source-link">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L234-234" class="fsdocs-source-link">
                 <img src="/Grampus/content/img/github.png" class="normal"/>
                 <img src="/Grampus/content/img/github-blue.png" class="hover"/>
               </a>
@@ -1417,7 +1616,7 @@ Strips moves until end of game at the address provided
         <tr>
           <td class="fsdocs-member-name">
             <div>
-              <code onmouseout="hideTip(event, '41', 41)" onmouseover="showTip(event, '41', 41)">
+              <code onmouseout="hideTip(event, '38', 38)" onmouseover="showTip(event, '38', 38)">
                 <p>
                   <a id="ToStr">
                     <a href="#ToStr">
@@ -1426,7 +1625,7 @@ Strips moves until end of game at the address provided
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="41">
+              <div class="fsdocs-tip" id="38">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>ToStr&#32;<span></span></span></code>
@@ -1443,7 +1642,7 @@ Strips moves until end of game at the address provided
           </td>
           <td class="fsdocs-xmldoc">
             <p class="fsdocs-summary">
-              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L225-225" class="fsdocs-source-link">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L252-252" class="fsdocs-source-link">
                 <img src="/Grampus/content/img/github.png" class="normal"/>
                 <img src="/Grampus/content/img/github-blue.png" class="hover"/>
               </a>
