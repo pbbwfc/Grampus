@@ -79,11 +79,13 @@ module Board =
     /// <returns>The list of all possible moves.</returns>
     let PossMoves bd sq = GrampusInternal.MoveGenerate.PossMoves bd sq
     
-    ///Make an encoded Move for this Board and return the new Board
-    let Push = GrampusInternal.Board.MoveApply
-    
-    ///Make a SAN Move such as Nf3 for this Board and return the new Board
-    let PushSAN = GrampusInternal.MoveUtil.ApplySAN
+    /// <summary>
+    /// Make an encoded Move for this Board and return the new Board.
+    /// </summary>
+    /// <param name="mv">The move as a Move type.</param>
+    /// <param name="bd">The Board as a Brd type.</param>
+    /// <returns>The new Board as a Brd type.</returns>
+    let Push mv bd = GrampusInternal.Board.MoveApply mv bd
     
     ///Is there a check on the Board
     let IsCheck = GrampusInternal.Board.IsChk
