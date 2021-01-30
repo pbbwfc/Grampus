@@ -86,27 +86,6 @@ module Board =
     /// <param name="bd">The Board as a Brd type.</param>
     /// <returns>The new Board as a Brd type.</returns>
     let Push mv bd = GrampusInternal.Board.MoveApply mv bd
-    
-    ///Is there a check on the Board
-    let IsCheck = GrampusInternal.Board.IsChk
-    
-    ///Is the current position on the Board checkmate?
-    let IsCheckMate = GrampusInternal.MoveGenerate.IsMate
-    
-    ///Is the current position on the Board stalemate?
-    let IsStaleMate = GrampusInternal.MoveGenerate.IsDrawByStalemate
-    
-    ///Is the Square attacked by the specified Player for this Board
-    let SquareAttacked = GrampusInternal.Board.SquareAttacked
-    
-    ///The Squares that attack the specified Square by the specified Player for this Board
-    let SquareAttackers = GrampusInternal.Board.SquareAttacksTo
-    
-    ///Creates a PNG image ith specified name, flipped if specified for the given Board 
-    let ToPng = GrampusInternal.Png.BoardToPng
-    
-    ///Prints an ASCII version of this Board 
-    let Print = GrampusInternal.Board.PrintAscii
 
 module Move =
     ///Get the source Square for an encoded Move
