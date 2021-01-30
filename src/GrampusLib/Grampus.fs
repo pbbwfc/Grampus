@@ -1,15 +1,16 @@
 namespace Grampus
 
-/// <summary>Holds the functions related to the Game Date.</summary>
-module GameDate =
-    /// <summary>Gets the string symbol for a Date.</summary>
-    /// <param name="gm">The encoded game.</param>
-    /// <returns>The date as a string, such as 2020.01.01</returns>
-    let ToStr(gm) = GrampusInternal.DateUtil.ToStr2(gm)
-
+/// <summary>
+/// Holds the functions related to the Game Result.
+/// </summary>
 module Result =
-    ///Gets the string symbol for a Result
-    let ToStr = GrampusInternal.GameResult.ToStr
+    
+    /// <summary>
+    /// Gets the string symbol for a Result
+    /// </summary>
+    /// <param name="result">The Game Result.</param>
+    /// <returns>The result as a string, such as 1-0</returns>
+    let ToStr(result) = GrampusInternal.GameResult.ToStr(result)
     
     ///Gets the GameResult type from a string
     let Parse = GrampusInternal.GameResult.Parse
