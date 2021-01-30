@@ -4,7 +4,6 @@ namespace Grampus
 /// Holds the functions related to the Game Result.
 /// </summary>
 module Result =
-    
     /// <summary>
     /// Gets the string symbol for a Result
     /// </summary>
@@ -12,14 +11,19 @@ module Result =
     /// <returns>The result as a string, such as 1-0</returns>
     let ToStr(result) = GrampusInternal.GameResult.ToStr(result)
     
-    ///Gets the GameResult type from a string
-    let Parse = GrampusInternal.GameResult.Parse
+    /// <summary>
+    /// Gets the GameResult type from a string
+    /// </summary>
+    /// <param name="str">The string results such as 1-0.</param>
+    /// <returns>The Game Result, such as GameResult.WhiteWins</returns>
+    let Parse(str) = GrampusInternal.GameResult.Parse(str)
     
-    ///Gets the integer value (2 for white win, 0 for blackwin, 1 otherwise) for a Result
-    let ToInt = GrampusInternal.GameResult.ToInt
-    
-    ///Gets the string symbol for a Result
-    let ToUnicode = GrampusInternal.GameResult.ToUnicode
+    /// <summary>
+    /// Gets the integer value (2 for white win, 0 for blackwin, 1 otherwise) for a Result
+    /// </summary>
+    /// <param name="str">The Game Result.</param>
+    /// <returns>The result as an int, such as 2 for white win</returns>
+    let ToInt(result) = GrampusInternal.GameResult.ToInt(result)
 
 module Square =
     ///Gets the File for a Square

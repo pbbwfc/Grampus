@@ -1,6 +1,6 @@
 cd /d d:\github\grampus\src
-rem fantomas GrampusLib
+fantomas GrampusLib
 rem fantomas Grampus
 rem fantomas GrampusBatch
-fantomas GrampusWinForms
+rem fantomas GrampusWinForms
 pause

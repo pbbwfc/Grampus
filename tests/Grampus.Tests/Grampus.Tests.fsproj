@@ -12,6 +12,7 @@
     <Compile Include="Common.fs" />
     <Compile Include="CustomMatchers.fs" />
     <Compile Include="FsUnit.fs" />
+    <Compile Include="Result.fs" />
     <Compile Include="Board.fs" />
     <Compile Include="Game.fs" />
     <Compile Include="MoveEntry.fs" />
