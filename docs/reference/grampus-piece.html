@@ -101,6 +101,8 @@
   </p>
   <div class="fsdocs-xmldoc">
     
+ Holds the functions related to a Piece.
+ 
   </div>
   <div>
     <h3>
@@ -121,73 +123,40 @@
         <tr>
           <td class="fsdocs-member-name">
             <div>
-              <code onmouseout="hideTip(event, '79', 79)" onmouseover="showTip(event, '79', 79)">
-                <p>
-                  <a id="ToPlayer">
-                    <a href="#ToPlayer">
-                      <code><span>ToPlayer&#32;<span></span></span></code>
-                    </a>
-                  </a>
-                </p>
-              </code>
-              <div class="fsdocs-tip" id="79">
-                <div class="member-tooltip">
-                  Full Usage: 
-                  <code><span>ToPlayer&#32;<span></span></span></code>
-                  <br/>
-                  <br/>
-                  <span>
-                    Returns: 
-                    <code><span><a href="/Grampus/reference/grampus-types-piece.html">Piece</a>&#32;->&#32;<a href="/Grampus/reference/grampus-types-player.html">Player</a></span></code>
-                  </span>
-                  <br/>
-                </div>
-              </div>
-            </div>
-          </td>
-          <td class="fsdocs-xmldoc">
-            <p class="fsdocs-summary">
-              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L43-43" class="fsdocs-source-link">
-                <img src="/Grampus/content/img/github.png" class="normal"/>
-                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
-              </a>
-              
-Gets the player for a Piece
-
-            </p>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns:
-                </span>
-                <code><span><a href="/Grampus/reference/grampus-types-piece.html">Piece</a>&#32;->&#32;<a href="/Grampus/reference/grampus-types-player.html">Player</a></span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
-          </td>
-        </tr>
-        <tr>
-          <td class="fsdocs-member-name">
-            <div>
-              <code onmouseout="hideTip(event, '80', 80)" onmouseover="showTip(event, '80', 80)">
+              <code onmouseout="hideTip(event, '78', 78)" onmouseover="showTip(event, '78', 78)">
                 <p>
                   <a id="ToStr">
                     <a href="#ToStr">
-                      <code><span>ToStr&#32;<span></span></span></code>
+                      <code><span>ToStr&#32;<span>piece</span></span></code>
                     </a>
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="80">
+              <div class="fsdocs-tip" id="78">
                 <div class="member-tooltip">
                   Full Usage: 
-                  <code><span>ToStr&#32;<span></span></span></code>
+                  <code><span>ToStr&#32;<span>piece</span></span></code>
                   <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        piece
+                      </b>
+                      :
+                      <code><a href="/Grampus/reference/grampus-types-piece.html">Piece</a></code>
+                       - 
+                      The piece, such as Piece.WKnight.
+                    </span>
+                    <br/>
+                  </ul>
                   <br/>
                   <span>
                     Returns: 
-                    <code><span><a href="/Grampus/reference/grampus-types-piece.html">Piece</a>&#32;->&#32;string</span></code>
+                    <code>string</code>
                   </span>
+                  The result as a string, such as N.
                   <br/>
                 </div>
               </div>
@@ -195,22 +164,40 @@ Gets the player for a Piece
           </td>
           <td class="fsdocs-xmldoc">
             <p class="fsdocs-summary">
-              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L40-40" class="fsdocs-source-link">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L37-37" class="fsdocs-source-link">
                 <img src="/Grampus/content/img/github.png" class="normal"/>
                 <img src="/Grampus/content/img/github-blue.png" class="hover"/>
               </a>
               
-Gets the string symbol for a Piece
-
+ Gets the string symbol for a Piece.
+ 
             </p>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  piece
+                </span>
+                :
+                <code><a href="/Grampus/reference/grampus-types-piece.html">Piece</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  The piece, such as Piece.WKnight.
+                </p>
+              </dd>
+            </dl>
             <dl class="fsdocs-returns">
               <dt>
                 <span class="fsdocs-return-name">
                   Returns:
                 </span>
-                <code><span><a href="/Grampus/reference/grampus-types-piece.html">Piece</a>&#32;->&#32;string</span></code>
+                <code>string</code>
               </dt>
-              <dd class="fsdocs-return-docs"></dd>
+              <dd class="fsdocs-return-docs">
+                <p>
+                  The result as a string, such as N.
+                </p>
+              </dd>
             </dl>
           </td>
         </tr>

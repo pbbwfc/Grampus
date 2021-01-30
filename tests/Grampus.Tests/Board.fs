@@ -8,9 +8,13 @@ open Grampus
 type Board () =
 
     let s0 = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
+    let ss0 = "RNBQKBNRPPPPPPPP................................pppppppprnbqkbnr w"
     let s1 = "rnbqkbnr/p1p3p1/4p2p/3p1pP1/Pp6/2N1P2P/1PPP1P2/R1BQKBNR w KQkq - 0 1"
+    let ss1 = "R.BQKBNR.PPP.P....N.P..PPp.........p.pP.....p..pp.p...p.rnbqkbnr w"
     let s2 = "rnbqkbn1/1pppppp1/r7/p6p/4P3/2PP1N2/PP3PPP/RNBQKB1R b KQkq - 0 1"
+    let ss2 = "RNBQKB.RPP...PPP..PP.N......P...p......pr........pppppp.rnbqkbn. b"
     let s3 = "r1bq1bnr/p1pP1kp1/n3p2p/5pP1/Pp6/2N4P/1PPP1P2/R1BQKBNR w KQkq - 0 1"
+    let ss3 = "R.BQKBNR.PPP.P....N....PPp...........pP.n...p..pp.pP.kp.r.bq.bnr w"
     
     [<TestMethod>]
     member this.``Load start to Posn``() = 
@@ -217,3 +221,34 @@ type Board () =
       let npos = pos|>Board.Push ans
       npos|>Board.ToFenStr|>should equal "rnbqk2r/pp1p1ppp/4pn2/2p5/1bPP4/2N1P3/PP2NPPP/R1BQKB1R b KQkq - 2 1"
 
+    [<TestMethod>]
+    member this.``Simple string`` () =
+        let pos = Board.FromFenStr s0
+        let ans = Board.ToSimpleStr pos
+        ans|>should equal ss0
+        let bd = ans|>Board.FromSimpleStr
+        bd|>Board.ToSimpleStr|>should equal ss0
+        let pos = Board.FromFenStr s1
+        let ans = Board.ToSimpleStr pos
+        ans|>should equal ss1
+        let bd = ans|>Board.FromSimpleStr
+        bd|>Board.ToSimpleStr|>should equal ss1
+        let pos = Board.FromFenStr s2
+        let ans = Board.ToSimpleStr pos
+        ans|>should equal ss2
+        let bd = ans|>Board.FromSimpleStr
+        bd|>Board.ToSimpleStr|>should equal ss2
+        let pos = Board.FromFenStr s3
+        let ans = Board.ToSimpleStr pos
+        ans|>should equal ss3
+        let bd = ans|>Board.FromSimpleStr
+        bd|>Board.ToSimpleStr|>should equal ss3
+
+    [<TestMethod>]
+    member this.``Possible Moves`` () =
+        let pos = Board.FromFenStr s0
+        let sq = G1
+        let ans = Board.PossMoves pos sq
+        ans.Length|>should equal 2
+        let mv = ans.Head
+        mv|>Move.To|>should equal H3

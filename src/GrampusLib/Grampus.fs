@@ -5,24 +5,24 @@ namespace Grampus
 /// </summary>
 module Result =
     /// <summary>
-    /// Gets the string symbol for a Result
+    /// Gets the string symbol for a Result.
     /// </summary>
     /// <param name="result">The Game Result.</param>
     /// <returns>The result as a string, such as 1-0</returns>
     let ToStr(result) = GrampusInternal.GameResult.ToStr(result)
     
     /// <summary>
-    /// Gets the GameResult type from a string
+    /// Gets the GameResult type from a string.
     /// </summary>
     /// <param name="str">The string results such as 1-0.</param>
     /// <returns>The Game Result, such as GameResult.WhiteWins</returns>
     let Parse(str) = GrampusInternal.GameResult.Parse(str)
     
     /// <summary>
-    /// Gets the integer value (2 for white win, 0 for blackwin, 1 otherwise) for a Result
+    /// Gets the integer value (2 for white win, 0 for blackwin, 1 otherwise) for a Result.
     /// </summary>
     /// <param name="str">The Game Result.</param>
-    /// <returns>The result as an int, such as 2 for white win</returns>
+    /// <returns>The result as an int, such as 2 for white win.</returns>
     let ToInt(result) = GrampusInternal.GameResult.ToInt(result)
 
 /// <summary>
@@ -30,36 +30,54 @@ module Result =
 /// </summary>
 module Piece =
     /// <summary>
-    /// Gets the string symbol for a Piece
+    /// Gets the string symbol for a Piece.
     /// </summary>
     /// <param name="piece">The piece, such as Piece.WKnight.</param>
-    /// <returns>The result as a string, such as N</returns>
+    /// <returns>The result as a string, such as N.</returns>
     let ToStr(piece) = GrampusInternal.Piece.PieceToString(piece)
 
 /// <summary>
 /// Holds the functions related to a Board.
 /// </summary>
 module Board =
-    ///Create a new Board given a FEN string
+    /// <summary>
+    /// Create a new Board given a FEN string.
+    /// </summary>
+    /// <param name="fenstr">The FEN string.</param>
+    /// <returns>The Board as a Brd type.</returns>
     let FromFenStr(fenstr) = GrampusInternal.Board.FromFenStr(fenstr)
     
-    ///Create a FEN string from this Board 
-    let ToFenStr = GrampusInternal.Board.ToFenStr
+    /// <summary>
+    /// Create a FEN string from this Board.
+    /// </summary>
+    /// <param name="bd">The Board as a Brd type.</param>
+    /// <returns>The FEN string.</returns>
+    let ToFenStr(bd) = GrampusInternal.Board.ToFenStr(bd)
     
-    ///Create a new Board given a simple string
-    let FromSimpleStr = GrampusInternal.Board.FromSimpleStr
+    /// <summary>
+    /// Create a new Board given a simple string.
+    /// </summary>
+    /// <param name="str">The simple string.</param>
+    /// <returns>The Board as a Brd type.</returns>
+    let FromSimpleStr(str) = GrampusInternal.Board.FromSimpleStr(str)
     
-    ///Create a simple string from this Board 
-    let ToSimpleStr = GrampusInternal.Board.ToSimpleStr
+    /// <summary>
+    /// Create a simple string from this Board.
+    /// </summary>
+    /// <param name="bd">The Board as a Brd type.</param>
+    /// <returns>The simple string.</returns>
+    let ToSimpleStr(bd) = GrampusInternal.Board.ToSimpleStr(bd)
     
     ///The starting Board at the beginning of a game
     let Start = GrampusInternal.Board.Start
     
-    ///Gets all legal moves for this Board
-    let AllMoves = GrampusInternal.MoveGenerate.AllMoves
-    
-    ///Gets all possible moves for this Board from the specified Square
-    let PossMoves = GrampusInternal.MoveGenerate.PossMoves
+    /// <summary>
+    /// Gets all possible moves for this Board from the specified Square.
+    /// </summary>
+    /// <param name="bd">The Board as a Brd type.</param>
+    /// <param name="sq">The Square as a Square type.</param>
+    /// <returns>The list of all possible moves.</returns>
+    let PossMoves bd sq = GrampusInternal.MoveGenerate.PossMoves bd sq
     
     ///Make an encoded Move for this Board and return the new Board
     let Push = GrampusInternal.Board.MoveApply
