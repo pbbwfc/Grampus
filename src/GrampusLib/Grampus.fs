@@ -25,29 +25,26 @@ module Result =
     /// <returns>The result as an int, such as 2 for white win</returns>
     let ToInt(result) = GrampusInternal.GameResult.ToInt(result)
 
-module Square =
-    ///Gets the File for a Square
-    let ToFile = GrampusInternal.Square.ToFile
-    
-    ///Gets the Rank for a Square
-    let ToRank = GrampusInternal.Square.ToRank
-    
-    ///Gets the Name for a Square
-    let Name = GrampusInternal.Square.Name
-
+/// <summary>
+/// Holds the functions related to a Piece.
+/// </summary>
 module Piece =
-    ///Gets the string symbol for a Piece
-    let ToStr = GrampusInternal.Piece.PieceToString
-    
-    ///Gets the player for a Piece
-    let ToPlayer = GrampusInternal.Piece.PieceToPlayer
+    /// <summary>
+    /// Gets the string symbol for a Piece
+    /// </summary>
+    /// <param name="piece">The piece, such as Piece.WKnight.</param>
+    /// <returns>The result as a string, such as N</returns>
+    let ToStr(piece) = GrampusInternal.Piece.PieceToString(piece)
 
+/// <summary>
+/// Holds the functions related to a Board.
+/// </summary>
 module Board =
     ///Create a new Board given a FEN string
-    let FromStr = GrampusInternal.Board.FromStr
+    let FromFenStr(fenstr) = GrampusInternal.Board.FromFenStr(fenstr)
     
     ///Create a FEN string from this Board 
-    let ToStr = GrampusInternal.Board.ToStr
+    let ToFenStr = GrampusInternal.Board.ToFenStr
     
     ///Create a new Board given a simple string
     let FromSimpleStr = GrampusInternal.Board.FromSimpleStr

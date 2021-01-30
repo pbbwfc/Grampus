@@ -326,13 +326,13 @@ module Board =
                            else bd.BkPrBds) }
     
     ///Create a new Board given a FEN string(str)
-    let FromStr(str : string) =
+    let FromFenStr(str : string) =
         str
         |> FEN.Parse
         |> FromFEN
     
     ///Gets a FEN string for this Board(bd) 
-    let ToStr(bd : Brd) =
+    let ToFenStr(bd : Brd) =
         bd
         |> FEN.FromBd
         |> FEN.ToStr

@@ -119,7 +119,7 @@ module PnlAnlLib =
             SetUpPrc()
             // call calcs
             // need to send game position moves as UCI
-            let fen = cbd |> Board.ToStr
+            let fen = cbd |> Board.ToFenStr
             ComputeAnswer(fen, 99)
             isanl <- true
             ("Engine " + num.ToString() + " - " + engnm + ": Calculating...") 
