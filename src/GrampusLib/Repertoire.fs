@@ -34,7 +34,7 @@ module Repertoire =
             let str = File.ReadAllText(whiterep())
             WhiteRep <- Json.deserialize (str)
             WhiteErrors <- File.ReadAllLines(whiteerrs()) |> List.ofArray
-        else
+        else 
             WhiteRep <- Map.empty, Map.empty
             WhiteErrors <- []
     
@@ -43,7 +43,7 @@ module Repertoire =
             let str = File.ReadAllText(blackrep())
             BlackRep <- Json.deserialize (str)
             BlackErrors <- File.ReadAllLines(blackerrs()) |> List.ofArray
-        else
+        else 
             BlackRep <- Map.empty, Map.empty
             BlackErrors <- []
     
