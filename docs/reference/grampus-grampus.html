@@ -125,7 +125,7 @@
                 <p>
                   <a id="Load">
                     <a href="#Load">
-                      <code><span>Load&#32;<span></span></span></code>
+                      <code><span>Load&#32;<span>nm</span></span></code>
                     </a>
                   </a>
                 </p>
@@ -133,13 +133,28 @@
               <div class="fsdocs-tip" id="41">
                 <div class="member-tooltip">
                   Full Usage: 
-                  <code><span>Load&#32;<span></span></span></code>
+                  <code><span>Load&#32;<span>nm</span></span></code>
                   <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        nm
+                      </b>
+                      :
+                      <code>string</code>
+                       - 
+                      The full path and file name.
+                    </span>
+                    <br/>
+                  </ul>
                   <br/>
                   <span>
                     Returns: 
-                    <code><span>string&#32;->&#32;<a href="/Grampus/reference/grampus-types-grampusdata.html">GrampusData</a></span></code>
+                    <code><a href="/Grampus/reference/grampus-types-grampusdata.html">GrampusData</a></code>
                   </span>
+                  The contents of the file as a GrampusData type.
                   <br/>
                 </div>
               </div>
@@ -147,22 +162,40 @@
           </td>
           <td class="fsdocs-xmldoc">
             <p class="fsdocs-summary">
-              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L427-427" class="fsdocs-source-link">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L431-431" class="fsdocs-source-link">
                 <img src="/Grampus/content/img/github.png" class="normal"/>
                 <img src="/Grampus/content/img/github-blue.png" class="hover"/>
               </a>
               
-Load Garmpus File
-
+ Load Grampus File given the full path and file name.
+ 
             </p>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  nm
+                </span>
+                :
+                <code>string</code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  The full path and file name.
+                </p>
+              </dd>
+            </dl>
             <dl class="fsdocs-returns">
               <dt>
                 <span class="fsdocs-return-name">
                   Returns:
                 </span>
-                <code><span>string&#32;->&#32;<a href="/Grampus/reference/grampus-types-grampusdata.html">GrampusData</a></span></code>
+                <code><a href="/Grampus/reference/grampus-types-grampusdata.html">GrampusData</a></code>
               </dt>
-              <dd class="fsdocs-return-docs"></dd>
+              <dd class="fsdocs-return-docs">
+                <p>
+                  The contents of the file as a GrampusData type.
+                </p>
+              </dd>
             </dl>
           </td>
         </tr>
@@ -173,7 +206,7 @@ Load Garmpus File
                 <p>
                   <a id="Save">
                     <a href="#Save">
-                      <code><span>Save&#32;<span></span></span></code>
+                      <code><span>Save&#32;<span><span>(<span>nm,&#32;gmp</span>)</span></span></span></code>
                     </a>
                   </a>
                 </p>
@@ -181,13 +214,32 @@ Load Garmpus File
               <div class="fsdocs-tip" id="42">
                 <div class="member-tooltip">
                   Full Usage: 
-                  <code><span>Save&#32;<span></span></span></code>
+                  <code><span>Save&#32;<span><span>(<span>nm,&#32;gmp</span>)</span></span></span></code>
                   <br/>
                   <br/>
-                  <span>
-                    Returns: 
-                    <code><span><span>string&#32;*&#32;<a href="/Grampus/reference/grampus-types-grampusdata.html">GrampusData</a></span>&#32;->&#32;unit</span></code>
-                  </span>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        nm
+                      </b>
+                      :
+                      <code>string</code>
+                       - 
+                      The full path and file name.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        gmp
+                      </b>
+                      :
+                      <code><a href="/Grampus/reference/grampus-types-grampusdata.html">GrampusData</a></code>
+                       - 
+                      The contents of the file as a GrampusData type.
+                    </span>
+                    <br/>
+                  </ul>
                   <br/>
                 </div>
               </div>
@@ -195,22 +247,39 @@ Load Garmpus File
           </td>
           <td class="fsdocs-xmldoc">
             <p class="fsdocs-summary">
-              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L430-430" class="fsdocs-source-link">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L439-439" class="fsdocs-source-link">
                 <img src="/Grampus/content/img/github.png" class="normal"/>
                 <img src="/Grampus/content/img/github-blue.png" class="hover"/>
               </a>
               
-Save Grampus File
-
+ Save Grampus File given the full path and file name and the data.
+ 
             </p>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns:
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  nm
                 </span>
-                <code><span><span>string&#32;*&#32;<a href="/Grampus/reference/grampus-types-grampusdata.html">GrampusData</a></span>&#32;->&#32;unit</span></code>
+                :
+                <code>string</code>
               </dt>
-              <dd class="fsdocs-return-docs"></dd>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  The full path and file name.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  gmp
+                </span>
+                :
+                <code><a href="/Grampus/reference/grampus-types-grampusdata.html">GrampusData</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  The contents of the file as a GrampusData type.
+                </p>
+              </dd>
             </dl>
           </td>
         </tr>
