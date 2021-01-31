@@ -324,6 +324,9 @@ module Game =
     /// <returns>The arrays of Positions as strings.</returns>
     let GetPosns ply gm = GrampusInternal.GameEncoded.GetPosns ply gm
 
+/// <summary>
+/// Holds the functions related to a Repertoire.
+/// </summary>
 module Repertoire =
     ///White Repertoire
     let White() = GrampusInternal.Repertoire.WhiteRep
