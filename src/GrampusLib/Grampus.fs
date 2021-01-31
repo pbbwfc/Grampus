@@ -458,7 +458,7 @@ module Index =
     /// <param name="fol">The folder in which to store the index.</param>
     /// <param name="iea">TheThe index as an IndexEntry array type.</param>
     /// <returns>Nothing.</returns>
-    let Save(fol,iea) = GrampusInternal.Index.Save(fol,iea)
+    let Save(fol, iea) = GrampusInternal.Index.Save(fol, iea)
 
 module Eco =
     //Set eco for game

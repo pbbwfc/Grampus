@@ -17,12 +17,12 @@ type Index() =
     
     [<TestMethod>]
     member this.Save() =
-        let tstfn2 = Path.Combine(tstfol2,"INDEX")
+        let tstfn2 = Path.Combine(tstfol2, "INDEX")
         if File.Exists(tstfn2) then File.Delete(tstfn2)
         let ans = File.Exists(tstfn2)
         ans |> should equal false
         let iea = Index.Load(tstfol)
-        Directory.CreateDirectory(tstfol2)|>ignore
+        Directory.CreateDirectory(tstfol2) |> ignore
         Index.Save(tstfol2, iea)
         let ans = File.Exists(tstfn2)
         ans |> should equal true
