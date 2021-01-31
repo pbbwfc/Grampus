@@ -41,7 +41,7 @@ type Filter() =
         let ans = Directory.Exists(trfol)
         ans |> should equal false
         Filter.Create(tstfol)
-        Filter.Save([| ss1 |], [| [0;5] |], tstfol)
+        Filter.Save([| ss1 |], [| [ 0; 5 ] |], tstfol)
         let ans = Filter.Read(ss1, tstfol)
         ans.Length |> should equal 2
         ans.[0] |> should equal 0

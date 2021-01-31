@@ -412,7 +412,7 @@ module Filter =
     /// <param name="filts">The array of references to games as an int list type.</param>
     /// <param name="fol">The folder to store the tree.</param>
     /// <returns>Nothing.</returns>
-    let Save(posns,filts,fol) = GrampusInternal.Filter.Save(posns,filts,fol)
+    let Save(posns, filts, fol) = GrampusInternal.Filter.Save(posns, filts, fol)
     
     /// <summary>
     /// Reads the filter storage given a position and a folder.
@@ -420,7 +420,7 @@ module Filter =
     /// <param name="posn">The position to read in the tree.</param>
     /// <param name="fol">The folder which stores the tree.</param>
     /// <returns>The filter for the posn as an int list type.</returns>
-    let Read(posn,fol) = GrampusInternal.Filter.Read(posn,fol)
+    let Read(posn, fol) = GrampusInternal.Filter.Read(posn, fol)
 
 module Grampus =
     ///Load Garmpus File
