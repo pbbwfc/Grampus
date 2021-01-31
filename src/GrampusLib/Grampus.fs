@@ -240,41 +240,86 @@ module Game =
     /// <returns>The changed Encoded Game and the new address.</returns>
     let AddRav gm irs mv = GrampusInternal.GameEncoded.AddRav gm irs mv
     
-    ///Deletes a RAV in the EncodedGame at the address provided
-    let DeleteRav = GrampusInternal.GameEncoded.DeleteRav
+    /// <summary>
+    /// Deletes a RAV in the EncodedGame at the address provided.
+    /// </summary>
+    /// <param name="gm">The Encoded Game.</param>
+    /// <param name="irs">The address within the game as an int list type.</param>
+    /// <returns>The changed Encoded Game.</returns>
+    let DeleteRav gm irs = GrampusInternal.GameEncoded.DeleteRav gm irs
     
-    ///Strips moves until end of game at the address provided
-    let Strip = GrampusInternal.GameEncoded.Strip
+    /// <summary>
+    /// Strips moves until end of game at the address provided.
+    /// </summary>
+    /// <param name="gm">The Encoded Game.</param>
+    /// <param name="irs">The address within the game as an int list type.</param>
+    /// <returns>The changed Encoded Game.</returns>
+    let Strip gm irs = GrampusInternal.GameEncoded.Strip gm irs
     
-    ///Adds a comment to the Encoded Game before the address provided
-    let CommentBefore = GrampusInternal.GameEncoded.CommentBefore
+    /// <summary>
+    /// Adds a comment to the Encoded Game before the address provided.
+    /// </summary>
+    /// <param name="gm">The Encoded Game.</param>
+    /// <param name="irs">The address within the game as an int list type.</param>
+    /// <param name="str">The comments as a string.</param>
+    /// <returns>The changed Encoded Game.</returns>
+    let CommentBefore gm irs str = GrampusInternal.GameEncoded.CommentBefore gm irs str
     
-    ///Adds a comment to the Encoded Game after the address provided
-    let CommentAfter = GrampusInternal.GameEncoded.CommentAfter
+    /// <summary>
+    /// Adds a comment to the Encoded Game after the address provided.
+    /// </summary>
+    /// <param name="gm">The Encoded Game.</param>
+    /// <param name="irs">The address within the game as an int list type.</param>
+    /// <param name="str">The comments as a string.</param>
+    /// <returns>The changed Encoded Game.</returns>
+    let CommentAfter gm irs str = GrampusInternal.GameEncoded.CommentAfter gm irs str
     
-    ///Edits a comment to the Encoded Game at the address provided
-    let EditComment = GrampusInternal.GameEncoded.EditComment
+    /// <summary>
+    /// Edits a comment to the Encoded Game at the address provided.
+    /// </summary>
+    /// <param name="gm">The Encoded Game.</param>
+    /// <param name="irs">The address within the game as an int list type.</param>
+    /// <param name="str">The comments as a string.</param>
+    /// <returns>The changed Encoded Game.</returns>
+    let EditComment gm irs str = GrampusInternal.GameEncoded.EditComment gm irs str
     
-    ///Deletes a comment in the Encoded Game at the address provided
-    let DeleteComment = GrampusInternal.GameEncoded.DeleteComment
+    /// <summary>
+    /// Deletes a comment in the Encoded Game at the address provided.
+    /// </summary>
+    /// <param name="gm">The Encoded Game.</param>
+    /// <param name="irs">The address within the game as an int list type.</param>
+    /// <returns>The changed Encoded Game.</returns>
+    let DeleteComment gm irs = GrampusInternal.GameEncoded.DeleteComment gm irs
     
-    ///Get from a PGN string
-    let FromStr = GrampusInternal.RegParse.GameFromString
+    /// <summary>
+    /// Create an Encoded Game from a PGN string.
+    /// </summary>
+    /// <param name="pgnstr">The PGN string.</param>
+    /// <returns>The new Encoded Game.</returns>
+    let FromStr pgnstr = GrampusInternal.RegParse.GameFromString pgnstr
     
-    ///Convert to a PGN string
-    let ToStr = GrampusInternal.GameEncoded.ToStr
+    /// <summary>
+    /// Create a PGN string from an Encoded Game.
+    /// </summary>
+    /// <param name="gm">The Encoded Game.</param>
+    /// <returns>The new PGN string.</returns>
+    let ToStr gm = GrampusInternal.GameEncoded.ToStr gm
     
-    ///Compresses an Encoded Game
-    let Compress = GrampusInternal.GameEncoded.Compress
+    /// <summary>
+    /// Gets the Positions and Sans up to the specified ply.
+    /// </summary>
+    /// <param name="ply">The ply to process to, -1 for all moves.</param>
+    /// <param name="gm">The Encoded Game.</param>
+    /// <returns>The arrays of Positions and SANs as strings.</returns>
+    let GetPosnsMoves ply gm = GrampusInternal.GameEncoded.GetPosnsMoves ply gm
     
-    ///Expands a Compressed Game
-    let Expand = GrampusInternal.GameEncoded.Expand
-    
-    ///Gets the Positions and Sans up to the specified ply
-    let GetPosnsMoves = GrampusInternal.GameEncoded.GetPosnsMoves
-    
-    ///Gets the Positionsup to the specified ply
-    let GetPosns = GrampusInternal.GameEncoded.GetPosns
+    /// <summary>
+    /// Gets the Positions up to the specified ply.
+    /// </summary>
+    /// <param name="ply">The ply to process to, -1 for all moves.</param>
+    /// <param name="gm">The Encoded Game.</param>
+    /// <returns>The arrays of Positions as strings.</returns>
+    let GetPosns ply gm = GrampusInternal.GameEncoded.GetPosns ply gm
 
 module Repertoire =
     ///White Repertoire

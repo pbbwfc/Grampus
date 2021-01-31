@@ -138,4 +138,112 @@ type Game () =
         let ans = ngm|>Game.ToStr
         ans.Length |> should equal 879
 
-      
+    [<TestMethod>]
+    member this.``DeleteRav`` () =
+        let mv =
+            let mte = gm.MoveText.[0]
+            match mte with
+            |EncodedHalfMoveEntry (_,_,mv) -> Some(mv)
+            |_ -> None
+        mv.Value.San|>should equal "e4"
+        let bd = mv.Value.PostBrd
+        let nmv = Move.FromSan bd "e6"
+        let ngm,nirs = Game.AddRav gm [0] nmv
+        nirs.Head |>should equal 2
+        nirs.Tail.Head |>should equal 0
+        let ans = ngm|>Game.ToStr
+        ans.Length |> should equal 879
+        let ngm = Game.DeleteRav ngm [2;0]
+        let ans = ngm|>Game.ToStr
+        ans.Length |> should equal 865
+
+    [<TestMethod>]
+    member this.``Strip`` () =
+        let ngm = Game.Strip gm [1]
+        ngm.MoveText.Length |> should equal 2
+        let ans = ngm|>Game.ToStr
+        ans.Length |> should equal 221
+
+    [<TestMethod>]
+    member this.``CommentBefore`` () =
+        let cm i (igm:EncodedGame) =
+            let mte = igm.MoveText.[i]
+            match mte with
+            |EncodedCommentEntry (str) -> Some(str)
+            |_ -> None
+        let ngm = Game.CommentBefore gm [1] "test"
+        let ans = ngm|>Game.ToStr
+        ans.Length |> should equal 879
+        let ans = cm 1 ngm
+        ans.Value |> should equal "test"
+ 
+    [<TestMethod>]
+    member this.``CommentAfter`` () =
+        let cm i (igm:EncodedGame) =
+            let mte = igm.MoveText.[i]
+            match mte with
+            |EncodedCommentEntry (str) -> Some(str)
+            |_ -> None
+        let ngm = Game.CommentAfter gm [1] "test"
+        let ans = ngm|>Game.ToStr
+        ans.Length |> should equal 874
+        let ans = cm 2 ngm
+        ans.Value |> should equal "test"
+
+    [<TestMethod>]
+    member this.``EditComment`` () =
+        let cm i (igm:EncodedGame) =
+            let mte = igm.MoveText.[i]
+            match mte with
+            |EncodedCommentEntry (str) -> Some(str)
+            |_ -> None
+        let ngm = Game.CommentAfter gm [1] "test"
+        let ans = ngm|>Game.ToStr
+        ans.Length |> should equal 874
+        let ans = cm 2 ngm
+        ans.Value |> should equal "test"
+        let ngm = Game.EditComment ngm [2] "test1"
+        let ans = ngm|>Game.ToStr
+        ans.Length |> should equal 875
+        let ans = cm 2 ngm
+        ans.Value |> should equal "test1"
+
+    [<TestMethod>]
+    member this.``DeleteComment`` () =
+        let cm i (igm:EncodedGame) =
+            let mte = igm.MoveText.[i]
+            match mte with
+            |EncodedCommentEntry (str) -> Some(str)
+            |_ -> None
+        let ngm = Game.CommentAfter gm [1] "test"
+        let ans = ngm|>Game.ToStr
+        ans.Length |> should equal 874
+        let ans = cm 2 ngm
+        ans.Value |> should equal "test"
+        let ngm = Game.DeleteComment ngm [2]
+        let ans = ngm|>Game.ToStr
+        ans.Length |> should equal 865
+        let ans = cm 2 ngm
+        ans |> should equal None
+
+    [<TestMethod>]
+    member this.``FromStr`` () =
+        let pgnstr = File.ReadAllText fl
+        let ngm = Game.FromStr pgnstr
+        let ans = ngm|>Game.Encode|>Game.ToStr
+        ans.Length |> should equal 865
+
+    [<TestMethod>]
+    member this.``GetPosnsMoves`` () =
+        let pns,sns = Game.GetPosnsMoves 20 gm 
+        pns.Length |> should equal 20
+        sns.Length |> should equal 20
+        pns.[1] |> should equal "RNBQKBNRPPPP.PPP............P...................pppppppprnbqkbnr b"
+        sns.[1] |> should equal "e5"
+        
+    [<TestMethod>]
+    member this.``GetPosns`` () =
+        let pns = Game.GetPosns 20 gm 
+        pns.Length |> should equal 20
+        pns.[1] |> should equal "RNBQKBNRPPPP.PPP............P...................pppppppprnbqkbnr b"
+        
