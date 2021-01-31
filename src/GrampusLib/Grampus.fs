@@ -263,7 +263,8 @@ module Game =
     /// <param name="irs">The address within the game as an int list type.</param>
     /// <param name="str">The comments as a string.</param>
     /// <returns>The changed Encoded Game.</returns>
-    let CommentBefore gm irs str = GrampusInternal.GameEncoded.CommentBefore gm irs str
+    let CommentBefore gm irs str =
+        GrampusInternal.GameEncoded.CommentBefore gm irs str
     
     /// <summary>
     /// Adds a comment to the Encoded Game after the address provided.
@@ -272,7 +273,8 @@ module Game =
     /// <param name="irs">The address within the game as an int list type.</param>
     /// <param name="str">The comments as a string.</param>
     /// <returns>The changed Encoded Game.</returns>
-    let CommentAfter gm irs str = GrampusInternal.GameEncoded.CommentAfter gm irs str
+    let CommentAfter gm irs str =
+        GrampusInternal.GameEncoded.CommentAfter gm irs str
     
     /// <summary>
     /// Edits a comment to the Encoded Game at the address provided.
@@ -281,7 +283,8 @@ module Game =
     /// <param name="irs">The address within the game as an int list type.</param>
     /// <param name="str">The comments as a string.</param>
     /// <returns>The changed Encoded Game.</returns>
-    let EditComment gm irs str = GrampusInternal.GameEncoded.EditComment gm irs str
+    let EditComment gm irs str =
+        GrampusInternal.GameEncoded.EditComment gm irs str
     
     /// <summary>
     /// Deletes a comment in the Encoded Game at the address provided.
