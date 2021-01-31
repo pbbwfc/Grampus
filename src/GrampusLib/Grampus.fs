@@ -331,26 +331,37 @@ module Repertoire =
     ///Black Repertoire
     let Black() = GrampusInternal.Repertoire.BlackRep
     
-    ///White Error File
+    ///White Repertoire Error File
     let WhiteErrFile() = GrampusInternal.Repertoire.whiteerrs
     
-    ///Black Error File
+    ///Black Repertoire Error File
     let BlackErrFile() = GrampusInternal.Repertoire.blackerrs
     
     ///Load White Repertoire
-    let LoadWhite = GrampusInternal.Repertoire.LoadWhite
+    let LoadWhite() = GrampusInternal.Repertoire.LoadWhite()
     
     ///Load Black Repertoire
-    let LoadBlack = GrampusInternal.Repertoire.LoadBlack
+    let LoadBlack() = GrampusInternal.Repertoire.LoadBlack()
     
-    ///Update White Repertoire from database
-    let UpdateWhite = GrampusInternal.Repertoire.UpdateWhite
+    /// <summary>
+    /// Update White Repertoire from database.
+    /// </summary>
+    /// <returns>The number of errors.</returns>
+    let UpdateWhite() = GrampusInternal.Repertoire.UpdateWhite()
     
-    ///Update Black Repertoire from database
-    let UpdateBlack = GrampusInternal.Repertoire.UpdateBlack
+    /// <summary>
+    /// Update Blck Repertoire from database.
+    /// </summary>
+    /// <returns>The number of errors.</returns>
+    let UpdateBlack() = GrampusInternal.Repertoire.UpdateBlack()
     
-    ///Options contaion SAN
-    let OptsHaveSan = GrampusInternal.Repertoire.optsHasSan
+    /// <summary>
+    /// Check whether options contains a particular SAN string.
+    /// </summary>
+    /// <param name="san">The SAN string.</param>
+    /// <param name="opts">The list of options as a RepOpt list type.</param>
+    /// <returns>Whether in the options as a bool.</returns>
+    let OptsHaveSan san opts = GrampusInternal.Repertoire.optsHasSan san opts
 
 module StaticTree =
     ///Creates the tree storage given a folder
