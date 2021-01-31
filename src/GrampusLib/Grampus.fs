@@ -422,28 +422,43 @@ module Filter =
     /// <returns>The filter for the posn as an int list type.</returns>
     let Read(posn, fol) = GrampusInternal.Filter.Read(posn, fol)
 
+/// <summary>
+/// Holds the functions related to the Grampus file.
+/// </summary>
 module Grampus =
     /// <summary>
-    /// Load Grampus File given the full path and file name.
+    /// Loads a Grampus File given the full path and file name.
     /// </summary>
     /// <param name="nm">The full path and file name.</param>
     /// <returns>The contents of the file as a GrampusData type.</returns>
     let Load(nm) = GrampusInternal.GrampusFile.Load(nm)
     
     /// <summary>
-    /// Save Grampus File given the full path and file name and the data.
+    /// Saves a Grampus File given the full path and file name and the data.
     /// </summary>
     /// <param name="nm">The full path and file name.</param>
     /// <param name="gmp">The contents of the file as a GrampusData type.</param>
     /// <returns>Nothing.</returns>
     let Save(nm, gmp) = GrampusInternal.GrampusFile.Save(nm, gmp)
 
+/// <summary>
+/// Holds the functions related to an Index.
+/// </summary>
 module Index =
-    ///Load Index
-    let Load = GrampusInternal.Index.Load
+    /// <summary>
+    /// Loads the Index given the folder.
+    /// </summary>
+    /// <param name="fol">The folder which stores the index.</param>
+    /// <returns>The index as an IndexEntry array type.</returns>
+    let Load(fol) = GrampusInternal.Index.Load(fol)
     
-    ///Save Index
-    let Save = GrampusInternal.Index.Save
+    /// <summary>
+    /// Saves the Index given the folder and the data.
+    /// </summary>
+    /// <param name="fol">The folder in which to store the index.</param>
+    /// <param name="iea">TheThe index as an IndexEntry array type.</param>
+    /// <returns>Nothing.</returns>
+    let Save(fol,iea) = GrampusInternal.Index.Save(fol,iea)
 
 module Eco =
     //Set eco for game
