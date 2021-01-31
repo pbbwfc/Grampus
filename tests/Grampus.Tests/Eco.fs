@@ -21,14 +21,14 @@ type Eco() =
         let ngm = Eco.ForGame(gm)
         ngm.Hdr.ECO |> should equal "C42"
         ngm.Hdr.Opening |> should equal "Petrov"
-        
+    
     [<TestMethod>]
     member this.ForGames() =
-        if Directory.Exists(tstfol2) then Directory.Delete(tstfol2,true)
-        Directory.CreateDirectory(tstfol2)|>ignore
-        File.Copy(Path.Combine(tstfol,"INDEX"),Path.Combine(tstfol2,"INDEX"))
-        File.Copy(Path.Combine(tstfol,"GAMES"),Path.Combine(tstfol2,"GAMES"))
-        File.Copy(Path.Combine(tstfol,"ROWS"),Path.Combine(tstfol2,"ROWS"))
+        if Directory.Exists(tstfol2) then Directory.Delete(tstfol2, true)
+        Directory.CreateDirectory(tstfol2) |> ignore
+        File.Copy(Path.Combine(tstfol, "INDEX"), Path.Combine(tstfol2, "INDEX"))
+        File.Copy(Path.Combine(tstfol, "GAMES"), Path.Combine(tstfol2, "GAMES"))
+        File.Copy(Path.Combine(tstfol, "ROWS"), Path.Combine(tstfol2, "ROWS"))
         let indx = Index.Load tstfol
         let hdrs = Headers.Load tstfol
         let gm = Games.LoadGame tstfol indx.[0] hdrs.[0]
@@ -40,4 +40,4 @@ type Eco() =
         let gm2 = Games.LoadGame tstfol2 indx2.[0] hdrs2.[0]
         gm2.Hdr.ECO |> should equal "C42"
         gm2.Hdr.Opening |> should equal "Petrov"
-        if Directory.Exists(tstfol2) then Directory.Delete(tstfol2,true)
+        if Directory.Exists(tstfol2) then Directory.Delete(tstfol2, true)

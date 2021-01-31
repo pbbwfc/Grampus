@@ -470,6 +470,7 @@ module Eco =
     /// <param name="gm">The Encoded game.</param>
     /// <returns>The updated game as an EncodedGame type.</returns>
     let ForGame(gm) = GrampusInternal.Eco.ForGame(gm)
+    
     /// <summary>
     /// Set ECO for games given the folder containing the base.
     /// </summary>
