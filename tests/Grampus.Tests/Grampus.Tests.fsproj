@@ -21,6 +21,7 @@
     <Compile Include="Filter.fs" />
     <Compile Include="Grampus.fs" />
     <Compile Include="Index.fs" />
+    <Compile Include="Eco.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
 

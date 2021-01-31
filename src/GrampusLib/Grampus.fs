@@ -460,11 +460,22 @@ module Index =
     /// <returns>Nothing.</returns>
     let Save(fol, iea) = GrampusInternal.Index.Save(fol, iea)
 
+/// <summary>
+/// Holds the functions related to ECO classification.
+/// </summary>
 module Eco =
-    //Set eco for game
-    let ForGame = GrampusInternal.Eco.ForGame
-    //Set eco for games
-    let ForBase = GrampusInternal.Eco.ForBase
+    /// <summary>
+    /// Set ECO for the game provided.
+    /// </summary>
+    /// <param name="gm">The Encoded game.</param>
+    /// <returns>The updated game as an EncodedGame type.</returns>
+    let ForGame(gm) = GrampusInternal.Eco.ForGame(gm)
+    /// <summary>
+    /// Set ECO for games given the folder containing the base.
+    /// </summary>
+    /// <param name="fol">The folder which stores the games.</param>
+    /// <returns>Nothing.</returns>
+    let ForBase(fol) = GrampusInternal.Eco.ForBase(fol)
 
 module Headers =
     ///Load Game Rows

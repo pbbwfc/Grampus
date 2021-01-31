@@ -52,7 +52,7 @@ type Game() =
     [<TestMethod>]
     member this.``Game to string length``() =
         let ans = gm |> Game.ToStr
-        ans.Length |> should equal 865
+        ans.Length |> should equal 862
     
     [<TestMethod>]
     member this.NAGStr() =
@@ -83,14 +83,14 @@ type Game() =
     member this.AddNag() =
         let ngm = Game.AddNag gm [ 1 ] NAG.Good
         let ans = ngm |> Game.ToStr
-        ans.Length |> should equal 868
+        ans.Length |> should equal 865
         ngm.MoveText.[2] |> should equal (EncodedNAGEntry(NAG.Good))
     
     [<TestMethod>]
     member this.DeleteNag() =
         let ngm = Game.AddNag gm [ 1 ] NAG.Good
         let ans = ngm |> Game.ToStr
-        ans.Length |> should equal 868
+        ans.Length |> should equal 865
         ngm.MoveText.[2] |> should equal (EncodedNAGEntry(NAG.Good))
         let ngm = Game.DeleteNag ngm [ 2 ]
         let ans = ngm |> Game.ToStr
@@ -100,11 +100,11 @@ type Game() =
     member this.EditNag() =
         let ngm = Game.AddNag gm [ 1 ] NAG.Good
         let ans = ngm |> Game.ToStr
-        ans.Length |> should equal 868
+        ans.Length |> should equal 865
         ngm.MoveText.[2] |> should equal (EncodedNAGEntry(NAG.Good))
         let ngm = Game.EditNag ngm [ 2 ] NAG.Poor
         let ans = ngm |> Game.ToStr
-        ans.Length |> should equal 868
+        ans.Length |> should equal 865
         ngm.MoveText.[2] |> should equal (EncodedNAGEntry(NAG.Poor))
     
     [<TestMethod>]
@@ -120,7 +120,7 @@ type Game() =
         let ngm, nirs = Game.AddMv gm [ 105 ] nmv
         nirs.Head |> should equal 106
         let ans = ngm |> Game.ToStr
-        ans.Length |> should equal 874
+        ans.Length |> should equal 871
     
     [<TestMethod>]
     member this.AddRav() =
@@ -136,7 +136,7 @@ type Game() =
         nirs.Head |> should equal 2
         nirs.Tail.Head |> should equal 0
         let ans = ngm |> Game.ToStr
-        ans.Length |> should equal 879
+        ans.Length |> should equal 876
     
     [<TestMethod>]
     member this.DeleteRav() =
@@ -152,17 +152,17 @@ type Game() =
         nirs.Head |> should equal 2
         nirs.Tail.Head |> should equal 0
         let ans = ngm |> Game.ToStr
-        ans.Length |> should equal 879
+        ans.Length |> should equal 876
         let ngm = Game.DeleteRav ngm [ 2; 0 ]
         let ans = ngm |> Game.ToStr
-        ans.Length |> should equal 865
+        ans.Length |> should equal 862
     
     [<TestMethod>]
     member this.Strip() =
         let ngm = Game.Strip gm [ 1 ]
         ngm.MoveText.Length |> should equal 2
         let ans = ngm |> Game.ToStr
-        ans.Length |> should equal 221
+        ans.Length |> should equal 218
     
     [<TestMethod>]
     member this.CommentBefore() =
@@ -174,7 +174,7 @@ type Game() =
         
         let ngm = Game.CommentBefore gm [ 1 ] "test"
         let ans = ngm |> Game.ToStr
-        ans.Length |> should equal 879
+        ans.Length |> should equal 876
         let ans = cm 1 ngm
         ans.Value |> should equal "test"
     
@@ -188,7 +188,7 @@ type Game() =
         
         let ngm = Game.CommentAfter gm [ 1 ] "test"
         let ans = ngm |> Game.ToStr
-        ans.Length |> should equal 874
+        ans.Length |> should equal 871
         let ans = cm 2 ngm
         ans.Value |> should equal "test"
     
@@ -202,12 +202,12 @@ type Game() =
         
         let ngm = Game.CommentAfter gm [ 1 ] "test"
         let ans = ngm |> Game.ToStr
-        ans.Length |> should equal 874
+        ans.Length |> should equal 871
         let ans = cm 2 ngm
         ans.Value |> should equal "test"
         let ngm = Game.EditComment ngm [ 2 ] "test1"
         let ans = ngm |> Game.ToStr
-        ans.Length |> should equal 875
+        ans.Length |> should equal 872
         let ans = cm 2 ngm
         ans.Value |> should equal "test1"
     
@@ -221,12 +221,12 @@ type Game() =
         
         let ngm = Game.CommentAfter gm [ 1 ] "test"
         let ans = ngm |> Game.ToStr
-        ans.Length |> should equal 874
+        ans.Length |> should equal 871
         let ans = cm 2 ngm
         ans.Value |> should equal "test"
         let ngm = Game.DeleteComment ngm [ 2 ]
         let ans = ngm |> Game.ToStr
-        ans.Length |> should equal 865
+        ans.Length |> should equal 862
         let ans = cm 2 ngm
         ans |> should equal None
     
@@ -239,7 +239,7 @@ type Game() =
             ngm
             |> Game.Encode
             |> Game.ToStr
-        ans.Length |> should equal 865
+        ans.Length |> should equal 862
     
     [<TestMethod>]
     member this.GetPosnsMoves() =
