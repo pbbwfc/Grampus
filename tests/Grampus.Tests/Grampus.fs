@@ -14,15 +14,14 @@ type Grampus() =
     member this.Load() =
         let ans = Grampus.Load(tstfn)
         ans.Ply |> should equal 20
-        
+    
     [<TestMethod>]
     member this.Save() =
         if File.Exists(tstfn2) then File.Delete(tstfn2)
         let ans = File.Exists(tstfn2)
         ans |> should equal false
         let gmp = Grampus.Load(tstfn)
-        Grampus.Save(tstfn2,gmp)
+        Grampus.Save(tstfn2, gmp)
         let ans = File.Exists(tstfn2)
         ans |> should equal true
         File.Delete(tstfn2)
-    

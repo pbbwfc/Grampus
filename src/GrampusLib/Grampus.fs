@@ -436,7 +436,7 @@ module Grampus =
     /// <param name="nm">The full path and file name.</param>
     /// <param name="gmp">The contents of the file as a GrampusData type.</param>
     /// <returns>Nothing.</returns>
-    let Save(nm,gmp) = GrampusInternal.GrampusFile.Save(nm,gmp)
+    let Save(nm, gmp) = GrampusInternal.GrampusFile.Save(nm, gmp)
 
 module Index =
     ///Load Index
