@@ -423,11 +423,20 @@ module Filter =
     let Read(posn, fol) = GrampusInternal.Filter.Read(posn, fol)
 
 module Grampus =
-    ///Load Garmpus File
-    let Load = GrampusInternal.GrampusFile.Load
+    /// <summary>
+    /// Load Grampus File given the full path and file name.
+    /// </summary>
+    /// <param name="nm">The full path and file name.</param>
+    /// <returns>The contents of the file as a GrampusData type.</returns>
+    let Load(nm) = GrampusInternal.GrampusFile.Load(nm)
     
-    ///Save Grampus File
-    let Save = GrampusInternal.GrampusFile.Save
+    /// <summary>
+    /// Save Grampus File given the full path and file name and the data.
+    /// </summary>
+    /// <param name="nm">The full path and file name.</param>
+    /// <param name="gmp">The contents of the file as a GrampusData type.</param>
+    /// <returns>Nothing.</returns>
+    let Save(nm,gmp) = GrampusInternal.GrampusFile.Save(nm,gmp)
 
 module Index =
     ///Load Index
