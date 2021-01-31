@@ -298,7 +298,7 @@ module WbStatsLib =
         ///Refresh the stats after board change
         member stats.Refrsh() =
             if basenm <> "" then 
-                let sts = StaticTree.Read(bdstr, basenm + "_FILES")
+                let sts = Tree.Read(bdstr, basenm + "_FILES")
                 mvsts <- sts.MvsStats
                 tsts <- sts.TotStats
                 stats.DocumentText <- bdsttags()

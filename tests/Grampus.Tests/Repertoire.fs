@@ -72,14 +72,13 @@ type Repertoire() =
         rm.Count |> should equal 97
         let errs = File.ReadAllText(Repertoire.BlackErrFile())
         errs.Length |> should equal 0
-
+    
     [<TestMethod>]
     member this.OptsHaveSan() =
         GrampusInternal.Repertoire.setfol tstfol
         Repertoire.LoadWhite()
         let ro, rm = Repertoire.White()
         let ans = Repertoire.OptsHaveSan "d4" (ro.[ss1])
-        ans|>should equal false
+        ans |> should equal false
         let ans = Repertoire.OptsHaveSan "e5" (ro.[ss1])
-        ans|>should equal true
-
+        ans |> should equal true

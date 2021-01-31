@@ -366,18 +366,33 @@ module Repertoire =
     /// <returns>Whether in the options as a bool.</returns>
     let OptsHaveSan san opts = GrampusInternal.Repertoire.optsHasSan san opts
 
-module StaticTree =
-    ///Creates the tree storage given a folder
-    let Create = GrampusInternal.StaticTree.Create
+/// <summary>
+/// Holds the functions related to a Tree.
+/// </summary>
+module Tree =
+    /// <summary>
+    /// Creates the tree storage given a folder.
+    /// </summary>
+    /// <param name="fol">The folder to store the tree.</param>
+    /// <returns>Nothing.</returns>
+    let Create(fol) = GrampusInternal.StaticTree.Create(fol)
     
-    ///Saves the tree storage given an array of positions, an array of stats and a folder
-    let Save = GrampusInternal.StaticTree.Save
+    /// <summary>
+    /// Saves the tree storage given an array of positions, an array of stats and a folder.
+    /// </summary>
+    /// <param name="posns">The array of positions for the tree.</param>
+    /// <param name="sts">The array of stats for the tree.</param>
+    /// <param name="fol">The folder to store the tree.</param>
+    /// <returns>Nothing.</returns>
+    let Save(posns, sts, fol) = GrampusInternal.StaticTree.Save(posns, sts, fol)
     
-    ///Reads the tree storage given an array of positions and a folder
-    let ReadArray = GrampusInternal.StaticTree.ReadArray
-    
-    ///Reads the tree storage given a position and a folder
-    let Read = GrampusInternal.StaticTree.Read
+    /// <summary>
+    /// Reads the tree storage given a position and a folder.
+    /// </summary>
+    /// <param name="posn">The position to read in the tree.</param>
+    /// <param name="fol">The folder which stores the tree.</param>
+    /// <returns>The tree for the posn as a stats type.</returns>
+    let Read(posn, fol) = GrampusInternal.StaticTree.Read(posn, fol)
 
 module Filter =
     ///Creates the tree storage given a folder

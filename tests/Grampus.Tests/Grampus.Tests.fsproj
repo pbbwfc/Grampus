@@ -17,6 +17,7 @@
     <Compile Include="Board.fs" />
     <Compile Include="Game.fs" />
     <Compile Include="Repertoire.fs" />
+    <Compile Include="Tree.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
 

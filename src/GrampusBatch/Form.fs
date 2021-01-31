@@ -367,11 +367,11 @@ module Form =
                 log ("Processed Positions")
                 lbl.Text <- "Creating dictionary..."
                 Application.DoEvents()
-                StaticTree.Create(binfol) |> ignore
+                Tree.Create(binfol) |> ignore
                 log ("Created dictionary")
                 lbl.Text <- "Saving dictionary..."
                 Application.DoEvents()
-                StaticTree.Save(posns, stsarr, binfol) |> ignore
+                Tree.Save(posns, stsarr, binfol) |> ignore
                 log ("Saved dictionary")
                 lbl.Text <- "Initializing View..."
                 Application.DoEvents()
