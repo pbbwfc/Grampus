@@ -332,10 +332,10 @@ module Repertoire =
     let Black() = GrampusInternal.Repertoire.BlackRep
     
     ///White Repertoire Error File
-    let WhiteErrFile() = GrampusInternal.Repertoire.whiteerrs
+    let WhiteErrFile() = GrampusInternal.Repertoire.whiteerrs()
     
     ///Black Repertoire Error File
-    let BlackErrFile() = GrampusInternal.Repertoire.blackerrs
+    let BlackErrFile() = GrampusInternal.Repertoire.blackerrs()
     
     ///Load White Repertoire
     let LoadWhite() = GrampusInternal.Repertoire.LoadWhite()

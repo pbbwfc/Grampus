@@ -22,34 +22,40 @@ module Repertoire =
     let mutable WhiteRep : RepOpts * RepMove = Map.empty, Map.empty
     let mutable WhiteErrors : string list = []
     let setfol fol = rfol <- fol
-    let whitedb = Path.Combine(rfol, "WhiteRep")
-    let whiterep = Path.Combine(rfol, "whte.json")
-    let whiteerrs = Path.Combine(rfol, "whteerrs.txt")
-    let blackdb = Path.Combine(rfol, "BlackRep")
-    let blackrep = Path.Combine(rfol, "blck.json")
-    let blackerrs = Path.Combine(rfol, "blckerrs.txt")
+    let whitedb() = Path.Combine(rfol, "WhiteRep")
+    let whiterep() = Path.Combine(rfol, "whte.json")
+    let whiteerrs() = Path.Combine(rfol, "whteerrs.txt")
+    let blackdb() = Path.Combine(rfol, "BlackRep")
+    let blackrep() = Path.Combine(rfol, "blck.json")
+    let blackerrs() = Path.Combine(rfol, "blckerrs.txt")
     
     let LoadWhite() =
-        if File.Exists(whiterep) then 
-            let str = File.ReadAllText(whiterep)
+        if File.Exists(whiterep()) then 
+            let str = File.ReadAllText(whiterep())
             WhiteRep <- Json.deserialize (str)
-            WhiteErrors <- File.ReadAllLines(whiteerrs) |> List.ofArray
+            WhiteErrors <- File.ReadAllLines(whiteerrs()) |> List.ofArray
+        else
+            WhiteRep <- Map.empty, Map.empty
+            WhiteErrors <- []
     
     let LoadBlack() =
-        if File.Exists(blackrep) then 
-            let str = File.ReadAllText(blackrep)
+        if File.Exists(blackrep()) then 
+            let str = File.ReadAllText(blackrep())
             BlackRep <- Json.deserialize (str)
-            BlackErrors <- File.ReadAllLines(blackerrs) |> List.ofArray
+            BlackErrors <- File.ReadAllLines(blackerrs()) |> List.ofArray
+        else
+            BlackRep <- Map.empty, Map.empty
+            BlackErrors <- []
     
     let savewhite() =
         let str = Json.serialize WhiteRep
-        File.WriteAllText(whiterep, str)
-        File.WriteAllLines(whiteerrs, WhiteErrors |> List.toArray)
+        File.WriteAllText(whiterep(), str)
+        File.WriteAllLines(whiteerrs(), WhiteErrors |> List.toArray)
     
     let saveblack() =
         let str = Json.serialize BlackRep
-        File.WriteAllText(blackrep, str)
-        File.WriteAllLines(blackerrs, BlackErrors |> List.toArray)
+        File.WriteAllText(blackrep(), str)
+        File.WriteAllLines(blackerrs(), BlackErrors |> List.toArray)
     
     let optsHasSan (san : string) (opts : RepOpt list) =
         let filt = opts |> List.filter (fun op -> op.San = san)
@@ -150,7 +156,7 @@ module Repertoire =
                     else domvt cemvo pbd cbd imtel.Tail repopts repmove
                 | _ -> domvt cemvo pbd cbd imtel.Tail repopts repmove
         
-        let fol = whitedb + "_FILES"
+        let fol = whitedb() + "_FILES"
         let iea = Index.Load(fol)
         let hdra = Headers.Load(fol)
         let numgames = iea.Length
@@ -264,7 +270,7 @@ module Repertoire =
                     else domvt cemvo pbd cbd imtel.Tail repopts repmove
                 | _ -> domvt cemvo pbd cbd imtel.Tail repopts repmove
         
-        let fol = blackdb + "_FILES"
+        let fol = blackdb() + "_FILES"
         let iea = Index.Load(fol)
         let hdra = Headers.Load(fol)
         let numgames = iea.Length
