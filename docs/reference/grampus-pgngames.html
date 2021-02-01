@@ -125,9 +125,9 @@
             <div>
               <code onmouseout="hideTip(event, '55', 55)" onmouseover="showTip(event, '55', 55)">
                 <p>
-                  <a id="Encode">
-                    <a href="#Encode">
-                      <code><span>Encode&#32;<span></span></span></code>
+                  <a id="ReadSeqFromFile">
+                    <a href="#ReadSeqFromFile">
+                      <code><span>ReadSeqFromFile&#32;<span>fn</span></span></code>
                     </a>
                   </a>
                 </p>
@@ -135,13 +135,28 @@
               <div class="fsdocs-tip" id="55">
                 <div class="member-tooltip">
                   Full Usage: 
-                  <code><span>Encode&#32;<span></span></span></code>
+                  <code><span>ReadSeqFromFile&#32;<span>fn</span></span></code>
                   <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        fn
+                      </b>
+                      :
+                      <code>string</code>
+                       - 
+                      The path and file name of the PGN file.
+                    </span>
+                    <br/>
+                  </ul>
                   <br/>
                   <span>
                     Returns: 
-                    <code><span><span>seq&lt;<a href="/Grampus/reference/grampus-types-unencodedgame.html">UnencodedGame</a>&gt;</span>&#32;->&#32;<span><a href="/Grampus/reference/grampus-types-encodedgame.html">EncodedGame</a>[]</span></span></code>
+                    <code><span>seq&lt;<a href="/Grampus/reference/grampus-types-unencodedgame.html">UnencodedGame</a>&gt;</span></code>
                   </span>
+                  The games as an UnencodeGame sequence.
                   <br/>
                 </div>
               </div>
@@ -149,262 +164,40 @@
           </td>
           <td class="fsdocs-xmldoc">
             <p class="fsdocs-summary">
-              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L573-573" class="fsdocs-source-link">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L562-562" class="fsdocs-source-link">
                 <img src="/Grampus/content/img/github.png" class="normal"/>
                 <img src="/Grampus/content/img/github-blue.png" class="hover"/>
               </a>
               
-Encodes a sequence of Unencoded Games
-
+ Gets a Sequence of Games from a PGN file.
+ 
             </p>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns:
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  fn
                 </span>
-                <code><span><span>seq&lt;<a href="/Grampus/reference/grampus-types-unencodedgame.html">UnencodedGame</a>&gt;</span>&#32;->&#32;<span><a href="/Grampus/reference/grampus-types-encodedgame.html">EncodedGame</a>[]</span></span></code>
+                :
+                <code>string</code>
               </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
-          </td>
-        </tr>
-        <tr>
-          <td class="fsdocs-member-name">
-            <div>
-              <code onmouseout="hideTip(event, '56', 56)" onmouseover="showTip(event, '56', 56)">
+              <dd class="fsdocs-param-docs">
                 <p>
-                  <a id="ReadArrayFromFile">
-                    <a href="#ReadArrayFromFile">
-                      <code><span>ReadArrayFromFile&#32;<span></span></span></code>
-                    </a>
-                  </a>
+                  The path and file name of the PGN file.
                 </p>
-              </code>
-              <div class="fsdocs-tip" id="56">
-                <div class="member-tooltip">
-                  Full Usage: 
-                  <code><span>ReadArrayFromFile&#32;<span></span></span></code>
-                  <br/>
-                  <br/>
-                  <span>
-                    Returns: 
-                    <code><span>string&#32;->&#32;<span><a href="/Grampus/reference/grampus-types-unencodedgame.html">UnencodedGame</a>[]</span></span></code>
-                  </span>
-                  <br/>
-                </div>
-              </div>
-            </div>
-          </td>
-          <td class="fsdocs-xmldoc">
-            <p class="fsdocs-summary">
-              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L558-558" class="fsdocs-source-link">
-                <img src="/Grampus/content/img/github.png" class="normal"/>
-                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
-              </a>
-              
-Get an array of Games from a file
-
-            </p>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns:
-                </span>
-                <code><span>string&#32;->&#32;<span><a href="/Grampus/reference/grampus-types-unencodedgame.html">UnencodedGame</a>[]</span></span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
+              </dd>
             </dl>
-          </td>
-        </tr>
-        <tr>
-          <td class="fsdocs-member-name">
-            <div>
-              <code onmouseout="hideTip(event, '57', 57)" onmouseover="showTip(event, '57', 57)">
-                <p>
-                  <a id="ReadIndexListFromFile">
-                    <a href="#ReadIndexListFromFile">
-                      <code><span>ReadIndexListFromFile&#32;<span></span></span></code>
-                    </a>
-                  </a>
-                </p>
-              </code>
-              <div class="fsdocs-tip" id="57">
-                <div class="member-tooltip">
-                  Full Usage: 
-                  <code><span>ReadIndexListFromFile&#32;<span></span></span></code>
-                  <br/>
-                  <br/>
-                  <span>
-                    Returns: 
-                    <code><span>string&#32;->&#32;<span><span>(<span>int&#32;*&#32;<a href="/Grampus/reference/grampus-types-unencodedgame.html">UnencodedGame</a></span>)</span>&#32;list</span></span></code>
-                  </span>
-                  <br/>
-                </div>
-              </div>
-            </div>
-          </td>
-          <td class="fsdocs-xmldoc">
-            <p class="fsdocs-summary">
-              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L564-564" class="fsdocs-source-link">
-                <img src="/Grampus/content/img/github.png" class="normal"/>
-                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
-              </a>
-              
-Get a list of index * Game from a file
-
-            </p>
             <dl class="fsdocs-returns">
               <dt>
                 <span class="fsdocs-return-name">
                   Returns:
                 </span>
-                <code><span>string&#32;->&#32;<span><span>(<span>int&#32;*&#32;<a href="/Grampus/reference/grampus-types-unencodedgame.html">UnencodedGame</a></span>)</span>&#32;list</span></span></code>
+                <code><span>seq&lt;<a href="/Grampus/reference/grampus-types-unencodedgame.html">UnencodedGame</a>&gt;</span></code>
               </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
-          </td>
-        </tr>
-        <tr>
-          <td class="fsdocs-member-name">
-            <div>
-              <code onmouseout="hideTip(event, '58', 58)" onmouseover="showTip(event, '58', 58)">
+              <dd class="fsdocs-return-docs">
                 <p>
-                  <a id="ReadListFromFile">
-                    <a href="#ReadListFromFile">
-                      <code><span>ReadListFromFile&#32;<span></span></span></code>
-                    </a>
-                  </a>
+                  The games as an UnencodeGame sequence.
                 </p>
-              </code>
-              <div class="fsdocs-tip" id="58">
-                <div class="member-tooltip">
-                  Full Usage: 
-                  <code><span>ReadListFromFile&#32;<span></span></span></code>
-                  <br/>
-                  <br/>
-                  <span>
-                    Returns: 
-                    <code><span>string&#32;->&#32;<span><a href="/Grampus/reference/grampus-types-unencodedgame.html">UnencodedGame</a>&#32;list</span></span></code>
-                  </span>
-                  <br/>
-                </div>
-              </div>
-            </div>
-          </td>
-          <td class="fsdocs-xmldoc">
-            <p class="fsdocs-summary">
-              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L561-561" class="fsdocs-source-link">
-                <img src="/Grampus/content/img/github.png" class="normal"/>
-                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
-              </a>
-              
-Get a list of Games from a file
-
-            </p>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns:
-                </span>
-                <code><span>string&#32;->&#32;<span><a href="/Grampus/reference/grampus-types-unencodedgame.html">UnencodedGame</a>&#32;list</span></span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
-          </td>
-        </tr>
-        <tr>
-          <td class="fsdocs-member-name">
-            <div>
-              <code onmouseout="hideTip(event, '59', 59)" onmouseover="showTip(event, '59', 59)">
-                <p>
-                  <a id="ReadSeqFromFile">
-                    <a href="#ReadSeqFromFile">
-                      <code><span>ReadSeqFromFile&#32;<span></span></span></code>
-                    </a>
-                  </a>
-                </p>
-              </code>
-              <div class="fsdocs-tip" id="59">
-                <div class="member-tooltip">
-                  Full Usage: 
-                  <code><span>ReadSeqFromFile&#32;<span></span></span></code>
-                  <br/>
-                  <br/>
-                  <span>
-                    Returns: 
-                    <code><span>string&#32;->&#32;<span>seq&lt;<a href="/Grampus/reference/grampus-types-unencodedgame.html">UnencodedGame</a>&gt;</span></span></code>
-                  </span>
-                  <br/>
-                </div>
-              </div>
-            </div>
-          </td>
-          <td class="fsdocs-xmldoc">
-            <p class="fsdocs-summary">
-              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L567-567" class="fsdocs-source-link">
-                <img src="/Grampus/content/img/github.png" class="normal"/>
-                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
-              </a>
-              
-Get a Sequence of Games from a file
-
-            </p>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns:
-                </span>
-                <code><span>string&#32;->&#32;<span>seq&lt;<a href="/Grampus/reference/grampus-types-unencodedgame.html">UnencodedGame</a>&gt;</span></span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
-          </td>
-        </tr>
-        <tr>
-          <td class="fsdocs-member-name">
-            <div>
-              <code onmouseout="hideTip(event, '60', 60)" onmouseover="showTip(event, '60', 60)">
-                <p>
-                  <a id="WriteFile">
-                    <a href="#WriteFile">
-                      <code><span>WriteFile&#32;<span></span></span></code>
-                    </a>
-                  </a>
-                </p>
-              </code>
-              <div class="fsdocs-tip" id="60">
-                <div class="member-tooltip">
-                  Full Usage: 
-                  <code><span>WriteFile&#32;<span></span></span></code>
-                  <br/>
-                  <br/>
-                  <span>
-                    Returns: 
-                    <code><span>string&#32;->&#32;<span><a href="/Grampus/reference/grampus-types-unencodedgame.html">UnencodedGame</a>&#32;list</span>&#32;->&#32;unit</span></code>
-                  </span>
-                  <br/>
-                </div>
-              </div>
-            </div>
-          </td>
-          <td class="fsdocs-xmldoc">
-            <p class="fsdocs-summary">
-              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L570-570" class="fsdocs-source-link">
-                <img src="/Grampus/content/img/github.png" class="normal"/>
-                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
-              </a>
-              
-Write a list of Games to a file
-
-            </p>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns:
-                </span>
-                <code><span>string&#32;->&#32;<span><a href="/Grampus/reference/grampus-types-unencodedgame.html">UnencodedGame</a>&#32;list</span>&#32;->&#32;unit</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
+              </dd>
             </dl>
           </td>
         </tr>
