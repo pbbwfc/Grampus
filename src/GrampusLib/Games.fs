@@ -171,4 +171,5 @@ module Games =
         File.Move(ofn, ifn, true)
         File.Move
             (Path.Combine(tmpfol, "INDEX"), Path.Combine(fol, "INDEX"), true)
-        File.Move(Path.Combine(tmpfol, "HEADERS"), Path.Combine(fol, "HEADERS"), true)
+        File.Move
+            (Path.Combine(tmpfol, "HEADERS"), Path.Combine(fol, "HEADERS"), true)

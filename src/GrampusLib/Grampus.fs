@@ -495,7 +495,7 @@ module Headers =
     /// <param name="fol">The folder in which to store the headers.</param>
     /// <param name="hdrs">The headers as a Headers array type.</param>
     /// <returns>Nothing.</returns>
-    let Save(fol,hdrs)  = GrampusInternal.Headers.Save(fol,hdrs)
+    let Save(fol, hdrs) = GrampusInternal.Headers.Save(fol, hdrs)
 
 module Games =
     ///Load Game
