@@ -2,6 +2,9 @@ namespace Grampus
 
 open MessagePack
 
+/// <summary>This type is for implementation purposes.</summary>
+///
+/// <exclude />
 module AssemblyInfo =
     open System.Runtime.CompilerServices
     

@@ -13,9 +13,9 @@ module PgnGames =
         let db = RegParse.AllGamesRdr(sr)
         db
     
-    let ReadSeqFromFile(file : string) =
+    let ReadSeqFromFile(fn : string) =
         let stream =
-            new FileStream(file, FileMode.Open, FileAccess.Read, FileShare.Read)
+            new FileStream(fn, FileMode.Open, FileAccess.Read, FileShare.Read)
         let db = ReadFromStream(stream)
         db
     

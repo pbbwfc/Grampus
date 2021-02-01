@@ -554,20 +554,10 @@ module Games =
 /// Holds the functions related to a set of Games in PGN format.
 /// </summary>
 module PgnGames =
-    ///Get an array of Games from a file
-    let ReadArrayFromFile = GrampusInternal.PgnGames.ReadArrayFromFile
+    /// <summary>
+    /// Gets a Sequence of Games from a PGN file.
+    /// </summary>
+    /// <param name="fn">The path and file name of the PGN file.</param>
+    /// <returns>The games as an UnencodeGame sequence.</returns>
+    let ReadSeqFromFile(fn) = GrampusInternal.PgnGames.ReadSeqFromFile(fn)
     
-    ///Get a list of Games from a file
-    let ReadListFromFile = GrampusInternal.PgnGames.ReadListFromFile
-    
-    ///Get a list of index * Game from a file
-    let ReadIndexListFromFile = GrampusInternal.PgnGames.ReadIndexListFromFile
-    
-    ///Get a Sequence of Games from a file
-    let ReadSeqFromFile = GrampusInternal.PgnGames.ReadSeqFromFile
-    
-    ///Write a list of Games to a file
-    let WriteFile = GrampusInternal.PgnWriter.WriteFile
-    
-    ///Encodes a sequence of Unencoded Games
-    let Encode = GrampusInternal.PgnGames.Encode
