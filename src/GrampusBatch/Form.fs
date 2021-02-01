@@ -62,11 +62,11 @@ module Form =
                            Path.GetFileNameWithoutExtension(gmpfile) + "_FILES")
         let mutable iea = [||]
         let mutable hdra = [||]
+        let mutable ply = 0
         let ms = new MenuStrip()
         let ts =
             new ToolStrip(LayoutStyle = ToolStripLayoutStyle.HorizontalStackWithOverflow, 
                           Dock = DockStyle.Fill)
-        let plydd = new ToolStripComboBox(AutoSize = false, Width = 40)
         let logtb =
             new TextBox(Text = "Log:", Multiline = true, Dock = DockStyle.Fill, 
                         ReadOnly = true, ScrollBars = ScrollBars.Vertical)
@@ -80,7 +80,7 @@ module Form =
         let nl = Environment.NewLine
         let el() = (float ((nd - st).TotalMilliseconds) / 1000.0).ToString()
         let impbtn = new ToolStripButton(Text = "Import PGN", Enabled = true)
-        let crbtn = new ToolStripButton(Text = "Create Trees", Enabled = false)
+        let crbtn = new ToolStripButton(Text = "Create Tree", Enabled = false)
         let crfbtn =
             new ToolStripButton(Text = "Create Filters", Enabled = false)
         let opnm = new ToolStripMenuItem(Text = "&Open")
@@ -129,6 +129,7 @@ module Form =
             binfol <- ""
             iea <- [||]
             hdra <- [||]
+            ply <- 0
             updateMenuStates()
             updateTitle()
         
@@ -184,11 +185,9 @@ module Form =
         let docreate (e) =
             let totaldict =
                 new System.Collections.Generic.Dictionary<string, MvTrees>()
-            let dr = (new DlgTree()).ShowDialog()
-            
-            let getGmBds i =
+
+            let processGame i =
                 let gm = Games.LoadGame binfol iea.[i] hdra.[i]
-                let ply = plydd.SelectedItem |> unbox
                 let posns, mvs = Game.GetPosnsMoves ply gm
                 let welo = gm.Hdr.W_Elo
                 let belo = gm.Hdr.B_Elo
@@ -198,7 +197,6 @@ module Form =
                     |> Result.Parse
                     |> Result.ToInt
                 
-                //{ "*",  "1-0",  "0-1",  "1/2-1/2" }
                 let yr = gm.Hdr.Year
                 
                 let gminfo =
@@ -211,10 +209,6 @@ module Form =
                           else int (belo)
                       Year = yr
                       Result = res }
-                gminfo, posns, mvs
-            
-            let processGame i =
-                let gminfo, posns, mvs = getGmBds i
                 
                 let wtd =
                     let perf, ct =
@@ -356,37 +350,23 @@ module Form =
                 mvsts.Sort(fun a b -> int (b.Count - a.Count))
                 sts.MvsStats <- mvsts
                 sts.TotStats <- totsts
-                if i % 100 = 0 then 
-                    prg.Value <- i
-                    Application.DoEvents()
+                if i % 100 = 0 then updprg(i)
                 sts
             
-            let ndlg =
-                new OpenFileDialog(Title = "Open Database", 
-                                   Filter = "Grampus databases(*.grampus)|*.grampus", 
-                                   InitialDirectory = bfol)
-            if ndlg.ShowDialog() = DialogResult.OK then 
-                gmpfile <- ndlg.FileName
+            let dlg = new Dlg(Text = "Create Tree")
+            if dlg.ShowDialog()=DialogResult.OK then
+                ply <- int(dlg.Ply)
+           
                 this.Enabled <- false
-                lbl.Text <- "Opening base..."
-                Application.DoEvents()
-                st <- DateTime.Now
-                gmp <- Some(Grampus.Load gmpfile)
-                setbinfol()
-                iea <- Index.Load binfol
-                hdra <- Headers.Load binfol
                 let numgames = iea.Length
                 totaldict.Clear()
                 prg.Minimum <- 0
                 prg.Maximum <- numgames
-                log ("Opened base")
                 lbl.Text <- "Processing " + numgames.ToString() + " games..."
                 Application.DoEvents()
                 for i = 0 to numgames - 1 do
                     processGame (i)
-                    if i % 100 = 0 then 
-                        prg.Value <- i
-                        Application.DoEvents()
+                    if i % 100 = 0 then updprg(i)
                 log ("Processed Games")
                 //now create tree for each
                 let numpos = totaldict.Count
@@ -412,25 +392,21 @@ module Form =
                 Application.DoEvents()
                 Tree.Save(posns, stsarr, binfol) |> ignore
                 log ("Saved dictionary")
+                lbl.Text <- "Ready"
                 gmp <- Some
                            ({ gmp.Value with TreesCreated = Some(DateTime.Now)
-                                             TreesPly =
-                                                 plydd.SelectedItem |> unbox })
+                                             TreesPly = ply })
                 Grampus.Save(gmpfile, gmp.Value)
                 this.Enabled <- true
-        
+                prg.Value <- 0
+                
         let docreatef (e) =
             let totaldict =
                 new System.Collections.Generic.Dictionary<string, int list>()
             
-            let getBds i =
-                let gm = Games.LoadGame binfol iea.[i] hdra.[i]
-                let ply = plydd.SelectedItem |> unbox
-                let posns = Game.GetPosns ply gm
-                posns
-            
             let processGame i =
-                let posns = getBds i
+                let gm = Games.LoadGame binfol iea.[i] hdra.[i]
+                let posns = Game.GetPosns ply gm
                 //now need to go through the boarda and put in dictionary holding running totals
                 for j = 0 to posns.Length - 1 do
                     let bd = posns.[j]
@@ -439,31 +415,19 @@ module Form =
                         totaldict.[bd] <- (i :: gms)
                     else totaldict.[bd] <- [ i ]
             
-            let ndlg =
-                new OpenFileDialog(Title = "Open Database", 
-                                   Filter = "Grampus databases(*.grampus)|*.grampus", 
-                                   InitialDirectory = bfol)
-            if ndlg.ShowDialog() = DialogResult.OK then 
-                gmpfile <- ndlg.FileName
+            let dlg = new Dlg(Text = "Create Filters")
+            if dlg.ShowDialog()=DialogResult.OK then
+                ply <- int(dlg.Ply)
                 this.Enabled <- false
-                lbl.Text <- "Opening base..."
-                Application.DoEvents()
-                st <- DateTime.Now
-                gmp <- Some(Grampus.Load gmpfile)
-                setbinfol()
-                iea <- Index.Load binfol
                 let numgames = iea.Length
                 totaldict.Clear()
                 prg.Minimum <- 0
                 prg.Maximum <- numgames
-                log ("Opened base")
                 lbl.Text <- "Processing " + numgames.ToString() + " games..."
                 Application.DoEvents()
                 for i = 0 to numgames - 1 do
                     processGame (i)
-                    if i % 100 = 0 then 
-                        prg.Value <- i
-                        Application.DoEvents()
+                    if i % 100 = 0 then updprg(i)
                 log ("Processed Games")
                 //now create tree for each
                 let numpos = totaldict.Count
@@ -489,23 +453,15 @@ module Form =
                 Application.DoEvents()
                 gmp <- Some
                            ({ gmp.Value with FiltersCreated = Some(DateTime.Now)
-                                             FiltersPly =
-                                                 plydd.SelectedItem |> unbox })
+                                             FiltersPly = ply })
                 Grampus.Save(gmpfile, gmp.Value)
                 this.Enabled <- true
+                prg.Value <- 0
         
         let createts() =
-            let plylbl = new ToolStripLabel(Text = "Select Ply (-1 infinite)")
             ts.Items.Add(impbtn) |> ignore
             ts.Items.Add(crbtn) |> ignore
             ts.Items.Add(crfbtn) |> ignore
-            [| -1; 20; 30; 40; 50 |]
-            |> Array.map box
-            |> plydd.Items.AddRange
-            plydd.SelectedIndex <- 1
-            ts.Items.Add(new ToolStripSeparator()) |> ignore
-            ts.Items.Add(plylbl) |> ignore
-            ts.Items.Add(plydd) |> ignore
             impbtn.Click.Add(doimp)
             crbtn.Click.Add(docreate)
             crfbtn.Click.Add(docreatef)
@@ -526,7 +482,7 @@ module Form =
             crm.Click.Add(docreate)
             ms.Items.Add(tm) |> ignore
             //filter menu
-            let fm = new ToolStripMenuItem(Text = "&Filter")
+            let fm = new ToolStripMenuItem(Text = "&Filters")
             fm.DropDownItems.Add(crfm) |> ignore
             crfm.Click.Add(docreatef)
             ms.Items.Add(fm) |> ignore
