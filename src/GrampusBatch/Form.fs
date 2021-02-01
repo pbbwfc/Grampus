@@ -185,7 +185,7 @@ module Form =
         let docreate (e) =
             let totaldict =
                 new System.Collections.Generic.Dictionary<string, MvTrees>()
-
+            
             let processGame i =
                 let gm = Games.LoadGame binfol iea.[i] hdra.[i]
                 let posns, mvs = Game.GetPosnsMoves ply gm
@@ -350,13 +350,12 @@ module Form =
                 mvsts.Sort(fun a b -> int (b.Count - a.Count))
                 sts.MvsStats <- mvsts
                 sts.TotStats <- totsts
-                if i % 100 = 0 then updprg(i)
+                if i % 100 = 0 then updprg (i)
                 sts
             
             let dlg = new Dlg(Text = "Create Tree")
-            if dlg.ShowDialog()=DialogResult.OK then
-                ply <- int(dlg.Ply)
-           
+            if dlg.ShowDialog() = DialogResult.OK then 
+                ply <- int (dlg.Ply)
                 this.Enabled <- false
                 let numgames = iea.Length
                 totaldict.Clear()
@@ -366,7 +365,7 @@ module Form =
                 Application.DoEvents()
                 for i = 0 to numgames - 1 do
                     processGame (i)
-                    if i % 100 = 0 then updprg(i)
+                    if i % 100 = 0 then updprg (i)
                 log ("Processed Games")
                 //now create tree for each
                 let numpos = totaldict.Count
@@ -393,13 +392,12 @@ module Form =
                 Tree.Save(posns, stsarr, binfol) |> ignore
                 log ("Saved dictionary")
                 lbl.Text <- "Ready"
-                gmp <- Some
-                           ({ gmp.Value with TreesCreated = Some(DateTime.Now)
+                gmp <- Some({ gmp.Value with TreesCreated = Some(DateTime.Now)
                                              TreesPly = ply })
                 Grampus.Save(gmpfile, gmp.Value)
                 this.Enabled <- true
                 prg.Value <- 0
-                
+        
         let docreatef (e) =
             let totaldict =
                 new System.Collections.Generic.Dictionary<string, int list>()
@@ -416,8 +414,8 @@ module Form =
                     else totaldict.[bd] <- [ i ]
             
             let dlg = new Dlg(Text = "Create Filters")
-            if dlg.ShowDialog()=DialogResult.OK then
-                ply <- int(dlg.Ply)
+            if dlg.ShowDialog() = DialogResult.OK then 
+                ply <- int (dlg.Ply)
                 this.Enabled <- false
                 let numgames = iea.Length
                 totaldict.Clear()
@@ -427,7 +425,7 @@ module Form =
                 Application.DoEvents()
                 for i = 0 to numgames - 1 do
                     processGame (i)
-                    if i % 100 = 0 then updprg(i)
+                    if i % 100 = 0 then updprg (i)
                 log ("Processed Games")
                 //now create tree for each
                 let numpos = totaldict.Count
@@ -451,8 +449,7 @@ module Form =
                 log ("Saved dictionary")
                 lbl.Text <- "Ready"
                 Application.DoEvents()
-                gmp <- Some
-                           ({ gmp.Value with FiltersCreated = Some(DateTime.Now)
+                gmp <- Some({ gmp.Value with FiltersCreated = Some(DateTime.Now)
                                              FiltersPly = ply })
                 Grampus.Save(gmpfile, gmp.Value)
                 this.Enabled <- true

@@ -27,8 +27,7 @@ module Dialogs =
             this.StartPosition <- FormStartPosition.CenterParent
             hc2.Controls.Add(cnbtn)
             hc2.Controls.Add(okbtn)
-            [ hc1; hc2 ] 
-            |> List.iteri (fun i c -> vc.Controls.Add(c, 0, i))
+            [ hc1; hc2 ] |> List.iteri (fun i c -> vc.Controls.Add(c, 0, i))
             this.Controls.Add(vc)
             this.AcceptButton <- okbtn
             this.CancelButton <- cnbtn
@@ -52,9 +51,10 @@ module Dialogs =
         do 
             this.AddControl(lbl)
             this.AddControl(spn)
-        override this.DoOK(e) = 
+        
+        override this.DoOK(e) =
             this.DialogResult <- DialogResult.OK
             this.Close()
-            
+        
         member this.SetText(txt) = lbl.Text <- txt
         member this.Ply = spn.Value
