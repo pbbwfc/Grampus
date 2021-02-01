@@ -485,14 +485,16 @@ module Types =
           BaseCreated : System.DateTime option
           TreesCreated : System.DateTime option
           FiltersCreated : System.DateTime option
-          Ply : int }
+          TreesPly : int
+          FiltersPly : int }
     
     let GrampusDataEMP =
         { SourcePgn = ""
           BaseCreated = None
           TreesCreated = None
           FiltersCreated = None
-          Ply = 20 }
+          TreesPly = 20
+          FiltersPly = 20 }
     
     /// <summary>Record type holding low level repertoire data.</summary>
     type RepOpt =

@@ -387,7 +387,7 @@ module Form =
                 lbl.Text <- "Ready"
                 Application.DoEvents()
                 gmp <- { gmp with TreesCreated = Some(DateTime.Now)
-                                  Ply = plydd.SelectedItem |> unbox }
+                                  TreesPly = plydd.SelectedItem |> unbox }
                 Grampus.Save(gmpfile, gmp)
                 this.Enabled <- true
         
@@ -471,7 +471,7 @@ module Form =
                 lbl.Text <- "Ready"
                 Application.DoEvents()
                 gmp <- { gmp with FiltersCreated = Some(DateTime.Now)
-                                  Ply = plydd.SelectedItem |> unbox }
+                                  FiltersPly = plydd.SelectedItem |> unbox }
                 Grampus.Save(gmpfile, gmp)
                 this.Enabled <- true
         

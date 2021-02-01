@@ -6,22 +6,24 @@ open Grampus
 open System.IO
 
 [<TestClass>]
-type Grampus() =
-    let tstfn = @"D:\GitHub\Grampus\tests\data\simple-game.grampus"
-    let tstfn2 = @"D:\GitHub\Grampus\tests\data\simple-game2.grampus"
+type Headers() =
+    let tstfol = @"D:\GitHub\Grampus\tests\data\simple-game_FILES"
+    let tstfol2 = @"D:\GitHub\Grampus\tests\data\simple-game2_FILES"
     
     [<TestMethod>]
     member this.Load() =
-        let ans = Grampus.Load(tstfn)
-        ans.TreesPly |> should equal 20
+        let ans = Headers.Load(tstfol)
+        ans.Length |> should equal 1
     
     [<TestMethod>]
     member this.Save() =
+        let tstfn2 = Path.Combine(tstfol2, "HEADERS")
         if File.Exists(tstfn2) then File.Delete(tstfn2)
         let ans = File.Exists(tstfn2)
         ans |> should equal false
-        let gmp = Grampus.Load(tstfn)
-        Grampus.Save(tstfn2, gmp)
+        let hdrs = Headers.Load(tstfol)
+        Directory.CreateDirectory(tstfol2) |> ignore
+        Headers.Save(tstfol2, hdrs)
         let ans = File.Exists(tstfn2)
         ans |> should equal true
         File.Delete(tstfn2)

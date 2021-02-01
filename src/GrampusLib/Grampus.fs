@@ -456,7 +456,7 @@ module Index =
     /// Saves the Index given the folder and the data.
     /// </summary>
     /// <param name="fol">The folder in which to store the index.</param>
-    /// <param name="iea">TheThe index as an IndexEntry array type.</param>
+    /// <param name="iea">The index as an IndexEntry array type.</param>
     /// <returns>Nothing.</returns>
     let Save(fol, iea) = GrampusInternal.Index.Save(fol, iea)
 
@@ -478,12 +478,24 @@ module Eco =
     /// <returns>Nothing.</returns>
     let ForBase(fol) = GrampusInternal.Eco.ForBase(fol)
 
+/// <summary>
+/// Holds the functions related to Headers.
+/// </summary>
 module Headers =
-    ///Load Game Rows
-    let Load = GrampusInternal.Headers.Load
+    /// <summary>
+    /// Loads the headers given the folder.
+    /// </summary>
+    /// <param name="fol">The folder which stores the headers.</param>
+    /// <returns>The headers as an Header array type.</returns>
+    let Load(fol) = GrampusInternal.Headers.Load(fol)
     
-    ///Save Game Rows
-    let Save = GrampusInternal.Headers.Save
+    /// <summary>
+    /// Saves the headers given the folder and the data.
+    /// </summary>
+    /// <param name="fol">The folder in which to store the headers.</param>
+    /// <param name="hdrs">The headers as a Headers array type.</param>
+    /// <returns>Nothing.</returns>
+    let Save(fol,hdrs)  = GrampusInternal.Headers.Save(fol,hdrs)
 
 module Games =
     ///Load Game

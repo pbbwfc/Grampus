@@ -3,5 +3,6 @@
   "BaseCreated": "2021-01-26T19:07:44.9575465+00:00",
   "TreesCreated": null,
   "FiltersCreated": null,
-  "Ply": 20
+  "TreesPly": 20,
+  "FiltersPly": 20
 }

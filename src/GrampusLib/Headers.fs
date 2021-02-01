@@ -17,7 +17,7 @@ module Headers =
     let options = MessagePackSerializerOptions.Standard.WithResolver(resolver)
     
     let Load(fol : string) =
-        let fn = Path.Combine(fol, "ROWS")
+        let fn = Path.Combine(fol, "HEADERS")
         if File.Exists(fn) then 
             let bin = File.ReadAllBytes(fn)
             let ro = new ReadOnlyMemory<byte>(bin)
@@ -25,7 +25,7 @@ module Headers =
             gmr
         else [||]
     
-    let Save(fol : string, gmr : Header []) =
-        let fn = Path.Combine(fol, "ROWS")
-        let bin = MessagePackSerializer.Serialize<Header []>(gmr, options)
+    let Save(fol : string, hdrs : Header []) =
+        let fn = Path.Combine(fol, "HEADERS")
+        let bin = MessagePackSerializer.Serialize<Header []>(hdrs, options)
         File.WriteAllBytes(fn, bin)

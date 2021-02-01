@@ -28,7 +28,7 @@ type Eco() =
         Directory.CreateDirectory(tstfol2) |> ignore
         File.Copy(Path.Combine(tstfol, "INDEX"), Path.Combine(tstfol2, "INDEX"))
         File.Copy(Path.Combine(tstfol, "GAMES"), Path.Combine(tstfol2, "GAMES"))
-        File.Copy(Path.Combine(tstfol, "ROWS"), Path.Combine(tstfol2, "ROWS"))
+        File.Copy(Path.Combine(tstfol, "HEADERS"), Path.Combine(tstfol2, "HEADERS"))
         let indx = Index.Load tstfol
         let hdrs = Headers.Load tstfol
         let gm = Games.LoadGame tstfol indx.[0] hdrs.[0]
