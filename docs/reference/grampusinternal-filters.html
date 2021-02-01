@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Filter (Grampus)</title>
+    <title>Filters (Grampus)</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="author" content="pbbwfc">
 
@@ -88,21 +88,19 @@
         <div class="container" id="fsdocs-content">
             <div>
   <h1>
-    Filter Module
+    Filters Module
   </h1>
   <p>
     Namespace: 
-    <a href="/Grampus/reference/grampus.html">
-      Grampus
+    <a href="/Grampus/reference/grampusinternal.html">
+      GrampusInternal
     </a>
   </p>
   <p>
     Assembly: GrampusLib.dll
   </p>
   <div class="fsdocs-xmldoc">
-    
- Holds the functions related to a Filter.
- 
+    This type is for implementation purposes.
   </div>
   <div>
     <h3>
@@ -123,31 +121,29 @@
         <tr>
           <td class="fsdocs-member-name">
             <div>
-              <code onmouseout="hideTip(event, '10', 10)" onmouseover="showTip(event, '10', 10)">
+              <code onmouseout="hideTip(event, '258', 258)" onmouseover="showTip(event, '258', 258)">
                 <p>
                   <a id="Create">
                     <a href="#Create">
-                      <code><span>Create&#32;<span>fol</span></span></code>
+                      <code><span>Create&#32;<span>ifol</span></span></code>
                     </a>
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="10">
+              <div class="fsdocs-tip" id="258">
                 <div class="member-tooltip">
                   Full Usage: 
-                  <code><span>Create&#32;<span>fol</span></span></code>
+                  <code><span>Create&#32;<span>ifol</span></span></code>
                   <br/>
                   <br/>
                   Parameters: 
                   <ul>
                     <span>
                       <b>
-                        fol
+                        ifol
                       </b>
                       :
                       <code>string</code>
-                       - 
-                      The folder to store the tree.
                     </span>
                     <br/>
                   </ul>
@@ -158,46 +154,40 @@
           </td>
           <td class="fsdocs-xmldoc">
             <p class="fsdocs-summary">
-              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L406-406" class="fsdocs-source-link">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Filters.fs#L19-19" class="fsdocs-source-link">
                 <img src="/Grampus/content/img/github.png" class="normal"/>
                 <img src="/Grampus/content/img/github-blue.png" class="hover"/>
               </a>
               
- Creates the filter storage given a folder.
- 
             </p>
             <dl class="fsdocs-params">
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
-                  fol
+                  ifol
                 </span>
                 :
                 <code>string</code>
               </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The folder to store the tree.
-                </p>
-              </dd>
+              <dd class="fsdocs-param-docs"></dd>
             </dl>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-name">
             <div>
-              <code onmouseout="hideTip(event, '11', 11)" onmouseover="showTip(event, '11', 11)">
+              <code onmouseout="hideTip(event, '259', 259)" onmouseover="showTip(event, '259', 259)">
                 <p>
                   <a id="Read">
                     <a href="#Read">
-                      <code><span>Read&#32;<span><span>(<span>posn,&#32;fol</span>)</span></span></span></code>
+                      <code><span>Read&#32;<span><span>(<span>posn,&#32;ifol</span>)</span></span></span></code>
                     </a>
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="11">
+              <div class="fsdocs-tip" id="259">
                 <div class="member-tooltip">
                   Full Usage: 
-                  <code><span>Read&#32;<span><span>(<span>posn,&#32;fol</span>)</span></span></span></code>
+                  <code><span>Read&#32;<span><span>(<span>posn,&#32;ifol</span>)</span></span></span></code>
                   <br/>
                   <br/>
                   Parameters: 
@@ -208,18 +198,14 @@
                       </b>
                       :
                       <code>string</code>
-                       - 
-                      The position to read in the tree.
                     </span>
                     <br/>
                     <span>
                       <b>
-                        fol
+                        ifol
                       </b>
                       :
                       <code>string</code>
-                       - 
-                      The folder which stores the tree.
                     </span>
                     <br/>
                   </ul>
@@ -228,7 +214,6 @@
                     Returns: 
                     <code><span>int&#32;list</span></code>
                   </span>
-                  The filter for the posn as an int list type.
                   <br/>
                 </div>
               </div>
@@ -236,13 +221,11 @@
           </td>
           <td class="fsdocs-xmldoc">
             <p class="fsdocs-summary">
-              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L423-423" class="fsdocs-source-link">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Filters.fs#L50-50" class="fsdocs-source-link">
                 <img src="/Grampus/content/img/github.png" class="normal"/>
                 <img src="/Grampus/content/img/github-blue.png" class="hover"/>
               </a>
               
- Reads the filter storage given a position and a folder.
- 
             </p>
             <dl class="fsdocs-params">
               <dt class="fsdocs-param">
@@ -252,23 +235,15 @@
                 :
                 <code>string</code>
               </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The position to read in the tree.
-                </p>
-              </dd>
+              <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
-                  fol
+                  ifol
                 </span>
                 :
                 <code>string</code>
               </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The folder which stores the tree.
-                </p>
-              </dd>
+              <dd class="fsdocs-param-docs"></dd>
             </dl>
             <dl class="fsdocs-returns">
               <dt>
@@ -277,30 +252,26 @@
                 </span>
                 <code><span>int&#32;list</span></code>
               </dt>
-              <dd class="fsdocs-return-docs">
-                <p>
-                  The filter for the posn as an int list type.
-                </p>
-              </dd>
+              <dd class="fsdocs-return-docs"></dd>
             </dl>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-name">
             <div>
-              <code onmouseout="hideTip(event, '12', 12)" onmouseover="showTip(event, '12', 12)">
+              <code onmouseout="hideTip(event, '260', 260)" onmouseover="showTip(event, '260', 260)">
                 <p>
-                  <a id="Save">
-                    <a href="#Save">
-                      <code><span>Save&#32;<span><span>(<span>posns,&#32;filts,&#32;fol</span>)</span></span></span></code>
+                  <a id="ReadArray">
+                    <a href="#ReadArray">
+                      <code><span>ReadArray&#32;<span><span>(<span>posns,&#32;ifol</span>)</span></span></span></code>
                     </a>
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="12">
+              <div class="fsdocs-tip" id="260">
                 <div class="member-tooltip">
                   Full Usage: 
-                  <code><span>Save&#32;<span><span>(<span>posns,&#32;filts,&#32;fol</span>)</span></span></span></code>
+                  <code><span>ReadArray&#32;<span><span>(<span>posns,&#32;ifol</span>)</span></span></span></code>
                   <br/>
                   <br/>
                   Parameters: 
@@ -311,8 +282,90 @@
                       </b>
                       :
                       <code><span>string[]</span></code>
-                       - 
-                      The array of positions for the tree.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ifol
+                      </b>
+                      :
+                      <code>string</code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><span>int&#32;list</span>[]</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Filters.fs#L36-36" class="fsdocs-source-link">
+                <img src="/Grampus/content/img/github.png" class="normal"/>
+                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  posns
+                </span>
+                :
+                <code><span>string[]</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ifol
+                </span>
+                :
+                <code>string</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns:
+                </span>
+                <code><span><span>int&#32;list</span>[]</span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '261', 261)" onmouseover="showTip(event, '261', 261)">
+                <p>
+                  <a id="Save">
+                    <a href="#Save">
+                      <code><span>Save&#32;<span><span>(<span>posns,&#32;filts,&#32;ifol</span>)</span></span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="261">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>Save&#32;<span><span>(<span>posns,&#32;filts,&#32;ifol</span>)</span></span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        posns
+                      </b>
+                      :
+                      <code><span>string[]</span></code>
                     </span>
                     <br/>
                     <span>
@@ -321,18 +374,14 @@
                       </b>
                       :
                       <code><span><span>int&#32;list</span>[]</span></code>
-                       - 
-                      The array of references to games as an int list type.
                     </span>
                     <br/>
                     <span>
                       <b>
-                        fol
+                        ifol
                       </b>
                       :
                       <code>string</code>
-                       - 
-                      The folder to store the tree.
                     </span>
                     <br/>
                   </ul>
@@ -343,13 +392,11 @@
           </td>
           <td class="fsdocs-xmldoc">
             <p class="fsdocs-summary">
-              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L415-415" class="fsdocs-source-link">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Filters.fs#L26-26" class="fsdocs-source-link">
                 <img src="/Grampus/content/img/github.png" class="normal"/>
                 <img src="/Grampus/content/img/github-blue.png" class="hover"/>
               </a>
               
- Saves the filter storage given an array of positions, an array of references to games and a folder.
- 
             </p>
             <dl class="fsdocs-params">
               <dt class="fsdocs-param">
@@ -359,11 +406,7 @@
                 :
                 <code><span>string[]</span></code>
               </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The array of positions for the tree.
-                </p>
-              </dd>
+              <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
                   filts
@@ -371,23 +414,107 @@
                 :
                 <code><span><span>int&#32;list</span>[]</span></code>
               </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The array of references to games as an int list type.
-                </p>
-              </dd>
+              <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
-                  fol
+                  ifol
                 </span>
                 :
                 <code>string</code>
               </dt>
-              <dd class="fsdocs-param-docs">
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '262', 262)" onmouseover="showTip(event, '262', 262)">
                 <p>
-                  The folder to store the tree.
+                  <a id="options">
+                    <a href="#options">
+                      <code><span>options&#32;<span></span></span></code>
+                    </a>
+                  </a>
                 </p>
-              </dd>
+              </code>
+              <div class="fsdocs-tip" id="262">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>options&#32;<span></span></span></code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="https://docs.microsoft.com/dotnet/api/messagepack.messagepackserializeroptions">MessagePackSerializerOptions</a></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Filters.fs#L17-17" class="fsdocs-source-link">
+                <img src="/Grampus/content/img/github.png" class="normal"/>
+                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns:
+                </span>
+                <code><a href="https://docs.microsoft.com/dotnet/api/messagepack.messagepackserializeroptions">MessagePackSerializerOptions</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '263', 263)" onmouseover="showTip(event, '263', 263)">
+                <p>
+                  <a id="resolver">
+                    <a href="#resolver">
+                      <code><span>resolver&#32;<span></span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="263">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>resolver&#32;<span></span></span></code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="https://docs.microsoft.com/dotnet/api/messagepack.iformatterresolver">IFormatterResolver</a></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Filters.fs#L14-14" class="fsdocs-source-link">
+                <img src="/Grampus/content/img/github.png" class="normal"/>
+                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns:
+                </span>
+                <code><a href="https://docs.microsoft.com/dotnet/api/messagepack.iformatterresolver">IFormatterResolver</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
             </dl>
           </td>
         </tr>

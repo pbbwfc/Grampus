@@ -109,7 +109,7 @@ module TpGamesLib =
         member gmstp.Refrsh(bdstr : string) =
             gmsui.Clear()
             let fol = nm + "_FILES"
-            filt <- Filter.Read(bdstr, fol)
+            filt <- Filters.Read(bdstr, fol)
             hdrs <- Headers.Load(fol)
             if filt.Length = 0 then 
                 fn <- hdrs.Length

@@ -57,6 +57,11 @@ module Form =
                                   ImageTransparentColor = Color.Magenta, 
                                   ShortcutKeys = (Keys.Control ||| Keys.W), 
                                   Text = "&Close", Enabled = false)
+        let tclosem =
+            new ToolStripMenuItem(Image = img "cls.png", 
+                                  ImageTransparentColor = Color.Magenta, 
+                                  ShortcutKeys = (Keys.Control ||| Keys.W), 
+                                  Text = "&Close", Enabled = false)
         let cmpm = new ToolStripMenuItem(Text = "Compact Base", Enabled = false)
         let impm =
             new ToolStripMenuItem(Text = "Import PGN file", Enabled = false)
@@ -142,25 +147,21 @@ module Form =
                 refreshWindows()
                 SbUpdate("Ready")
         
-        let doopen (ifn : string, dotree : bool) =
+        let doopen (ifn : string) =
             let dofun() =
                 let ndlg =
-                    new OpenFileDialog(Title = "Open Database", 
+                    new OpenFileDialog(Title = "Open Base", 
                                        Filter = "Grampus databases(*.grampus)|*.grampus", 
                                        InitialDirectory = bfol)
                 if ifn = "" && ndlg.ShowDialog() = DialogResult.OK then 
                     //open database
                     let gmpfile = ndlg.FileName
                     SbUpdate("Opening base: " + gmpfile)
-                    let gmp = Grampus.Load(gmpfile)
                     Recents.addrec gmpfile
                     let nm =
                         Path.Combine
                             (Path.GetDirectoryName(gmpfile), 
                              Path.GetFileNameWithoutExtension(gmpfile))
-                    if gmp.TreesCreated.IsSome && dotree then 
-                        sts.Init(nm)
-                        Recents.addtr gmpfile
                     //dotbselect will be called to do the loading
                     gmtbs.AddTab(nm)
                     SbUpdate("Ready")
@@ -168,16 +169,50 @@ module Form =
                     //open database
                     let nm = Path.GetFileNameWithoutExtension(ifn)
                     SbUpdate("Opening base: " + ifn)
+                    let nm =
+                        Path.Combine
+                            (Path.GetDirectoryName(ifn), 
+                             Path.GetFileNameWithoutExtension(ifn))
+                    //dotbselect will be called to do the loading
+                    gmtbs.AddTab(nm)
+                    SbUpdate("Ready")
+            waitify (dofun)
+        
+        let doopentree (ifn : string) =
+            let dofun() =
+                let ndlg =
+                    new OpenFileDialog(Title = "Open Tree", 
+                                       Filter = "Grampus databases(*.grampus)|*.grampus", 
+                                       InitialDirectory = bfol)
+                if ifn = "" && ndlg.ShowDialog() = DialogResult.OK then 
+                    //open database
+                    let gmpfile = ndlg.FileName
+                    SbUpdate("Opening tree: " + gmpfile)
+                    let gmp = Grampus.Load(gmpfile)
+                    let nm =
+                        Path.Combine
+                            (Path.GetDirectoryName(gmpfile), 
+                             Path.GetFileNameWithoutExtension(gmpfile))
+                    if gmp.TreesCreated.IsSome then 
+                        sts.Init(nm)
+                        Recents.addtr gmpfile
+                        let nbd = bd.GetBoard()
+                        sts.UpdateStr(nbd)
+                    SbUpdate("Ready")
+                elif ifn <> "" then 
+                    //open database
+                    let nm = Path.GetFileNameWithoutExtension(ifn)
+                    SbUpdate("Opening tree: " + ifn)
                     let gmp = Grampus.Load(ifn)
                     let nm =
                         Path.Combine
                             (Path.GetDirectoryName(ifn), 
                              Path.GetFileNameWithoutExtension(ifn))
-                    if gmp.TreesCreated.IsSome && dotree then 
+                    if gmp.TreesCreated.IsSome then 
                         sts.Init(nm)
                         Recents.addtr ifn
-                    //dotbselect will be called to do the loading
-                    gmtbs.AddTab(nm)
+                        let nbd = bd.GetBoard()
+                        sts.UpdateStr(nbd)
                     SbUpdate("Ready")
             waitify (dofun)
         
@@ -397,7 +432,7 @@ module Form =
                                     ImageTransparentColor = Color.Magenta, 
                                     DisplayStyle = ToolStripItemDisplayStyle.Image, 
                                     Text = "&Open")
-            openb.Click.Add(fun _ -> doopen ("", false))
+            openb.Click.Add(fun _ -> doopen (""))
             ts.Items.Add(openb) |> ignore
             // close
             closeb.Click.Add(fun _ -> doclose())
@@ -440,25 +475,19 @@ module Form =
                                       ImageTransparentColor = Color.Magenta, 
                                       ShortcutKeys = (Keys.Control ||| Keys.O), 
                                       Text = "&Open")
-            openm.Click.Add(fun _ -> doopen ("", false))
+            openm.Click.Add(fun _ -> doopen (""))
             filem.DropDownItems.Add(openm) |> ignore
             // file close
             closem.Click.Add(fun _ -> doclose())
             filem.DropDownItems.Add(closem) |> ignore
-            // file open as tree
-            let opentreem = new ToolStripMenuItem(Text = "Open as &Tree")
-            opentreem.Click.Add(fun _ -> doopen ("", true))
-            filem.DropDownItems.Add(opentreem) |> ignore
             // recents
             let recm = new ToolStripMenuItem(Text = "Recent")
-            let rectreem = new ToolStripMenuItem(Text = "Recent as Tree")
             filem.DropDownItems.Add(recm) |> ignore
-            filem.DropDownItems.Add(rectreem) |> ignore
             let addrec (rc : string) =
                 let mn =
                     new ToolStripMenuItem(Text = Path.GetFileNameWithoutExtension
                                                      (rc))
-                mn.Click.Add(fun _ -> doopen (rc, false))
+                mn.Click.Add(fun _ -> doopen (rc))
                 recm.DropDownItems.Add(mn) |> ignore
             
             let rcs =
@@ -466,11 +495,31 @@ module Form =
                 Recents.dbs
             
             rcs |> Seq.iter addrec
+            // file exit
+            let exitm = new ToolStripMenuItem(Text = "Exit")
+            exitm.Click.Add(fun _ -> doexit())
+            filem.DropDownItems.Add(exitm) |> ignore
+            // tree menu
+            let treem = new ToolStripMenuItem(Text = "&Tree")
+            // tree open
+            let topenm =
+                new ToolStripMenuItem(Image = img "opn.png", 
+                                      ImageTransparentColor = Color.Magenta, 
+                                      ShortcutKeys = (Keys.Control ||| Keys.O), 
+                                      Text = "&Open")
+            topenm.Click.Add(fun _ -> doopentree (""))
+            treem.DropDownItems.Add(topenm) |> ignore
+            // tree close
+            tclosem.Click.Add(fun _ -> doclose())
+            treem.DropDownItems.Add(tclosem) |> ignore
+            //recents
+            let rectreem = new ToolStripMenuItem(Text = "Recent")
+            treem.DropDownItems.Add(rectreem) |> ignore
             let addtr (tr : string) =
                 let mn1 =
                     new ToolStripMenuItem(Text = Path.GetFileNameWithoutExtension
                                                      (tr))
-                mn1.Click.Add(fun _ -> doopen (tr, true))
+                mn1.Click.Add(fun _ -> doopentree (tr))
                 rectreem.DropDownItems.Add(mn1) |> ignore
             
             let trs =
@@ -478,10 +527,6 @@ module Form =
                 Recents.trs
             
             trs |> Seq.iter addtr
-            // file exit
-            let exitm = new ToolStripMenuItem(Text = "Exit")
-            exitm.Click.Add(fun _ -> doexit())
-            filem.DropDownItems.Add(exitm) |> ignore
             // game menu
             let gamem = new ToolStripMenuItem(Text = "&Game")
             // game new
@@ -555,6 +600,7 @@ module Form =
                 |> ignore)
             abtm.DropDownItems.Add(src) |> ignore
             ms.Items.Add(filem) |> ignore
+            ms.Items.Add(treem) |> ignore
             ms.Items.Add(gamem) |> ignore
             ms.Items.Add(repm) |> ignore
             ms.Items.Add(toolsm) |> ignore

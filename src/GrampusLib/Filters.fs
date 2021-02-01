@@ -10,7 +10,7 @@ open MessagePack.FSharp
 /// <summary>This type is for implementation purposes.</summary>
 ///
 /// <exclude />
-module Filter =
+module Filters =
     let resolver =
         Resolvers.CompositeResolver.Create
             (FSharpResolver.Instance, StandardResolver.Instance)

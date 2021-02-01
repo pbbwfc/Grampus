@@ -395,15 +395,15 @@ module Tree =
     let Read(posn, fol) = GrampusInternal.StaticTree.Read(posn, fol)
 
 /// <summary>
-/// Holds the functions related to a Filter.
+/// Holds the functions related to Filters.
 /// </summary>
-module Filter =
+module Filters =
     /// <summary>
     /// Creates the filter storage given a folder.
     /// </summary>
     /// <param name="fol">The folder to store the tree.</param>
     /// <returns>Nothing.</returns>
-    let Create(fol) = GrampusInternal.Filter.Create(fol)
+    let Create(fol) = GrampusInternal.Filters.Create(fol)
     
     /// <summary>
     /// Saves the filter storage given an array of positions, an array of references to games and a folder.
@@ -412,7 +412,8 @@ module Filter =
     /// <param name="filts">The array of references to games as an int list type.</param>
     /// <param name="fol">The folder to store the tree.</param>
     /// <returns>Nothing.</returns>
-    let Save(posns, filts, fol) = GrampusInternal.Filter.Save(posns, filts, fol)
+    let Save(posns, filts, fol) =
+        GrampusInternal.Filters.Save(posns, filts, fol)
     
     /// <summary>
     /// Reads the filter storage given a position and a folder.
@@ -420,7 +421,7 @@ module Filter =
     /// <param name="posn">The position to read in the tree.</param>
     /// <param name="fol">The folder which stores the tree.</param>
     /// <returns>The filter for the posn as an int list type.</returns>
-    let Read(posn, fol) = GrampusInternal.Filter.Read(posn, fol)
+    let Read(posn, fol) = GrampusInternal.Filters.Read(posn, fol)
 
 /// <summary>
 /// Holds the functions related to the Grampus file.

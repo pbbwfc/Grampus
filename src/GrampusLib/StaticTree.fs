@@ -11,14 +11,14 @@ open LevelDB
 /// <exclude />
 module StaticTree =
     let Create(ifol) =
-        let fol = ifol + "\\trees"
+        let fol = ifol + "\\tree"
         Directory.CreateDirectory(fol) |> ignore
         let options = new Options(CreateIfMissing = true)
         let db = new DB(options, fol)
         db.Close()
     
     let Save(posns : string [], stss : stats [], ifol : string) =
-        let fol = ifol + "\\trees"
+        let fol = ifol + "\\tree"
         let options = new Options()
         let db = new DB(options, fol)
         for i = 0 to posns.Length - 1 do
@@ -28,7 +28,7 @@ module StaticTree =
         db.Close()
     
     let ReadArray(posns : string [], ifol : string) =
-        let fol = ifol + "\\trees"
+        let fol = ifol + "\\tree"
         let options = new Options()
         let db = new DB(options, fol)
         
@@ -42,7 +42,7 @@ module StaticTree =
         vs
     
     let Read(posn : string, ifol : string) =
-        let fol = ifol + "\\trees"
+        let fol = ifol + "\\tree"
         if Directory.Exists(fol) then 
             let options = new Options()
             let db = new DB(options, fol)

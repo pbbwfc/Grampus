@@ -17,7 +17,7 @@ type Filter() =
         if Directory.Exists(trfol) then Directory.Delete(trfol, true)
         let ans = Directory.Exists(trfol)
         ans |> should equal false
-        Filter.Create(tstfol)
+        Filters.Create(tstfol)
         let ans = Directory.Exists(trfol)
         ans |> should equal true
         Directory.Delete(trfol, true)
@@ -28,8 +28,8 @@ type Filter() =
         if Directory.Exists(trfol) then Directory.Delete(trfol, true)
         let ans = Directory.Exists(trfol)
         ans |> should equal false
-        Filter.Create(tstfol)
-        Filter.Save([||], [||], tstfol)
+        Filters.Create(tstfol)
+        Filters.Save([||], [||], tstfol)
         let ans = Directory.Exists(trfol)
         ans |> should equal true
         Directory.Delete(trfol, true)
@@ -40,9 +40,9 @@ type Filter() =
         if Directory.Exists(trfol) then Directory.Delete(trfol, true)
         let ans = Directory.Exists(trfol)
         ans |> should equal false
-        Filter.Create(tstfol)
-        Filter.Save([| ss1 |], [| [ 0; 5 ] |], tstfol)
-        let ans = Filter.Read(ss1, tstfol)
+        Filters.Create(tstfol)
+        Filters.Save([| ss1 |], [| [ 0; 5 ] |], tstfol)
+        let ans = Filters.Read(ss1, tstfol)
         ans.Length |> should equal 2
         ans.[0] |> should equal 0
         ans.[1] |> should equal 5
