@@ -23,6 +23,7 @@
     <Compile Include="Index.fs" />
     <Compile Include="Eco.fs" />
     <Compile Include="Headers.fs" />
+    <Compile Include="Games.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
 

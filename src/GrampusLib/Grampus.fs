@@ -493,29 +493,66 @@ module Headers =
     /// Saves the headers given the folder and the data.
     /// </summary>
     /// <param name="fol">The folder in which to store the headers.</param>
-    /// <param name="hdrs">The headers as a Headers array type.</param>
+    /// <param name="hdrs">The headers as a Header array type.</param>
     /// <returns>Nothing.</returns>
     let Save(fol, hdrs) = GrampusInternal.Headers.Save(fol, hdrs)
 
+/// <summary>
+/// Holds the functions related to a set of Games.
+/// </summary>
 module Games =
-    ///Load Game
-    let LoadGame = GrampusInternal.Games.LoadGame
+    /// <summary>
+    /// Loads an encoded game given the folder, index entry and the header.
+    /// </summary>
+    /// <param name="fol">The folder in which the game is stored.</param>
+    /// <param name="ie">The index entry for the game as an IndexEntry type.</param>
+    /// <param name="hdr">The header for the game as a Header type.</param>
+    /// <returns>The encoded game.</returns>
+    let LoadGame fol ie hdr = GrampusInternal.Games.LoadGame fol ie hdr
     
-    ///Save Games
-    let Save = GrampusInternal.Games.Save
+    /// <summary>
+    /// Saves a sequence of games to create a new base in the specified folder.
+    /// </summary>
+    /// <param name="fol">The folder in which the games are stored.</param>
+    /// <param name="gms">The games as an EncodedGame sequence type.</param>
+    /// <returns>Nothing.</returns>
+    let Save fol gms = GrampusInternal.Games.Save fol gms
     
-    ///Add Games
-    let Add = GrampusInternal.Games.Add
+    /// <summary>
+    /// Adds a sequence of games to an existing base in the specified folder.
+    /// </summary>
+    /// <param name="fol">The folder in which the games are stored.</param>
+    /// <param name="gms">The games as an EncodedGame sequence type.</param>
+    /// <returns>Nothing.</returns>
+    let Add fol gms = GrampusInternal.Games.Add fol gms
     
-    ///Append Game
-    let AppendGame = GrampusInternal.Games.AppendGame
+    /// <summary>
+    /// Adds game to an existing base in the specified folder.
+    /// </summary>
+    /// <param name="fol">The folder in which the games are stored.</param>
+    /// <param name="gm">The game as an EncodedGame type.</param>
+    /// <returns>Nothing.</returns>
+    let AppendGame fol gm = GrampusInternal.Games.AppendGame fol gm
     
-    ///Update Game
-    let UpdateGame = GrampusInternal.Games.UpdateGame
+    /// <summary>
+    /// Updates a game in an existing base in the specified folder.
+    /// </summary>
+    /// <param name="fol">The folder in which the games are stored.</param>
+    /// <param name="gnum">The game number to update a int type.</param>
+    /// <param name="gm">The game as an EncodedGame type.</param>
+    /// <returns>Nothing.</returns>
+    let UpdateGame fol gnum gm = GrampusInternal.Games.UpdateGame fol gnum gm
     
-    ///Compact base
-    let Compact = GrampusInternal.Games.Compact
+    /// <summary>
+    /// Compacts the base in the specified folder.
+    /// </summary>
+    /// <param name="fol">The folder in which the base is stored.</param>
+    /// <returns>Nothing.</returns>
+    let Compact(fol) = GrampusInternal.Games.Compact(fol)
 
+/// <summary>
+/// Holds the functions related to a set of Games in PGN format.
+/// </summary>
 module PgnGames =
     ///Get an array of Games from a file
     let ReadArrayFromFile = GrampusInternal.PgnGames.ReadArrayFromFile

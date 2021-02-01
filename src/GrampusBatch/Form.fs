@@ -135,7 +135,7 @@ module Form =
                 let egma = ugma |> Seq.map (Game.Encode)
                 log ("Encoded games")
                 lbl.Text <- "Saving games..."
-                Games.Save binfol 0L egma
+                Games.Save binfol egma
                 gmp <- { GrampusDataEMP with SourcePgn = pgn
                                              BaseCreated = Some(DateTime.Now) }
                 Grampus.Save(gmpfile, gmp)

@@ -28,11 +28,11 @@ module Games =
         let gm = MessagePackSerializer.Deserialize<CompressedGame>(ro, options)
         (gm, hdr) |> GameEncoded.Expand
     
-    let Save (fol : string) (offset : int64) (gma : seq<EncodedGame>) =
+    let Save (fol : string) (gms : seq<EncodedGame>) =
         Directory.CreateDirectory(fol) |> ignore
         let fn = Path.Combine(fol, "GAMES")
         use writer = new BinaryWriter(File.Open(fn, FileMode.OpenOrCreate))
-        writer.Seek(int (offset), SeekOrigin.Begin) |> ignore
+        writer.Seek(0, SeekOrigin.Begin) |> ignore
         let svgm i gm =
             let cgm = gm |> GameEncoded.Compress
             let off = writer.BaseStream.Position
@@ -44,7 +44,7 @@ module Games =
               Length = bin.Length }, gm.Hdr
         
         let iea, hdrs =
-            gma
+            gms
             |> Seq.mapi svgm
             |> Seq.toArray
             |> Array.unzip
@@ -81,7 +81,7 @@ module Games =
         Index.Save(fol, niea)
         Headers.Save(fol, nhdrs)
     
-    let AppendGame (fol : string) (gnum : int) (gm : EncodedGame) =
+    let AppendGame (fol : string) (gm : EncodedGame) =
         let cgm = gm |> GameEncoded.Compress
         Directory.CreateDirectory(fol) |> ignore
         let fn = Path.Combine(fol, "GAMES")

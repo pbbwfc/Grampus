@@ -554,7 +554,7 @@ module PnlPgnLib =
                 let hdr = { game.Hdr with Num = gnum }
                 game <- { game with Hdr = hdr }
                 //need to update index, game rows and binary file
-                Games.AppendGame fol gnum game
+                Games.AppendGame fol game
             else Games.UpdateGame fol gnum game
             gmchg <- false
             gmchg |> gmchngEvt.Trigger
