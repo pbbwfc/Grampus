@@ -72,7 +72,7 @@ module Form =
         let ss =
             new StatusStrip(LayoutStyle = ToolStripLayoutStyle.HorizontalStackWithOverflow, 
                             Dock = DockStyle.Fill)
-        let prg = new ToolStripProgressBar(Width = 200)
+        let prg = new ToolStripProgressBar(Width = 300, AutoSize = false)
         let lbl = new ToolStripLabel(Text = "Ready", Width = 200)
         let mutable st = DateTime.Now
         let mutable nd = DateTime.Now
@@ -86,6 +86,7 @@ module Form =
             new ToolStripMenuItem(Text = "From &Pgn File", Enabled = true)
         let crm = new ToolStripMenuItem(Text = "&Create", Enabled = false)
         let crfm = new ToolStripMenuItem(Text = "&Create", Enabled = false)
+        let updateTitle() = this.Text <- "Grampus Batch - " + gmpfile
         
         let updateMenuStates() =
             impbtn.Enabled <- gmp.IsNone
@@ -100,35 +101,58 @@ module Form =
             logtb.Text <- logtb.Text + nl + msg + " in " + el() + " seconds"
             st <- DateTime.Now
         
+        let updprg (i) =
+            prg.Value <- i
+            Application.DoEvents()
+        
         let doimp (e) =
             let ndlg =
-                new OpenFileDialog(Title = "Open PGN files", 
+                new OpenFileDialog(Title = "Select PGN file", 
                                    Filter = "PGN files(*.pgn)|*.pgn", 
                                    InitialDirectory = bfol)
             if ndlg.ShowDialog() = DialogResult.OK then 
-                this.Enabled <- false
                 let pgn = ndlg.FileName
                 let nm = Path.GetFileNameWithoutExtension(pgn)
-                gmpfile <- Path.Combine(bfol, nm + ".grampus")
-                setbinfol()
-                lbl.Text <- "Importing games..."
-                Application.DoEvents()
-                st <- DateTime.Now
-                let ugma = PgnGames.ReadSeqFromFile pgn
-                log ("Imported games")
-                lbl.Text <- "Encoding games..."
-                let egma = ugma |> Seq.map (Game.Encode)
-                log ("Encoded games")
-                lbl.Text <- "Saving games..."
-                Games.Save binfol egma
-                gmp <- Some
-                           ({ GrampusDataEMP with SourcePgn = pgn
-                                                  BaseCreated =
-                                                      Some(DateTime.Now) })
-                Grampus.Save(gmpfile, gmp.Value)
-                log ("Saved games")
-                lbl.Text <- "Ready"
-                this.Enabled <- true
+                let fn = nm + ".grampus"
+                let sdlg =
+                    new SaveFileDialog(Title = "Select Grampus File", 
+                                       Filter = "Grampus databases(*.grampus)|*.grampus", 
+                                       FileName = fn, AddExtension = true, 
+                                       OverwritePrompt = false, 
+                                       InitialDirectory = Path.GetDirectoryName
+                                                              (pgn))
+                if sdlg.ShowDialog() = DialogResult.OK then 
+                    gmpfile <- sdlg.FileName
+                    this.Enabled <- false
+                    setbinfol()
+                    lbl.Text <- "Counting games..."
+                    Application.DoEvents()
+                    st <- DateTime.Now
+                    let numgames = PgnGames.GetNumberOfGames pgn
+                    prg.Maximum <- numgames
+                    prg.Value <- 0
+                    log ("Counted games")
+                    lbl.Text <- "Games as sequence..."
+                    Application.DoEvents()
+                    st <- DateTime.Now
+                    let ugms = PgnGames.ReadSeqFromFile pgn
+                    log ("Games as sequence")
+                    lbl.Text <- "Encoding games as sequence..."
+                    let egms = ugms |> Seq.map (Game.Encode)
+                    log ("Encoded games as sequence")
+                    lbl.Text <- "Saving games..."
+                    Games.Save binfol egms updprg
+                    gmp <- Some
+                               ({ GrampusDataEMP with SourcePgn = pgn
+                                                      BaseCreated =
+                                                          Some(DateTime.Now) })
+                    Grampus.Save(gmpfile, gmp.Value)
+                    log ("Saved games")
+                    lbl.Text <- "Ready"
+                    this.Enabled <- true
+                    prg.Value <- 0
+                    updateTitle()
+                    updateMenuStates()
         
         let docreate (e) =
             let totaldict =

@@ -515,8 +515,9 @@ module Games =
     /// </summary>
     /// <param name="fol">The folder in which the games are stored.</param>
     /// <param name="gms">The games as an EncodedGame sequence type.</param>
+    /// <param name="cb">Callback function to report on progress.</param>
     /// <returns>Nothing.</returns>
-    let Save fol gms = GrampusInternal.Games.Save fol gms
+    let Save fol gms cb = GrampusInternal.Games.Save fol gms cb
     
     /// <summary>
     /// Adds a sequence of games to an existing base in the specified folder.

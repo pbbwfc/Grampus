@@ -28,7 +28,7 @@ module Games =
         let gm = MessagePackSerializer.Deserialize<CompressedGame>(ro, options)
         (gm, hdr) |> GameEncoded.Expand
     
-    let Save (fol : string) (gms : seq<EncodedGame>) =
+    let Save (fol : string) (gms : seq<EncodedGame>) cb =
         Directory.CreateDirectory(fol) |> ignore
         let fn = Path.Combine(fol, "GAMES")
         use writer = new BinaryWriter(File.Open(fn, FileMode.OpenOrCreate))
@@ -38,7 +38,7 @@ module Games =
             let off = writer.BaseStream.Position
             let bin =
                 MessagePackSerializer.Serialize<CompressedGame>(cgm, options)
-            if i % 1000 = 0 then printf "%i..." i
+            if i % 100 = 0 then cb (i)
             writer.Write(bin)
             { Offset = off
               Length = bin.Length }, gm.Hdr
