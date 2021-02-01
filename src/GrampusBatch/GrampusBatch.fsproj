@@ -30,7 +30,6 @@
 
 	<ItemGroup>
 	  <ProjectReference Include="..\GrampusLib\GrampusLib.fsproj" />
-	  <ProjectReference Include="..\GrampusWinForms\GrampusWinForms.fsproj" />
 	</ItemGroup>
 
 	<ItemGroup>

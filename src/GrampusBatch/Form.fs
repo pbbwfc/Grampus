@@ -4,7 +4,6 @@ open System
 open System.IO
 open System.Drawing
 open System.Windows.Forms
-open GrampusWinForms
 open Grampus
 
 type private GameInfo =
@@ -53,9 +52,8 @@ module Form =
             Directory.CreateDirectory(pth) |> ignore
             pth
         
-        let mutable bd = Board.Start
         let mutable gmpfile = Path.Combine(bfol, "Dummy.grampus")
-        let mutable gmp = GrampusDataEMP
+        let mutable gmp : GrampusData option = None
         let mutable binfol = ""
         let setbinfol() =
             binfol <- Path.Combine
@@ -63,21 +61,14 @@ module Form =
                            Path.GetFileNameWithoutExtension(gmpfile) + "_FILES")
         let mutable iea = [||]
         let mutable hdra = [||]
-        let sts = new WbStats(Dock = DockStyle.Fill)
+        let ms = new MenuStrip()
         let ts =
             new ToolStrip(LayoutStyle = ToolStripLayoutStyle.HorizontalStackWithOverflow, 
                           Dock = DockStyle.Fill)
-        let impbtn = new ToolStripButton(Text = "Import PGN")
-        let crbtn = new ToolStripButton(Text = "Create Trees")
-        let vwbtn = new ToolStripButton(Text = "View Trees/Filters")
-        let crfbtn = new ToolStripButton(Text = "Create Filters")
-        let plylbl = new ToolStripLabel(Text = "Select Ply (-1 infinite)")
         let plydd = new ToolStripComboBox(AutoSize = false, Width = 40)
         let logtb =
             new TextBox(Text = "Log:", Multiline = true, Dock = DockStyle.Fill, 
                         ReadOnly = true, ScrollBars = ScrollBars.Vertical)
-        let gmstb =
-            new TextBox(Text = "Games:", Dock = DockStyle.Fill, ReadOnly = true)
         let ss =
             new StatusStrip(LayoutStyle = ToolStripLayoutStyle.HorizontalStackWithOverflow, 
                             Dock = DockStyle.Fill)
@@ -87,33 +78,27 @@ module Form =
         let mutable nd = DateTime.Now
         let nl = Environment.NewLine
         let el() = (float ((nd - st).TotalMilliseconds) / 1000.0).ToString()
+        let impbtn = new ToolStripButton(Text = "Import PGN", Enabled = true)
+        let crbtn = new ToolStripButton(Text = "Create Trees", Enabled = false)
+        let crfbtn =
+            new ToolStripButton(Text = "Create Filters", Enabled = false)
+        let pgnm =
+            new ToolStripMenuItem(Text = "From &Pgn File", Enabled = true)
+        let crm = new ToolStripMenuItem(Text = "&Create", Enabled = false)
+        let crfm = new ToolStripMenuItem(Text = "&Create", Enabled = false)
+        
+        let updateMenuStates() =
+            impbtn.Enabled <- gmp.IsNone
+            crbtn.Enabled <- gmp.IsSome
+            crfbtn.Enabled <- gmp.IsSome
+            pgnm.Enabled <- gmp.IsNone
+            crm.Enabled <- gmp.IsSome
+            crfm.Enabled <- gmp.IsSome
         
         let log (msg) =
             nd <- DateTime.Now
             logtb.Text <- logtb.Text + nl + msg + " in " + el() + " seconds"
             st <- DateTime.Now
-        
-        let showfilt (bd) =
-            let bdstr = bd |> Board.ToSimpleStr
-            let filt = Filter.Read(bdstr, binfol)
-            let ln = filt.Length
-            
-            let lim =
-                if ln > 20 then 20
-                else ln
-            
-            let filtstr =
-                filt.[..lim]
-                |> List.map (fun i -> i.ToString())
-                |> List.reduce (fun a b -> a + "," + b)
-            
-            gmstb.Text <- "Games: " + filtstr
-        
-        let domvsel (mvstr) =
-            let mv = mvstr |> Move.FromSan bd
-            bd <- bd |> Board.Push mv
-            sts.UpdateStr(bd)
-            showfilt (bd)
         
         let doimp (e) =
             let ndlg =
@@ -136,9 +121,11 @@ module Form =
                 log ("Encoded games")
                 lbl.Text <- "Saving games..."
                 Games.Save binfol egma
-                gmp <- { GrampusDataEMP with SourcePgn = pgn
-                                             BaseCreated = Some(DateTime.Now) }
-                Grampus.Save(gmpfile, gmp)
+                gmp <- Some
+                           ({ GrampusDataEMP with SourcePgn = pgn
+                                                  BaseCreated =
+                                                      Some(DateTime.Now) })
+                Grampus.Save(gmpfile, gmp.Value)
                 log ("Saved games")
                 lbl.Text <- "Ready"
                 this.Enabled <- true
@@ -332,7 +319,7 @@ module Form =
                 lbl.Text <- "Opening base..."
                 Application.DoEvents()
                 st <- DateTime.Now
-                gmp <- Grampus.Load gmpfile
+                gmp <- Some(Grampus.Load gmpfile)
                 setbinfol()
                 iea <- Index.Load binfol
                 hdra <- Headers.Load binfol
@@ -373,22 +360,11 @@ module Form =
                 Application.DoEvents()
                 Tree.Save(posns, stsarr, binfol) |> ignore
                 log ("Saved dictionary")
-                lbl.Text <- "Initializing View..."
-                Application.DoEvents()
-                sts.Init
-                    (Path.Combine
-                         (Path.GetDirectoryName(gmpfile), 
-                          Path.GetFileNameWithoutExtension(gmpfile)))
-                log ("Initialized View")
-                lbl.Text <- "Loading View..."
-                Application.DoEvents()
-                sts.Refrsh()
-                log ("Loaded View")
-                lbl.Text <- "Ready"
-                Application.DoEvents()
-                gmp <- { gmp with TreesCreated = Some(DateTime.Now)
-                                  TreesPly = plydd.SelectedItem |> unbox }
-                Grampus.Save(gmpfile, gmp)
+                gmp <- Some
+                           ({ gmp.Value with TreesCreated = Some(DateTime.Now)
+                                             TreesPly =
+                                                 plydd.SelectedItem |> unbox })
+                Grampus.Save(gmpfile, gmp.Value)
                 this.Enabled <- true
         
         let docreatef (e) =
@@ -421,7 +397,7 @@ module Form =
                 lbl.Text <- "Opening base..."
                 Application.DoEvents()
                 st <- DateTime.Now
-                gmp <- Grampus.Load gmpfile
+                gmp <- Some(Grampus.Load gmpfile)
                 setbinfol()
                 iea <- Index.Load binfol
                 let numgames = iea.Length
@@ -457,63 +433,17 @@ module Form =
                 let rgmls = gmls |> Array.map (fun l -> List.rev l)
                 Filter.Save(posns, rgmls, binfol) |> ignore
                 log ("Saved dictionary")
-                lbl.Text <- "Initializing View..."
-                Application.DoEvents()
-                sts.Init
-                    (Path.Combine
-                         (Path.GetDirectoryName(gmpfile), 
-                          Path.GetFileNameWithoutExtension(gmpfile)))
-                log ("Initialized View")
-                lbl.Text <- "Loading View..."
-                Application.DoEvents()
-                sts.Refrsh()
-                log ("Loaded View")
                 lbl.Text <- "Ready"
                 Application.DoEvents()
-                gmp <- { gmp with FiltersCreated = Some(DateTime.Now)
-                                  FiltersPly = plydd.SelectedItem |> unbox }
-                Grampus.Save(gmpfile, gmp)
+                gmp <- Some
+                           ({ gmp.Value with FiltersCreated = Some(DateTime.Now)
+                                             FiltersPly =
+                                                 plydd.SelectedItem |> unbox })
+                Grampus.Save(gmpfile, gmp.Value)
                 this.Enabled <- true
         
-        let dovw (e) =
-            let ndlg =
-                new OpenFileDialog(Title = "Open Database", 
-                                   Filter = "Grampus databases(*.grampus)|*.grampus", 
-                                   InitialDirectory = bfol)
-            if ndlg.ShowDialog() = DialogResult.OK then 
-                gmpfile <- ndlg.FileName
-                setbinfol()
-                sts.Init
-                    (Path.Combine
-                         (Path.GetDirectoryName(gmpfile), 
-                          Path.GetFileNameWithoutExtension(gmpfile)))
-                sts.Refrsh()
-        
-        let bgpnl =
-            new Panel(Dock = DockStyle.Fill, BorderStyle = BorderStyle.Fixed3D)
-        let btmpnl =
-            new Panel(Dock = DockStyle.Bottom, BorderStyle = BorderStyle.Fixed3D, 
-                      Height = 30)
-        let tppnl =
-            new Panel(Dock = DockStyle.Top, BorderStyle = BorderStyle.Fixed3D, 
-                      Height = 30)
-        let gmspnl =
-            new Panel(Dock = DockStyle.Top, BorderStyle = BorderStyle.Fixed3D, 
-                      Height = 30)
-        let logpnl =
-            new Panel(Dock = DockStyle.Top, BorderStyle = BorderStyle.Fixed3D, 
-                      Height = 190)
-        do 
-            bgpnl.Controls.Add(sts)
-            this.Controls.Add(bgpnl)
-            ss.Items.Add(lbl) |> ignore
-            ss.Items.Add(prg) |> ignore
-            btmpnl.Controls.Add(ss)
-            this.Controls.Add(btmpnl)
-            gmspnl.Controls.Add(gmstb)
-            this.Controls.Add(gmspnl)
-            logpnl.Controls.Add(logtb)
-            this.Controls.Add(logpnl)
+        let createts() =
+            let plylbl = new ToolStripLabel(Text = "Select Ply (-1 infinite)")
             ts.Items.Add(impbtn) |> ignore
             ts.Items.Add(crbtn) |> ignore
             ts.Items.Add(crfbtn) |> ignore
@@ -524,11 +454,45 @@ module Form =
             ts.Items.Add(new ToolStripSeparator()) |> ignore
             ts.Items.Add(plylbl) |> ignore
             ts.Items.Add(plydd) |> ignore
-            ts.Items.Add(vwbtn) |> ignore
-            tppnl.Controls.Add(ts)
-            this.Controls.Add(tppnl)
             impbtn.Click.Add(doimp)
             crbtn.Click.Add(docreate)
             crfbtn.Click.Add(docreatef)
-            vwbtn.Click.Add(dovw)
-            sts.MvSel |> Observable.add domvsel
+        
+        let createms() =
+            //base menu
+            let bm = new ToolStripMenuItem(Text = "&Base")
+            bm.DropDownItems.Add(pgnm) |> ignore
+            pgnm.Click.Add(doimp)
+            ms.Items.Add(bm) |> ignore
+            //tree menu
+            let tm = new ToolStripMenuItem(Text = "&Tree")
+            tm.DropDownItems.Add(crm) |> ignore
+            crm.Click.Add(docreate)
+            ms.Items.Add(tm) |> ignore
+            //filter menu
+            let fm = new ToolStripMenuItem(Text = "&Filter")
+            fm.DropDownItems.Add(crfm) |> ignore
+            crfm.Click.Add(docreatef)
+            ms.Items.Add(fm) |> ignore
+        
+        let btmpnl =
+            new Panel(Dock = DockStyle.Bottom, BorderStyle = BorderStyle.Fixed3D, 
+                      Height = 30)
+        let tppnl =
+            new Panel(Dock = DockStyle.Top, BorderStyle = BorderStyle.Fixed3D, 
+                      Height = 60)
+        let logpnl =
+            new Panel(Dock = DockStyle.Fill, BorderStyle = BorderStyle.Fixed3D)
+        do 
+            createts()
+            createms()
+            updateMenuStates()
+            ss.Items.Add(lbl) |> ignore
+            ss.Items.Add(prg) |> ignore
+            btmpnl.Controls.Add(ss)
+            this.Controls.Add(btmpnl)
+            logpnl.Controls.Add(logtb)
+            this.Controls.Add(logpnl)
+            tppnl.Controls.Add(ts)
+            tppnl.Controls.Add(ms)
+            this.Controls.Add(tppnl)

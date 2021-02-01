@@ -24,6 +24,7 @@
     <Compile Include="Eco.fs" />
     <Compile Include="Headers.fs" />
     <Compile Include="Games.fs" />
+    <Compile Include="PgnGames.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
 

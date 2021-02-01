@@ -49,3 +49,12 @@ module PgnGames =
         gms
         |> Seq.toArray
         |> Array.Parallel.map GameEncoded.Encode
+    
+    let GetNumberOfGames fn =
+        let lines = File.ReadLines(fn)
+        
+        let ct =
+            lines
+            |> Seq.filter (fun l -> l.Contains("[") && l.Contains("White "))
+            |> Seq.length
+        ct
