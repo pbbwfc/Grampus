@@ -560,4 +560,3 @@ module PgnGames =
     /// <param name="fn">The path and file name of the PGN file.</param>
     /// <returns>The games as an UnencodeGame sequence.</returns>
     let ReadSeqFromFile(fn) = GrampusInternal.PgnGames.ReadSeqFromFile(fn)
-    

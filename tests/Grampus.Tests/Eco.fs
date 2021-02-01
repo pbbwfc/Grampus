@@ -9,7 +9,7 @@ open System.IO
 type Eco() =
     let fol = @"D:\GitHub\Grampus\Tests\data\"
     let fl = Path.Combine(fol, "simple-game.pgn")
-    let db = PgnGames.ReadSeqFromFile fl|>Seq.toList
+    let db = PgnGames.ReadSeqFromFile fl |> Seq.toList
     let gm = db.Head |> Game.Encode
     let tstfol = @"D:\GitHub\Grampus\tests\data\simple-game_FILES"
     let tstfol2 = @"D:\GitHub\Grampus\tests\data\simple-game2_FILES"
