@@ -5,6 +5,7 @@ open System.IO
 open System.Drawing
 open System.Windows.Forms
 open Grampus
+open Dialogs
 
 type private GameInfo =
     { Gmno : int
@@ -82,6 +83,8 @@ module Form =
         let crbtn = new ToolStripButton(Text = "Create Trees", Enabled = false)
         let crfbtn =
             new ToolStripButton(Text = "Create Filters", Enabled = false)
+        let opnm = new ToolStripMenuItem(Text = "&Open")
+        let clsm = new ToolStripMenuItem(Text = "&Close", Enabled = false)
         let pgnm =
             new ToolStripMenuItem(Text = "From &Pgn File", Enabled = true)
         let crm = new ToolStripMenuItem(Text = "&Create", Enabled = false)
@@ -92,6 +95,7 @@ module Form =
             impbtn.Enabled <- gmp.IsNone
             crbtn.Enabled <- gmp.IsSome
             crfbtn.Enabled <- gmp.IsSome
+            clsm.Enabled <- gmp.IsSome
             pgnm.Enabled <- gmp.IsNone
             crm.Enabled <- gmp.IsSome
             crfm.Enabled <- gmp.IsSome
@@ -104,6 +108,29 @@ module Form =
         let updprg (i) =
             prg.Value <- i
             Application.DoEvents()
+        
+        let doopen (e) =
+            let ndlg =
+                new OpenFileDialog(Title = "Open Database", 
+                                   Filter = "Grampus databases(*.grampus)|*.grampus", 
+                                   InitialDirectory = bfol)
+            if ndlg.ShowDialog() = DialogResult.OK then 
+                gmpfile <- ndlg.FileName
+                gmp <- Some(Grampus.Load gmpfile)
+                setbinfol()
+                iea <- Index.Load binfol
+                hdra <- Headers.Load binfol
+                updateMenuStates()
+                updateTitle()
+        
+        let doclose (e) =
+            gmpfile <- ""
+            gmp <- None
+            binfol <- ""
+            iea <- [||]
+            hdra <- [||]
+            updateMenuStates()
+            updateTitle()
         
         let doimp (e) =
             let ndlg =
@@ -157,6 +184,7 @@ module Form =
         let docreate (e) =
             let totaldict =
                 new System.Collections.Generic.Dictionary<string, MvTrees>()
+            let dr = (new DlgTree()).ShowDialog()
             
             let getGmBds i =
                 let gm = Games.LoadGame binfol iea.[i] hdra.[i]
@@ -485,6 +513,10 @@ module Form =
         let createms() =
             //base menu
             let bm = new ToolStripMenuItem(Text = "&Base")
+            bm.DropDownItems.Add(opnm) |> ignore
+            opnm.Click.Add(doopen)
+            bm.DropDownItems.Add(clsm) |> ignore
+            clsm.Click.Add(doclose)
             bm.DropDownItems.Add(pgnm) |> ignore
             pgnm.Click.Add(doimp)
             ms.Items.Add(bm) |> ignore

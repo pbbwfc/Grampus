@@ -5,7 +5,7 @@
 		<TargetFramework>net5.0-windows</TargetFramework>
 		<UseWindowsForms>true</UseWindowsForms>
 		<Platforms>AnyCPU</Platforms>
-		<ApplicationIcon>tree.ico</ApplicationIcon>
+		<ApplicationIcon>batch.ico</ApplicationIcon>
 	</PropertyGroup>
 
 	<PropertyGroup>
@@ -24,6 +24,7 @@
     <EmbeddedResource Include="batch.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
+    <Compile Include="Dialogs.fs" />
     <Compile Include="Form.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
@@ -31,11 +32,5 @@
 	<ItemGroup>
 	  <ProjectReference Include="..\GrampusLib\GrampusLib.fsproj" />
 	</ItemGroup>
-
-	<ItemGroup>
-	  <_DeploymentManifestIconFile Remove="tree.ico" />
-	</ItemGroup>
-
-	<ItemGroup />
 
 </Project>
