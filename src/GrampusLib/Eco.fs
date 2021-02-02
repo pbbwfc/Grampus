@@ -61,7 +61,7 @@ module Eco =
                 { gm with Hdr = nhdr }
         ngm
     
-    let ForBase(fol : string) cb =
+    let ForBase (fol : string) cb =
         //load all the current files
         let iea = Index.Load(fol)
         let hdrs = Headers.Load(fol)

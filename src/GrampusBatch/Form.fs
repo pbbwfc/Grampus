@@ -99,7 +99,6 @@ module Form =
         let addpm =
             new ToolStripMenuItem(Text = "Add PGN file", Enabled = false)
         let ecom = new ToolStripMenuItem(Text = "Set ECOs", Enabled = false)
-        
         let updateTitle() = this.Text <- "Grampus Batch - " + gmpfile
         
         let updateMenuStates() =
@@ -589,7 +588,7 @@ module Form =
             log ("ECOs set")
             prg.Value <- 0
             this.Enabled <- true
-            
+        
         let createts() =
             ts.Items.Add(crbtn) |> ignore
             ts.Items.Add(crfbtn) |> ignore
@@ -655,7 +654,6 @@ module Form =
             tlm.DropDownItems.Add(addpm) |> ignore
             ecom.Click.Add(fun _ -> doeco())
             tlm.DropDownItems.Add(ecom) |> ignore
-            
             ms.Items.Add(tlm) |> ignore
         
         let btmpnl =
