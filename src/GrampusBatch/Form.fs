@@ -489,8 +489,8 @@ module Form =
         let dodeltree (e) =
             st <- DateTime.Now
             gmp <- Some(Grampus.DeleteTree(gmpfile))
-            log("Tree deleted")
-
+            log ("Tree deleted")
+        
         let createts() =
             ts.Items.Add(crbtn) |> ignore
             ts.Items.Add(crfbtn) |> ignore
