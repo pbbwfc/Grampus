@@ -127,7 +127,7 @@ module Form =
         let doopen (ifn : string) =
             if ifn = "" then 
                 let ndlg =
-                    new OpenFileDialog(Title = "Open Database", 
+                    new OpenFileDialog(Title = "Open Base", 
                                        Filter = "Grampus databases(*.grampus)|*.grampus", 
                                        InitialDirectory = bfol)
                 if ndlg.ShowDialog() = DialogResult.OK then 
@@ -139,7 +139,7 @@ module Form =
                     Recents.addrec gmpfile
                     updateMenuStates()
                     updateTitle()
-            else 
+            else if File.Exists(ifn) then 
                 gmpfile <- ifn
                 gmp <- Some(Grampus.Load gmpfile)
                 setbinfol()
@@ -158,7 +158,9 @@ module Form =
             updateMenuStates()
             updateTitle()
         
-        let dodel (e) = ()
+        let dodel (e) =
+            Grampus.Delete(gmpfile)
+            doclose (new EventArgs())
         
         let doimp (e) =
             let ndlg =
@@ -499,7 +501,7 @@ module Form =
             bm.DropDownItems.Add(clsm) |> ignore
             clsm.Click.Add(doclose)
             bm.DropDownItems.Add(delm) |> ignore
-            clsm.Click.Add(dodel)
+            delm.Click.Add(dodel)
             bm.DropDownItems.Add(pgnm) |> ignore
             pgnm.Click.Add(doimp)
             // recents
