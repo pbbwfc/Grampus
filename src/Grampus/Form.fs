@@ -131,8 +131,7 @@ module Form =
                 //create database
                 let gmpfile = ndlg.FileName
                 SbUpdate("Creating base: " + gmpfile)
-                let gmp = GrampusDataEMP
-                Grampus.Save(gmpfile, gmp)
+                let gmp = Grampus.New(gmpfile)
                 SbUpdate("Updating windows")
                 Recents.addrec gmpfile
                 let nm =

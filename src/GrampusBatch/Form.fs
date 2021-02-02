@@ -118,8 +118,7 @@ module Form =
             if ndlg.ShowDialog() = DialogResult.OK then 
                 //create database
                 gmpfile <- ndlg.FileName
-                gmp <- Some(GrampusDataEMP)
-                Grampus.Save(gmpfile, gmp.Value)
+                gmp <- Some(Grampus.New(gmpfile))
                 setbinfol()
                 Recents.addrec gmpfile
                 updateMenuStates()
