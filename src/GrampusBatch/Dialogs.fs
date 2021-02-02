@@ -43,14 +43,27 @@ module Dialogs =
     
     type Dlg() as this =
         inherit Dialog()
-        let lbl = new Label(Text = "Select Ply (-1 infinite)", Width = 150)
+        let lbl =
+            new Label(Text = "Select Ply ", AutoSize = false, 
+                      TextAlign = ContentAlignment.MiddleLeft, Width = 80)
+        let chb = new CheckBox(Text = "infinite")
         let spn =
             new NumericUpDown(Value = 20.0m, Minimum = -1.0m, Maximum = 50.0m, 
                               Width = 50)
         
+        let docb (e) =
+            if chb.Checked then 
+                spn.Value <- -1m
+                spn.Enabled <- false
+            else 
+                spn.Value <- 20m
+                spn.Enabled <- true
+        
         do 
             this.AddControl(lbl)
+            this.AddControl(chb)
             this.AddControl(spn)
+            chb.CheckStateChanged.Add(docb)
         
         override this.DoOK(e) =
             this.DialogResult <- DialogResult.OK

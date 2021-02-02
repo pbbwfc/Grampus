@@ -315,6 +315,11 @@ module WbStatsLib =
             basenm <- ""
             bdstr <- "RNBQKBNRPPPPPPPP................................pppppppprnbqkbnr w"
             isw <- true
+            mvsts <- new ResizeArray<mvstats>()
+            tsts <- new totstats()
+            whtld <- false
+            blkld <- false
+            stats.DocumentText <- bdsttags()
         
         member stats.LoadWhiteRep(shw) =
             whtld <- shw

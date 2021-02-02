@@ -79,12 +79,12 @@ module Form =
         let mutable nd = DateTime.Now
         let nl = Environment.NewLine
         let el() = (float ((nd - st).TotalMilliseconds) / 1000.0).ToString()
-        let impbtn = new ToolStripButton(Text = "Import PGN", Enabled = true)
         let crbtn = new ToolStripButton(Text = "Create Tree", Enabled = false)
         let crfbtn =
             new ToolStripButton(Text = "Create Filters", Enabled = false)
         let opnm = new ToolStripMenuItem(Text = "&Open")
         let clsm = new ToolStripMenuItem(Text = "&Close", Enabled = false)
+        let delm = new ToolStripMenuItem(Text = "&Delete", Enabled = false)
         let pgnm =
             new ToolStripMenuItem(Text = "From &Pgn File", Enabled = true)
         let crm = new ToolStripMenuItem(Text = "&Create", Enabled = false)
@@ -92,10 +92,10 @@ module Form =
         let updateTitle() = this.Text <- "Grampus Batch - " + gmpfile
         
         let updateMenuStates() =
-            impbtn.Enabled <- gmp.IsNone
             crbtn.Enabled <- gmp.IsSome
             crfbtn.Enabled <- gmp.IsSome
             clsm.Enabled <- gmp.IsSome
+            delm.Enabled <- gmp.IsSome
             pgnm.Enabled <- gmp.IsNone
             crm.Enabled <- gmp.IsSome
             crfm.Enabled <- gmp.IsSome
@@ -109,13 +109,39 @@ module Form =
             prg.Value <- i
             Application.DoEvents()
         
-        let doopen (e) =
+        let donew() =
             let ndlg =
-                new OpenFileDialog(Title = "Open Database", 
+                new SaveFileDialog(Title = "Create New Base", 
                                    Filter = "Grampus databases(*.grampus)|*.grampus", 
+                                   AddExtension = true, OverwritePrompt = false, 
                                    InitialDirectory = bfol)
             if ndlg.ShowDialog() = DialogResult.OK then 
+                //create database
                 gmpfile <- ndlg.FileName
+                gmp <- Some(GrampusDataEMP)
+                Grampus.Save(gmpfile, gmp.Value)
+                setbinfol()
+                Recents.addrec gmpfile
+                updateMenuStates()
+                updateTitle()
+        
+        let doopen (ifn : string) =
+            if ifn = "" then 
+                let ndlg =
+                    new OpenFileDialog(Title = "Open Database", 
+                                       Filter = "Grampus databases(*.grampus)|*.grampus", 
+                                       InitialDirectory = bfol)
+                if ndlg.ShowDialog() = DialogResult.OK then 
+                    gmpfile <- ndlg.FileName
+                    gmp <- Some(Grampus.Load gmpfile)
+                    setbinfol()
+                    iea <- Index.Load binfol
+                    hdra <- Headers.Load binfol
+                    Recents.addrec gmpfile
+                    updateMenuStates()
+                    updateTitle()
+            else 
+                gmpfile <- ifn
                 gmp <- Some(Grampus.Load gmpfile)
                 setbinfol()
                 iea <- Index.Load binfol
@@ -132,6 +158,8 @@ module Form =
             ply <- 0
             updateMenuStates()
             updateTitle()
+        
+        let dodel (e) = ()
         
         let doimp (e) =
             let ndlg =
@@ -456,22 +484,43 @@ module Form =
                 prg.Value <- 0
         
         let createts() =
-            ts.Items.Add(impbtn) |> ignore
             ts.Items.Add(crbtn) |> ignore
             ts.Items.Add(crfbtn) |> ignore
-            impbtn.Click.Add(doimp)
             crbtn.Click.Add(docreate)
             crfbtn.Click.Add(docreatef)
         
         let createms() =
             //base menu
             let bm = new ToolStripMenuItem(Text = "&Base")
+            let newm = new ToolStripMenuItem(Text = "&New")
+            newm.Click.Add(fun _ -> donew())
+            bm.DropDownItems.Add(newm) |> ignore
             bm.DropDownItems.Add(opnm) |> ignore
-            opnm.Click.Add(doopen)
+            opnm.Click.Add(fun _ -> doopen (""))
             bm.DropDownItems.Add(clsm) |> ignore
             clsm.Click.Add(doclose)
+            bm.DropDownItems.Add(delm) |> ignore
+            clsm.Click.Add(dodel)
             bm.DropDownItems.Add(pgnm) |> ignore
             pgnm.Click.Add(doimp)
+            // recents
+            let recm = new ToolStripMenuItem(Text = "Recent")
+            bm.DropDownItems.Add(recm) |> ignore
+            let addrec (rc : string) =
+                let mn =
+                    new ToolStripMenuItem(Text = Path.GetFileNameWithoutExtension
+                                                     (rc))
+                mn.Click.Add(fun _ -> doopen (rc))
+                recm.DropDownItems.Add(mn) |> ignore
+            
+            let rcs =
+                Recents.getrecs()
+                Recents.dbs
+            
+            rcs |> Seq.iter addrec
+            let exitm = new ToolStripMenuItem(Text = "E&xit")
+            exitm.Click.Add(fun _ -> this.Close())
+            bm.DropDownItems.Add(exitm) |> ignore
             ms.Items.Add(bm) |> ignore
             //tree menu
             let tm = new ToolStripMenuItem(Text = "&Tree")

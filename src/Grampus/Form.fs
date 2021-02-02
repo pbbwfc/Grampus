@@ -1,4 +1,4 @@
-namespace ScincNet
+namespace GrampusUI
 
 open System.IO
 open System.Drawing
@@ -57,11 +57,7 @@ module Form =
                                   ImageTransparentColor = Color.Magenta, 
                                   ShortcutKeys = (Keys.Control ||| Keys.W), 
                                   Text = "&Close", Enabled = false)
-        let tclosem =
-            new ToolStripMenuItem(Image = img "cls.png", 
-                                  ImageTransparentColor = Color.Magenta, 
-                                  ShortcutKeys = (Keys.Control ||| Keys.W), 
-                                  Text = "&Close", Enabled = false)
+        let tclosem = new ToolStripMenuItem(Text = "&Close", Enabled = false)
         let cmpm = new ToolStripMenuItem(Text = "Compact Base", Enabled = false)
         let impm =
             new ToolStripMenuItem(Text = "Import PGN file", Enabled = false)
@@ -127,7 +123,7 @@ module Form =
         
         let donew() =
             let ndlg =
-                new SaveFileDialog(Title = "Create New Database", 
+                new SaveFileDialog(Title = "Create New Base", 
                                    Filter = "Grampus databases(*.grampus)|*.grampus", 
                                    AddExtension = true, OverwritePrompt = false, 
                                    InitialDirectory = bfol)
@@ -198,6 +194,7 @@ module Form =
                         Recents.addtr gmpfile
                         let nbd = bd.GetBoard()
                         sts.UpdateStr(nbd)
+                        tclosem.Enabled <- true
                     SbUpdate("Ready")
                 elif ifn <> "" then 
                     //open database
@@ -213,6 +210,7 @@ module Form =
                         Recents.addtr ifn
                         let nbd = bd.GetBoard()
                         sts.UpdateStr(nbd)
+                        tclosem.Enabled <- true
                     SbUpdate("Ready")
             waitify (dofun)
         
@@ -233,13 +231,19 @@ module Form =
             //offer to save game if has changed
             if saveb.Enabled then pgn.PromptSaveGame()
             //clear tree if holds current base
-            if sts.BaseName() = "" then //cb then
+            if sts.BaseName() = "" then 
                 SbUpdate("Closing tree")
                 sts.Close()
             //now close tab
             //assume this will switch tabs and then call dotbselect below?
             SbUpdate("Closing list of games")
             gmtbs.Close()
+            SbUpdate("Ready")
+        
+        let doclosetree() =
+            SbUpdate("Closing tree")
+            sts.Close()
+            tclosem.Enabled <- false
             SbUpdate("Ready")
         
         let doexit() =
@@ -496,7 +500,7 @@ module Form =
             
             rcs |> Seq.iter addrec
             // file exit
-            let exitm = new ToolStripMenuItem(Text = "Exit")
+            let exitm = new ToolStripMenuItem(Text = "E&xit")
             exitm.Click.Add(fun _ -> doexit())
             filem.DropDownItems.Add(exitm) |> ignore
             // tree menu
@@ -510,7 +514,7 @@ module Form =
             topenm.Click.Add(fun _ -> doopentree (""))
             treem.DropDownItems.Add(topenm) |> ignore
             // tree close
-            tclosem.Click.Add(fun _ -> doclose())
+            tclosem.Click.Add(fun _ -> doclosetree())
             treem.DropDownItems.Add(tclosem) |> ignore
             //recents
             let rectreem = new ToolStripMenuItem(Text = "Recent")
@@ -530,7 +534,7 @@ module Form =
             // game menu
             let gamem = new ToolStripMenuItem(Text = "&Game")
             // game new
-            let newgm = new ToolStripMenuItem(Text = "New")
+            let newgm = new ToolStripMenuItem(Text = "&New")
             newgm.Click.Add(fun _ -> donewg())
             gamem.DropDownItems.Add(newgm) |> ignore
             // game save

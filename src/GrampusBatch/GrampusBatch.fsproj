@@ -24,6 +24,7 @@
     <EmbeddedResource Include="batch.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
+    <Compile Include="Recents.fs" />
     <Compile Include="Dialogs.fs" />
     <Compile Include="Form.fs" />
     <Compile Include="Program.fs" />

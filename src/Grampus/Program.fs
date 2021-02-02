@@ -1,4 +1,4 @@
-namespace ScincNet
+namespace GrampusUI
 
 open System
 open System.Windows.Forms
