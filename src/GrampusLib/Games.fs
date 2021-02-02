@@ -122,13 +122,12 @@ module Games =
         Index.Save(fol, iea)
         Headers.Save(fol, hdrs)
     
-    let Compact(fol : string) cb =
+    let Compact (fol : string) cb =
         let ifn = Path.Combine(fol, "GAMES")
-        if not (File.Exists(ifn)) then
+        if not (File.Exists(ifn)) then 
             "Compaction Terminated: No Games to compact."
-        else
+        else 
             let mutable msg = ""
-        
             //create temp folder to do the compact
             let tmpfol = Path.Combine(fol, "temp")
             Directory.CreateDirectory(tmpfol) |> ignore
@@ -141,7 +140,7 @@ module Games =
                                       FileShare.Read))
             let iea = Index.Load(fol)
             let hdrs = Headers.Load(fol)
-        
+            
             //write in compacted format
             let svgm i =
                 let ie = iea.[i]
@@ -151,7 +150,7 @@ module Games =
                     reader.BaseStream.Position <- ie.Offset
                     let bin = reader.ReadBytes(ie.Length)
                     let off = writer.BaseStream.Position
-                    if i % 100 = 0 then cb(i)
+                    if i % 100 = 0 then cb (i)
                     writer.Write(bin)
                     keep, 
                     { Offset = off
@@ -160,16 +159,18 @@ module Games =
                     keep, 
                     { Offset = 0L
                       Length = 0 }, hdr
-        
+            
             let kihs = [| 0..iea.Length - 1 |] |> Array.map svgm
-        
+            
             let niea, nhdrs =
                 kihs
                 |> Array.filter (fun (k, i, h) -> k)
                 |> Array.map (fun (k, i, h) -> i, h)
                 |> Array.unzip
-            let del = iea.Length-niea.Length
-            msg <- msg + "Number of games permanently deleted is: " + del.ToString()
+            
+            let del = iea.Length - niea.Length
+            msg <- msg + "Number of games permanently deleted is: " 
+                   + del.ToString()
             Index.Save(tmpfol, niea)
             Headers.Save(tmpfol, nhdrs)
             reader.Close()
@@ -179,5 +180,6 @@ module Games =
             File.Move
                 (Path.Combine(tmpfol, "INDEX"), Path.Combine(fol, "INDEX"), true)
             File.Move
-                (Path.Combine(tmpfol, "HEADERS"), Path.Combine(fol, "HEADERS"), true)
+                (Path.Combine(tmpfol, "HEADERS"), Path.Combine(fol, "HEADERS"), 
+                 true)
             msg

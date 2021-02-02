@@ -136,4 +136,3 @@ module TpGamesLib =
         
         ///Provides the selected Game
         member __.GmSel = selEvt.Publish
-        

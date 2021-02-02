@@ -14,7 +14,7 @@ module TcGamesLib =
         do 
             gmstc.TabPages.Add(cliptp)
             cliptp.GmSel |> Observable.add selEvt.Trigger
-            
+        
         ///Refresh the selected tab
         member gmstc.Refrsh(bd : Brd) =
             let tp = gmstc.SelectedTab :?> TpGames
@@ -33,7 +33,7 @@ module TcGamesLib =
             gmstc.TabPages.Add(tp)
             gmstc.SelectedTab <- gmstc.TabPages.[gmstc.TabPages.Count - 1]
             tp.GmSel |> Observable.add selEvt.Trigger
-            
+        
         ///BaseNum for the selected tab
         member gmstc.BaseName() =
             let tp = gmstc.SelectedTab :?> TpGames
@@ -47,5 +47,3 @@ module TcGamesLib =
         
         ///Provides the selected Game
         member __.GmSel = selEvt.Publish
-        
-       

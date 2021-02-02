@@ -111,7 +111,7 @@ module Form =
             deltgfm.Enabled <- gmp.IsSome
             crfm.Enabled <- gmp.IsSome
             cmpm.Enabled <- gmp.IsSome
-            
+        
         let log (msg) =
             nd <- DateTime.Now
             logtb.Text <- logtb.Text + nl + msg + " in " + el() + " seconds"
@@ -537,8 +537,8 @@ module Form =
             st <- DateTime.Now
             gmp <- Some(Grampus.DeleteGamesFilters(gmpfile))
             log ("Games and Filters deleted")
-
-        let docompact(e) =
+        
+        let docompact (e) =
             this.Enabled <- false
             let numgames = iea.Length
             prg.Minimum <- 0
@@ -547,7 +547,8 @@ module Form =
             st <- DateTime.Now
             let msg = Games.Compact binfol updprg
             log ("Base Compacted")
-            logtb.Text <- logtb.Text + nl + "Messages from Compaction: " + nl + msg
+            logtb.Text <- logtb.Text + nl + "Messages from Compaction: " + nl 
+                          + msg
             prg.Value <- 0
             this.Enabled <- true
         
@@ -613,8 +614,6 @@ module Form =
             cmpm.Click.Add(docompact)
             tlm.DropDownItems.Add(cmpm) |> ignore
             ms.Items.Add(tlm) |> ignore
-            
-           
         
         let btmpnl =
             new Panel(Dock = DockStyle.Bottom, BorderStyle = BorderStyle.Fixed3D, 
