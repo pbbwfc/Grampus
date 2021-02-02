@@ -27,6 +27,7 @@ module TpGamesLib =
         let mutable fn = 0 //number of games in filter
         let mutable filt = []
         let mutable hdrs = [||]
+        let mutable hasnofilt = false
         //events
         let selEvt = new Event<_>()
         
@@ -104,12 +105,14 @@ module TpGamesLib =
             let fol = nm + "_FILES"
             filt <- Filters.Read(bdstr, fol)
             hdrs <- Headers.Load(fol)
-            if filt.Length = 0 then 
+            if hasnofilt then 
                 fn <- hdrs.Length
                 let lim =
                     if fn > 100 then 100
                     else fn - 1
                 [ 0..lim ] |> List.iter (fun i -> gmsui.Add(hdrs.[i]))
+            elif filt.Length = 0 then 
+                fn <- 0
             else 
                 fn <- filt.Length
                 let lim =
