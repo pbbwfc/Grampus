@@ -35,7 +35,7 @@ type Eco() =
         let gm = Games.LoadGame tstfol indx.[0] hdrs.[0]
         gm.Hdr.ECO |> should equal ""
         gm.Hdr.Opening |> should equal ""
-        Eco.ForBase(tstfol2)
+        Eco.ForBase tstfol2 (fun(i) -> ())
         let indx2 = Index.Load tstfol2
         let hdrs2 = Headers.Load tstfol2
         let gm2 = Games.LoadGame tstfol2 indx2.[0] hdrs2.[0]

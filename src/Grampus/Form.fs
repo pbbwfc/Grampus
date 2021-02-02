@@ -58,7 +58,6 @@ module Form =
                                   ShortcutKeys = (Keys.Control ||| Keys.W), 
                                   Text = "&Close", Enabled = false)
         let tclosem = new ToolStripMenuItem(Text = "&Close", Enabled = false)
-        let ecom = new ToolStripMenuItem(Text = "Set ECOs", Enabled = false)
         let showwb =
             new ToolStripButton(Image = img "white.png", Enabled = false, 
                                 Text = "Show White")
@@ -87,7 +86,6 @@ module Form =
         let updateMenuStates() =
             closeb.Enabled <- gmtbs.TabCount > 1
             closem.Enabled <- gmtbs.TabCount > 1
-            ecom.Enabled <- gmtbs.TabCount > 1
             showwb.Enabled <- gmtbs.TabCount > 1
             showwm.Enabled <- gmtbs.TabCount > 1
             showbb.Enabled <- gmtbs.TabCount > 1
@@ -250,17 +248,6 @@ module Form =
             //clear pgn and set gnum to -1
             let nm = gmtbs.BaseName()
             pgn.NewGame(nm)
-            SbUpdate("Ready")
-        
-        let doeco() =
-            SbUpdate("Adding ECO classifiers")
-            let nm = gmtbs.BaseName()
-            Eco.ForBase(nm + "_FILES")
-            SbUpdate("Reloading list of games")
-            let nbd = bd.GetBoard()
-            gmtbs.Refrsh(nbd)
-            let gnum = pgn.GetGameNumber()
-            gmtbs.SelNum(gnum)
             SbUpdate("Ready")
         
         let docopypgn() = Clipboard.SetText(pgn.GetPgn())
@@ -534,11 +521,6 @@ module Form =
             // show black repertoire
             showbm.Click.Add(fun _ -> doshowblack())
             repm.DropDownItems.Add(showbm) |> ignore
-            // tools menu
-            let toolsm = new ToolStripMenuItem(Text = "&Tools")
-            // tools set eco
-            ecom.Click.Add(fun _ -> doeco())
-            toolsm.DropDownItems.Add(ecom) |> ignore
             // about menu
             let abtm = new ToolStripMenuItem("About")
             // docs
@@ -563,7 +545,6 @@ module Form =
             ms.Items.Add(treem) |> ignore
             ms.Items.Add(gamem) |> ignore
             ms.Items.Add(repm) |> ignore
-            ms.Items.Add(toolsm) |> ignore
             ms.Items.Add(abtm) |> ignore
         
         let bgpnl =

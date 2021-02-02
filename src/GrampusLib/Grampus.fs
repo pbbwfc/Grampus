@@ -512,8 +512,9 @@ module Eco =
     /// Set ECO for games given the folder containing the base.
     /// </summary>
     /// <param name="fol">The folder which stores the games.</param>
+    /// <param name="cb">Callback function to report on progress.</param>
     /// <returns>Nothing.</returns>
-    let ForBase(fol) = GrampusInternal.Eco.ForBase(fol)
+    let ForBase fol cb = GrampusInternal.Eco.ForBase fol cb
 
 /// <summary>
 /// Holds the functions related to Headers.
