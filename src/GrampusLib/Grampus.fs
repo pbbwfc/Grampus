@@ -469,6 +469,14 @@ module Grampus =
     /// <param name="nm">The full path and file name.</param>
     /// <returns>The contents of the new file as a GrampusData type.</returns>
     let DeleteFilters(nm) = GrampusInternal.GrampusFile.DeleteFilters(nm)
+    
+    /// <summary>
+    /// Deletes the filters and games stored in a Base given the full path and file name and returns the new Grampus file.
+    /// </summary>
+    /// <param name="nm">The full path and file name.</param>
+    /// <returns>The contents of the new file as a GrampusData type.</returns>
+    let DeleteGamesFilters(nm) =
+        GrampusInternal.GrampusFile.DeleteGamesFilters(nm)
 
 /// <summary>
 /// Holds the functions related to an Index.

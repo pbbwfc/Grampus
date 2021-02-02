@@ -61,3 +61,22 @@ module GrampusFile =
                        FiltersPly = 20 }
         Save(nm, ngmp)
         ngmp
+    
+    let DeleteGames(nm : string) =
+        let fol = Path.GetDirectoryName(nm)
+        let binfol =
+            Path.Combine(fol, Path.GetFileNameWithoutExtension(nm) + "_FILES")
+        if File.Exists(binfol + @"\GAMES") then File.Delete(binfol + @"\GAMES")
+        if File.Exists(binfol + @"\INDEX") then File.Delete(binfol + @"\INDEX")
+        if File.Exists(binfol + @"\HEADERS") then 
+            File.Delete(binfol + @"\HEADERS")
+        let gmp = Load(nm)
+        let ngmp = { gmp with BaseCreated = None }
+        Save(nm, ngmp)
+        ngmp
+    
+    let DeleteGamesFilters(nm : string) =
+        let gmp = DeleteFilters(nm)
+        Save(nm, gmp)
+        let ngmp = DeleteGames(nm)
+        ngmp
