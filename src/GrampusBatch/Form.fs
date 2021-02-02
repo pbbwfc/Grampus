@@ -88,6 +88,7 @@ module Form =
         let pgnm =
             new ToolStripMenuItem(Text = "From &Pgn File", Enabled = true)
         let crm = new ToolStripMenuItem(Text = "&Create", Enabled = false)
+        let deltm = new ToolStripMenuItem(Text = "&Delete", Enabled = false)
         let crfm = new ToolStripMenuItem(Text = "&Create", Enabled = false)
         let updateTitle() = this.Text <- "Grampus Batch - " + gmpfile
         
@@ -98,6 +99,7 @@ module Form =
             delm.Enabled <- gmp.IsSome
             pgnm.Enabled <- gmp.IsNone
             crm.Enabled <- gmp.IsSome
+            deltm.Enabled <- gmp.IsSome
             crfm.Enabled <- gmp.IsSome
         
         let log (msg) =
@@ -484,6 +486,11 @@ module Form =
                 this.Enabled <- true
                 prg.Value <- 0
         
+        let dodeltree (e) =
+            st <- DateTime.Now
+            gmp <- Some(Grampus.DeleteTree(gmpfile))
+            log("Tree deleted")
+
         let createts() =
             ts.Items.Add(crbtn) |> ignore
             ts.Items.Add(crfbtn) |> ignore
@@ -527,6 +534,8 @@ module Form =
             let tm = new ToolStripMenuItem(Text = "&Tree")
             tm.DropDownItems.Add(crm) |> ignore
             crm.Click.Add(docreate)
+            tm.DropDownItems.Add(deltm) |> ignore
+            deltm.Click.Add(dodeltree)
             ms.Items.Add(tm) |> ignore
             //filter menu
             let fm = new ToolStripMenuItem(Text = "&Filters")
