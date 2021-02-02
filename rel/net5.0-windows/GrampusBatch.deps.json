@@ -9,8 +9,7 @@
       "GrampusBatch/0.02": {
         "dependencies": {
           "FSharp.Core": "5.0.0",
-          "GrampusLib": "0.2.0",
-          "GrampusWinForms": "0.2.0"
+          "GrampusLib": "0.2.0"
         },
         "runtime": {
           "GrampusBatch.dll": {}
@@ -155,15 +154,6 @@
         "runtime": {
           "GrampusLib.dll": {}
         }
-      },
-      "GrampusWinForms/0.2.0": {
-        "dependencies": {
-          "FSharp.Core": "5.0.0",
-          "GrampusLib": "0.2.0"
-        },
-        "runtime": {
-          "GrampusWinForms.dll": {}
-        }
       }
     }
   },
@@ -286,11 +276,6 @@
       "hashPath": "system.threading.tasks.extensions.4.5.3.nupkg.sha512"
     },
     "GrampusLib/0.2.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "GrampusWinForms/0.2.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

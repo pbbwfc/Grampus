@@ -109,12 +109,12 @@ Produces a simple string of characters plus whether white or black to move
 Create a new Board given a simple string(str)
 </summary>
 </member>
-<member name="M:GrampusInternal.Board.ToStr(Grampus.Types.Brd)">
+<member name="M:GrampusInternal.Board.ToFenStr(Grampus.Types.Brd)">
 <summary>
 Gets a FEN string for this Board(bd) 
 </summary>
 </member>
-<member name="M:GrampusInternal.Board.FromStr(System.String)">
+<member name="M:GrampusInternal.Board.FromFenStr(System.String)">
 <summary>
 Create a new Board given a FEN string(str)
 </summary>
@@ -259,7 +259,7 @@ Get an encoded move from a SAN Move(move) such as Nf3 for this Board(bd)
 
  <exclude />
 </member>
-<member name="T:GrampusInternal.Filter">
+<member name="T:GrampusInternal.Filters">
  <summary>This type is for implementation purposes.</summary>
 
  <exclude />
@@ -285,6 +285,87 @@ Get an encoded move from a SAN Move(move) such as Nf3 for this Board(bd)
 <member name="T:Grampus.Types.stats">
  <summary>Holds summary data used in the tree.</summary>
 </member>
+<member name="T:Grampus.Types.totstats">
+ <summary>Record type holding tree data summed over all moves.</summary>
+</member>
+<member name="T:Grampus.Types.mvstats">
+ <summary>Record type holding tree data related to a particular move.</summary>
+</member>
+<member name="T:Grampus.Types.RepMove">
+ <summary>Map allowing lookup up of preferred move in a repertoire for a position.</summary>
+</member>
+<member name="T:Grampus.Types.RepOpts">
+ <summary>Map allowing lookup up of alternatives in a repertoire for a position.</summary>
+</member>
+<member name="T:Grampus.Types.RepOpt">
+ <summary>Record type holding low level repertoire data.</summary>
+</member>
+<member name="T:Grampus.Types.GrampusData">
+ <summary>Record type holding summary data for a grampus base.</summary>
+</member>
+<member name="T:Grampus.Types.IndexEntry">
+ <summary>Record type holding the index of a game in the storage.</summary>
+</member>
+<member name="T:Grampus.Types.CompressedGame">
+ <summary>Record type holding compressed game details such as the list of moves.</summary>
+</member>
+<member name="T:Grampus.Types.CompressedMoveTextEntry">
+ <summary>Discriminated Union type holding options for each possible item in game moves, such as a comment.</summary>
+</member>
+<member name="T:Grampus.Types.CompressedMove">
+ <summary>Record type holding details of a compressed move for storage.</summary>
+</member>
+<member name="T:Grampus.Types.EncodedGame">
+ <summary>Record type holding unencoded game details such as the list of moves.</summary>
+</member>
+<member name="T:Grampus.Types.EncodedMoveTextEntry">
+ <summary>Discriminated Union type holding options for each possible item in game moves, such as a comment.</summary>
+</member>
+<member name="T:Grampus.Types.EncodedMove">
+ <summary>Record type holding details of an encoded move such as the move and the move number.</summary>
+</member>
+<member name="T:Grampus.Types.UnencodedGame">
+ <summary>Record type holding unencoded game details such as the list of moves.</summary>
+</member>
+<member name="T:Grampus.Types.UnencodedMoveTextEntry">
+ <summary>Discriminated Union type holding options for each possible item in game moves, such as a comment.</summary>
+</member>
+<member name="T:Grampus.Types.Header">
+ <summary>Record type holding header information such as the White ELO.</summary>
+</member>
+<member name="T:Grampus.Types.pMove">
+ <summary>Record type holding details of an unencoded move such as pieces the target square.</summary>
+</member>
+<member name="T:Grampus.Types.Brd">
+ <summary>Record type holding board details such as pieces on each square.</summary>
+</member>
+<member name="T:Grampus.Types.NAG">
+ <summary>Enum holding each type of NAG e.g. 1 for Good.</summary>
+</member>
+<member name="T:Grampus.Types.MoveType">
+ <summary>Option holding each type of move e.g. Capture.</summary>
+</member>
+<member name="T:Grampus.Types.Bitboard">
+ <summary>Enum holding bitboards for squares/ranks, e.g. 1UL for A1.</summary>
+</member>
+<member name="T:Grampus.Types.CstlFlgs">
+ <summary>Enum holding each type of castling e.g. 1 for WhiteShort.</summary>
+</member>
+<member name="T:Grampus.Types.Square">
+ <summary>Short encoded to hold Square.</summary>
+</member>
+<member name="T:Grampus.Types.Rank">
+ <summary>Short encoded to hold Rank.</summary>
+</member>
+<member name="T:Grampus.Types.File">
+ <summary>Short encoded to hold File.</summary>
+</member>
+<member name="T:Grampus.Types.GameResult">
+ <summary>Enum holding each type of result e.g. 0 for Draw.</summary>
+</member>
+<member name="T:Grampus.Types.Player">
+ <summary>Enum holding each type of player e.g. 1 for Black.</summary>
+</member>
 <member name="T:Grampus.Types.Piece">
  <summary>Enum holding each type of piece for each colour e.g. 1 for WPawn.</summary>
 </member>
@@ -300,169 +381,298 @@ Get an encoded move from a SAN Move(move) such as Nf3 for this Board(bd)
  </namespacedoc>
  <summary>Holds all the main types used by Grampus.</summary>
 </member>
-<member name="P:Grampus.PgnGames.Encode">
-<summary>
-Encodes a sequence of Unencoded Games
-</summary>
+<member name="T:Grampus.AssemblyInfo">
+ <summary>This type is for implementation purposes.</summary>
+
+ <exclude />
 </member>
-<member name="P:Grampus.PgnGames.WriteFile">
-<summary>
-Write a list of Games to a file
-</summary>
+<member name="M:Grampus.PgnGames.GetNumberOfGames(System.String)">
+ <summary>
+ Gets the Number of Games from a PGN file.
+ </summary>
+ <param name="fn">The path and file name of the PGN file.</param>
+ <returns>The number of games as an int type.</returns>
 </member>
-<member name="P:Grampus.PgnGames.ReadSeqFromFile">
-<summary>
-Get a Sequence of Games from a file
-</summary>
+<member name="M:Grampus.PgnGames.ReadSeqFromFile(System.String)">
+ <summary>
+ Gets a Sequence of Games from a PGN file.
+ </summary>
+ <param name="fn">The path and file name of the PGN file.</param>
+ <returns>The games as an UnencodeGame sequence.</returns>
 </member>
-<member name="P:Grampus.PgnGames.ReadIndexListFromFile">
-<summary>
-Get a list of index * Game from a file
-</summary>
+<member name="T:Grampus.PgnGames">
+ <summary>
+ Holds the functions related to a set of Games in PGN format.
+ </summary>
 </member>
-<member name="P:Grampus.PgnGames.ReadListFromFile">
-<summary>
-Get a list of Games from a file
-</summary>
+<member name="M:Grampus.Games.Compact(System.String,Microsoft.FSharp.Core.FSharpFunc{System.Int32,Microsoft.FSharp.Core.Unit})">
+ <summary>
+ Compacts the base in the specified folder.
+ </summary>
+ <param name="fol">The folder in which the base is stored.</param>
+ <param name="cb">Callback function to report on progress.</param>
+ <returns>Messages from compaction process as a string type.</returns>
 </member>
-<member name="P:Grampus.PgnGames.ReadArrayFromFile">
-<summary>
-Get an array of Games from a file
-</summary>
+<member name="M:Grampus.Games.UpdateGame(System.String,System.Int32,Grampus.Types.EncodedGame)">
+ <summary>
+ Updates a game in an existing base in the specified folder.
+ </summary>
+ <param name="fol">The folder in which the games are stored.</param>
+ <param name="gnum">The game number to update a int type.</param>
+ <param name="gm">The game as an EncodedGame type.</param>
+ <returns>Nothing.</returns>
 </member>
-<member name="P:Grampus.Games.Compact">
-<summary>
-Compact base
-</summary>
+<member name="M:Grampus.Games.AppendGame(System.String,Grampus.Types.EncodedGame)">
+ <summary>
+ Adds game to an existing base in the specified folder.
+ </summary>
+ <param name="fol">The folder in which the games are stored.</param>
+ <param name="gm">The game as an EncodedGame type.</param>
+ <returns>Nothing.</returns>
 </member>
-<member name="P:Grampus.Games.UpdateGame">
-<summary>
-Update Game
-</summary>
+<member name="M:Grampus.Games.Add(System.String,System.Collections.Generic.IEnumerable{Grampus.Types.EncodedGame},Microsoft.FSharp.Core.FSharpFunc{System.Int32,Microsoft.FSharp.Core.Unit})">
+ <summary>
+ Adds a sequence of games to an existing base in the specified folder.
+ </summary>
+ <param name="fol">The folder in which the games are stored.</param>
+ <param name="gms">The games as an EncodedGame sequence type.</param>
+ <param name="cb">Callback function to report on progress.</param>
+ <returns>Nothing.</returns>
 </member>
-<member name="P:Grampus.Games.AppendGame">
-<summary>
-Append Game
-</summary>
+<member name="M:Grampus.Games.Save(System.String,System.Collections.Generic.IEnumerable{Grampus.Types.EncodedGame},Microsoft.FSharp.Core.FSharpFunc{System.Int32,Microsoft.FSharp.Core.Unit})">
+ <summary>
+ Saves a sequence of games to create a new base in the specified folder.
+ </summary>
+ <param name="fol">The folder in which the games are stored.</param>
+ <param name="gms">The games as an EncodedGame sequence type.</param>
+ <param name="cb">Callback function to report on progress.</param>
+ <returns>Nothing.</returns>
 </member>
-<member name="P:Grampus.Games.Add">
-<summary>
-Add Games
-</summary>
+<member name="M:Grampus.Games.LoadGame(System.String,Grampus.Types.IndexEntry,Grampus.Types.Header)">
+ <summary>
+ Loads an encoded game given the folder, index entry and the header.
+ </summary>
+ <param name="fol">The folder in which the game is stored.</param>
+ <param name="ie">The index entry for the game as an IndexEntry type.</param>
+ <param name="hdr">The header for the game as a Header type.</param>
+ <returns>The encoded game.</returns>
 </member>
-<member name="P:Grampus.Games.Save">
-<summary>
-Save Games
-</summary>
+<member name="T:Grampus.Games">
+ <summary>
+ Holds the functions related to a set of Games.
+ </summary>
 </member>
-<member name="P:Grampus.Games.LoadGame">
-<summary>
-Load Game
-</summary>
+<member name="M:Grampus.Headers.Save(System.String,Grampus.Types.Header[])">
+ <summary>
+ Saves the headers given the folder and the data.
+ </summary>
+ <param name="fol">The folder in which to store the headers.</param>
+ <param name="hdrs">The headers as a Header array type.</param>
+ <returns>Nothing.</returns>
 </member>
-<member name="P:Grampus.Headers.Save">
-<summary>
-Save Game Rows
-</summary>
+<member name="M:Grampus.Headers.Load(System.String)">
+ <summary>
+ Loads the headers given the folder.
+ </summary>
+ <param name="fol">The folder which stores the headers.</param>
+ <returns>The headers as an Header array type.</returns>
 </member>
-<member name="P:Grampus.Headers.Load">
-<summary>
-Load Game Rows
-</summary>
+<member name="T:Grampus.Headers">
+ <summary>
+ Holds the functions related to Headers.
+ </summary>
 </member>
-<member name="P:Grampus.Index.Save">
-<summary>
-Save Index
-</summary>
+<member name="M:Grampus.Eco.ForBase(System.String,Microsoft.FSharp.Core.FSharpFunc{System.Int32,Microsoft.FSharp.Core.Unit})">
+ <summary>
+ Set ECO for games given the folder containing the base.
+ </summary>
+ <param name="fol">The folder which stores the games.</param>
+ <param name="cb">Callback function to report on progress.</param>
+ <returns>Nothing.</returns>
 </member>
-<member name="P:Grampus.Index.Load">
-<summary>
-Load Index
-</summary>
+<member name="M:Grampus.Eco.ForGame(Grampus.Types.EncodedGame)">
+ <summary>
+ Set ECO for the game provided.
+ </summary>
+ <param name="gm">The Encoded game.</param>
+ <returns>The updated game as an EncodedGame type.</returns>
 </member>
-<member name="P:Grampus.Grampus.Save">
-<summary>
-Save Grampus File
-</summary>
+<member name="T:Grampus.Eco">
+ <summary>
+ Holds the functions related to ECO classification.
+ </summary>
 </member>
-<member name="P:Grampus.Grampus.Load">
-<summary>
-Load Garmpus File
-</summary>
+<member name="M:Grampus.Index.Save(System.String,Grampus.Types.IndexEntry[])">
+ <summary>
+ Saves the Index given the folder and the data.
+ </summary>
+ <param name="fol">The folder in which to store the index.</param>
+ <param name="iea">The index as an IndexEntry array type.</param>
+ <returns>Nothing.</returns>
 </member>
-<member name="P:Grampus.Filter.Read">
-<summary>
-Reads the tree storage given a position and a folder
-</summary>
+<member name="M:Grampus.Index.Load(System.String)">
+ <summary>
+ Loads the Index given the folder.
+ </summary>
+ <param name="fol">The folder which stores the index.</param>
+ <returns>The index as an IndexEntry array type.</returns>
 </member>
-<member name="P:Grampus.Filter.ReadArray">
-<summary>
-Reads the tree storage given an array of positions and a folder
-</summary>
+<member name="T:Grampus.Index">
+ <summary>
+ Holds the functions related to an Index.
+ </summary>
 </member>
-<member name="P:Grampus.Filter.Save">
-<summary>
-Saves the tree storage given an array of positions, an array of stats and a folder
-</summary>
+<member name="M:Grampus.Grampus.DeleteGamesFilters(System.String)">
+ <summary>
+ Deletes the filters and games stored in a Base given the full path and file name and returns the new Grampus file.
+ </summary>
+ <param name="nm">The full path and file name.</param>
+ <returns>The contents of the new file as a GrampusData type.</returns>
 </member>
-<member name="P:Grampus.Filter.Create">
-<summary>
-Creates the tree storage given a folder
-</summary>
+<member name="M:Grampus.Grampus.DeleteFilters(System.String)">
+ <summary>
+ Deletes the filters stored in a Base given the full path and file name and returns the new Grampus file.
+ </summary>
+ <param name="nm">The full path and file name.</param>
+ <returns>The contents of the new file as a GrampusData type.</returns>
 </member>
-<member name="P:Grampus.StaticTree.Read">
-<summary>
-Reads the tree storage given a position and a folder
-</summary>
+<member name="M:Grampus.Grampus.DeleteTree(System.String)">
+ <summary>
+ Deletes the tree stored in a Base given the full path and file name and returns the new Grampus file.
+ </summary>
+ <param name="nm">The full path and file name.</param>
+ <returns>The contents of the new file as a GrampusData type.</returns>
 </member>
-<member name="P:Grampus.StaticTree.ReadArray">
-<summary>
-Reads the tree storage given an array of positions and a folder
-</summary>
+<member name="M:Grampus.Grampus.Delete(System.String)">
+ <summary>
+ Deletes a Grampus File and related content given the full path and file name.
+ </summary>
+ <param name="nm">The full path and file name.</param>
+ <returns>Nothing.</returns>
 </member>
-<member name="P:Grampus.StaticTree.Save">
-<summary>
-Saves the tree storage given an array of positions, an array of stats and a folder
-</summary>
+<member name="M:Grampus.Grampus.New(System.String)">
+ <summary>
+ Creates a new Grampus File given the full path and file name.
+ </summary>
+ <param name="nm">The full path and file name.</param>
+ <returns>The contents of the new file as a GrampusData type.</returns>
 </member>
-<member name="P:Grampus.StaticTree.Create">
-<summary>
-Creates the tree storage given a folder
-</summary>
+<member name="M:Grampus.Grampus.Save(System.String,Grampus.Types.GrampusData)">
+ <summary>
+ Saves a Grampus File given the full path and file name and the data.
+ </summary>
+ <param name="nm">The full path and file name.</param>
+ <param name="gmp">The contents of the file as a GrampusData type.</param>
+ <returns>Nothing.</returns>
 </member>
-<member name="P:Grampus.Repertoire.OptsHaveSan">
-<summary>
-Options contaion SAN
-</summary>
+<member name="M:Grampus.Grampus.Load(System.String)">
+ <summary>
+ Loads a Grampus File given the full path and file name.
+ </summary>
+ <param name="nm">The full path and file name.</param>
+ <returns>The contents of the file as a GrampusData type.</returns>
 </member>
-<member name="P:Grampus.Repertoire.UpdateBlack">
-<summary>
-Update Black Repertoire from database
-</summary>
+<member name="T:Grampus.Grampus">
+ <summary>
+ Holds the functions related to the Grampus file.
+ </summary>
 </member>
-<member name="P:Grampus.Repertoire.UpdateWhite">
-<summary>
-Update White Repertoire from database
-</summary>
+<member name="M:Grampus.Filters.Read(System.String,System.String)">
+ <summary>
+ Reads the filter storage given a position and a folder.
+ </summary>
+ <param name="posn">The position to read in the tree.</param>
+ <param name="fol">The folder which stores the tree.</param>
+ <returns>The filter for the posn as an int list type.</returns>
 </member>
-<member name="P:Grampus.Repertoire.LoadBlack">
+<member name="M:Grampus.Filters.Save(System.String[],Microsoft.FSharp.Collections.FSharpList{System.Int32}[],System.String)">
+ <summary>
+ Saves the filter storage given an array of positions, an array of references to games and a folder.
+ </summary>
+ <param name="posns">The array of positions for the tree.</param>
+ <param name="filts">The array of references to games as an int list type.</param>
+ <param name="fol">The folder to store the tree.</param>
+ <returns>Nothing.</returns>
+</member>
+<member name="M:Grampus.Filters.Create(System.String)">
+ <summary>
+ Creates the filter storage given a folder.
+ </summary>
+ <param name="fol">The folder to store the tree.</param>
+ <returns>Nothing.</returns>
+</member>
+<member name="T:Grampus.Filters">
+ <summary>
+ Holds the functions related to Filters.
+ </summary>
+</member>
+<member name="M:Grampus.Tree.Read(System.String,System.String)">
+ <summary>
+ Reads the tree storage given a position and a folder.
+ </summary>
+ <param name="posn">The position to read in the tree.</param>
+ <param name="fol">The folder which stores the tree.</param>
+ <returns>The tree for the posn as a stats type.</returns>
+</member>
+<member name="M:Grampus.Tree.Save(System.String[],Grampus.Types.stats[],System.String)">
+ <summary>
+ Saves the tree storage given an array of positions, an array of stats and a folder.
+ </summary>
+ <param name="posns">The array of positions for the tree.</param>
+ <param name="sts">The array of stats for the tree.</param>
+ <param name="fol">The folder to store the tree.</param>
+ <returns>Nothing.</returns>
+</member>
+<member name="M:Grampus.Tree.Create(System.String)">
+ <summary>
+ Creates the tree storage given a folder.
+ </summary>
+ <param name="fol">The folder to store the tree.</param>
+ <returns>Nothing.</returns>
+</member>
+<member name="T:Grampus.Tree">
+ <summary>
+ Holds the functions related to a Tree.
+ </summary>
+</member>
+<member name="M:Grampus.Repertoire.OptsHaveSan(System.String,Microsoft.FSharp.Collections.FSharpList{Grampus.Types.RepOpt})">
+ <summary>
+ Check whether options contains a particular SAN string.
+ </summary>
+ <param name="san">The SAN string.</param>
+ <param name="opts">The list of options as a RepOpt list type.</param>
+ <returns>Whether in the options as a bool.</returns>
+</member>
+<member name="M:Grampus.Repertoire.UpdateBlack">
+ <summary>
+ Update Blck Repertoire from database.
+ </summary>
+ <returns>The number of errors.</returns>
+</member>
+<member name="M:Grampus.Repertoire.UpdateWhite">
+ <summary>
+ Update White Repertoire from database.
+ </summary>
+ <returns>The number of errors.</returns>
+</member>
+<member name="M:Grampus.Repertoire.LoadBlack">
 <summary>
 Load Black Repertoire
 </summary>
 </member>
-<member name="P:Grampus.Repertoire.LoadWhite">
+<member name="M:Grampus.Repertoire.LoadWhite">
 <summary>
 Load White Repertoire
 </summary>
 </member>
 <member name="M:Grampus.Repertoire.BlackErrFile">
 <summary>
-Black Error File
+Black Repertoire Error File
 </summary>
 </member>
 <member name="M:Grampus.Repertoire.WhiteErrFile">
 <summary>
-White Error File
+White Repertoire Error File
 </summary>
 </member>
 <member name="M:Grampus.Repertoire.Black">
@@ -475,325 +685,342 @@ Black Repertoire
 White Repertoire
 </summary>
 </member>
-<member name="P:Grampus.Game.GetPosns">
-<summary>
-Gets the Positionsup to the specified ply
-</summary>
+<member name="T:Grampus.Repertoire">
+ <summary>
+ Holds the functions related to a Repertoire.
+ </summary>
 </member>
-<member name="P:Grampus.Game.GetPosnsMoves">
-<summary>
-Gets the Positions and Sans up to the specified ply
-</summary>
+<member name="M:Grampus.Game.GetPosns(System.Int32,Grampus.Types.EncodedGame)">
+ <summary>
+ Gets the Positions up to the specified ply.
+ </summary>
+ <param name="ply">The ply to process to, -1 for all moves.</param>
+ <param name="gm">The Encoded Game.</param>
+ <returns>The arrays of Positions as strings.</returns>
 </member>
-<member name="P:Grampus.Game.Expand">
-<summary>
-Expands a Compressed Game
-</summary>
+<member name="M:Grampus.Game.GetPosnsMoves(System.Int32,Grampus.Types.EncodedGame)">
+ <summary>
+ Gets the Positions and Sans up to the specified ply.
+ </summary>
+ <param name="ply">The ply to process to, -1 for all moves.</param>
+ <param name="gm">The Encoded Game.</param>
+ <returns>The arrays of Positions and SANs as strings.</returns>
 </member>
-<member name="P:Grampus.Game.Compress">
-<summary>
-Compresses an Encoded Game
-</summary>
+<member name="M:Grampus.Game.ToStr(Grampus.Types.EncodedGame)">
+ <summary>
+ Create a PGN string from an Encoded Game.
+ </summary>
+ <param name="gm">The Encoded Game.</param>
+ <returns>The new PGN string.</returns>
 </member>
-<member name="P:Grampus.Game.ToStr">
-<summary>
-Convert to a PGN string
-</summary>
+<member name="M:Grampus.Game.FromStr(System.String)">
+ <summary>
+ Create an Encoded Game from a PGN string.
+ </summary>
+ <param name="pgnstr">The PGN string.</param>
+ <returns>The new Encoded Game.</returns>
 </member>
-<member name="P:Grampus.Game.FromStr">
-<summary>
-Get from a PGN string
-</summary>
+<member name="M:Grampus.Game.DeleteComment(Grampus.Types.EncodedGame,Microsoft.FSharp.Collections.FSharpList{System.Int32})">
+ <summary>
+ Deletes a comment in the Encoded Game at the address provided.
+ </summary>
+ <param name="gm">The Encoded Game.</param>
+ <param name="irs">The address within the game as an int list type.</param>
+ <returns>The changed Encoded Game.</returns>
 </member>
-<member name="P:Grampus.Game.DeleteComment">
-<summary>
-Deletes a comment in the Encoded Game at the address provided
-</summary>
+<member name="M:Grampus.Game.EditComment(Grampus.Types.EncodedGame,Microsoft.FSharp.Collections.FSharpList{System.Int32},System.String)">
+ <summary>
+ Edits a comment to the Encoded Game at the address provided.
+ </summary>
+ <param name="gm">The Encoded Game.</param>
+ <param name="irs">The address within the game as an int list type.</param>
+ <param name="str">The comments as a string.</param>
+ <returns>The changed Encoded Game.</returns>
 </member>
-<member name="P:Grampus.Game.EditComment">
-<summary>
-Edits a comment to the Encoded Game at the address provided
-</summary>
+<member name="M:Grampus.Game.CommentAfter(Grampus.Types.EncodedGame,Microsoft.FSharp.Collections.FSharpList{System.Int32},System.String)">
+ <summary>
+ Adds a comment to the Encoded Game after the address provided.
+ </summary>
+ <param name="gm">The Encoded Game.</param>
+ <param name="irs">The address within the game as an int list type.</param>
+ <param name="str">The comments as a string.</param>
+ <returns>The changed Encoded Game.</returns>
 </member>
-<member name="P:Grampus.Game.CommentAfter">
-<summary>
-Adds a comment to the Encoded Game after the address provided
-</summary>
+<member name="M:Grampus.Game.CommentBefore(Grampus.Types.EncodedGame,Microsoft.FSharp.Collections.FSharpList{System.Int32},System.String)">
+ <summary>
+ Adds a comment to the Encoded Game before the address provided.
+ </summary>
+ <param name="gm">The Encoded Game.</param>
+ <param name="irs">The address within the game as an int list type.</param>
+ <param name="str">The comments as a string.</param>
+ <returns>The changed Encoded Game.</returns>
 </member>
-<member name="P:Grampus.Game.CommentBefore">
-<summary>
-Adds a comment to the Encoded Game before the address provided
-</summary>
+<member name="M:Grampus.Game.Strip(Grampus.Types.EncodedGame,Microsoft.FSharp.Collections.FSharpList{System.Int32})">
+ <summary>
+ Strips moves until end of game at the address provided.
+ </summary>
+ <param name="gm">The Encoded Game.</param>
+ <param name="irs">The address within the game as an int list type.</param>
+ <returns>The changed Encoded Game.</returns>
 </member>
-<member name="P:Grampus.Game.Strip">
-<summary>
-Strips moves until end of game at the address provided
-</summary>
+<member name="M:Grampus.Game.DeleteRav(Grampus.Types.EncodedGame,Microsoft.FSharp.Collections.FSharpList{System.Int32})">
+ <summary>
+ Deletes a RAV in the EncodedGame at the address provided.
+ </summary>
+ <param name="gm">The Encoded Game.</param>
+ <param name="irs">The address within the game as an int list type.</param>
+ <returns>The changed Encoded Game.</returns>
 </member>
-<member name="P:Grampus.Game.DeleteRav">
-<summary>
-Deletes a RAV in the EncodedGame at the address provided
-</summary>
+<member name="M:Grampus.Game.AddRav(Grampus.Types.EncodedGame,Microsoft.FSharp.Collections.FSharpList{System.Int32},System.UInt32)">
+ <summary>
+ Adds a RAV to the Game given the Move is contains and its address.
+ </summary>
+ <param name="gm">The Encoded Game.</param>
+ <param name="irs">The address within the game as an int list type.</param>
+ <param name="mv">The Move.</param>
+ <returns>The changed Encoded Game and the new address.</returns>
 </member>
-<member name="P:Grampus.Game.AddRav">
-<summary>
-Adds a RAV to the Game given the Encoded Move is contains and its address
-</summary>
+<member name="M:Grampus.Game.AddMv(Grampus.Types.EncodedGame,Microsoft.FSharp.Collections.FSharpList{System.Int32},System.UInt32)">
+ <summary>
+ Adds a Move to the Game given its address.
+ </summary>
+ <param name="gm">The Encoded Game.</param>
+ <param name="irs">The address within the game as an int list type.</param>
+ <param name="mv">The Move.</param>
+ <returns>The changed Encoded Game and the new address.</returns>
 </member>
-<member name="P:Grampus.Game.AddMv">
-<summary>
-Adds an EncodedMove to the Game given its address
-</summary>
+<member name="M:Grampus.Game.Encode(Grampus.Types.UnencodedGame)">
+ <summary>
+ Encodes the Game.
+ </summary>
+ <param name="ugm">The Unencoded Game.</param>
+ <returns>The Encoded Game.</returns>
 </member>
-<member name="P:Grampus.Game.Encode">
-<summary>
-Encodes the Game
-</summary>
+<member name="M:Grampus.Game.EditNag(Grampus.Types.EncodedGame,Microsoft.FSharp.Collections.FSharpList{System.Int32},Grampus.Types.NAG)">
+ <summary>
+ Edits a NAG in the Encoded Game at the address provided.
+ </summary>
+ <param name="gm">The Encoded Game.</param>
+ <param name="irs">The address within the game as an int list type.</param>
+ <param name="nag">The NAG as a NAG type.</param>
+ <returns>The changed Encoded Game.</returns>
 </member>
-<member name="P:Grampus.Game.MovesStr">
-<summary>
-Gets the moves text as a string given the Game.MoveText
-</summary>
+<member name="M:Grampus.Game.DeleteNag(Grampus.Types.EncodedGame,Microsoft.FSharp.Collections.FSharpList{System.Int32})">
+ <summary>
+ Deletes a NAG in the Encoded Game at the address provided.
+ </summary>
+ <param name="gm">The Encoded Game.</param>
+ <param name="irs">The address within the game as an int list type.</param>
+ <returns>The changed Encoded Game.</returns>
 </member>
-<member name="P:Grampus.Game.EditNag">
-<summary>
-Edits a Nag in the Encoded Game at the address provided
-</summary>
-</member>
-<member name="P:Grampus.Game.DeleteNag">
-<summary>
-Deletes a Nag in the Encoded Game at the address provided
-</summary>
-</member>
-<member name="P:Grampus.Game.AddNag">
-<summary>
-Adds a Nag in the EncodedGame after the address provided
-</summary>
+<member name="M:Grampus.Game.AddNag(Grampus.Types.EncodedGame,Microsoft.FSharp.Collections.FSharpList{System.Int32},Grampus.Types.NAG)">
+ <summary>
+ Adds a NAG in the EncodedGame after the address provided.
+ </summary>
+ <param name="gm">The Encoded Game.</param>
+ <param name="irs">The address within the game as an int list type.</param>
+ <param name="nag">The NAG as a NAG type.</param>
+ <returns>The changed Encoded Game.</returns>
 </member>
 <member name="P:Grampus.Game.NAGlist">
 <summary>
 Gets a list of all NAGs supported
 </summary>
 </member>
-<member name="P:Grampus.Game.NAGDesc">
-<summary>
-Gets a NAG as a description such as Very Good given one of the list from Game.MoveText
-</summary>
+<member name="M:Grampus.Game.NAGDesc(Grampus.Types.NAG)">
+ <summary>
+ Gets a NAG as a description such as Good given one of the list from Game.MoveText.
+ </summary>
+ <param name="nag">The NAG as a NAG type.</param>
+ <returns>The NAG description.</returns>
 </member>
-<member name="P:Grampus.Game.NAGHtm">
-<summary>
-Gets a NAG as HTML such as ?? given one of the list from Game.MoveText
-</summary>
+<member name="M:Grampus.Game.NAGHtm(Grampus.Types.NAG)">
+ <summary>
+ Gets a NAG as HTML such as ?? given one of the list from Game.MoveText.
+ </summary>
+ <param name="nag">The NAG as a NAG type.</param>
+ <returns>The NAG HTML string.</returns>
 </member>
-<member name="P:Grampus.Game.NAGFromStr">
-<summary>
-Gets a NAG from a string such as ?? 
-</summary>
+<member name="M:Grampus.Game.NAGFromStr(System.String)">
+ <summary>
+ Gets a NAG from a string such as ??.
+ </summary>
+ <param name="str">The NAG string.</param>
+ <returns>The NAG type, such as NAG.Good.</returns>
 </member>
-<member name="P:Grampus.Game.NAGStr">
-<summary>
-Gets a NAG as a string such as ?? given one of the list from Game.MoveText
-</summary>
-</member>
-<member name="P:Grampus.Game.MoveStr">
-<summary>
-Gets a single move as a string given one of the list from Game.MoveText
-</summary>
-</member>
-<member name="P:Grampus.Game.Pop">
-<summary>
-Pops a move of the end for this Game and return the new Game
-</summary>
-</member>
-<member name="P:Grampus.Game.PushSAN">
-<summary>
-Make a SAN Move such as Nf3 for this Game and return the new Game
-</summary>
+<member name="M:Grampus.Game.NAGStr(Grampus.Types.NAG)">
+ <summary>
+ Gets a NAG as a string such as ?? given one of the list from Game.MoveText.
+ </summary>
+ <param name="nag">The NAG as a NAG type.</param>
+ <returns>The NAG string.</returns>
 </member>
 <member name="P:Grampus.Game.Start">
 <summary>
 The starting Game with no moves
 </summary>
 </member>
-<member name="P:Grampus.Move.ToSan">
-<summary>
-Get the SAN string such as Nf3 for a move for this board
-</summary>
+<member name="T:Grampus.Game">
+ <summary>
+ Holds the functions related to a Move.
+ </summary>
 </member>
-<member name="P:Grampus.Move.ToeMove">
-<summary>
-Get the Encoded Move for a move for this board
-</summary>
+<member name="M:Grampus.Move.ToSan(Grampus.Types.Brd,System.UInt32)">
+ <summary>
+ Get the SAN string such as Nf3 for a move for this board.
+ </summary>
+ <param name="bd">The Board as a Brd type.</param>
+ <param name="mv">The move as a Move type.</param>
+ <returns>The SAN string, such as Nf3.</returns>
 </member>
-<member name="P:Grampus.Move.TopMove">
-<summary>
-Get the pMove for a move for this board
-</summary>
+<member name="M:Grampus.Move.ToUci(System.UInt32)">
+ <summary>
+ Get the UCI string such as g1f3 for a move.
+ </summary>
+ <param name="mv">The move as a Move type.</param>
+ <returns>The UCI string, such as g1f3.</returns>
 </member>
-<member name="P:Grampus.Move.ToUci">
-<summary>
-Get the UCI string such as g1f3 for a move
-</summary>
+<member name="M:Grampus.Move.FromUcis(Grampus.Types.Brd,System.String)">
+ <summary>
+ Get a string of multiple SAN strings from a string of UCIs for this Board.
+ </summary>
+ <param name="bd">The Board as a Brd type.</param>
+ <param name="ucis">The string of UCI strings, such as g1f3 g8f6.</param>
+ <returns>The string of multiple SAN strings, such as Nf3 Nf6.</returns>
 </member>
-<member name="P:Grampus.Move.FromUcis">
-<summary>
-Get a string of encoded moves from a string of UCIs for this Board
-</summary>
+<member name="M:Grampus.Move.FromUci(Grampus.Types.Brd,System.String)">
+ <summary>
+ Get an encoded move from a UCI string such as g1f3 for this Board.
+ </summary>
+ <param name="bd">The Board as a Brd type.</param>
+ <param name="uci">The SAN string, such as g1f3.</param>
+ <returns>The move as a Move type.</returns>
 </member>
-<member name="P:Grampus.Move.FromUci">
-<summary>
-Get an encoded move from a UCI string such as g1f3 for this Board
-</summary>
+<member name="M:Grampus.Move.FromSan(Grampus.Types.Brd,System.String)">
+ <summary>
+ Get an encoded move from a SAN string such as Nf3 for this Board.
+ </summary>
+ <param name="bd">The Board as a Brd type.</param>
+ <param name="san">The SAN string, such as Nf3.</param>
+ <returns>The move as a Move type.</returns>
 </member>
-<member name="P:Grampus.Move.FromSan">
-<summary>
-Get an encoded move from a SAN string such as Nf3 for this Board
-</summary>
+<member name="M:Grampus.Move.PromPcTp(System.UInt32)">
+ <summary>
+ Get the promoted PieceType for an encoded Move.
+ </summary>
+ <param name="mv">The move as a Move type.</param>
+ <returns>The promoted piece type as a PieceType type.</returns>
 </member>
-<member name="P:Grampus.Move.PromPcTp">
-<summary>
-Get the promoted PieceType for an encoded Move
-</summary>
+<member name="M:Grampus.Move.To(System.UInt32)">
+ <summary>
+ Get the target Square for an encoded Move.
+ </summary>
+ <param name="mv">The move as a Move type.</param>
+ <returns>The target square.</returns>
 </member>
-<member name="P:Grampus.Move.To">
-<summary>
-Get the target Square for an encoded Move
-</summary>
+<member name="M:Grampus.Move.From(System.UInt32)">
+ <summary>
+ Get the source Square for an encoded Move.
+ </summary>
+ <param name="mv">The move as a Move type.</param>
+ <returns>The source square.</returns>
 </member>
-<member name="P:Grampus.Move.From">
-<summary>
-Get the source Square for an encoded Move
-</summary>
+<member name="T:Grampus.Move">
+ <summary>
+ Holds the functions related to a Move.
+ </summary>
 </member>
-<member name="P:Grampus.Board.Print">
-<summary>
-Prints an ASCII version of this Board 
-</summary>
+<member name="M:Grampus.Board.Push(System.UInt32,Grampus.Types.Brd)">
+ <summary>
+ Make an encoded Move for this Board and return the new Board.
+ </summary>
+ <param name="mv">The move as a Move type.</param>
+ <param name="bd">The Board as a Brd type.</param>
+ <returns>The new Board as a Brd type.</returns>
 </member>
-<member name="P:Grampus.Board.ToPng">
-<summary>
-Creates a PNG image ith specified name, flipped if specified for the given Board 
-</summary>
-</member>
-<member name="P:Grampus.Board.SquareAttackers">
-<summary>
-The Squares that attack the specified Square by the specified Player for this Board
-</summary>
-</member>
-<member name="P:Grampus.Board.SquareAttacked">
-<summary>
-Is the Square attacked by the specified Player for this Board
-</summary>
-</member>
-<member name="P:Grampus.Board.IsStaleMate">
-<summary>
-Is the current position on the Board stalemate?
-</summary>
-</member>
-<member name="P:Grampus.Board.IsCheckMate">
-<summary>
-Is the current position on the Board checkmate?
-</summary>
-</member>
-<member name="P:Grampus.Board.IsCheck">
-<summary>
-Is there a check on the Board
-</summary>
-</member>
-<member name="P:Grampus.Board.PushSAN">
-<summary>
-Make a SAN Move such as Nf3 for this Board and return the new Board
-</summary>
-</member>
-<member name="P:Grampus.Board.Push">
-<summary>
-Make an encoded Move for this Board and return the new Board
-</summary>
-</member>
-<member name="P:Grampus.Board.PossMoves">
-<summary>
-Gets all possible moves for this Board from the specified Square
-</summary>
-</member>
-<member name="P:Grampus.Board.AllMoves">
-<summary>
-Gets all legal moves for this Board
-</summary>
+<member name="M:Grampus.Board.PossMoves(Grampus.Types.Brd,System.Int16)">
+ <summary>
+ Gets all possible moves for this Board from the specified Square.
+ </summary>
+ <param name="bd">The Board as a Brd type.</param>
+ <param name="sq">The Square as a Square type.</param>
+ <returns>The list of all possible moves.</returns>
 </member>
 <member name="P:Grampus.Board.Start">
 <summary>
 The starting Board at the beginning of a game
 </summary>
 </member>
-<member name="P:Grampus.Board.ToSimpleStr">
-<summary>
-Create a simple string from this Board 
-</summary>
+<member name="M:Grampus.Board.ToSimpleStr(Grampus.Types.Brd)">
+ <summary>
+ Create a simple string from this Board.
+ </summary>
+ <param name="bd">The Board as a Brd type.</param>
+ <returns>The simple string.</returns>
 </member>
-<member name="P:Grampus.Board.FromSimpleStr">
-<summary>
-Create a new Board given a simple string
-</summary>
+<member name="M:Grampus.Board.FromSimpleStr(System.String)">
+ <summary>
+ Create a new Board given a simple string.
+ </summary>
+ <param name="str">The simple string.</param>
+ <returns>The Board as a Brd type.</returns>
 </member>
-<member name="P:Grampus.Board.ToStr">
-<summary>
-Create a FEN string from this Board 
-</summary>
+<member name="M:Grampus.Board.ToFenStr(Grampus.Types.Brd)">
+ <summary>
+ Create a FEN string from this Board.
+ </summary>
+ <param name="bd">The Board as a Brd type.</param>
+ <returns>The FEN string.</returns>
 </member>
-<member name="P:Grampus.Board.FromStr">
-<summary>
-Create a new Board given a FEN string
-</summary>
+<member name="M:Grampus.Board.FromFenStr(System.String)">
+ <summary>
+ Create a new Board given a FEN string.
+ </summary>
+ <param name="fenstr">The FEN string.</param>
+ <returns>The Board as a Brd type.</returns>
 </member>
-<member name="P:Grampus.Piece.ToPlayer">
-<summary>
-Gets the player for a Piece
-</summary>
+<member name="T:Grampus.Board">
+ <summary>
+ Holds the functions related to a Board.
+ </summary>
 </member>
-<member name="P:Grampus.Piece.ToStr">
-<summary>
-Gets the string symbol for a Piece
-</summary>
+<member name="M:Grampus.Piece.ToStr(Grampus.Types.Piece)">
+ <summary>
+ Gets the string symbol for a Piece.
+ </summary>
+ <param name="piece">The piece, such as Piece.WKnight.</param>
+ <returns>The result as a string, such as N.</returns>
 </member>
-<member name="P:Grampus.Square.Name">
-<summary>
-Gets the Name for a Square
-</summary>
+<member name="T:Grampus.Piece">
+ <summary>
+ Holds the functions related to a Piece.
+ </summary>
 </member>
-<member name="P:Grampus.Square.ToRank">
-<summary>
-Gets the Rank for a Square
-</summary>
+<member name="M:Grampus.Result.ToInt(Grampus.Types.GameResult)">
+ <summary>
+ Gets the integer value (2 for white win, 0 for blackwin, 1 otherwise) for a Result.
+ </summary>
+ <param name="str">The Game Result.</param>
+ <returns>The result as an int, such as 2 for white win.</returns>
 </member>
-<member name="P:Grampus.Square.ToFile">
-<summary>
-Gets the File for a Square
-</summary>
+<member name="M:Grampus.Result.Parse(System.String)">
+ <summary>
+ Gets the GameResult type from a string.
+ </summary>
+ <param name="str">The string results such as 1-0.</param>
+ <returns>The Game Result, such as GameResult.WhiteWins</returns>
 </member>
-<member name="P:Grampus.Result.ToUnicode">
-<summary>
-Gets the string symbol for a Result
-</summary>
+<member name="M:Grampus.Result.ToStr(Grampus.Types.GameResult)">
+ <summary>
+ Gets the string symbol for a Result.
+ </summary>
+ <param name="result">The Game Result.</param>
+ <returns>The result as a string, such as 1-0</returns>
 </member>
-<member name="P:Grampus.Result.ToInt">
-<summary>
-Gets the integer value (2 for white win, 0 for blackwin, 1 otherwise) for a Result
-</summary>
-</member>
-<member name="P:Grampus.Result.Parse">
-<summary>
-Gets the GameResult type from a string
-</summary>
-</member>
-<member name="P:Grampus.Result.ToStr">
-<summary>
-Gets the string symbol for a Result
-</summary>
-</member>
-<member name="P:Grampus.GameDate.ToStr">
-<summary>
-Gets the string symbol for a Piece
-</summary>
+<member name="T:Grampus.Result">
+ <summary>
+ Holds the functions related to the Game Result.
+ </summary>
 </member>
 </members>
 </doc>
