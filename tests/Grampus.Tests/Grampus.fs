@@ -25,3 +25,15 @@ type Grampus() =
         let ans = File.Exists(tstfn2)
         ans |> should equal true
         File.Delete(tstfn2)
+    
+    [<TestMethod>]
+    member this.Delete() =
+        if File.Exists(tstfn2) then File.Delete(tstfn2)
+        let ans = File.Exists(tstfn2)
+        ans |> should equal false
+        let gmp = Grampus.New(tstfn2)
+        let ans = File.Exists(tstfn2)
+        ans |> should equal true
+        Grampus.Delete(tstfn2)
+        let ans = File.Exists(tstfn2)
+        ans |> should equal false

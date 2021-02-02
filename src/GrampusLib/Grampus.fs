@@ -441,6 +441,20 @@ module Grampus =
     /// <param name="gmp">The contents of the file as a GrampusData type.</param>
     /// <returns>Nothing.</returns>
     let Save(nm, gmp) = GrampusInternal.GrampusFile.Save(nm, gmp)
+    
+    /// <summary>
+    /// Creates a new Grampus File given the full path and file name.
+    /// </summary>
+    /// <param name="nm">The full path and file name.</param>
+    /// <returns>The contents of the new file as a GrampusData type.</returns>
+    let New(nm) = GrampusInternal.GrampusFile.New(nm)
+    
+    /// <summary>
+    /// Deletes a Grampus File and related content given the full path and file name.
+    /// </summary>
+    /// <param name="nm">The full path and file name.</param>
+    /// <returns>Nothing.</returns>
+    let Delete(nm) = GrampusInternal.GrampusFile.Delete(nm)
 
 /// <summary>
 /// Holds the functions related to an Index.

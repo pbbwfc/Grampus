@@ -13,7 +13,7 @@ type Tree() =
     
     [<TestMethod>]
     member this.Create() =
-        let trfol = tstfol + @"\trees"
+        let trfol = tstfol + @"\tree"
         if Directory.Exists(trfol) then Directory.Delete(trfol, true)
         let ans = Directory.Exists(trfol)
         ans |> should equal false
@@ -24,7 +24,7 @@ type Tree() =
     
     [<TestMethod>]
     member this.Save() =
-        let trfol = tstfol + @"\trees"
+        let trfol = tstfol + @"\tree"
         if Directory.Exists(trfol) then Directory.Delete(trfol, true)
         let ans = Directory.Exists(trfol)
         ans |> should equal false
@@ -36,7 +36,7 @@ type Tree() =
     
     [<TestMethod>]
     member this.Read() =
-        let trfol = tstfol + @"\trees"
+        let trfol = tstfol + @"\tree"
         if Directory.Exists(trfol) then Directory.Delete(trfol, true)
         let ans = Directory.Exists(trfol)
         ans |> should equal false
