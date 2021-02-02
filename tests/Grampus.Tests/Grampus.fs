@@ -53,3 +53,18 @@ type Grampus() =
         ans |> should equal false
         ngmp.TreesPly |> should equal 20
         ngmp.TreesCreated |> should equal None
+    
+    [<TestMethod>]
+    member this.DeleteFilters() =
+        let ffol = tstfol + @"\filters"
+        if Directory.Exists(ffol) then Directory.Delete(ffol, true)
+        let ans = Directory.Exists(ffol)
+        ans |> should equal false
+        Filters.Create(tstfol)
+        let ans = Directory.Exists(ffol)
+        ans |> should equal true
+        let ngmp = Grampus.DeleteFilters(tstfn)
+        let ans = Directory.Exists(ffol)
+        ans |> should equal false
+        ngmp.FiltersPly |> should equal 20
+        ngmp.FiltersCreated |> should equal None

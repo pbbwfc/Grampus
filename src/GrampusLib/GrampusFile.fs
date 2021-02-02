@@ -47,3 +47,17 @@ module GrampusFile =
                        TreesPly = 20 }
         Save(nm, ngmp)
         ngmp
+    
+    let DeleteFilters(nm : string) =
+        let fol = Path.GetDirectoryName(nm)
+        let binfol =
+            Path.Combine(fol, Path.GetFileNameWithoutExtension(nm) + "_FILES")
+        let ffol = Path.Combine(binfol, "filters")
+        if Directory.Exists(ffol) then Directory.Delete(ffol, true)
+        let gmp = Load(nm)
+        
+        let ngmp =
+            { gmp with FiltersCreated = None
+                       FiltersPly = 20 }
+        Save(nm, ngmp)
+        ngmp
