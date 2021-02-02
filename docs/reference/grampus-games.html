@@ -295,7 +295,7 @@
                 <p>
                   <a id="Compact">
                     <a href="#Compact">
-                      <code><span>Compact&#32;<span>fol</span></span></code>
+                      <code><span>Compact&#32;<span>fol&#32;cb</span></span></code>
                     </a>
                   </a>
                 </p>
@@ -303,7 +303,7 @@
               <div class="fsdocs-tip" id="37">
                 <div class="member-tooltip">
                   Full Usage: 
-                  <code><span>Compact&#32;<span>fol</span></span></code>
+                  <code><span>Compact&#32;<span>fol&#32;cb</span></span></code>
                   <br/>
                   <br/>
                   Parameters: 
@@ -318,7 +318,23 @@
                       The folder in which the base is stored.
                     </span>
                     <br/>
+                    <span>
+                      <b>
+                        cb
+                      </b>
+                      :
+                      <code><span>int&#32;->&#32;unit</span></code>
+                       - 
+                      Callback function to report on progress.
+                    </span>
+                    <br/>
                   </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code>string</code>
+                  </span>
+                  Messages from compaction process as a string type.
                   <br/>
                 </div>
               </div>
@@ -326,7 +342,7 @@
           </td>
           <td class="fsdocs-xmldoc">
             <p class="fsdocs-summary">
-              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L589-589" class="fsdocs-source-link">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L590-590" class="fsdocs-source-link">
                 <img src="/Grampus/content/img/github.png" class="normal"/>
                 <img src="/Grampus/content/img/github-blue.png" class="hover"/>
               </a>
@@ -345,6 +361,31 @@
               <dd class="fsdocs-param-docs">
                 <p>
                   The folder in which the base is stored.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  cb
+                </span>
+                :
+                <code><span>int&#32;->&#32;unit</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Callback function to report on progress.
+                </p>
+              </dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns:
+                </span>
+                <code>string</code>
+              </dt>
+              <dd class="fsdocs-return-docs">
+                <p>
+                  Messages from compaction process as a string type.
                 </p>
               </dd>
             </dl>
