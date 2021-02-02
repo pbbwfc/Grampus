@@ -43,7 +43,7 @@ type Games() =
         let hdrs = Headers.Load tstfol
         let gm = Games.LoadGame tstfol indx.[0] hdrs.[0]
         gm.MoveText.Length |> should equal 107
-        Games.Add tstfol2 [ gm; gm ]
+        Games.Add tstfol2 [ gm; gm ] (fun i -> ())
         let indx2 = Index.Load tstfol2
         let hdrs2 = Headers.Load tstfol2
         indx2.Length |> should equal 3

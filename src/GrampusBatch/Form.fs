@@ -96,6 +96,8 @@ module Form =
             new ToolStripMenuItem(Text = "Delete &Games and Filters", 
                                   Enabled = false)
         let cmpm = new ToolStripMenuItem(Text = "Compact Base", Enabled = false)
+        let addpm =
+            new ToolStripMenuItem(Text = "Add PGN file", Enabled = false)
         let updateTitle() = this.Text <- "Grampus Batch - " + gmpfile
         
         let updateMenuStates() =
@@ -111,6 +113,7 @@ module Form =
             deltgfm.Enabled <- gmp.IsSome
             crfm.Enabled <- gmp.IsSome
             cmpm.Enabled <- gmp.IsSome
+            addpm.Enabled <- gmp.IsSome
         
         let log (msg) =
             nd <- DateTime.Now
@@ -552,6 +555,26 @@ module Form =
             prg.Value <- 0
             this.Enabled <- true
         
+        let doaddpgn() =
+            let ndlg =
+                new OpenFileDialog(Title = "Add PGN File", 
+                                   Filter = "Pgn Files(*.pgn)|*.pgn", 
+                                   InitialDirectory = bfol)
+            if ndlg.ShowDialog() = DialogResult.OK then 
+                this.Enabled <- false
+                let numgames = iea.Length
+                prg.Minimum <- 0
+                prg.Maximum <- numgames
+                prg.Value <- 0
+                st <- DateTime.Now
+                let pgnf = ndlg.FileName
+                let ugma = PgnGames.ReadSeqFromFile pgnf
+                let egma = ugma |> Seq.map (Game.Encode)
+                Games.Add binfol egma updprg
+                log ("PGN file added")
+                prg.Value <- 0
+                this.Enabled <- true
+        
         let createts() =
             ts.Items.Add(crbtn) |> ignore
             ts.Items.Add(crfbtn) |> ignore
@@ -613,6 +636,8 @@ module Form =
             let tlm = new ToolStripMenuItem(Text = "Too&ls")
             cmpm.Click.Add(docompact)
             tlm.DropDownItems.Add(cmpm) |> ignore
+            addpm.Click.Add(fun _ -> doaddpgn())
+            tlm.DropDownItems.Add(addpm) |> ignore
             ms.Items.Add(tlm) |> ignore
         
         let btmpnl =

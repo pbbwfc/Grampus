@@ -58,8 +58,6 @@ module Form =
                                   ShortcutKeys = (Keys.Control ||| Keys.W), 
                                   Text = "&Close", Enabled = false)
         let tclosem = new ToolStripMenuItem(Text = "&Close", Enabled = false)
-        let impm =
-            new ToolStripMenuItem(Text = "Import PGN file", Enabled = false)
         let ecom = new ToolStripMenuItem(Text = "Set ECOs", Enabled = false)
         let showwb =
             new ToolStripButton(Image = img "white.png", Enabled = false, 
@@ -89,7 +87,6 @@ module Form =
         let updateMenuStates() =
             closeb.Enabled <- gmtbs.TabCount > 1
             closem.Enabled <- gmtbs.TabCount > 1
-            impm.Enabled <- gmtbs.TabCount > 1
             ecom.Enabled <- gmtbs.TabCount > 1
             showwb.Enabled <- gmtbs.TabCount > 1
             showwm.Enabled <- gmtbs.TabCount > 1
@@ -253,27 +250,6 @@ module Form =
             //clear pgn and set gnum to -1
             let nm = gmtbs.BaseName()
             pgn.NewGame(nm)
-            SbUpdate("Ready")
-        
-        let doimppgn() =
-            let ndlg =
-                new OpenFileDialog(Title = "Import PGN File", 
-                                   Filter = "Pgn Files(*.pgn)|*.pgn", 
-                                   InitialDirectory = bfol)
-            if ndlg.ShowDialog() = DialogResult.OK then 
-                let pgnf = ndlg.FileName
-                SbUpdate("Importing pgn file: " + pgnf)
-                let ugma = PgnGames.ReadSeqFromFile pgnf
-                SbUpdate("Encoding games...")
-                let egma = ugma |> Seq.map (Game.Encode)
-                SbUpdate("Adding games...")
-                let nm = gmtbs.BaseName()
-                Games.Add (nm + "_FILES") egma
-                SbUpdate("Reloading list of games")
-                let nbd = bd.GetBoard()
-                gmtbs.Refrsh(nbd)
-                let gnum = pgn.GetGameNumber()
-                gmtbs.SelNum(gnum)
             SbUpdate("Ready")
         
         let doeco() =
@@ -560,9 +536,6 @@ module Form =
             repm.DropDownItems.Add(showbm) |> ignore
             // tools menu
             let toolsm = new ToolStripMenuItem(Text = "&Tools")
-            // tools import pgn file
-            impm.Click.Add(fun _ -> doimppgn())
-            toolsm.DropDownItems.Add(impm) |> ignore
             // tools set eco
             ecom.Click.Add(fun _ -> doeco())
             toolsm.DropDownItems.Add(ecom) |> ignore

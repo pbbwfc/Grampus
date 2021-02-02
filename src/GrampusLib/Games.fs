@@ -52,7 +52,7 @@ module Games =
         Index.Save(fol, iea)
         Headers.Save(fol, hdrs)
     
-    let Add (fol : string) (gma : seq<EncodedGame>) =
+    let Add (fol : string) (gma : seq<EncodedGame>) cb =
         let fn = Path.Combine(fol, "GAMES")
         use writer = new BinaryWriter(File.Open(fn, FileMode.OpenOrCreate))
         writer.Seek(0, SeekOrigin.End) |> ignore
@@ -65,7 +65,7 @@ module Games =
             let off = writer.BaseStream.Position
             let bin =
                 MessagePackSerializer.Serialize<CompressedGame>(cgm, options)
-            if i % 1000 = 0 then printf "%i..." i
+            if i % 100 = 0 then cb (i)
             writer.Write(bin)
             { Offset = off
               Length = bin.Length }, { gm.Hdr with Num = i + ct }
