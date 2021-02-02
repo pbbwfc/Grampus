@@ -85,12 +85,16 @@ module Form =
         let opnm = new ToolStripMenuItem(Text = "&Open")
         let clsm = new ToolStripMenuItem(Text = "&Close", Enabled = false)
         let delm = new ToolStripMenuItem(Text = "&Delete", Enabled = false)
+        let infm = new ToolStripMenuItem(Text = "&Info", Enabled = false)
         let pgnm =
             new ToolStripMenuItem(Text = "From &Pgn File", Enabled = true)
         let crm = new ToolStripMenuItem(Text = "&Create", Enabled = false)
         let deltm = new ToolStripMenuItem(Text = "&Delete", Enabled = false)
         let crfm = new ToolStripMenuItem(Text = "&Create", Enabled = false)
         let deltfm = new ToolStripMenuItem(Text = "&Delete", Enabled = false)
+        let deltgfm =
+            new ToolStripMenuItem(Text = "Delete &Games and Filters", 
+                                  Enabled = false)
         let updateTitle() = this.Text <- "Grampus Batch - " + gmpfile
         
         let updateMenuStates() =
@@ -98,10 +102,12 @@ module Form =
             crfbtn.Enabled <- gmp.IsSome
             clsm.Enabled <- gmp.IsSome
             delm.Enabled <- gmp.IsSome
+            infm.Enabled <- gmp.IsSome
             pgnm.Enabled <- gmp.IsNone
             crm.Enabled <- gmp.IsSome
             deltm.Enabled <- gmp.IsSome
             deltfm.Enabled <- gmp.IsSome
+            deltgfm.Enabled <- gmp.IsSome
             crfm.Enabled <- gmp.IsSome
         
         let log (msg) =
@@ -165,6 +171,33 @@ module Form =
         let dodel (e) =
             Grampus.Delete(gmpfile)
             doclose (new EventArgs())
+        
+        let doinfo (e) =
+            logtb.Text <- logtb.Text + nl + "INFO FOR " + gmpfile
+            logtb.Text <- logtb.Text + nl + "Pgn Source: " + gmp.Value.SourcePgn
+            let gmtxt =
+                let crdt = gmp.Value.BaseCreated
+                if crdt.IsNone then "No Games Included"
+                else 
+                    "Games updated at " + crdt.Value.ToLongTimeString() + " on " 
+                    + crdt.Value.ToLongDateString()
+            logtb.Text <- logtb.Text + nl + gmtxt
+            let trtxt =
+                let trdt = gmp.Value.TreesCreated
+                if trdt.IsNone then "No Tree Included"
+                else 
+                    "Trees updated at " + trdt.Value.ToLongTimeString() + " on " 
+                    + trdt.Value.ToLongDateString() + " to ply " 
+                    + gmp.Value.TreesPly.ToString()
+            logtb.Text <- logtb.Text + nl + trtxt
+            let ftxt =
+                let fdt = gmp.Value.FiltersCreated
+                if fdt.IsNone then "No Filters Included"
+                else 
+                    "Filters updated at " + fdt.Value.ToLongTimeString() 
+                    + " on " + fdt.Value.ToLongDateString() + " to ply " 
+                    + gmp.Value.FiltersPly.ToString()
+            logtb.Text <- logtb.Text + nl + ftxt
         
         let doimp (e) =
             let ndlg =
@@ -498,6 +531,11 @@ module Form =
             gmp <- Some(Grampus.DeleteFilters(gmpfile))
             log ("Filters deleted")
         
+        let dodelgamesfilters (e) =
+            st <- DateTime.Now
+            gmp <- Some(Grampus.DeleteGamesFilters(gmpfile))
+            log ("Games and Filters deleted")
+        
         let createts() =
             ts.Items.Add(crbtn) |> ignore
             ts.Items.Add(crfbtn) |> ignore
@@ -516,6 +554,8 @@ module Form =
             clsm.Click.Add(doclose)
             bm.DropDownItems.Add(delm) |> ignore
             delm.Click.Add(dodel)
+            bm.DropDownItems.Add(infm) |> ignore
+            infm.Click.Add(doinfo)
             bm.DropDownItems.Add(pgnm) |> ignore
             pgnm.Click.Add(doimp)
             // recents
@@ -550,6 +590,8 @@ module Form =
             crfm.Click.Add(docreatef)
             fm.DropDownItems.Add(deltfm) |> ignore
             deltfm.Click.Add(dodelfilters)
+            fm.DropDownItems.Add(deltgfm) |> ignore
+            deltgfm.Click.Add(dodelgamesfilters)
             ms.Items.Add(fm) |> ignore
         
         let btmpnl =
