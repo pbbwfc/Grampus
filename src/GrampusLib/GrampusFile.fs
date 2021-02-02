@@ -31,5 +31,19 @@ module GrampusFile =
         let fol = Path.GetDirectoryName(nm)
         let binfol =
             Path.Combine(fol, Path.GetFileNameWithoutExtension(nm) + "_FILES")
-        Directory.Delete(binfol, true)
+        if Directory.Exists(binfol) then Directory.Delete(binfol, true)
         File.Delete(nm)
+    
+    let DeleteTree(nm : string) =
+        let fol = Path.GetDirectoryName(nm)
+        let binfol =
+            Path.Combine(fol, Path.GetFileNameWithoutExtension(nm) + "_FILES")
+        let trfol = Path.Combine(binfol, "tree")
+        if Directory.Exists(trfol) then Directory.Delete(trfol, true)
+        let gmp = Load(nm)
+        
+        let ngmp =
+            { gmp with TreesCreated = None
+                       TreesPly = 20 }
+        Save(nm, ngmp)
+        ngmp

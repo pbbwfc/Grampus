@@ -455,6 +455,13 @@ module Grampus =
     /// <param name="nm">The full path and file name.</param>
     /// <returns>Nothing.</returns>
     let Delete(nm) = GrampusInternal.GrampusFile.Delete(nm)
+    
+    /// <summary>
+    /// Deletes the tree stored in a Base given the full path and file name and returns the new Grampus file.
+    /// </summary>
+    /// <param name="nm">The full path and file name.</param>
+    /// <returns>The contents of the new file as a GrampusData type.</returns>
+    let DeleteTree(nm) = GrampusInternal.GrampusFile.DeleteTree(nm)
 
 /// <summary>
 /// Holds the functions related to an Index.
