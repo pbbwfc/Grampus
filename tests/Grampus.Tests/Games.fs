@@ -113,7 +113,8 @@ type Games() =
         indx2.[0].Offset |> should equal 1676L
         let gm2 = Games.LoadGame tstfol2 indx2.[0] hdrs2.[0]
         gm2.MoveText.Length |> should equal 107
-        Games.Compact tstfol2
+        let msg = Games.Compact tstfol2 (fun i -> ())
+        msg |> should equal "Number of games permanently deleted is: 0"
         let indx3 = Index.Load tstfol2
         let hdrs3 = Headers.Load tstfol2
         indx3.Length |> should equal 1

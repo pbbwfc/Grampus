@@ -585,8 +585,9 @@ module Games =
     /// Compacts the base in the specified folder.
     /// </summary>
     /// <param name="fol">The folder in which the base is stored.</param>
-    /// <returns>Nothing.</returns>
-    let Compact(fol) = GrampusInternal.Games.Compact(fol)
+    /// <param name="cb">Callback function to report on progress.</param>
+    /// <returns>Messages from compaction process as a string type.</returns>
+    let Compact fol cb = GrampusInternal.Games.Compact fol cb
 
 /// <summary>
 /// Holds the functions related to a set of Games in PGN format.

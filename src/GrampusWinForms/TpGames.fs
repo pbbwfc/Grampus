@@ -29,7 +29,6 @@ module TpGamesLib =
         let mutable hdrs = [||]
         //events
         let selEvt = new Event<_>()
-        let cmpEvt = new Event<_>()
         
         let settxt() =
             let txt =
@@ -42,8 +41,6 @@ module TpGamesLib =
                 let rw = rwo :?> DataGridViewRow
                 if rw.Cells.["Deleted"].Value :?> string = "D" then 
                     rw.DefaultCellStyle.ForeColor <- Color.Red
-        
-        let docmp() = nm |> cmpEvt.Trigger
         
         let dodel (rw : int) =
             let gnum = gms.Rows.[rw].Cells.[0].Value :?> int
@@ -82,10 +79,6 @@ module TpGamesLib =
                 let del = new ToolStripMenuItem(Text = "Delete")
                 del.Click.Add(fun _ -> dodel (rw))
                 m.Items.Add(del) |> ignore
-                //do compact
-                let cmp = new ToolStripMenuItem(Text = "Compact Base")
-                cmp.Click.Add(fun _ -> docmp())
-                m.Items.Add(cmp) |> ignore
                 m
             gms.ContextMenuStrip <- ctxmnu
             if e.Button = MouseButtons.Right then gms.ContextMenuStrip.Show()
@@ -144,5 +137,3 @@ module TpGamesLib =
         ///Provides the selected Game
         member __.GmSel = selEvt.Publish
         
-        ///Provides the base needing to be compacted
-        member __.GmCmp = cmpEvt.Publish

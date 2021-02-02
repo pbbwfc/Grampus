@@ -95,6 +95,7 @@ module Form =
         let deltgfm =
             new ToolStripMenuItem(Text = "Delete &Games and Filters", 
                                   Enabled = false)
+        let cmpm = new ToolStripMenuItem(Text = "Compact Base", Enabled = false)
         let updateTitle() = this.Text <- "Grampus Batch - " + gmpfile
         
         let updateMenuStates() =
@@ -109,7 +110,8 @@ module Form =
             deltfm.Enabled <- gmp.IsSome
             deltgfm.Enabled <- gmp.IsSome
             crfm.Enabled <- gmp.IsSome
-        
+            cmpm.Enabled <- gmp.IsSome
+            
         let log (msg) =
             nd <- DateTime.Now
             logtb.Text <- logtb.Text + nl + msg + " in " + el() + " seconds"
@@ -535,6 +537,19 @@ module Form =
             st <- DateTime.Now
             gmp <- Some(Grampus.DeleteGamesFilters(gmpfile))
             log ("Games and Filters deleted")
+
+        let docompact(e) =
+            this.Enabled <- false
+            let numgames = iea.Length
+            prg.Minimum <- 0
+            prg.Maximum <- numgames
+            prg.Value <- 0
+            st <- DateTime.Now
+            let msg = Games.Compact binfol updprg
+            log ("Base Compacted")
+            logtb.Text <- logtb.Text + nl + "Messages from Compaction: " + nl + msg
+            prg.Value <- 0
+            this.Enabled <- true
         
         let createts() =
             ts.Items.Add(crbtn) |> ignore
@@ -593,6 +608,13 @@ module Form =
             fm.DropDownItems.Add(deltgfm) |> ignore
             deltgfm.Click.Add(dodelgamesfilters)
             ms.Items.Add(fm) |> ignore
+            //tools menu
+            let tlm = new ToolStripMenuItem(Text = "Too&ls")
+            cmpm.Click.Add(docompact)
+            tlm.DropDownItems.Add(cmpm) |> ignore
+            ms.Items.Add(tlm) |> ignore
+            
+           
         
         let btmpnl =
             new Panel(Dock = DockStyle.Bottom, BorderStyle = BorderStyle.Fixed3D, 
