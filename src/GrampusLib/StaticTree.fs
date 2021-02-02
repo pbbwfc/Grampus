@@ -35,8 +35,8 @@ module StaticTree =
         let getv (posn : string) =
             let v = db.Get(MessagePackSerializer.Serialize<string>(posn))
             match v with
-            |null -> new stats()
-            |_ ->
+            | null -> new stats()
+            | _ -> 
                 let sts =
                     let ro = new ReadOnlyMemory<byte>(v)
                     MessagePackSerializer.Deserialize<stats>(ro)
@@ -52,11 +52,11 @@ module StaticTree =
             let options = new Options()
             let db = new DB(options, fol)
             let v = db.Get(MessagePackSerializer.Serialize<string>(posn))
+            
             let sts =
                 match v with
-                |null -> new stats()
-                |_ ->
-                
+                | null -> new stats()
+                | _ -> 
                     let ro = new ReadOnlyMemory<byte>(v)
                     MessagePackSerializer.Deserialize<stats>(ro)
             db.Close()

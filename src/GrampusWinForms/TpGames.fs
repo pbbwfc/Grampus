@@ -111,8 +111,7 @@ module TpGamesLib =
                     if fn > 100 then 100
                     else fn - 1
                 [ 0..lim ] |> List.iter (fun i -> gmsui.Add(hdrs.[i]))
-            elif filt.Length = 0 then 
-                fn <- 0
+            elif filt.Length = 0 then fn <- 0
             else 
                 fn <- filt.Length
                 let lim =

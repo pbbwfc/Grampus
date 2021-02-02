@@ -41,8 +41,8 @@ module Filters =
         let getv (posn : string) =
             let v = db.Get(MessagePackSerializer.Serialize<string>(posn))
             match v with
-            |null -> []
-            |_ ->
+            | null -> []
+            | _ -> 
                 let filts =
                     let ro = new ReadOnlyMemory<byte>(v)
                     MessagePackSerializer.Deserialize<int list>(ro, options)
@@ -58,10 +58,11 @@ module Filters =
             let opts = new Options()
             let db = new DB(opts, fol)
             let v = db.Get(MessagePackSerializer.Serialize<string>(posn))
+            
             let filts =
                 match v with
-                |null -> []
-                |_ ->
+                | null -> []
+                | _ -> 
                     let ro = new ReadOnlyMemory<byte>(v)
                     MessagePackSerializer.Deserialize<int list>(ro, options)
             db.Close()
