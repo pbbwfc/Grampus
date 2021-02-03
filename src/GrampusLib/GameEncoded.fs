@@ -243,6 +243,18 @@ module GameEncoded =
                 let nmtel = getnmtel irs gm.MoveText
                 { gm with MoveText = nmtel }
     
+    let RemoveRavs(gm : EncodedGame) =
+        let rec setemv (emvl : EncodedMoveTextEntry list) oemvl =
+            if emvl |> List.isEmpty then oemvl |> List.rev
+            else 
+                let mte = emvl.Head
+                match mte with
+                | EncodedRAVEntry(mtel) -> setemv emvl.Tail oemvl
+                | _ -> setemv emvl.Tail (mte :: oemvl)
+        
+        let nmtel = setemv gm.MoveText []
+        { gm with MoveText = nmtel }
+    
     let AddMv (gm : EncodedGame) (irs : int list) (mv : Move) =
         let rec getext ci nmte (imtel : EncodedMoveTextEntry list) 
                 (omtel : EncodedMoveTextEntry list) =
@@ -601,6 +613,22 @@ module GameEncoded =
             let nmtel = getnmtel irs gm.MoveText
             { gm with MoveText = nmtel }
     
+    let RemoveComments(gm : EncodedGame) =
+        let rec setemv (emvl : EncodedMoveTextEntry list) oemvl =
+            if emvl |> List.isEmpty then oemvl |> List.rev
+            else 
+                let mte = emvl.Head
+                match mte with
+                | EncodedRAVEntry(mtel) -> 
+                    let nmtel = setemv mtel []
+                    let nmte = EncodedRAVEntry(nmtel)
+                    setemv emvl.Tail (nmte :: oemvl)
+                | EncodedCommentEntry(c) -> setemv emvl.Tail oemvl
+                | _ -> setemv emvl.Tail (mte :: oemvl)
+        
+        let nmtel = setemv gm.MoveText []
+        { gm with MoveText = nmtel }
+    
     let AddNag (gm : EncodedGame) (irs : int list) (ng : NAG) =
         let mte = EncodedNAGEntry(ng)
         if irs.Length = 1 then 
@@ -704,6 +732,22 @@ module GameEncoded =
             let nmtel = getnmtel irs gm.MoveText
             { gm with MoveText = nmtel }
     
+    let RemoveNags(gm : EncodedGame) =
+        let rec setemv (emvl : EncodedMoveTextEntry list) oemvl =
+            if emvl |> List.isEmpty then oemvl |> List.rev
+            else 
+                let mte = emvl.Head
+                match mte with
+                | EncodedRAVEntry(mtel) -> 
+                    let nmtel = setemv mtel []
+                    let nmte = EncodedRAVEntry(nmtel)
+                    setemv emvl.Tail (nmte :: oemvl)
+                | EncodedNAGEntry(_) -> setemv emvl.Tail oemvl
+                | _ -> setemv emvl.Tail (mte :: oemvl)
+        
+        let nmtel = setemv gm.MoveText []
+        { gm with MoveText = nmtel }
+    
     let Strip (gm : EncodedGame) (iirs : int list) =
         let rec getnmtel (cirs : int list) (mtel : EncodedMoveTextEntry list) =
             if cirs.Length = 1 then 
@@ -779,25 +823,25 @@ module GameEncoded =
         writer.ToString()
     
     let Compress(gm : EncodedGame) =
-        let rec setemv (pmvl : EncodedMoveTextEntry list) oemvl =
-            if pmvl |> List.isEmpty then oemvl |> List.rev
+        let rec setemv (emvl : EncodedMoveTextEntry list) ocmvl =
+            if emvl |> List.isEmpty then ocmvl |> List.rev
             else 
-                let mte = pmvl.Head
+                let mte = emvl.Head
                 match mte with
                 | EncodedHalfMoveEntry(mn, ic, mv) -> 
                     let cmv = mv |> MoveEncoded.Compress
                     let nmte = CompressedHalfMoveEntry(mn, ic, cmv)
-                    setemv pmvl.Tail (nmte :: oemvl)
+                    setemv emvl.Tail (nmte :: ocmvl)
                 | EncodedRAVEntry(mtel) -> 
                     let nmtel = setemv mtel []
                     let nmte = CompressedRAVEntry(nmtel)
-                    setemv pmvl.Tail (nmte :: oemvl)
+                    setemv emvl.Tail (nmte :: ocmvl)
                 | EncodedCommentEntry(c) -> 
-                    setemv pmvl.Tail (CompressedCommentEntry(c) :: oemvl)
+                    setemv emvl.Tail (CompressedCommentEntry(c) :: ocmvl)
                 | EncodedGameEndEntry(r) -> 
-                    setemv pmvl.Tail (CompressedGameEndEntry(r) :: oemvl)
+                    setemv emvl.Tail (CompressedGameEndEntry(r) :: ocmvl)
                 | EncodedNAGEntry(n) -> 
-                    setemv pmvl.Tail (CompressedNAGEntry(n) :: oemvl)
+                    setemv emvl.Tail (CompressedNAGEntry(n) :: ocmvl)
         
         let nmt =
             try 

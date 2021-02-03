@@ -93,13 +93,15 @@ module Form =
         let deltgfm =
             new ToolStripMenuItem(Text = "Delete &Games and Filters", 
                                   Enabled = false)
-        let cmpm = new ToolStripMenuItem(Text = "Compact Base", Enabled = false)
         let pgnm =
             new ToolStripMenuItem(Text = "From &Pgn File", Enabled = true)
         let addpm =
             new ToolStripMenuItem(Text = "Add PGN file", Enabled = false)
         let topm =
             new ToolStripMenuItem(Text = "Export to PGN file", Enabled = false)
+        let cmpm = new ToolStripMenuItem(Text = "Compact Base", Enabled = false)
+        let remcm =
+            new ToolStripMenuItem(Text = "Remove Comments", Enabled = false)
         let ecom = new ToolStripMenuItem(Text = "Set ECOs", Enabled = false)
         let updateTitle() = this.Text <- "Grampus Batch - " + gmpfile
         
@@ -114,10 +116,11 @@ module Form =
             deltfm.Enabled <- gmp.IsSome
             deltgfm.Enabled <- gmp.IsSome
             crfm.Enabled <- gmp.IsSome
-            cmpm.Enabled <- gmp.IsSome
             pgnm.Enabled <- gmp.IsNone
             addpm.Enabled <- gmp.IsSome
             topm.Enabled <- gmp.IsSome
+            cmpm.Enabled <- gmp.IsSome
+            remcm.Enabled <- gmp.IsSome
             ecom.Enabled <- gmp.IsSome
         
         let log (msg) =
@@ -603,8 +606,6 @@ module Form =
                 lbl.Text <- "Ready"
                 this.Enabled <- true
                 prg.Value <- 0
-                updateTitle()
-                updateMenuStates()
         
         let docompact (e) =
             this.Enabled <- false
@@ -613,10 +614,31 @@ module Form =
             prg.Maximum <- numgames
             prg.Value <- 0
             st <- DateTime.Now
+            lbl.Text <- "Cmopacting base for " + numgames.ToString() 
+                        + " games..."
             let msg = Games.Compact binfol updprg
             log ("Base Compacted")
             logtb.Text <- logtb.Text + nl + "Messages from Compaction: " + nl 
                           + msg
+            lbl.Text <- "Ready"
+            prg.Value <- 0
+            this.Enabled <- true
+        
+        let doremcomm() =
+            this.Enabled <- false
+            let numgames = iea.Length
+            prg.Minimum <- 0
+            prg.Maximum <- numgames
+            prg.Value <- 0
+            st <- DateTime.Now
+            lbl.Text <- "Removing Comments for " + numgames.ToString() 
+                        + " games..."
+            for i = 0 to numgames - 1 do
+                let gm = Games.LoadGame binfol iea.[i] hdra.[i]
+                //Game.r
+                if i % 100 = 0 then updprg (i)
+            log ("Comments Removed")
+            lbl.Text <- "Ready"
             prg.Value <- 0
             this.Enabled <- true
         
@@ -627,8 +649,10 @@ module Form =
             prg.Maximum <- numgames
             prg.Value <- 0
             st <- DateTime.Now
+            lbl.Text <- "Setting ECOs for " + numgames.ToString() + " games..."
             Eco.ForBase binfol updprg
             log ("ECOs set")
+            lbl.Text <- "Ready"
             prg.Value <- 0
             this.Enabled <- true
         
@@ -701,6 +725,8 @@ module Form =
             cmpm.Click.Add(docompact)
             tlm.DropDownItems.Add(cmpm) |> ignore
             ecom.Click.Add(fun _ -> doeco())
+            tlm.DropDownItems.Add(remcm) |> ignore
+            remcm.Click.Add(fun _ -> doremcomm())
             tlm.DropDownItems.Add(ecom) |> ignore
             ms.Items.Add(tlm) |> ignore
             // about menu

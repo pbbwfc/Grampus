@@ -97,6 +97,16 @@ type Game() =
         ans.Length |> should equal (gm |> Game.ToStr).Length
     
     [<TestMethod>]
+    member this.RemoveNags() =
+        let ngm = Game.AddNag gm [ 1 ] NAG.Good
+        let ans = ngm |> Game.ToStr
+        ans.Length |> should equal 865
+        ngm.MoveText.[2] |> should equal (EncodedNAGEntry(NAG.Good))
+        let ngm = Game.RemoveNags ngm
+        let ans = ngm |> Game.ToStr
+        ans.Length |> should equal (gm |> Game.ToStr).Length
+    
+    [<TestMethod>]
     member this.EditNag() =
         let ngm = Game.AddNag gm [ 1 ] NAG.Good
         let ans = ngm |> Game.ToStr
@@ -154,6 +164,25 @@ type Game() =
         let ans = ngm |> Game.ToStr
         ans.Length |> should equal 876
         let ngm = Game.DeleteRav ngm [ 2; 0 ]
+        let ans = ngm |> Game.ToStr
+        ans.Length |> should equal 862
+    
+    [<TestMethod>]
+    member this.RemoveRavs() =
+        let mv =
+            let mte = gm.MoveText.[0]
+            match mte with
+            | EncodedHalfMoveEntry(_, _, mv) -> Some(mv)
+            | _ -> None
+        mv.Value.San |> should equal "e4"
+        let bd = mv.Value.PostBrd
+        let nmv = Move.FromSan bd "e6"
+        let ngm, nirs = Game.AddRav gm [ 0 ] nmv
+        nirs.Head |> should equal 2
+        nirs.Tail.Head |> should equal 0
+        let ans = ngm |> Game.ToStr
+        ans.Length |> should equal 876
+        let ngm = Game.RemoveRavs ngm
         let ans = ngm |> Game.ToStr
         ans.Length |> should equal 862
     
@@ -225,6 +254,25 @@ type Game() =
         let ans = cm 2 ngm
         ans.Value |> should equal "test"
         let ngm = Game.DeleteComment ngm [ 2 ]
+        let ans = ngm |> Game.ToStr
+        ans.Length |> should equal 862
+        let ans = cm 2 ngm
+        ans |> should equal None
+    
+    [<TestMethod>]
+    member this.RemoveComments() =
+        let cm i (igm : EncodedGame) =
+            let mte = igm.MoveText.[i]
+            match mte with
+            | EncodedCommentEntry(str) -> Some(str)
+            | _ -> None
+        
+        let ngm = Game.CommentAfter gm [ 1 ] "test"
+        let ans = ngm |> Game.ToStr
+        ans.Length |> should equal 871
+        let ans = cm 2 ngm
+        ans.Value |> should equal "test"
+        let ngm = Game.RemoveComments ngm
         let ans = ngm |> Game.ToStr
         ans.Length |> should equal 862
         let ans = cm 2 ngm

@@ -207,6 +207,13 @@ module Game =
     let DeleteNag gm irs = GrampusInternal.GameEncoded.DeleteNag gm irs
     
     /// <summary>
+    /// Removes all NAGs in the Encoded Game.
+    /// </summary>
+    /// <param name="gm">The Encoded Game.</param>
+    /// <returns>The changed Encoded Game.</returns>
+    let RemoveNags gm = GrampusInternal.GameEncoded.RemoveNags gm
+    
+    /// <summary>
     /// Edits a NAG in the Encoded Game at the address provided.
     /// </summary>
     /// <param name="gm">The Encoded Game.</param>
@@ -247,6 +254,13 @@ module Game =
     /// <param name="irs">The address within the game as an int list type.</param>
     /// <returns>The changed Encoded Game.</returns>
     let DeleteRav gm irs = GrampusInternal.GameEncoded.DeleteRav gm irs
+    
+    /// <summary>
+    /// Removes all variations in the Encoded Game.
+    /// </summary>
+    /// <param name="gm">The Encoded Game.</param>
+    /// <returns>The changed Encoded Game.</returns>
+    let RemoveRavs gm = GrampusInternal.GameEncoded.RemoveRavs gm
     
     /// <summary>
     /// Strips moves until end of game at the address provided.
@@ -293,6 +307,13 @@ module Game =
     /// <param name="irs">The address within the game as an int list type.</param>
     /// <returns>The changed Encoded Game.</returns>
     let DeleteComment gm irs = GrampusInternal.GameEncoded.DeleteComment gm irs
+    
+    /// <summary>
+    /// Removes all comments in the Encoded Game.
+    /// </summary>
+    /// <param name="gm">The Encoded Game.</param>
+    /// <returns>The changed Encoded Game.</returns>
+    let RemoveComments gm = GrampusInternal.GameEncoded.RemoveComments gm
     
     /// <summary>
     /// Create an Encoded Game from a PGN string.
