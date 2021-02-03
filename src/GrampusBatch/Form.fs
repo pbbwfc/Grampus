@@ -574,6 +574,9 @@ module Form =
                 let egma = ugma |> Seq.map (Game.Encode)
                 Games.Add binfol egma updprg
                 log ("PGN file added")
+                gmp <- Some({ gmp.Value with SourcePgn = pgnf
+                                             BaseCreated = Some(DateTime.Now) })
+                Grampus.Save(gmpfile, gmp.Value)
                 prg.Value <- 0
                 this.Enabled <- true
         
