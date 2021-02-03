@@ -102,6 +102,9 @@ module Form =
         let cmpm = new ToolStripMenuItem(Text = "Compact Base", Enabled = false)
         let remcm =
             new ToolStripMenuItem(Text = "Remove Comments", Enabled = false)
+        let remvm =
+            new ToolStripMenuItem(Text = "Remove Variations", Enabled = false)
+        let remnm = new ToolStripMenuItem(Text = "Remove NAGs", Enabled = false)
         let ecom = new ToolStripMenuItem(Text = "Set ECOs", Enabled = false)
         let updateTitle() = this.Text <- "Grampus Batch - " + gmpfile
         
@@ -121,6 +124,8 @@ module Form =
             topm.Enabled <- gmp.IsSome
             cmpm.Enabled <- gmp.IsSome
             remcm.Enabled <- gmp.IsSome
+            remvm.Enabled <- gmp.IsSome
+            remnm.Enabled <- gmp.IsSome
             ecom.Enabled <- gmp.IsSome
         
         let log (msg) =
@@ -635,9 +640,50 @@ module Form =
                         + " games..."
             for i = 0 to numgames - 1 do
                 let gm = Games.LoadGame binfol iea.[i] hdra.[i]
-                //Game.r
+                let ngm = Game.RemoveComments gm
+                if ngm.MoveText.Length < gm.MoveText.Length then 
+                    Games.UpdateGame binfol i ngm
                 if i % 100 = 0 then updprg (i)
             log ("Comments Removed")
+            lbl.Text <- "Ready"
+            prg.Value <- 0
+            this.Enabled <- true
+        
+        let doremrav() =
+            this.Enabled <- false
+            let numgames = iea.Length
+            prg.Minimum <- 0
+            prg.Maximum <- numgames
+            prg.Value <- 0
+            st <- DateTime.Now
+            lbl.Text <- "Removing Variations for " + numgames.ToString() 
+                        + " games..."
+            for i = 0 to numgames - 1 do
+                let gm = Games.LoadGame binfol iea.[i] hdra.[i]
+                let ngm = Game.RemoveRavs gm
+                if ngm.MoveText.Length < gm.MoveText.Length then 
+                    Games.UpdateGame binfol i ngm
+                if i % 100 = 0 then updprg (i)
+            log ("Variations Removed")
+            lbl.Text <- "Ready"
+            prg.Value <- 0
+            this.Enabled <- true
+        
+        let doremnag() =
+            this.Enabled <- false
+            let numgames = iea.Length
+            prg.Minimum <- 0
+            prg.Maximum <- numgames
+            prg.Value <- 0
+            st <- DateTime.Now
+            lbl.Text <- "Removing NAGs for " + numgames.ToString() + " games..."
+            for i = 0 to numgames - 1 do
+                let gm = Games.LoadGame binfol iea.[i] hdra.[i]
+                let ngm = Game.RemoveNags gm
+                if ngm.MoveText.Length < gm.MoveText.Length then 
+                    Games.UpdateGame binfol i ngm
+                if i % 100 = 0 then updprg (i)
+            log ("NAGs Removed")
             lbl.Text <- "Ready"
             prg.Value <- 0
             this.Enabled <- true
@@ -727,6 +773,10 @@ module Form =
             ecom.Click.Add(fun _ -> doeco())
             tlm.DropDownItems.Add(remcm) |> ignore
             remcm.Click.Add(fun _ -> doremcomm())
+            tlm.DropDownItems.Add(remvm) |> ignore
+            remvm.Click.Add(fun _ -> doremrav())
+            tlm.DropDownItems.Add(remnm) |> ignore
+            remnm.Click.Add(fun _ -> doremnag())
             tlm.DropDownItems.Add(ecom) |> ignore
             ms.Items.Add(tlm) |> ignore
             // about menu

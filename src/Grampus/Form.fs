@@ -507,6 +507,19 @@ module Form =
             let setem = new ToolStripMenuItem(Text = "Set ECO")
             setem.Click.Add(fun _ -> pgn.SetECO())
             gamem.DropDownItems.Add(setem) |> ignore
+            gamem.DropDownItems.Add(new ToolStripSeparator()) |> ignore
+            // game remove comments
+            let remcm = new ToolStripMenuItem(Text = "Remove Comments")
+            remcm.Click.Add(fun _ -> pgn.RemoveComments())
+            gamem.DropDownItems.Add(remcm) |> ignore
+            // game remove variationss
+            let remvm = new ToolStripMenuItem(Text = "Remove Variations")
+            remvm.Click.Add(fun _ -> pgn.RemoveRavs())
+            gamem.DropDownItems.Add(remvm) |> ignore
+            // game remove comments
+            let remnm = new ToolStripMenuItem(Text = "Remove NAGs")
+            remnm.Click.Add(fun _ -> pgn.RemoveNags())
+            gamem.DropDownItems.Add(remnm) |> ignore
             // rep menu
             let repm = new ToolStripMenuItem(Text = "&Repertoire")
             // update white repertoire

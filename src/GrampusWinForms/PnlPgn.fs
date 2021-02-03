@@ -908,6 +908,24 @@ module PnlPgnLib =
             hdrchg <- true
             hdrchg |> hdrchngEvt.Trigger
         
+        ///remove comments for game
+        member pgnlpnl.RemoveComments() =
+            game <- Game.RemoveComments game
+            hdrchg <- true
+            hdrchg |> hdrchngEvt.Trigger
+        
+        ///remove variations for game
+        member pgnlpnl.RemoveRavs() =
+            game <- Game.RemoveRavs game
+            hdrchg <- true
+            hdrchg |> hdrchngEvt.Trigger
+        
+        ///remove NAGs for game
+        member pgnlpnl.RemoveNags() =
+            game <- Game.RemoveNags game
+            hdrchg <- true
+            hdrchg |> hdrchngEvt.Trigger
+        
         //publish
         ///Provides the new Board after a change
         member pgnpnl.BdChng = bdchngEvt.Publish
