@@ -8,11 +8,11 @@ Download **setup.exe** for the latest release from [Releases](https://github.com
 
 After runnning the setup, it will install the code in *C:\Program Files\Grampus*, install sample bases to *Documents\Grampus\bases* and create two Desktop Shortcuts.
 
-The two applications are **GrampusBatch** used for long running processes on bases and **Grampus** for working with the games withing a base.
+The two applications are **Grampus Batch** used for long running processes on bases and **Grampus** for working with the games withing a base.
 
 ## Create a new base
 
-Open GrampusBatch using the shortcut. Then use *Base -> New* and create a new base called **Sokolsky**.
+Open Grampus Batch using the shortcut. Then use *Base -> New* and create a new base called **Sokolsky**.
 
 ![Base New](images/st1.png)
 
@@ -31,6 +31,18 @@ Once downloaded, unzip to extract the pgn file.
 Now use *Tools -> Add PGN file* and select the downloaded file.
 
 ![Import Pgn](images/st2.png)
+
+Now create a tree using *Tree -> Create*. Accept the default settings.
+
+Now create filters using *Filters -> Create*. Accept the default settings.
+
+Finally confirm the details stored using *Base -> Info*.
+
+This should be shown in the Log:
+
+![Log](images/st2a.png)
+
+Now close Grampus Batch.
 
 ## Load Game
 
