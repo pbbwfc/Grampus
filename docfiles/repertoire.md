@@ -16,14 +16,14 @@ Two small repertoires are provided in the installation.
 
 ## The Repertoire menu
 
-THe repertoires can be displayed in the tree panel. To show them, you use the **Show White** and **Show Black** options. These options are also available as buttons on the toolbar.
+The repertoires can be displayed in the tree panel. To show them, you use the **Show White** and **Show Black** options. These options are also available as buttons on the toolbar.
 
 To create the repertoire you just add games and moves to the relevant base and then update the repertoire using the **Update White** and **Update Black** options. 
 If the update has issues, these will be added to the relevant errors file, so that you can review them and revise the games in the database.
 
 ## Displaying the Repertoire
 
-To display the repertoire first open a database of games. This will populate the tree. If you now select **Show Black**, the moves from the repertoire will be displayed in black cells.
+To display the repertoire first open a base  and a tree. If you now select **Show Black**, the moves from the repertoire will be displayed in black cells.
 Any move assessments and comments will also be shown. For example:
 
 ![Show Black](images/rp1.png)

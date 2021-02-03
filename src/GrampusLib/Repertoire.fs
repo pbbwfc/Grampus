@@ -105,8 +105,8 @@ module Repertoire =
                         domvt emvo cbd nbd imtel.Tail repopts nrepmove
                 | EncodedRAVEntry(mtel) -> 
                     let nrepopts, nrepmove =
-                        domvt cemvo pbd cbd mtel repopts repmove
-                    domvt cemvo pbd cbd imtel.Tail nrepopts nrepmove
+                        domvt None pbd pbd mtel repopts repmove
+                    domvt None pbd cbd imtel.Tail nrepopts nrepmove
                 | EncodedNAGEntry(ng) -> 
                     if cemvo.IsSome then 
                         let emv = cemvo.Value
@@ -219,8 +219,8 @@ module Repertoire =
                         domvt emvo cbd nbd imtel.Tail repopts nrepmove
                 | EncodedRAVEntry(mtel) -> 
                     let nrepopts, nrepmove =
-                        domvt cemvo pbd cbd mtel repopts repmove
-                    domvt cemvo pbd cbd imtel.Tail nrepopts nrepmove
+                        domvt None pbd pbd mtel repopts repmove
+                    domvt None pbd cbd imtel.Tail nrepopts nrepmove
                 | EncodedNAGEntry(ng) -> 
                     if cemvo.IsSome then 
                         let emv = cemvo.Value
