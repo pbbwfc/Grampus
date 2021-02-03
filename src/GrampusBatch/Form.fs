@@ -564,12 +564,12 @@ module Form =
                                    InitialDirectory = bfol)
             if ndlg.ShowDialog() = DialogResult.OK then 
                 this.Enabled <- false
-                let numgames = iea.Length
+                let pgnf = ndlg.FileName
+                let numgames = PgnGames.GetNumberOfGames pgnf
                 prg.Minimum <- 0
                 prg.Maximum <- numgames
                 prg.Value <- 0
                 st <- DateTime.Now
-                let pgnf = ndlg.FileName
                 let ugma = PgnGames.ReadSeqFromFile pgnf
                 let egma = ugma |> Seq.map (Game.Encode)
                 Games.Add binfol egma updprg

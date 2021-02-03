@@ -1,18 +1,20 @@
 # Getting Started
 
-This article shows you how to get started using ScincNet.
+This article shows you how to get started using Grampus.
 
 ## Installation
 
 Download **setup.exe** for the latest release from [Releases](https://github.com/pbbwfc/Grampus/releases).
 
-After runnning the setup, it will install the code in *C:\Program Files\Grampus*, install sample bases to *Documents\Grampus\bases* and create a Desktop Shortcut.
+After runnning the setup, it will install the code in *C:\Program Files\Grampus*, install sample bases to *Documents\Grampus\bases* and create two Desktop Shortcuts.
+
+The two applications are **GrampusBatch** used for long running processes on bases and **Grampus** for working with the games withing a base.
 
 ## Create a new base
 
-Open Grampus using the shortcut. Then use *File -> New* and create a new base called **Sokolsky**.
+Open GrampusBatch using the shortcut. Then use *Base -> New* and create a new base called **Sokolsky**.
 
-![File New](images/st1.png)
+![Base New](images/st1.png)
 
 This will create a files in *Documents\Grampus\bases*: **Sokolsky.grampus**
 
@@ -26,7 +28,7 @@ We can use this link to download a file:
 
 Once downloaded, unzip to extract the pgn file.
 
-Now use *Tools -> Import PGN file* and select the downloaded file.
+Now use *Tools -> Add PGN file* and select the downloaded file.
 
 ![Import Pgn](images/st2.png)
 
