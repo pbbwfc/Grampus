@@ -137,6 +137,8 @@ module Form =
                 gmpfile <- ndlg.FileName
                 gmp <- Some(Grampus.New(gmpfile))
                 setbinfol()
+                iea <- [||]
+                hdra <- [||]
                 Recents.addrec gmpfile
                 updateMenuStates()
                 updateTitle()
@@ -250,6 +252,8 @@ module Form =
                     Grampus.Save(gmpfile, gmp.Value)
                     log ("Saved games")
                     lbl.Text <- "Ready"
+                    iea <- Index.Load binfol
+                    hdra <- Headers.Load binfol
                     this.Enabled <- true
                     prg.Value <- 0
                     updateTitle()
@@ -577,6 +581,8 @@ module Form =
                 gmp <- Some({ gmp.Value with SourcePgn = pgnf
                                              BaseCreated = Some(DateTime.Now) })
                 Grampus.Save(gmpfile, gmp.Value)
+                iea <- Index.Load binfol
+                hdra <- Headers.Load binfol
                 prg.Value <- 0
                 this.Enabled <- true
         

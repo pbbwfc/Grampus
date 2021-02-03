@@ -12,7 +12,7 @@ The two applications are **Grampus Batch** used for long running processes on ba
 
 ## Create a new base
 
-Open Grampus Batch using the shortcut. Then use *Base -> New* and create a new base called **Sokolsky**.
+Open **Grampus Batch** using the shortcut. Then use *Base -> New* and create a new base called **Sokolsky**.
 
 ![Base New](images/st1.png)
 
@@ -42,9 +42,15 @@ This should be shown in the Log:
 
 ![Log](images/st2a.png)
 
-Now close Grampus Batch.
+Now close **Grampus Batch**.
 
 ## Load Game
+
+Now open **Grampus**.
+
+Load the Sokolsky base by using *File -> Open*.
+
+Load the Sokolsky tree by using *Tree -> Open*.
 
 Now load the 4th Game by double clicking or using the right click menu.
 
