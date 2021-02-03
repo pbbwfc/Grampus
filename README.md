@@ -1,4 +1,4 @@
-![logo](docs/images/logo64.png "Logo")
+![logo](docs/images/logo.png "Logo")
 # Grampus
 
 ![screen](docs/images/Screen.png "Screen")
