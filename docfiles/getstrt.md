@@ -80,12 +80,3 @@ Now right click the move **Ng4** and use *Add NAG*. Now chose *-+*, a decisive a
 
 Now save the Game by using the *Save* button or menu *Game->Save*.
 
-## Adding ECO Classifiers
-
-We can now add an ECO classification to all the games in the database.
-
-Use the menu *Tools->Set ECOs*. This will add ECO classifiers to every game. In this case, they are nearly all variants of **A00**.
-
-![ECOs](images/st6.png)
-
-Now exit the application by using menu *File->Exit*.
