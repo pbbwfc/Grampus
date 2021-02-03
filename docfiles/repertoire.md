@@ -40,7 +40,7 @@ We can open the base and then add the **Bc4** move and a suitable response and c
 
 ## Using the errors file
 
-The repertoire is intended to give your **single** preferred choice for any position. Thus the Black repertoire with more than one move for Balck in any position will be treated as an error.
+The repertoire is intended to give your **single** preferred choice for any position. Thus the Black repertoire with more than one move for Black in any position will be treated as an error.
 
 To investigate this I used the default repertoire and added **1...e5** in addition to the default single choice of **1...c6**.
 
@@ -51,5 +51,5 @@ I then ran **Update Black**. An error was notified by this dialog:
 If you then examine the contents of this file, it contains one line:
 
 ```
-Duplicate move found for fen rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1 with moves e5 and c6.
+Duplicate move found for bdstr RNBQKBNRPPPP.PPP............P...................pppppppprnbqkbnr b with moves e5 and c6.
 ```
