@@ -279,10 +279,10 @@ module Form =
                 let gminfo =
                     { Gmno = i
                       Welo =
-                          if welo = "-" then 0
+                          if welo = "-" || welo = "" then 0
                           else int (welo)
                       Belo =
-                          if belo = "-" then 0
+                          if belo = "-" || belo = "" then 0
                           else int (belo)
                       Year = yr
                       Result = res }
