@@ -86,8 +86,6 @@ module Form =
         let clsm = new ToolStripMenuItem(Text = "&Close", Enabled = false)
         let delm = new ToolStripMenuItem(Text = "&Delete", Enabled = false)
         let infm = new ToolStripMenuItem(Text = "&Info", Enabled = false)
-        let pgnm =
-            new ToolStripMenuItem(Text = "From &Pgn File", Enabled = true)
         let crm = new ToolStripMenuItem(Text = "&Create", Enabled = false)
         let deltm = new ToolStripMenuItem(Text = "&Delete", Enabled = false)
         let crfm = new ToolStripMenuItem(Text = "&Create", Enabled = false)
@@ -96,8 +94,12 @@ module Form =
             new ToolStripMenuItem(Text = "Delete &Games and Filters", 
                                   Enabled = false)
         let cmpm = new ToolStripMenuItem(Text = "Compact Base", Enabled = false)
+        let pgnm =
+            new ToolStripMenuItem(Text = "From &Pgn File", Enabled = true)
         let addpm =
             new ToolStripMenuItem(Text = "Add PGN file", Enabled = false)
+        let topm =
+            new ToolStripMenuItem(Text = "Export to PGN file", Enabled = false)
         let ecom = new ToolStripMenuItem(Text = "Set ECOs", Enabled = false)
         let updateTitle() = this.Text <- "Grampus Batch - " + gmpfile
         
@@ -107,14 +109,15 @@ module Form =
             clsm.Enabled <- gmp.IsSome
             delm.Enabled <- gmp.IsSome
             infm.Enabled <- gmp.IsSome
-            pgnm.Enabled <- gmp.IsNone
             crm.Enabled <- gmp.IsSome
             deltm.Enabled <- gmp.IsSome
             deltfm.Enabled <- gmp.IsSome
             deltgfm.Enabled <- gmp.IsSome
             crfm.Enabled <- gmp.IsSome
             cmpm.Enabled <- gmp.IsSome
+            pgnm.Enabled <- gmp.IsNone
             addpm.Enabled <- gmp.IsSome
+            topm.Enabled <- gmp.IsSome
             ecom.Enabled <- gmp.IsSome
         
         let log (msg) =
@@ -207,57 +210,6 @@ module Form =
                     + " on " + fdt.Value.ToLongDateString() + " to ply " 
                     + gmp.Value.FiltersPly.ToString()
             logtb.Text <- logtb.Text + nl + ftxt
-        
-        let doimp (e) =
-            let ndlg =
-                new OpenFileDialog(Title = "Select PGN file", 
-                                   Filter = "PGN files(*.pgn)|*.pgn", 
-                                   InitialDirectory = bfol)
-            if ndlg.ShowDialog() = DialogResult.OK then 
-                let pgn = ndlg.FileName
-                let nm = Path.GetFileNameWithoutExtension(pgn)
-                let fn = nm + ".grampus"
-                let sdlg =
-                    new SaveFileDialog(Title = "Select Grampus File", 
-                                       Filter = "Grampus databases(*.grampus)|*.grampus", 
-                                       FileName = fn, AddExtension = true, 
-                                       OverwritePrompt = false, 
-                                       InitialDirectory = Path.GetDirectoryName
-                                                              (pgn))
-                if sdlg.ShowDialog() = DialogResult.OK then 
-                    gmpfile <- sdlg.FileName
-                    this.Enabled <- false
-                    setbinfol()
-                    lbl.Text <- "Counting games..."
-                    Application.DoEvents()
-                    st <- DateTime.Now
-                    let numgames = PgnGames.GetNumberOfGames pgn
-                    prg.Maximum <- numgames
-                    prg.Value <- 0
-                    log ("Counted games")
-                    lbl.Text <- "Games as sequence..."
-                    Application.DoEvents()
-                    st <- DateTime.Now
-                    let ugms = PgnGames.ReadSeqFromFile pgn
-                    log ("Games as sequence")
-                    lbl.Text <- "Encoding games as sequence..."
-                    let egms = ugms |> Seq.map (Game.Encode)
-                    log ("Encoded games as sequence")
-                    lbl.Text <- "Saving games..."
-                    Games.Save binfol egms updprg
-                    gmp <- Some
-                               ({ GrampusDataEMP with SourcePgn = pgn
-                                                      BaseCreated =
-                                                          Some(DateTime.Now) })
-                    Grampus.Save(gmpfile, gmp.Value)
-                    log ("Saved games")
-                    lbl.Text <- "Ready"
-                    iea <- Index.Load binfol
-                    hdra <- Headers.Load binfol
-                    this.Enabled <- true
-                    prg.Value <- 0
-                    updateTitle()
-                    updateMenuStates()
         
         let docreate (e) =
             let totaldict =
@@ -547,19 +499,56 @@ module Form =
             gmp <- Some(Grampus.DeleteGamesFilters(gmpfile))
             log ("Games and Filters deleted")
         
-        let docompact (e) =
-            this.Enabled <- false
-            let numgames = iea.Length
-            prg.Minimum <- 0
-            prg.Maximum <- numgames
-            prg.Value <- 0
-            st <- DateTime.Now
-            let msg = Games.Compact binfol updprg
-            log ("Base Compacted")
-            logtb.Text <- logtb.Text + nl + "Messages from Compaction: " + nl 
-                          + msg
-            prg.Value <- 0
-            this.Enabled <- true
+        let doimp (e) =
+            let ndlg =
+                new OpenFileDialog(Title = "Select PGN file", 
+                                   Filter = "PGN files(*.pgn)|*.pgn", 
+                                   InitialDirectory = bfol)
+            if ndlg.ShowDialog() = DialogResult.OK then 
+                let pgn = ndlg.FileName
+                let nm = Path.GetFileNameWithoutExtension(pgn)
+                let fn = nm + ".grampus"
+                let sdlg =
+                    new SaveFileDialog(Title = "Select Grampus File", 
+                                       Filter = "Grampus databases(*.grampus)|*.grampus", 
+                                       FileName = fn, AddExtension = true, 
+                                       OverwritePrompt = false, 
+                                       InitialDirectory = Path.GetDirectoryName
+                                                              (pgn))
+                if sdlg.ShowDialog() = DialogResult.OK then 
+                    gmpfile <- sdlg.FileName
+                    this.Enabled <- false
+                    setbinfol()
+                    lbl.Text <- "Counting games..."
+                    Application.DoEvents()
+                    st <- DateTime.Now
+                    let numgames = PgnGames.GetNumberOfGames pgn
+                    prg.Maximum <- numgames
+                    prg.Value <- 0
+                    log ("Counted games")
+                    lbl.Text <- "Games as sequence..."
+                    Application.DoEvents()
+                    st <- DateTime.Now
+                    let ugms = PgnGames.ReadSeqFromFile pgn
+                    log ("Games as sequence")
+                    lbl.Text <- "Encoding games as sequence..."
+                    let egms = ugms |> Seq.map (Game.Encode)
+                    log ("Encoded games as sequence")
+                    lbl.Text <- "Saving games..."
+                    Games.Save binfol egms updprg
+                    gmp <- Some
+                               ({ GrampusDataEMP with SourcePgn = pgn
+                                                      BaseCreated =
+                                                          Some(DateTime.Now) })
+                    Grampus.Save(gmpfile, gmp.Value)
+                    log ("Saved games")
+                    lbl.Text <- "Ready"
+                    iea <- Index.Load binfol
+                    hdra <- Headers.Load binfol
+                    this.Enabled <- true
+                    prg.Value <- 0
+                    updateTitle()
+                    updateMenuStates()
         
         let doaddpgn() =
             let ndlg =
@@ -585,6 +574,51 @@ module Form =
                 hdra <- Headers.Load binfol
                 prg.Value <- 0
                 this.Enabled <- true
+        
+        let dotopgn() =
+            let fn = Path.GetFileNameWithoutExtension(gmpfile) + ".pgn"
+            let ndlg =
+                new SaveFileDialog(Title = "Select PGN file", 
+                                   Filter = "PGN files(*.pgn)|*.pgn", 
+                                   FileName = fn, AddExtension = true, 
+                                   OverwritePrompt = false, 
+                                   InitialDirectory = bfol)
+            if ndlg.ShowDialog() = DialogResult.OK then 
+                let pgn = ndlg.FileName
+                this.Enabled <- false
+                use stream = new FileStream(pgn, FileMode.Create)
+                use writer = new StreamWriter(stream)
+                let numgames = iea.Length
+                prg.Minimum <- 0
+                prg.Maximum <- numgames
+                lbl.Text <- "Processing " + numgames.ToString() + " games..."
+                Application.DoEvents()
+                for i = 0 to numgames - 1 do
+                    let gm = Games.LoadGame binfol iea.[i] hdra.[i]
+                    let pgnstr = Game.ToStr gm
+                    writer.Write(pgnstr)
+                    writer.WriteLine()
+                    if i % 100 = 0 then updprg (i)
+                log ("Processed Games")
+                lbl.Text <- "Ready"
+                this.Enabled <- true
+                prg.Value <- 0
+                updateTitle()
+                updateMenuStates()
+        
+        let docompact (e) =
+            this.Enabled <- false
+            let numgames = iea.Length
+            prg.Minimum <- 0
+            prg.Maximum <- numgames
+            prg.Value <- 0
+            st <- DateTime.Now
+            let msg = Games.Compact binfol updprg
+            log ("Base Compacted")
+            logtb.Text <- logtb.Text + nl + "Messages from Compaction: " + nl 
+                          + msg
+            prg.Value <- 0
+            this.Enabled <- true
         
         let doeco() =
             this.Enabled <- false
@@ -618,8 +652,6 @@ module Form =
             delm.Click.Add(dodel)
             bm.DropDownItems.Add(infm) |> ignore
             infm.Click.Add(doinfo)
-            bm.DropDownItems.Add(pgnm) |> ignore
-            pgnm.Click.Add(doimp)
             // recents
             let recm = new ToolStripMenuItem(Text = "Recent")
             bm.DropDownItems.Add(recm) |> ignore
@@ -655,15 +687,41 @@ module Form =
             fm.DropDownItems.Add(deltgfm) |> ignore
             deltgfm.Click.Add(dodelgamesfilters)
             ms.Items.Add(fm) |> ignore
+            //pgn menu
+            let pgm = new ToolStripMenuItem(Text = "&Pgn")
+            pgm.DropDownItems.Add(pgnm) |> ignore
+            pgnm.Click.Add(doimp)
+            addpm.Click.Add(fun _ -> doaddpgn())
+            pgm.DropDownItems.Add(addpm) |> ignore
+            topm.Click.Add(fun _ -> dotopgn())
+            pgm.DropDownItems.Add(topm) |> ignore
+            ms.Items.Add(pgm) |> ignore
             //tools menu
             let tlm = new ToolStripMenuItem(Text = "Too&ls")
             cmpm.Click.Add(docompact)
             tlm.DropDownItems.Add(cmpm) |> ignore
-            addpm.Click.Add(fun _ -> doaddpgn())
-            tlm.DropDownItems.Add(addpm) |> ignore
             ecom.Click.Add(fun _ -> doeco())
             tlm.DropDownItems.Add(ecom) |> ignore
             ms.Items.Add(tlm) |> ignore
+            // about menu
+            let abtm = new ToolStripMenuItem("About")
+            let onl = new ToolStripMenuItem("Online Documentation")
+            onl.Click.Add
+                (fun _ -> 
+                System.Diagnostics.Process.Start
+                    (new System.Diagnostics.ProcessStartInfo("https://pbbwfc.github.io/Grampus/", 
+                                                             UseShellExecute = true)) 
+                |> ignore)
+            abtm.DropDownItems.Add(onl) |> ignore
+            let src = new ToolStripMenuItem("Source Code")
+            src.Click.Add
+                (fun _ -> 
+                System.Diagnostics.Process.Start
+                    (new System.Diagnostics.ProcessStartInfo("https://github.com/pbbwfc/Grampus", 
+                                                             UseShellExecute = true)) 
+                |> ignore)
+            abtm.DropDownItems.Add(src) |> ignore
+            ms.Items.Add(abtm) |> ignore
         
         let btmpnl =
             new Panel(Dock = DockStyle.Bottom, BorderStyle = BorderStyle.Fixed3D, 

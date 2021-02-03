@@ -50,7 +50,7 @@ type Repertoire() =
         Repertoire.UpdateWhite() |> should equal 0
         Repertoire.LoadWhite()
         let ro, rm = Repertoire.White()
-        ro.Count |> should equal 39
+        ro.Count |> should equal 36
         rm.Count |> should equal 39
         let errs = File.ReadAllText(Repertoire.WhiteErrFile())
         errs.Length |> should equal 0
@@ -68,7 +68,7 @@ type Repertoire() =
         Repertoire.UpdateBlack() |> should equal 0
         Repertoire.LoadBlack()
         let ro, rm = Repertoire.Black()
-        ro.Count |> should equal 92
+        ro.Count |> should equal 88
         rm.Count |> should equal 97
         let errs = File.ReadAllText(Repertoire.BlackErrFile())
         errs.Length |> should equal 0

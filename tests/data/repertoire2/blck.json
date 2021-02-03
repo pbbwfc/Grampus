@@ -147,13 +147,6 @@
         "Comm": ""
       }
     ],
-    "R..Q.RK.PP..BPP...N..N.P..PP.Bb....p......n.pn..pp...pppr..qkb.r b": [
-      {
-        "San": "Nbd2",
-        "Nag": "Null",
-        "Comm": ""
-      }
-    ],
     "R..Q.RK.PP..BPP...N..N.P..PP.Bb....p......nbpn..pp...pppr..qk..r b": [
       {
         "San": "Bxd6",
@@ -169,6 +162,11 @@
       }
     ],
     "R..Q.RK.PP..BPPP..N..N....PP.Bb....p......n.pn..pp...pppr..qkb.r w": [
+      {
+        "San": "Nbd2",
+        "Nag": "Null",
+        "Comm": ""
+      },
       {
         "San": "h3",
         "Nag": "Null",
@@ -490,18 +488,6 @@
         "Comm": ""
       }
     ],
-    "R.BQKBNRPP...PPP..N.......PP.......p............pp..pppprnbqkbnr w": [
-      {
-        "San": "Nf3",
-        "Nag": "Null",
-        "Comm": ""
-      },
-      {
-        "San": "Bd3",
-        "Nag": "Null",
-        "Comm": ""
-      }
-    ],
     "R.BQKBNRPP...PPP..N.......PP.......p.........n..pp..pppprnbqkb.r b": [
       {
         "San": "Nc3",
@@ -519,13 +505,6 @@
     "R.BQKBNRPP...PPP..P...............PpP.......p...pp...ppprnbqkbnr w": [
       {
         "San": "Be3",
-        "Nag": "Null",
-        "Comm": ""
-      }
-    ],
-    "R.BQKBNRPP...PPP..P........P......ppP...........pp..pppprnbqkbnr w": [
-      {
-        "San": "dxc5",
         "Nag": "Null",
         "Comm": ""
       }
@@ -567,6 +546,16 @@
     ],
     "R.BQKBNRPPP..PPP..N........P.......p............pp..pppprnbqkbnr b": [
       {
+        "San": "Nf3",
+        "Nag": "Null",
+        "Comm": ""
+      },
+      {
+        "San": "Bd3",
+        "Nag": "Null",
+        "Comm": ""
+      },
+      {
         "San": "c4",
         "Nag": "Null",
         "Comm": ""
@@ -574,27 +563,17 @@
     ],
     "R.BQKBNRPPP..PPP..N........P......ppP...........pp..pppprnbqkbnr b": [
       {
+        "San": "dxc5",
+        "Nag": "Null",
+        "Comm": ""
+      },
+      {
         "San": "c3",
         "Nag": "Null",
         "Comm": ""
       }
     ],
     "R.BQKBNRPPP..PPP..N........PP......p......p.....pp..pppprnbqkbnr b": [
-      {
-        "San": "f3",
-        "Nag": "Null",
-        "Comm": "Fantasy variation"
-      },
-      {
-        "San": "e5",
-        "Nag": "Null",
-        "Comm": ""
-      },
-      {
-        "San": "exd5",
-        "Nag": "Null",
-        "Comm": ""
-      },
       {
         "San": "Nf3",
         "Nag": "Null",
@@ -631,11 +610,6 @@
     ],
     "RNBQKBNRPPP..PPP...........PP.............p.....pp.ppppprnbqkbnr b": [
       {
-        "San": "Nc3",
-        "Nag": "Null",
-        "Comm": "2 Knights Attack"
-      },
-      {
         "San": "c4",
         "Nag": "Null",
         "Comm": ""
@@ -643,19 +617,32 @@
     ],
     "RNBQKBNRPPP..PPP...........PP......p......p.....pp..pppprnbqkbnr w": [
       {
+        "San": "f3",
+        "Nag": "Null",
+        "Comm": "Fantasy variation"
+      },
+      {
+        "San": "e5",
+        "Nag": "Null",
+        "Comm": ""
+      },
+      {
+        "San": "exd5",
+        "Nag": "Null",
+        "Comm": ""
+      },
+      {
         "San": "Nc3",
         "Nag": "Null",
         "Comm": ""
       }
     ],
-    "RNBQKBNRPPPP.PPP............P...................pppppppprnbqkbnr b": [
-      {
-        "San": "d4",
-        "Nag": "Null",
-        "Comm": ""
-      }
-    ],
     "RNBQKBNRPPPP.PPP............P.............p.....pp.ppppprnbqkbnr w": [
+      {
+        "San": "Nc3",
+        "Nag": "Null",
+        "Comm": "2 Knights Attack"
+      },
       {
         "San": "d4",
         "Nag": "Null",
@@ -663,6 +650,11 @@
       }
     ],
     "RNBQKBNRPPPPPPPP................................pppppppprnbqkbnr w": [
+      {
+        "San": "d4",
+        "Nag": "Null",
+        "Comm": ""
+      },
       {
         "San": "e4",
         "Nag": "Null",
