@@ -131,7 +131,7 @@ module Form =
                     Path.Combine
                         (Path.GetDirectoryName(gmpfile), 
                          Path.GetFileNameWithoutExtension(gmpfile))
-                gmtbs.AddTab(nm,gmp.FiltersCreated.IsNone)
+                gmtbs.AddTab(nm, gmp.FiltersCreated.IsNone)
                 refreshWindows()
                 SbUpdate("Ready")
         
@@ -152,7 +152,7 @@ module Form =
                              Path.GetFileNameWithoutExtension(gmpfile))
                     //dotbselect will be called to do the loading
                     let gmp = Grampus.Load(gmpfile)
-                    gmtbs.AddTab(nm,gmp.FiltersCreated.IsNone)
+                    gmtbs.AddTab(nm, gmp.FiltersCreated.IsNone)
                     SbUpdate("Ready")
                 elif ifn <> "" then 
                     //open database
@@ -164,7 +164,7 @@ module Form =
                              Path.GetFileNameWithoutExtension(ifn))
                     //dotbselect will be called to do the loading
                     let gmp = Grampus.Load(ifn)
-                    gmtbs.AddTab(nm,gmp.FiltersCreated.IsNone)
+                    gmtbs.AddTab(nm, gmp.FiltersCreated.IsNone)
                     SbUpdate("Ready")
             waitify (dofun)
         
