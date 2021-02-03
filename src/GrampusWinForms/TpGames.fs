@@ -90,13 +90,14 @@ module TpGamesLib =
             gms.CellMouseDown.Add(dorightclick)
         
         /// initialise
-        member gmstp.Init(inm : string) =
+        member gmstp.Init(inm : string, nofilt) =
             nm <- inm
             let indx = Index.Load(inm + "_FILES")
             gn <- indx.Length
             fn <- gn
             filt <- []
             hdrs <- Headers.Load(inm + "_FILES")
+            hasnofilt <- nofilt
             settxt()
         
         ///Refresh the list
