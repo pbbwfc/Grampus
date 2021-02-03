@@ -720,6 +720,13 @@ White Repertoire
  <param name="pgnstr">The PGN string.</param>
  <returns>The new Encoded Game.</returns>
 </member>
+<member name="M:Grampus.Game.RemoveComments(Grampus.Types.EncodedGame)">
+ <summary>
+ Removes all comments in the Encoded Game.
+ </summary>
+ <param name="gm">The Encoded Game.</param>
+ <returns>The changed Encoded Game.</returns>
+</member>
 <member name="M:Grampus.Game.DeleteComment(Grampus.Types.EncodedGame,Microsoft.FSharp.Collections.FSharpList{System.Int32})">
  <summary>
  Deletes a comment in the Encoded Game at the address provided.
@@ -763,6 +770,13 @@ White Repertoire
  <param name="irs">The address within the game as an int list type.</param>
  <returns>The changed Encoded Game.</returns>
 </member>
+<member name="M:Grampus.Game.RemoveRavs(Grampus.Types.EncodedGame)">
+ <summary>
+ Removes all variations in the Encoded Game.
+ </summary>
+ <param name="gm">The Encoded Game.</param>
+ <returns>The changed Encoded Game.</returns>
+</member>
 <member name="M:Grampus.Game.DeleteRav(Grampus.Types.EncodedGame,Microsoft.FSharp.Collections.FSharpList{System.Int32})">
  <summary>
  Deletes a RAV in the EncodedGame at the address provided.
@@ -803,6 +817,13 @@ White Repertoire
  <param name="gm">The Encoded Game.</param>
  <param name="irs">The address within the game as an int list type.</param>
  <param name="nag">The NAG as a NAG type.</param>
+ <returns>The changed Encoded Game.</returns>
+</member>
+<member name="M:Grampus.Game.RemoveNags(Grampus.Types.EncodedGame)">
+ <summary>
+ Removes all NAGs in the Encoded Game.
+ </summary>
+ <param name="gm">The Encoded Game.</param>
  <returns>The changed Encoded Game.</returns>
 </member>
 <member name="M:Grampus.Game.DeleteNag(Grampus.Types.EncodedGame,Microsoft.FSharp.Collections.FSharpList{System.Int32})">
