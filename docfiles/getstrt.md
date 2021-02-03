@@ -52,7 +52,7 @@ Load the Sokolsky base by using *File -> Open*.
 
 Load the Sokolsky tree by using *Tree -> Open*.
 
-Now load the 4th Game by double clicking or using the right click menu.
+Now load the 4th Game (Game number 3) by double clicking or using the right click menu.
 
 You can now review the moves and the tree updates to show alternative moves in the database and limits the list to those games that contain the position.
 
