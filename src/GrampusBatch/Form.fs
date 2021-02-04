@@ -542,7 +542,7 @@ module Form =
                     let ugms = PgnGames.ReadSeqFromFile pgn
                     log ("Games as sequence")
                     lbl.Text <- "Encoding games as sequence..."
-                    let egms = ugms |> PSeq.map (Game.Encode)
+                    let egms = ugms |> Seq.map (Game.Encode)
                     log ("Encoded games as sequence")
                     lbl.Text <- "Saving " + numgames.ToString() + " games..."
                     Games.Save binfol egms updprg
