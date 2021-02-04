@@ -8,11 +8,23 @@
     ".NETCoreApp,Version=v5.0": {
       "GrampusBatch/0.02": {
         "dependencies": {
+          "FSharp.Collections.ParallelSeq": "1.1.4",
           "FSharp.Core": "5.0.0",
           "GrampusLib": "0.2.0"
         },
         "runtime": {
           "GrampusBatch.dll": {}
+        }
+      },
+      "FSharp.Collections.ParallelSeq/1.1.4": {
+        "dependencies": {
+          "FSharp.Core": "5.0.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/FSharp.Collections.ParallelSeq.dll": {
+            "assemblyVersion": "1.1.4.0",
+            "fileVersion": "1.1.4.0"
+          }
         }
       },
       "FSharp.Core/5.0.0": {
@@ -162,6 +174,13 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "FSharp.Collections.ParallelSeq/1.1.4": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-JI6R4TK+TJ0uswIpkx/IExXNuRQFL24hznnB+Q5fXnqpvc3Wob72o3TDm5ZHbKuz9B2+9uGIbowzXH1dhZs6fw==",
+      "path": "fsharp.collections.parallelseq/1.1.4",
+      "hashPath": "fsharp.collections.parallelseq.1.1.4.nupkg.sha512"
     },
     "FSharp.Core/5.0.0": {
       "type": "package",
