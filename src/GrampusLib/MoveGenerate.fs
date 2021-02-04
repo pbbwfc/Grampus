@@ -180,6 +180,23 @@ module MoveGenerate =
         let mvl = getAttacks piecePositions []
         mvl |> legal (bd)
     
+    let KnightMovesTo (mto : Square) (bd : Brd) =
+        let atts = Attacks.KnightAttacks mto
+        
+        let piecePositions =
+            (if bd.WhosTurn = Player.White then bd.WtPrBds
+             else bd.BkPrBds)
+            &&& bd.PieceTypes.[int (PieceType.Knight)]
+        
+        let srcs = atts &&& piecePositions
+        let pieceposs = srcs |> Bitboard.ToSquares
+        let tomv piecepos =
+            Move.Create piecepos mto bd.PieceAt.[int (piecepos)] 
+                bd.PieceAt.[int (mto)]
+        let mvl = pieceposs |> List.map tomv
+        if mvl.Length > 1 then mvl |> legal (bd)
+        else mvl
+    
     let KnightMoves(bd : Brd) : Move list =
         let checkerCount = bd.Checkers |> Bitboard.BitCount
         if checkerCount > 1 then []
@@ -187,6 +204,23 @@ module MoveGenerate =
             let fnsqbb : Square -> Bitboard -> Bitboard =
                 fun pp bb -> Attacks.KnightAttacks pp
             pcMoves bd PieceType.Knight fnsqbb
+    
+    let BishopMovesTo (mto : Square) (bd : Brd) =
+        let atts = Attacks.BishopAttacks mto bd.PieceLocationsAll
+        
+        let piecePositions =
+            (if bd.WhosTurn = Player.White then bd.WtPrBds
+             else bd.BkPrBds)
+            &&& bd.PieceTypes.[int (PieceType.Bishop)]
+        
+        let srcs = atts &&& piecePositions
+        let pieceposs = srcs |> Bitboard.ToSquares
+        let tomv piecepos =
+            Move.Create piecepos mto bd.PieceAt.[int (piecepos)] 
+                bd.PieceAt.[int (mto)]
+        let mvl = pieceposs |> List.map tomv
+        if mvl.Length > 1 then mvl |> legal (bd)
+        else mvl
     
     let BishopMoves(bd : Brd) : Move list =
         let checkerCount = bd.Checkers |> Bitboard.BitCount
@@ -196,6 +230,23 @@ module MoveGenerate =
                 fun pp bb -> Attacks.BishopAttacks pp bb
             pcMoves bd PieceType.Bishop fnsqbb
     
+    let RookMovesTo (mto : Square) (bd : Brd) =
+        let atts = Attacks.RookAttacks mto bd.PieceLocationsAll
+        
+        let piecePositions =
+            (if bd.WhosTurn = Player.White then bd.WtPrBds
+             else bd.BkPrBds)
+            &&& bd.PieceTypes.[int (PieceType.Rook)]
+        
+        let srcs = atts &&& piecePositions
+        let pieceposs = srcs |> Bitboard.ToSquares
+        let tomv piecepos =
+            Move.Create piecepos mto bd.PieceAt.[int (piecepos)] 
+                bd.PieceAt.[int (mto)]
+        let mvl = pieceposs |> List.map tomv
+        if mvl.Length > 1 then mvl |> legal (bd)
+        else mvl
+    
     let RookMoves(bd : Brd) : Move list =
         let checkerCount = bd.Checkers |> Bitboard.BitCount
         if checkerCount > 1 then []
@@ -203,6 +254,23 @@ module MoveGenerate =
             let fnsqbb : Square -> Bitboard -> Bitboard =
                 fun pp bb -> Attacks.RookAttacks pp bb
             pcMoves bd PieceType.Rook fnsqbb
+    
+    let QueenMovesTo (mto : Square) (bd : Brd) =
+        let atts = Attacks.QueenAttacks mto bd.PieceLocationsAll
+        
+        let piecePositions =
+            (if bd.WhosTurn = Player.White then bd.WtPrBds
+             else bd.BkPrBds)
+            &&& bd.PieceTypes.[int (PieceType.Queen)]
+        
+        let srcs = atts &&& piecePositions
+        let pieceposs = srcs |> Bitboard.ToSquares
+        let tomv piecepos =
+            Move.Create piecepos mto bd.PieceAt.[int (piecepos)] 
+                bd.PieceAt.[int (mto)]
+        let mvl = pieceposs |> List.map tomv
+        if mvl.Length > 1 then mvl |> legal (bd)
+        else mvl
     
     let QueenMoves(bd : Brd) : Move list =
         let checkerCount = bd.Checkers |> Bitboard.BitCount

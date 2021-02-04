@@ -122,11 +122,7 @@ module pMove =
                     else bd |> MoveGenerate.PawnMovesTo pmv.TargetSquare
                 mv
             | PieceType.Knight -> 
-                let mvs =
-                    bd
-                    |> MoveGenerate.KnightMoves
-                    |> List.filter 
-                           (fun mv -> pmv.TargetSquare = (mv |> Move.To))
+                let mvs = bd |> MoveGenerate.KnightMovesTo pmv.TargetSquare
                 if mvs.Length = 1 then mvs.Head
                 elif pmv.OriginFile.IsSome then 
                     let mvs1 =
@@ -148,11 +144,7 @@ module pMove =
                     else failwith "nr"
                 else failwith "n"
             | PieceType.Bishop -> 
-                let mvs =
-                    bd
-                    |> MoveGenerate.BishopMoves
-                    |> List.filter 
-                           (fun mv -> pmv.TargetSquare = (mv |> Move.To))
+                let mvs = bd |> MoveGenerate.BishopMovesTo pmv.TargetSquare
                 if mvs.Length = 1 then mvs.Head
                 elif pmv.OriginFile.IsSome then 
                     let mvs1 =
@@ -174,11 +166,7 @@ module pMove =
                     else failwith "br"
                 else failwith "b"
             | PieceType.Rook -> 
-                let mvs =
-                    bd
-                    |> MoveGenerate.RookMoves
-                    |> List.filter 
-                           (fun mv -> pmv.TargetSquare = (mv |> Move.To))
+                let mvs = bd |> MoveGenerate.RookMovesTo pmv.TargetSquare
                 if mvs.Length = 1 then mvs.Head
                 elif pmv.OriginFile.IsSome then 
                     let mvs1 =
@@ -200,11 +188,7 @@ module pMove =
                     else failwith "rr"
                 else failwith "r"
             | PieceType.Queen -> 
-                let mvs =
-                    bd
-                    |> MoveGenerate.QueenMoves
-                    |> List.filter 
-                           (fun mv -> pmv.TargetSquare = (mv |> Move.To))
+                let mvs = bd |> MoveGenerate.QueenMovesTo pmv.TargetSquare
                 if mvs.Length = 1 then mvs.Head
                 elif pmv.OriginFile.IsSome then 
                     let mvs1 =
@@ -227,25 +211,19 @@ module pMove =
                 else failwith "q"
             | PieceType.King -> 
                 if pmv.Mtype = MoveType.CastleKingSide then 
-                    let mvs =
-                        bd
-                        |> MoveGenerate.CastleMoves
-                        |> List.filter (fun mv -> 
-                               FileG = (mv
-                                        |> Move.To
-                                        |> Square.ToFile))
-                    if mvs.Length = 1 then mvs.Head
-                    else failwith "kc"
+                    if bd.WhosTurn = Player.White then 
+                        Move.Create E1 G1 bd.PieceAt.[int (E1)] 
+                            bd.PieceAt.[int (G1)]
+                    else 
+                        Move.Create E8 G8 bd.PieceAt.[int (E8)] 
+                            bd.PieceAt.[int (G8)]
                 elif pmv.Mtype = MoveType.CastleQueenSide then 
-                    let mvs =
-                        bd
-                        |> MoveGenerate.CastleMoves
-                        |> List.filter (fun mv -> 
-                               FileC = (mv
-                                        |> Move.To
-                                        |> Square.ToFile))
-                    if mvs.Length = 1 then mvs.Head
-                    else failwith "qc"
+                    if bd.WhosTurn = Player.White then 
+                        Move.Create E1 C1 bd.PieceAt.[int (E1)] 
+                            bd.PieceAt.[int (C1)]
+                    else 
+                        Move.Create E8 C8 bd.PieceAt.[int (E8)] 
+                            bd.PieceAt.[int (C8)]
                 else 
                     let mvs =
                         bd
