@@ -212,6 +212,111 @@ module MoveGenerate =
                 fun pp bb -> Attacks.QueenAttacks pp bb
             pcMoves bd PieceType.Queen fnsqbb
     
+    //pawn capture no promotions
+    let PawnCapturesTo (mto : Square) (ofile : File) (bd : Brd) =
+        let targetpos = mto
+        
+        let mypawnwest =
+            if bd.WhosTurn = Player.White then Dirn.DirNW
+            else Dirn.DirSW
+        
+        let piecepos =
+            targetpos 
+            |> Square.PositionInDirectionUnsafe
+                   (mypawnwest |> Direction.Opposite)
+        if piecepos
+           |> Square.ToFile = ofile then 
+            Move.Create piecepos targetpos bd.PieceAt.[int (piecepos)] 
+                bd.PieceAt.[int (targetpos)]
+        else 
+            let mypawneast =
+                if bd.WhosTurn = Player.White then Dirn.DirNE
+                else Dirn.DirSE
+            
+            let piecepos =
+                targetpos 
+                |> Square.PositionInDirectionUnsafe
+                       (mypawneast |> Direction.Opposite)
+            Move.Create piecepos targetpos bd.PieceAt.[int (piecepos)] 
+                bd.PieceAt.[int (targetpos)]
+    
+    //pawn capture no promotions
+    let PawnCapturesPromTo (mto : Square) (ofile : File) (prompc : PieceType) 
+        (bd : Brd) =
+        let targetpos = mto
+        
+        let mypawnwest =
+            if bd.WhosTurn = Player.White then Dirn.DirNW
+            else Dirn.DirSW
+        
+        let piecepos =
+            targetpos 
+            |> Square.PositionInDirectionUnsafe
+                   (mypawnwest |> Direction.Opposite)
+        if piecepos
+           |> Square.ToFile = ofile then 
+            Move.CreateProm piecepos targetpos bd.PieceAt.[int (piecepos)] 
+                bd.PieceAt.[int (targetpos)] prompc
+        else 
+            let mypawneast =
+                if bd.WhosTurn = Player.White then Dirn.DirNE
+                else Dirn.DirSE
+            
+            let piecepos =
+                targetpos 
+                |> Square.PositionInDirectionUnsafe
+                       (mypawneast |> Direction.Opposite)
+            Move.CreateProm piecepos targetpos bd.PieceAt.[int (piecepos)] 
+                bd.PieceAt.[int (targetpos)] prompc
+    
+    //pawn moves no promotions
+    let PawnMovesTo (mto : Square) (bd : Brd) =
+        let targetpos = mto
+        
+        let mypawnnorth =
+            if bd.WhosTurn = Player.White then Dirn.DirN
+            else Dirn.DirS
+        
+        let piecepos =
+            targetpos 
+            |> Square.PositionInDirectionUnsafe
+                   (mypawnnorth |> Direction.Opposite)
+        if bd.PieceAt.[int (piecepos)]
+           |> Piece.ToPieceType = PieceType.Pawn then 
+            Move.Create piecepos targetpos bd.PieceAt.[int (piecepos)] 
+                bd.PieceAt.[int (targetpos)]
+        else 
+            let piecepos =
+                piecepos 
+                |> Square.PositionInDirectionUnsafe
+                       (mypawnnorth |> Direction.Opposite)
+            Move.Create piecepos targetpos bd.PieceAt.[int (piecepos)] 
+                bd.PieceAt.[int (targetpos)]
+    
+    //pawn moves promotions
+    let PawnMovesPromTo (mto : Square) (prompc : PieceType) (bd : Brd) =
+        let targetpos = mto
+        
+        let mypawnnorth =
+            if bd.WhosTurn = Player.White then Dirn.DirN
+            else Dirn.DirS
+        
+        let piecepos =
+            targetpos 
+            |> Square.PositionInDirectionUnsafe
+                   (mypawnnorth |> Direction.Opposite)
+        if bd.PieceAt.[int (piecepos)]
+           |> Piece.ToPieceType = PieceType.Pawn then 
+            Move.CreateProm piecepos targetpos bd.PieceAt.[int (piecepos)] 
+                bd.PieceAt.[int (targetpos)] prompc
+        else 
+            let piecepos =
+                piecepos 
+                |> Square.PositionInDirectionUnsafe
+                       (mypawnnorth |> Direction.Opposite)
+            Move.CreateProm piecepos targetpos bd.PieceAt.[int (piecepos)] 
+                bd.PieceAt.[int (targetpos)] prompc
+    
     let PawnMoves(bd : Brd) =
         let checkerCount = bd.Checkers |> Bitboard.BitCount
         if checkerCount > 1 then []
@@ -247,7 +352,6 @@ module MoveGenerate =
                 else bd.BkKingPos
             
             let evasionTargets =
-                let checkerCount = bd.Checkers |> Bitboard.BitCount
                 if checkerCount = 1 then 
                     let checkerPos = bd.Checkers |> Bitboard.NorthMostPosition
                     (kingPos |> Square.Between(checkerPos)) 

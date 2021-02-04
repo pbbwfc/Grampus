@@ -23,7 +23,7 @@ module pMove =
         CreateAll(mt, tgs, pc, orf, orr, None, false, false, false, san)
     let Create(mt, tgs, pc, san) = CreateOrig(mt, tgs, pc, None, None, san)
     let CreateCastle(mt, san) =
-        CreateOrig(mt, OUTOFBOUNDS, None, None, None, san)
+        CreateOrig(mt, OUTOFBOUNDS, Some(PieceType.King), None, None, san)
     
     let Parse(s : string) =
         //Active pattern to parse move string
@@ -103,55 +103,24 @@ module pMove =
         mv1
     
     let ToMove (bd : Brd) (pmv : pMove) =
-        if pmv.Mtype = MoveType.CastleKingSide then 
-            let mvs =
-                bd
-                |> MoveGenerate.CastleMoves
-                |> List.filter (fun mv -> 
-                       FileG = (mv
-                                |> Move.To
-                                |> Square.ToFile))
-            if mvs.Length = 1 then mvs.Head
-            else failwith "kc"
-        elif pmv.Mtype = MoveType.CastleQueenSide then 
-            let mvs =
-                bd
-                |> MoveGenerate.CastleMoves
-                |> List.filter (fun mv -> 
-                       FileC = (mv
-                                |> Move.To
-                                |> Square.ToFile))
-            if mvs.Length = 1 then mvs.Head
-            else failwith "qc"
-        elif pmv.Piece.IsNone then failwith "none"
-        else 
+        if pmv.Piece.IsSome then 
             match pmv.Piece.Value with
             | PieceType.Pawn -> 
-                let mvs =
-                    if pmv.PromotedPiece.IsSome then 
-                        bd
-                        |> MoveGenerate.PawnMoves
-                        |> List.filter 
-                               (fun mv -> pmv.TargetSquare = (mv |> Move.To))
-                        |> List.filter 
-                               (fun mv -> 
-                               pmv.PromotedPiece.Value = (mv |> Move.PromoteType))
-                    else 
-                        bd
-                        |> MoveGenerate.PawnMoves
-                        |> List.filter 
-                               (fun mv -> pmv.TargetSquare = (mv |> Move.To))
-                if mvs.Length = 1 then mvs.Head
-                elif pmv.OriginFile.IsSome then 
-                    let mvs1 =
-                        mvs
-                        |> List.filter (fun mv -> 
-                               pmv.OriginFile.Value = (mv
-                                                       |> Move.From
-                                                       |> Square.ToFile))
-                    if mvs1.Length = 1 then mvs1.Head
-                    else failwith ("pf " + (pmv |> PgnWrite.MoveStr))
-                else failwith ("p " + (pmv |> PgnWrite.MoveStr))
+                let mv =
+                    if pmv.PromotedPiece.IsSome && pmv.Mtype = MoveType.Capture then 
+                        bd 
+                        |> MoveGenerate.PawnCapturesPromTo pmv.TargetSquare 
+                               pmv.OriginFile.Value pmv.PromotedPiece.Value
+                    elif pmv.PromotedPiece.IsSome then 
+                        bd 
+                        |> MoveGenerate.PawnMovesPromTo pmv.TargetSquare 
+                               pmv.PromotedPiece.Value
+                    elif pmv.Mtype = MoveType.Capture then 
+                        bd 
+                        |> MoveGenerate.PawnCapturesTo pmv.TargetSquare 
+                               pmv.OriginFile.Value
+                    else bd |> MoveGenerate.PawnMovesTo pmv.TargetSquare
+                mv
             | PieceType.Knight -> 
                 let mvs =
                     bd
@@ -257,14 +226,36 @@ module pMove =
                     else failwith "qr"
                 else failwith "q"
             | PieceType.King -> 
-                let mvs =
-                    bd
-                    |> MoveGenerate.KingMoves
-                    |> List.filter 
-                           (fun mv -> pmv.TargetSquare = (mv |> Move.To))
-                if mvs.Length = 1 then mvs.Head
-                else failwith "k"
+                if pmv.Mtype = MoveType.CastleKingSide then 
+                    let mvs =
+                        bd
+                        |> MoveGenerate.CastleMoves
+                        |> List.filter (fun mv -> 
+                               FileG = (mv
+                                        |> Move.To
+                                        |> Square.ToFile))
+                    if mvs.Length = 1 then mvs.Head
+                    else failwith "kc"
+                elif pmv.Mtype = MoveType.CastleQueenSide then 
+                    let mvs =
+                        bd
+                        |> MoveGenerate.CastleMoves
+                        |> List.filter (fun mv -> 
+                               FileC = (mv
+                                        |> Move.To
+                                        |> Square.ToFile))
+                    if mvs.Length = 1 then mvs.Head
+                    else failwith "qc"
+                else 
+                    let mvs =
+                        bd
+                        |> MoveGenerate.KingMoves
+                        |> List.filter 
+                               (fun mv -> pmv.TargetSquare = (mv |> Move.To))
+                    if mvs.Length = 1 then mvs.Head
+                    else failwith "k"
             | _ -> failwith "all"
+        else failwith "none"
     
     let Encode (bd : Brd) mno (pmv : pMove) =
         let mv = pmv |> ToMove bd

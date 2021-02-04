@@ -79,7 +79,8 @@ module Form =
         let mutable st = DateTime.Now
         let mutable nd = DateTime.Now
         let nl = Environment.NewLine
-        let el() = (float ((nd - st).TotalMilliseconds) / 1000.0).ToString("0.##")
+        let el() =
+            (float ((nd - st).TotalMilliseconds) / 1000.0).ToString("0.##")
         let crbtn = new ToolStripButton(Text = "Create Tree", Enabled = false)
         let crfbtn =
             new ToolStripButton(Text = "Create Filters", Enabled = false)
