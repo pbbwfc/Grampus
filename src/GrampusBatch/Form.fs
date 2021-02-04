@@ -6,6 +6,7 @@ open System.Drawing
 open System.Windows.Forms
 open Grampus
 open Dialogs
+open FSharp.Collections.ParallelSeq
 
 type private GameInfo =
     { Gmno : int
@@ -78,7 +79,7 @@ module Form =
         let mutable st = DateTime.Now
         let mutable nd = DateTime.Now
         let nl = Environment.NewLine
-        let el() = (float ((nd - st).TotalMilliseconds) / 1000.0).ToString()
+        let el() = (float ((nd - st).TotalMilliseconds) / 1000.0).ToString("0.##")
         let crbtn = new ToolStripButton(Text = "Create Tree", Enabled = false)
         let crfbtn =
             new ToolStripButton(Text = "Create Filters", Enabled = false)
@@ -540,9 +541,9 @@ module Form =
                     let ugms = PgnGames.ReadSeqFromFile pgn
                     log ("Games as sequence")
                     lbl.Text <- "Encoding games as sequence..."
-                    let egms = ugms |> Seq.map (Game.Encode)
+                    let egms = ugms |> PSeq.map (Game.Encode)
                     log ("Encoded games as sequence")
-                    lbl.Text <- "Saving games..."
+                    lbl.Text <- "Saving " + numgames.ToString() + " games..."
                     Games.Save binfol egms updprg
                     gmp <- Some
                                ({ GrampusDataEMP with SourcePgn = pgn

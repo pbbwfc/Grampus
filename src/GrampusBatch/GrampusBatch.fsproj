@@ -31,6 +31,10 @@
   </ItemGroup>
 
 	<ItemGroup>
+	  <PackageReference Include="FSharp.Collections.ParallelSeq" Version="1.1.4" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <ProjectReference Include="..\GrampusLib\GrampusLib.fsproj" />
 	</ItemGroup>
 
