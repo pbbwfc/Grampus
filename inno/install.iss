@@ -26,7 +26,7 @@ AppUpdatesURL={#MyAppURL}
 DefaultDirName={pf64}\{#MyAppName}
 DefaultGroupName={#MyAppName}
 LicenseFile=D:\GitHub\Grampus\License.txt
-OutputDir=D:\GitHub\Grampus\inno
+OutputDir=D:\GitHub\Grampus\inno\output
 OutputBaseFilename=setup
 SetupIconFile=D:\GitHub\Grampus\src\Grampus\grampus.ico
 Compression=lzma
@@ -44,6 +44,7 @@ Source: "D:\GitHub\Grampus\rel\net5.0-windows\*"; DestDir: "{app}"; Flags: ignor
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 Source: "bases\*"; DestDir: "{userdocs}\Grampus\bases"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "repertoire\*"; DestDir: "{userdocs}\Grampus\repertoire"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "trees\*"; DestDir: "{userdocs}\Grampus\trees"; Flags: ignoreversion recursesubdirs createallsubdirs
 
 [Icons]
 Name: "{group}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}" ; IconFilename: "{app}\{#MyAppIcoName}"

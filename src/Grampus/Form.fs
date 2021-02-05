@@ -29,6 +29,15 @@ module Form =
                      "Grampus\\bases")
             Directory.CreateDirectory(pth) |> ignore
             pth
+        let tfol =
+            let pth =
+                Path.Combine
+                    (System.Environment.GetFolderPath
+                         (System.Environment.SpecialFolder.MyDocuments), 
+                     "Grampus\\trees")
+            Directory.CreateDirectory(pth) |> ignore
+            pth
+
         
         let bd = new PnlBoard(Dock = DockStyle.Fill)
         let pgn = new PnlPgn(Dock = DockStyle.Fill)
@@ -173,7 +182,7 @@ module Form =
                 let ndlg =
                     new OpenFileDialog(Title = "Open Tree", 
                                        Filter = "Grampus databases(*.grampus)|*.grampus", 
-                                       InitialDirectory = bfol)
+                                       InitialDirectory = tfol)
                 if ifn = "" && ndlg.ShowDialog() = DialogResult.OK then 
                     //open database
                     let gmpfile = ndlg.FileName
