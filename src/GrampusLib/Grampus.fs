@@ -627,9 +627,20 @@ module Games =
     /// <param name="trgnm">The full path and name of the target base.</param>
     /// <param name="year">The first year to include.</param>
     /// <param name="cb">Callback function to report on progress.</param>
-    /// <returns>Messages from compaction process as a string type.</returns>
+    /// <returns>Nothing.</returns>
     let ExtractNewer nm trgnm year cb =
         GrampusInternal.Games.ExtractNewer nm trgnm year cb
+    
+    /// <summary>
+    /// Extracts stronger games to the specified base.
+    /// </summary>
+    /// <param name="nm">The full path and name of the source base.</param>
+    /// <param name="trgnm">The full path and name of the target base.</param>
+    /// <param name="grade">The minimum grade to include.</param>
+    /// <param name="cb">Callback function to report on progress.</param>
+    /// <returns>Nothing.</returns>
+    let ExtractStronger nm trgnm grade cb =
+        GrampusInternal.Games.ExtractStronger nm trgnm grade cb
 
 /// <summary>
 /// Holds the functions related to a set of Games in PGN format.

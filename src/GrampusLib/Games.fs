@@ -94,9 +94,9 @@ module Games =
             { Offset = off
               Length = bin.Length }
         
-        let hdr = gm.Hdr
         let iea = Index.Load(fol)
         let hdrs = Headers.Load(fol)
+        let hdr = { gm.Hdr with Num = iea.Length }
         let niea = Array.append iea [| ie |]
         let nhdrs = Array.append hdrs [| hdr |]
         Index.Save(fol, niea)
@@ -198,6 +198,38 @@ module Games =
         
         let svgm i hdr =
             if hdr.Year >= year then 
+                let gm = LoadGame binfol iea.[i] hdr
+                AppendGame trgbinfol gm
+            if i % 100 = 0 then cb (i)
+        hdrs |> Array.iteri svgm
+        let ntrggmp = { trggmp with BaseCreated = Some(DateTime.Now) }
+        GrampusFile.Save(trgnm, ntrggmp)
+    
+    let ExtractStronger (nm : string) (trgnm : string) (grade : int) cb =
+        let trggmp = GrampusFile.New(trgnm)
+        let fol = Path.GetDirectoryName(nm)
+        let binfol =
+            Path.Combine(fol, Path.GetFileNameWithoutExtension(nm) + "_FILES")
+        let trgfol = Path.GetDirectoryName(trgnm)
+        let trgbinfol =
+            Path.Combine
+                (trgfol, Path.GetFileNameWithoutExtension(trgnm) + "_FILES")
+        let hdrs = Headers.Load(binfol)
+        let iea = Index.Load(binfol)
+        
+        let svgm i hdr =
+            let w = hdr.W_Elo
+            
+            let welo =
+                if w = "-" || w = "" then 0
+                else int (w)
+            
+            let b = hdr.B_Elo
+            
+            let belo =
+                if b = "-" || b = "" then 0
+                else int (b)
+            if welo >= grade || belo >= grade then 
                 let gm = LoadGame binfol iea.[i] hdr
                 AppendGame trgbinfol gm
             if i % 100 = 0 then cb (i)

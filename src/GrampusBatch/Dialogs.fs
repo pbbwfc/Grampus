@@ -91,3 +91,23 @@ module Dialogs =
         
         member this.SetText(txt) = lbl.Text <- txt
         member this.Year = spn.Value
+    
+    type DlgGd() as this =
+        inherit Dialog()
+        let lbl =
+            new Label(Text = "Select Minimum Grade ", AutoSize = false, 
+                      TextAlign = ContentAlignment.MiddleLeft, Width = 150)
+        let spn =
+            new NumericUpDown(Minimum = 1500.0m, Maximum = 2800.0m, Width = 50)
+        
+        do 
+            this.AddControl(lbl)
+            this.AddControl(spn)
+            spn.Value <- 2100.0m
+        
+        override this.DoOK(e) =
+            this.DialogResult <- DialogResult.OK
+            this.Close()
+        
+        member this.SetText(txt) = lbl.Text <- txt
+        member this.Grade = spn.Value

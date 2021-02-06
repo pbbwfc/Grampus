@@ -136,3 +136,15 @@ type Games() =
         let nindx = Index.Load(tstfol2)
         nindx.Length |> should equal 1
         if File.Exists(tstfn2) then Grampus.Delete(tstfn2)
+    
+    [<TestMethod>]
+    member this.ExtractStronger() =
+        if File.Exists(tstfn2) then Grampus.Delete(tstfn2)
+        Games.ExtractStronger tstfn tstfn2 2200 (fun i -> ())
+        let nindx = Index.Load(tstfol2)
+        nindx.Length |> should equal 1
+        if File.Exists(tstfn2) then Grampus.Delete(tstfn2)
+        Games.ExtractStronger tstfn tstfn2 2800 (fun i -> ())
+        let nindx = Index.Load(tstfol2)
+        nindx.Length |> should equal 0
+        if File.Exists(tstfn2) then Grampus.Delete(tstfn2)

@@ -533,12 +533,15 @@ module Form =
         let doextractnewest (e) =
             let dlg = new DlgYr(Text = "Extract Newest Games")
             if dlg.ShowDialog() = DialogResult.OK then 
-                let yr = int(dlg.Year)
-                let copynm = Path.GetFileNameWithoutExtension(gmpfile) + "_" + yr.ToString()
+                let yr = int (dlg.Year)
+                let copynm =
+                    Path.GetFileNameWithoutExtension(gmpfile) + "_Yr" 
+                    + yr.ToString()
                 let ndlg =
                     new SaveFileDialog(Title = "Extract to Base", 
                                        Filter = "Grampus databases(*.grampus)|*.grampus", 
-                                       AddExtension = true, OverwritePrompt = false, 
+                                       AddExtension = true, 
+                                       OverwritePrompt = false, 
                                        InitialDirectory = bfol, 
                                        FileName = copynm + ".grampus")
                 if ndlg.ShowDialog() = DialogResult.OK then 
@@ -548,15 +551,45 @@ module Form =
                     prg.Minimum <- 0
                     prg.Maximum <- numgames
                     st <- DateTime.Now
-                    lbl.Text <- "Processing " + numgames.ToString() + " games..."
+                    lbl.Text <- "Processing " + numgames.ToString() 
+                                + " games..."
                     Application.DoEvents()
                     Games.ExtractNewer gmpfile trgnm yr updprg
-                    log ("Extracted Newer Games from Year " + yr.ToString())
+                    log ("Extracted Games from Year " + yr.ToString())
                     lbl.Text <- "Ready"
                     this.Enabled <- true
                     prg.Value <- 0
         
-        let doextractstrongest (e) = ()
+        let doextractstrongest (e) =
+            let dlg = new DlgGd(Text = "Extract Strongest Games")
+            if dlg.ShowDialog() = DialogResult.OK then 
+                let gd = int (dlg.Grade)
+                let copynm =
+                    Path.GetFileNameWithoutExtension(gmpfile) + "_Gd" 
+                    + gd.ToString()
+                let ndlg =
+                    new SaveFileDialog(Title = "Extract to Base", 
+                                       Filter = "Grampus databases(*.grampus)|*.grampus", 
+                                       AddExtension = true, 
+                                       OverwritePrompt = false, 
+                                       InitialDirectory = bfol, 
+                                       FileName = copynm + ".grampus")
+                if ndlg.ShowDialog() = DialogResult.OK then 
+                    let trgnm = ndlg.FileName
+                    this.Enabled <- false
+                    let numgames = iea.Length
+                    prg.Minimum <- 0
+                    prg.Maximum <- numgames
+                    st <- DateTime.Now
+                    lbl.Text <- "Processing " + numgames.ToString() 
+                                + " games..."
+                    Application.DoEvents()
+                    Games.ExtractStronger gmpfile trgnm gd updprg
+                    log ("Extracted Games from Grade " + gd.ToString())
+                    lbl.Text <- "Ready"
+                    this.Enabled <- true
+                    prg.Value <- 0
+        
         let doextractplayer (e) = ()
         
         let doimp (e) =
