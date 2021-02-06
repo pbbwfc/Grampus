@@ -90,4 +90,4 @@ module Dialogs =
             this.Close()
         
         member this.SetText(txt) = lbl.Text <- txt
-        member this.Ply = spn.Value
+        member this.Year = spn.Value

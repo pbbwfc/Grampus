@@ -480,6 +480,7 @@ module Form =
                 totaldict.Clear()
                 prg.Minimum <- 0
                 prg.Maximum <- numgames
+                st <- DateTime.Now
                 lbl.Text <- "Processing " + numgames.ToString() + " games..."
                 Application.DoEvents()
                 for i = 0 to numgames - 1 do
@@ -531,7 +532,29 @@ module Form =
         
         let doextractnewest (e) =
             let dlg = new DlgYr(Text = "Extract Newest Games")
-            if dlg.ShowDialog() = DialogResult.OK then ()
+            if dlg.ShowDialog() = DialogResult.OK then 
+                let yr = int(dlg.Year)
+                let copynm = Path.GetFileNameWithoutExtension(gmpfile) + "_" + yr.ToString()
+                let ndlg =
+                    new SaveFileDialog(Title = "Extract to Base", 
+                                       Filter = "Grampus databases(*.grampus)|*.grampus", 
+                                       AddExtension = true, OverwritePrompt = false, 
+                                       InitialDirectory = bfol, 
+                                       FileName = copynm + ".grampus")
+                if ndlg.ShowDialog() = DialogResult.OK then 
+                    let trgnm = ndlg.FileName
+                    this.Enabled <- false
+                    let numgames = iea.Length
+                    prg.Minimum <- 0
+                    prg.Maximum <- numgames
+                    st <- DateTime.Now
+                    lbl.Text <- "Processing " + numgames.ToString() + " games..."
+                    Application.DoEvents()
+                    Games.ExtractNewer gmpfile trgnm yr updprg
+                    log ("Extracted Newer Games from Year " + yr.ToString())
+                    lbl.Text <- "Ready"
+                    this.Enabled <- true
+                    prg.Value <- 0
         
         let doextractstrongest (e) = ()
         let doextractplayer (e) = ()
