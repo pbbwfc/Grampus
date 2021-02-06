@@ -87,6 +87,7 @@ module Form =
         let opnm = new ToolStripMenuItem(Text = "&Open")
         let clsm = new ToolStripMenuItem(Text = "&Close", Enabled = false)
         let delm = new ToolStripMenuItem(Text = "&Delete", Enabled = false)
+        let cpym = new ToolStripMenuItem(Text = "&Copy", Enabled = false)
         let infm = new ToolStripMenuItem(Text = "&Info", Enabled = false)
         let crm = new ToolStripMenuItem(Text = "&Create", Enabled = false)
         let deltm = new ToolStripMenuItem(Text = "&Delete", Enabled = false)
@@ -95,6 +96,9 @@ module Form =
         let deltgfm =
             new ToolStripMenuItem(Text = "Delete &Games and Filters", 
                                   Enabled = false)
+        let enewm = new ToolStripMenuItem(Text = "&Newest", Enabled = false)
+        let estrm = new ToolStripMenuItem(Text = "&Strongest", Enabled = false)
+        let eplym = new ToolStripMenuItem(Text = "For &Player", Enabled = false)
         let pgnm =
             new ToolStripMenuItem(Text = "From &Pgn File", Enabled = true)
         let addpm =
@@ -115,12 +119,16 @@ module Form =
             crfbtn.Enabled <- gmp.IsSome
             clsm.Enabled <- gmp.IsSome
             delm.Enabled <- gmp.IsSome
+            cpym.Enabled <- gmp.IsSome
             infm.Enabled <- gmp.IsSome
             crm.Enabled <- gmp.IsSome
             deltm.Enabled <- gmp.IsSome
             deltfm.Enabled <- gmp.IsSome
             deltgfm.Enabled <- gmp.IsSome
             crfm.Enabled <- gmp.IsSome
+            enewm.Enabled <- gmp.IsSome
+            estrm.Enabled <- gmp.IsSome
+            eplym.Enabled <- gmp.IsSome
             pgnm.Enabled <- gmp.IsNone
             addpm.Enabled <- gmp.IsSome
             topm.Enabled <- gmp.IsSome
@@ -193,6 +201,18 @@ module Form =
         let dodel (e) =
             Grampus.Delete(gmpfile)
             doclose (new EventArgs())
+        
+        let docopy (e) =
+            let copynm = Path.GetFileNameWithoutExtension(gmpfile) + "_Copy"
+            let ndlg =
+                new SaveFileDialog(Title = "Copy Base", 
+                                   Filter = "Grampus databases(*.grampus)|*.grampus", 
+                                   AddExtension = true, OverwritePrompt = false, 
+                                   InitialDirectory = bfol, 
+                                   FileName = copynm + ".grampus")
+            if ndlg.ShowDialog() = DialogResult.OK then 
+                let copygmpfile = ndlg.FileName
+                Grampus.Copy(gmpfile, copygmpfile)
         
         let doinfo (e) =
             logtb.Text <- logtb.Text + nl + "INFO FOR " + gmpfile
@@ -392,7 +412,7 @@ module Form =
                 if i % 100 = 0 then updprg (i)
                 sts
             
-            let dlg = new Dlg(Text = "Create Tree")
+            let dlg = new DlgPly(Text = "Create Tree")
             if dlg.ShowDialog() = DialogResult.OK then 
                 ply <- int (dlg.Ply)
                 this.Enabled <- false
@@ -452,7 +472,7 @@ module Form =
                         totaldict.[bd] <- (i :: gms)
                     else totaldict.[bd] <- [ i ]
             
-            let dlg = new Dlg(Text = "Create Filters")
+            let dlg = new DlgPly(Text = "Create Filters")
             if dlg.ShowDialog() = DialogResult.OK then 
                 ply <- int (dlg.Ply)
                 this.Enabled <- false
@@ -508,6 +528,13 @@ module Form =
             st <- DateTime.Now
             gmp <- Some(Grampus.DeleteGamesFilters(gmpfile))
             log ("Games and Filters deleted")
+        
+        let doextractnewest (e) =
+            let dlg = new DlgYr(Text = "Extract Newest Games")
+            if dlg.ShowDialog() = DialogResult.OK then ()
+        
+        let doextractstrongest (e) = ()
+        let doextractplayer (e) = ()
         
         let doimp (e) =
             let ndlg =
@@ -722,6 +749,8 @@ module Form =
             clsm.Click.Add(doclose)
             bm.DropDownItems.Add(delm) |> ignore
             delm.Click.Add(dodel)
+            bm.DropDownItems.Add(cpym) |> ignore
+            cpym.Click.Add(docopy)
             bm.DropDownItems.Add(infm) |> ignore
             infm.Click.Add(doinfo)
             // recents
@@ -759,6 +788,15 @@ module Form =
             fm.DropDownItems.Add(deltgfm) |> ignore
             deltgfm.Click.Add(dodelgamesfilters)
             ms.Items.Add(fm) |> ignore
+            //extract menu
+            let exm = new ToolStripMenuItem(Text = "&Extract")
+            exm.DropDownItems.Add(enewm) |> ignore
+            enewm.Click.Add(doextractnewest)
+            exm.DropDownItems.Add(estrm) |> ignore
+            estrm.Click.Add(doextractstrongest)
+            exm.DropDownItems.Add(eplym) |> ignore
+            eplym.Click.Add(doextractplayer)
+            ms.Items.Add(exm) |> ignore
             //pgn menu
             let pgm = new ToolStripMenuItem(Text = "&Pgn")
             pgm.DropDownItems.Add(pgnm) |> ignore

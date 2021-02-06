@@ -41,7 +41,7 @@ module Dialogs =
             MessageBox.Show("OK pressed") |> ignore
             this.Close()
     
-    type Dlg() as this =
+    type DlgPly() as this =
         inherit Dialog()
         let lbl =
             new Label(Text = "Select Ply ", AutoSize = false, 
@@ -64,6 +64,26 @@ module Dialogs =
             this.AddControl(chb)
             this.AddControl(spn)
             chb.CheckStateChanged.Add(docb)
+        
+        override this.DoOK(e) =
+            this.DialogResult <- DialogResult.OK
+            this.Close()
+        
+        member this.SetText(txt) = lbl.Text <- txt
+        member this.Ply = spn.Value
+    
+    type DlgYr() as this =
+        inherit Dialog()
+        let lbl =
+            new Label(Text = "Select Minimum Year ", AutoSize = false, 
+                      TextAlign = ContentAlignment.MiddleLeft, Width = 150)
+        let spn =
+            new NumericUpDown(Minimum = 1960.0m, Maximum = 2021.0m, Width = 50)
+        
+        do 
+            this.AddControl(lbl)
+            this.AddControl(spn)
+            spn.Value <- 2000.0m
         
         override this.DoOK(e) =
             this.DialogResult <- DialogResult.OK

@@ -34,6 +34,35 @@ module GrampusFile =
         if Directory.Exists(binfol) then Directory.Delete(binfol, true)
         File.Delete(nm)
     
+    let Copy(nm : string, copynm : string) =
+        let rec directoryCopy srcPath dstPath copySubDirs =
+            if not <| System.IO.Directory.Exists(srcPath) then 
+                let msg =
+                    System.String.Format
+                        ("Source directory does not exist or could not be found: {0}", 
+                         srcPath)
+                raise (System.IO.DirectoryNotFoundException(msg))
+            if not <| System.IO.Directory.Exists(dstPath) then 
+                System.IO.Directory.CreateDirectory(dstPath) |> ignore
+            let srcDir = new System.IO.DirectoryInfo(srcPath)
+            for file in srcDir.GetFiles() do
+                let temppath = System.IO.Path.Combine(dstPath, file.Name)
+                file.CopyTo(temppath, true) |> ignore
+            if copySubDirs then 
+                for subdir in srcDir.GetDirectories() do
+                    let dstSubDir = System.IO.Path.Combine(dstPath, subdir.Name)
+                    directoryCopy subdir.FullName dstSubDir copySubDirs
+        
+        let fol = Path.GetDirectoryName(nm)
+        let binfol =
+            Path.Combine(fol, Path.GetFileNameWithoutExtension(nm) + "_FILES")
+        let copyfol = Path.GetDirectoryName(copynm)
+        let copybinfol =
+            Path.Combine
+                (copyfol, Path.GetFileNameWithoutExtension(copynm) + "_FILES")
+        File.Copy(nm, copynm, true)
+        directoryCopy binfol copybinfol true
+    
     let DeleteTree(nm : string) =
         let fol = Path.GetDirectoryName(nm)
         let binfol =

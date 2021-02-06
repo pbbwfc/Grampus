@@ -478,6 +478,14 @@ module Grampus =
     let Delete(nm) = GrampusInternal.GrampusFile.Delete(nm)
     
     /// <summary>
+    /// Copies a Grampus File and related content given the full path and file name of source and target.
+    /// </summary>
+    /// <param name="nm">The full path and file name of the source.</param>
+    /// <param name="copynm">The full path and file name of the target.</param>
+    /// <returns>Nothing.</returns>
+    let Copy(nm, copynm) = GrampusInternal.GrampusFile.Copy(nm, copynm)
+    
+    /// <summary>
     /// Deletes the tree stored in a Base given the full path and file name and returns the new Grampus file.
     /// </summary>
     /// <param name="nm">The full path and file name.</param>

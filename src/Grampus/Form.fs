@@ -29,6 +29,7 @@ module Form =
                      "Grampus\\bases")
             Directory.CreateDirectory(pth) |> ignore
             pth
+        
         let tfol =
             let pth =
                 Path.Combine
@@ -37,7 +38,6 @@ module Form =
                      "Grampus\\trees")
             Directory.CreateDirectory(pth) |> ignore
             pth
-
         
         let bd = new PnlBoard(Dock = DockStyle.Fill)
         let pgn = new PnlPgn(Dock = DockStyle.Fill)
