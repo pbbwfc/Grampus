@@ -39,6 +39,18 @@ type Grampus() =
         Grampus.Delete(tstfn2)
         let ans = File.Exists(tstfn2)
         ans |> should equal false
+
+    [<TestMethod>]
+    member this.Copy() =
+        if File.Exists(tstfn2) then File.Delete(tstfn2)
+        let ans = File.Exists(tstfn2)
+        ans |> should equal false
+        Grampus.Copy(tstfn,tstfn2)
+        let ans = File.Exists(tstfn2)
+        ans |> should equal true
+        Grampus.Delete(tstfn2)
+        let ans = File.Exists(tstfn2)
+        ans |> should equal false
     
     [<TestMethod>]
     member this.DeleteTree() =
