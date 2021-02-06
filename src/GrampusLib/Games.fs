@@ -183,3 +183,24 @@ module Games =
                 (Path.Combine(tmpfol, "HEADERS"), Path.Combine(fol, "HEADERS"), 
                  true)
             msg
+    
+    let ExtractNewer (nm : string) (trgnm : string) (year : int) cb =
+        let trggmp = GrampusFile.New(trgnm)
+        let fol = Path.GetDirectoryName(nm)
+        let binfol =
+            Path.Combine(fol, Path.GetFileNameWithoutExtension(nm) + "_FILES")
+        let trgfol = Path.GetDirectoryName(trgnm)
+        let trgbinfol =
+            Path.Combine
+                (trgfol, Path.GetFileNameWithoutExtension(trgnm) + "_FILES")
+        let hdrs = Headers.Load(binfol)
+        let iea = Index.Load(binfol)
+        
+        let svgm i hdr =
+            if hdr.Year >= year then 
+                let gm = LoadGame binfol iea.[i] hdr
+                AppendGame trgbinfol gm
+            if i % 100 = 0 then cb (i)
+        hdrs |> Array.iteri svgm
+        let ntrggmp = { trggmp with BaseCreated = Some(DateTime.Now) }
+        GrampusFile.Save(trgnm, ntrggmp)

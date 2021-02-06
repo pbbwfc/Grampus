@@ -10,6 +10,8 @@ type Games() =
     let fol = @"D:\GitHub\Grampus\Tests\data\"
     let tstfol = @"D:\GitHub\Grampus\tests\data\simple-game_FILES"
     let tstfol2 = @"D:\GitHub\Grampus\tests\data\simple-game2_FILES"
+    let tstfn = @"D:\GitHub\Grampus\tests\data\simple-game.grampus"
+    let tstfn2 = @"D:\GitHub\Grampus\tests\data\simple-game2.grampus"
     
     [<TestMethod>]
     member this.Save() =
@@ -122,3 +124,15 @@ type Games() =
         let gm3 = Games.LoadGame tstfol2 indx3.[0] hdrs3.[0]
         gm3.MoveText.Length |> should equal 107
         if Directory.Exists(tstfol2) then Directory.Delete(tstfol2, true)
+    
+    [<TestMethod>]
+    member this.ExtractNewer() =
+        if File.Exists(tstfn2) then Grampus.Delete(tstfn2)
+        Games.ExtractNewer tstfn tstfn2 2020 (fun i -> ())
+        let nindx = Index.Load(tstfol2)
+        nindx.Length |> should equal 0
+        if File.Exists(tstfn2) then Grampus.Delete(tstfn2)
+        Games.ExtractNewer tstfn tstfn2 2000 (fun i -> ())
+        let nindx = Index.Load(tstfol2)
+        nindx.Length |> should equal 1
+        if File.Exists(tstfn2) then Grampus.Delete(tstfn2)

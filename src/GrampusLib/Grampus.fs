@@ -619,6 +619,17 @@ module Games =
     /// <param name="cb">Callback function to report on progress.</param>
     /// <returns>Messages from compaction process as a string type.</returns>
     let Compact fol cb = GrampusInternal.Games.Compact fol cb
+    
+    /// <summary>
+    /// Extracts newer games to the specified base.
+    /// </summary>
+    /// <param name="nm">The full path and name of the source base.</param>
+    /// <param name="trgnm">The full path and name of the target base.</param>
+    /// <param name="year">The first year to include.</param>
+    /// <param name="cb">Callback function to report on progress.</param>
+    /// <returns>Messages from compaction process as a string type.</returns>
+    let ExtractNewer nm trgnm year cb =
+        GrampusInternal.Games.ExtractNewer nm trgnm year cb
 
 /// <summary>
 /// Holds the functions related to a set of Games in PGN format.

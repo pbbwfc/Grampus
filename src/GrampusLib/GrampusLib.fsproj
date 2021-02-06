@@ -129,6 +129,7 @@
     <Compile Include="MoveUtil.fs" />
     <Compile Include="MoveEncoded.fs" />
     <Compile Include="GameEncoded.fs" />
+    <Compile Include="GrampusFile.fs" />
     <Compile Include="Games.fs" />
     <Compile Include="Eco.fs" />
     <Compile Include="RegParse.fs" />
@@ -137,7 +138,6 @@
     <Compile Include="Filters.fs" />
     <Compile Include="StaticTree.fs" />
     <Compile Include="Repertoire.fs" />
-    <Compile Include="GrampusFile.fs" />
     <Compile Include="Grampus.fs" />
   </ItemGroup>
 
