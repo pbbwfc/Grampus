@@ -66,7 +66,24 @@ module Form =
                                   ImageTransparentColor = Color.Magenta, 
                                   ShortcutKeys = (Keys.Control ||| Keys.W), 
                                   Text = "&Close", Enabled = false)
-        let tclosem = new ToolStripMenuItem(Text = "&Close", Enabled = false)
+        let tcloseb =
+            new ToolStripButton(Image = img "tcls.png", 
+                                ImageTransparentColor = Color.Magenta, 
+                                DisplayStyle = ToolStripItemDisplayStyle.Image, 
+                                Text = "&Close Tree", Enabled = false)
+        let tclosem =
+            new ToolStripMenuItem(Image = img "tcls.png", 
+                                  ImageTransparentColor = Color.Magenta, 
+                                  Text = "&Close", Enabled = false)
+        let newgm =
+            new ToolStripMenuItem(Text = "&New", Image = img "gnew.png", 
+                                  ImageTransparentColor = Color.Magenta, 
+                                  Enabled = false)
+        let newgb =
+            new ToolStripButton(Text = "&New Game", Image = img "gnew.png", 
+                                ImageTransparentColor = Color.Magenta, 
+                                DisplayStyle = ToolStripItemDisplayStyle.Image, 
+                                Enabled = false)
         let showwb =
             new ToolStripButton(Image = img "white.png", Enabled = false, 
                                 Text = "Show White")
@@ -95,6 +112,8 @@ module Form =
         let updateMenuStates() =
             closeb.Enabled <- gmtbs.TabCount > 1
             closem.Enabled <- gmtbs.TabCount > 1
+            newgb.Enabled <- gmtbs.TabCount > 1
+            newgm.Enabled <- gmtbs.TabCount > 1
             showwb.Enabled <- gmtbs.TabCount > 1
             showwm.Enabled <- gmtbs.TabCount > 1
             showbb.Enabled <- gmtbs.TabCount > 1
@@ -198,6 +217,7 @@ module Form =
                         let nbd = bd.GetBoard()
                         sts.UpdateStr(nbd)
                         tclosem.Enabled <- true
+                        tcloseb.Enabled <- true
                     SbUpdate("Ready")
                 elif ifn <> "" then 
                     //open database
@@ -213,6 +233,7 @@ module Form =
                         Recents.addtr ifn
                         let nbd = bd.GetBoard()
                         sts.UpdateStr(nbd)
+                        tcloseb.Enabled <- true
                         tclosem.Enabled <- true
                     SbUpdate("Ready")
             waitify (dofun)
@@ -246,6 +267,7 @@ module Form =
         let doclosetree() =
             SbUpdate("Closing tree")
             sts.Close()
+            tcloseb.Enabled <- false
             tclosem.Enabled <- false
             SbUpdate("Ready")
         
@@ -259,6 +281,8 @@ module Form =
             //clear pgn and set gnum to -1
             let nm = gmtbs.BaseName()
             pgn.NewGame(nm)
+            saveb.Enabled <- true
+            savem.Enabled <- true
             SbUpdate("Ready")
         
         let docopypgn() = Clipboard.SetText(pgn.GetPgn())
@@ -401,11 +425,24 @@ module Form =
             // close
             closeb.Click.Add(fun _ -> doclose())
             ts.Items.Add(closeb) |> ignore
+            // open tree
+            ts.Items.Add(new ToolStripSeparator()) |> ignore
+            let topenb =
+                new ToolStripButton(Image = img "tree.png", 
+                                    ImageTransparentColor = Color.Magenta, 
+                                    DisplayStyle = ToolStripItemDisplayStyle.Image, 
+                                    Text = "&Open Tree")
+            topenb.Click.Add(fun _ -> doopentree (""))
+            ts.Items.Add(topenb) |> ignore
+            tcloseb.Click.Add(fun _ -> doclosetree())
+            ts.Items.Add(tcloseb) |> ignore
+            // new
+            ts.Items.Add(new ToolStripSeparator()) |> ignore
+            newgb.Click.Add(fun _ -> donewg())
+            ts.Items.Add(newgb) |> ignore
             // save
             saveb.Click.Add(fun _ -> dosave())
             ts.Items.Add(saveb) |> ignore
-            let split = new ToolStripSeparator()
-            ts.Items.Add(split) |> ignore
             // flip
             let orib =
                 new ToolStripButton(Image = img "orient.png", 
@@ -414,7 +451,7 @@ module Form =
                                     Text = "&Flip")
             orib.Click.Add(fun _ -> bd.Orient())
             ts.Items.Add(orib) |> ignore
-            ts.Items.Add(split) |> ignore
+            ts.Items.Add(new ToolStripSeparator()) |> ignore
             //show white
             showwb.Click.Add(fun _ -> doshowwhite())
             ts.Items.Add(showwb) |> ignore
@@ -423,8 +460,8 @@ module Form =
             ts.Items.Add(showbb) |> ignore
         
         let createms() =
-            // file menu
-            let filem = new ToolStripMenuItem(Text = "&File")
+            // base menu
+            let basem = new ToolStripMenuItem(Text = "&Base")
             // file new
             let newm =
                 new ToolStripMenuItem(Image = img "new.png", 
@@ -432,7 +469,7 @@ module Form =
                                       ShortcutKeys = (Keys.Control ||| Keys.N), 
                                       Text = "&New")
             newm.Click.Add(fun _ -> donew())
-            filem.DropDownItems.Add(newm) |> ignore
+            basem.DropDownItems.Add(newm) |> ignore
             // file open
             let openm =
                 new ToolStripMenuItem(Image = img "opn.png", 
@@ -440,13 +477,13 @@ module Form =
                                       ShortcutKeys = (Keys.Control ||| Keys.O), 
                                       Text = "&Open")
             openm.Click.Add(fun _ -> doopen (""))
-            filem.DropDownItems.Add(openm) |> ignore
+            basem.DropDownItems.Add(openm) |> ignore
             // file close
             closem.Click.Add(fun _ -> doclose())
-            filem.DropDownItems.Add(closem) |> ignore
+            basem.DropDownItems.Add(closem) |> ignore
             // recents
             let recm = new ToolStripMenuItem(Text = "Recent")
-            filem.DropDownItems.Add(recm) |> ignore
+            basem.DropDownItems.Add(recm) |> ignore
             let addrec (rc : string) =
                 let mn =
                     new ToolStripMenuItem(Text = Path.GetFileNameWithoutExtension
@@ -462,12 +499,12 @@ module Form =
             // file exit
             let exitm = new ToolStripMenuItem(Text = "E&xit")
             exitm.Click.Add(fun _ -> doexit())
-            filem.DropDownItems.Add(exitm) |> ignore
+            basem.DropDownItems.Add(exitm) |> ignore
             // tree menu
             let treem = new ToolStripMenuItem(Text = "&Tree")
             // tree open
             let topenm =
-                new ToolStripMenuItem(Image = img "opn.png", 
+                new ToolStripMenuItem(Image = img "tree.png", 
                                       ImageTransparentColor = Color.Magenta, 
                                       ShortcutKeys = (Keys.Control ||| Keys.O), 
                                       Text = "&Open")
@@ -494,12 +531,19 @@ module Form =
             // game menu
             let gamem = new ToolStripMenuItem(Text = "&Game")
             // game new
-            let newgm = new ToolStripMenuItem(Text = "&New")
             newgm.Click.Add(fun _ -> donewg())
             gamem.DropDownItems.Add(newgm) |> ignore
             // game save
             savem.Click.Add(fun _ -> dosave())
             gamem.DropDownItems.Add(savem) |> ignore
+            // game new
+            let flipm =
+                new ToolStripMenuItem(Text = "&Flip Board", 
+                                      Image = img "orient.png", 
+                                      ImageTransparentColor = Color.Magenta)
+            flipm.Click.Add(fun _ -> bd.Orient())
+            gamem.DropDownItems.Add(flipm) |> ignore
+            gamem.DropDownItems.Add(new ToolStripSeparator()) |> ignore
             // game copy PGN
             let copypm = new ToolStripMenuItem(Text = "Copy PGN")
             copypm.Click.Add(fun _ -> docopypgn())
@@ -565,7 +609,7 @@ module Form =
                                                              UseShellExecute = true)) 
                 |> ignore)
             abtm.DropDownItems.Add(src) |> ignore
-            ms.Items.Add(filem) |> ignore
+            ms.Items.Add(basem) |> ignore
             ms.Items.Add(treem) |> ignore
             ms.Items.Add(gamem) |> ignore
             ms.Items.Add(repm) |> ignore
