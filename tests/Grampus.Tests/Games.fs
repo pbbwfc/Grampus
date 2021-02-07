@@ -167,3 +167,29 @@ type Games() =
         let nindx = Index.Load(tstfol2)
         nindx.Length |> should equal 0
         if File.Exists(tstfn2) then Grampus.Delete(tstfn2)
+    
+    [<TestMethod>]
+    member this.RemoveDuplicates() =
+        if Directory.Exists(tstfol2) then Directory.Delete(tstfol2, true)
+        Grampus.Copy(tstfn, tstfn2)
+        let indx = Index.Load tstfol
+        indx.[0].Offset |> should equal 0L
+        let hdrs = Headers.Load tstfol
+        let gm = Games.LoadGame tstfol indx.[0] hdrs.[0]
+        gm.MoveText.Length |> should equal 107
+        Games.AppendGame tstfol2 gm
+        let indx2 = Index.Load tstfol2
+        let hdrs2 = Headers.Load tstfol2
+        indx2.Length |> should equal 2
+        indx2.[1].Offset |> should equal 1676L
+        let gm2 = Games.LoadGame tstfol2 indx2.[0] hdrs2.[0]
+        gm2.MoveText.Length |> should equal 107
+        let msg = Games.RemoveDuplicates tstfol2 (fun i -> ())
+        msg |> should equal "Number of games permanently deleted is: 1"
+        let indx3 = Index.Load tstfol2
+        let hdrs3 = Headers.Load tstfol2
+        indx3.Length |> should equal 1
+        indx3.[0].Offset |> should equal 0L
+        let gm3 = Games.LoadGame tstfol2 indx3.[0] hdrs3.[0]
+        gm3.MoveText.Length |> should equal 107
+        if Directory.Exists(tstfol2) then Directory.Delete(tstfol2, true)

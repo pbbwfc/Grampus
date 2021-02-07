@@ -294,3 +294,43 @@ module Games =
         hdrs |> Array.iteri svgm
         let ntrggmp = { trggmp with BaseCreated = Some(DateTime.Now) }
         GrampusFile.Save(trgnm, ntrggmp)
+    
+    let RemoveDuplicates (fol : string) cb =
+        let ifn = Path.Combine(fol, "GAMES")
+        if not (File.Exists(ifn)) then 
+            "Process Terminated: No Games to process."
+        else 
+            //will marke duplicates as D and then call compact
+            //load all the current files
+            use reader =
+                new BinaryReader(File.Open
+                                     (ifn, FileMode.Open, FileAccess.Read, 
+                                      FileShare.Read))
+            let iea = Index.Load(fol)
+            let hdrs = Headers.Load(fol)
+            let numgames = iea.Length
+            
+            //find duplicates
+            let findgm i =
+                let hdr = hdrs.[i]
+                let skip = hdr.Deleted = "D" || i = numgames - 1
+                if not skip then 
+                    let w = hdr.White
+                    let b = hdr.Black
+                    let ie = iea.[i]
+                    let gm = LoadGame fol ie hdr
+                    let n = gm.MoveText.Length
+                    for j = i + 1 to numgames - 1 do
+                        let hdr2 = hdrs.[j]
+                        if w = hdr2.White && b = hdr2.Black then 
+                            let ie2 = iea.[j]
+                            let gm2 = LoadGame fol ie2 hdr2
+                            if n = gm2.MoveText.Length then 
+                                hdrs.[j] <- { hdr2 with Deleted = "D" }
+                    if i % 100 = 0 then cb (i)
+            [| 0..numgames - 1 |] |> Array.iter findgm
+            Headers.Save(fol, hdrs)
+            reader.Close()
+            //now compact
+            let msg = Compact fol cb
+            msg

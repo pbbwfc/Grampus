@@ -661,6 +661,14 @@ module Games =
     /// <returns>Nothing.</returns>
     let ExtractPlayer nm trgnm player cb =
         GrampusInternal.Games.ExtractPlayer nm trgnm player cb
+    
+    /// <summary>
+    /// Removes duplicate games for the base in the specified folder.
+    /// </summary>
+    /// <param name="fol">The folder in which the base is stored.</param>
+    /// <param name="cb">Callback function to report on progress.</param>
+    /// <returns>Messages from process as a string type.</returns>
+    let RemoveDuplicates fol cb = GrampusInternal.Games.RemoveDuplicates fol cb
 
 /// <summary>
 /// Holds the functions related to a set of Games in PGN format.
