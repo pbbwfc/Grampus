@@ -49,7 +49,6 @@ module Form =
         let saveb =
             new ToolStripButton(Image = img "sav.png", 
                                 ImageTransparentColor = Color.Magenta, 
-                                DisplayStyle = ToolStripItemDisplayStyle.Image, 
                                 Text = "&Save", Enabled = false)
         let savem =
             new ToolStripMenuItem(Image = img "sav.png", 
@@ -59,7 +58,6 @@ module Form =
         let closeb =
             new ToolStripButton(Image = img "cls.png", 
                                 ImageTransparentColor = Color.Magenta, 
-                                DisplayStyle = ToolStripItemDisplayStyle.Image, 
                                 Text = "&Close", Enabled = false)
         let closem =
             new ToolStripMenuItem(Image = img "cls.png", 
@@ -69,7 +67,6 @@ module Form =
         let tcloseb =
             new ToolStripButton(Image = img "tcls.png", 
                                 ImageTransparentColor = Color.Magenta, 
-                                DisplayStyle = ToolStripItemDisplayStyle.Image, 
                                 Text = "&Close Tree", Enabled = false)
         let tclosem =
             new ToolStripMenuItem(Image = img "tcls.png", 
@@ -82,7 +79,6 @@ module Form =
         let newgb =
             new ToolStripButton(Text = "&New Game", Image = img "gnew.png", 
                                 ImageTransparentColor = Color.Magenta, 
-                                DisplayStyle = ToolStripItemDisplayStyle.Image, 
                                 Enabled = false)
         let copypm =
             new ToolStripMenuItem(Text = "Copy PGN", Image = img "copyp.png", 
@@ -91,7 +87,6 @@ module Form =
         let copypb =
             new ToolStripButton(Text = "Copy PGN", Image = img "copyp.png", 
                                 ImageTransparentColor = Color.Magenta, 
-                                DisplayStyle = ToolStripItemDisplayStyle.Image, 
                                 Enabled = false)
         let pastepm =
             new ToolStripMenuItem(Text = "Paste PGN", Image = img "pastep.png", 
@@ -100,7 +95,49 @@ module Form =
         let pastepb =
             new ToolStripButton(Text = "Paste PGN", Image = img "pastep.png", 
                                 ImageTransparentColor = Color.Magenta, 
-                                DisplayStyle = ToolStripItemDisplayStyle.Image, 
+                                Enabled = false)
+        let edithm =
+            new ToolStripMenuItem(Text = "Edit Headers", Image = img "edith.png", 
+                                  ImageTransparentColor = Color.Magenta, 
+                                  Enabled = false)
+        let edithb =
+            new ToolStripButton(Text = "Edit Headers", Image = img "edith.png", 
+                                ImageTransparentColor = Color.Magenta, 
+                                Enabled = false)
+        let setem =
+            new ToolStripMenuItem(Text = "Set ECO", Image = img "sete.png", 
+                                  ImageTransparentColor = Color.Magenta, 
+                                  Enabled = false)
+        let seteb =
+            new ToolStripButton(Text = "Set ECO", Image = img "sete.png", 
+                                ImageTransparentColor = Color.Magenta, 
+                                Enabled = false)
+        let remcm =
+            new ToolStripMenuItem(Text = "Remove Comments", 
+                                  Image = img "remc.png", 
+                                  ImageTransparentColor = Color.Magenta, 
+                                  Enabled = false)
+        let remcb =
+            new ToolStripButton(Text = "Remove Comments", Image = img "remc.png", 
+                                ImageTransparentColor = Color.Magenta, 
+                                Enabled = false)
+        let remvm =
+            new ToolStripMenuItem(Text = "Remove Variations", 
+                                  Image = img "remv.png", 
+                                  ImageTransparentColor = Color.Magenta, 
+                                  Enabled = false)
+        let remvb =
+            new ToolStripButton(Text = "Remove Variations", 
+                                Image = img "remv.png", 
+                                ImageTransparentColor = Color.Magenta, 
+                                Enabled = false)
+        let remnm =
+            new ToolStripMenuItem(Text = "Remove NAGs", Image = img "remn.png", 
+                                  ImageTransparentColor = Color.Magenta, 
+                                  Enabled = false)
+        let remnb =
+            new ToolStripButton(Text = "Remove NAGs", Image = img "remn.png", 
+                                ImageTransparentColor = Color.Magenta, 
                                 Enabled = false)
         let showwb =
             new ToolStripButton(Image = img "white.png", Enabled = false, 
@@ -136,6 +173,16 @@ module Form =
             copypm.Enabled <- gmtbs.TabCount > 1
             pastepb.Enabled <- gmtbs.TabCount > 1
             pastepm.Enabled <- gmtbs.TabCount > 1
+            edithb.Enabled <- gmtbs.TabCount > 1
+            edithm.Enabled <- gmtbs.TabCount > 1
+            seteb.Enabled <- gmtbs.TabCount > 1
+            setem.Enabled <- gmtbs.TabCount > 1
+            remcb.Enabled <- gmtbs.TabCount > 1
+            remcm.Enabled <- gmtbs.TabCount > 1
+            remvb.Enabled <- gmtbs.TabCount > 1
+            remvm.Enabled <- gmtbs.TabCount > 1
+            remnb.Enabled <- gmtbs.TabCount > 1
+            remnm.Enabled <- gmtbs.TabCount > 1
             showwb.Enabled <- gmtbs.TabCount > 1
             showwm.Enabled <- gmtbs.TabCount > 1
             showbb.Enabled <- gmtbs.TabCount > 1
@@ -432,7 +479,6 @@ module Form =
             let newb =
                 new ToolStripButton(Image = img "new.png", 
                                     ImageTransparentColor = Color.Magenta, 
-                                    DisplayStyle = ToolStripItemDisplayStyle.Image, 
                                     Text = "&New")
             newb.Click.Add(fun _ -> donew())
             ts.Items.Add(newb) |> ignore
@@ -440,7 +486,6 @@ module Form =
             let openb =
                 new ToolStripButton(Image = img "opn.png", 
                                     ImageTransparentColor = Color.Magenta, 
-                                    DisplayStyle = ToolStripItemDisplayStyle.Image, 
                                     Text = "&Open")
             openb.Click.Add(fun _ -> doopen (""))
             ts.Items.Add(openb) |> ignore
@@ -452,7 +497,6 @@ module Form =
             let topenb =
                 new ToolStripButton(Image = img "tree.png", 
                                     ImageTransparentColor = Color.Magenta, 
-                                    DisplayStyle = ToolStripItemDisplayStyle.Image, 
                                     Text = "&Open Tree")
             topenb.Click.Add(fun _ -> doopentree (""))
             ts.Items.Add(topenb) |> ignore
@@ -469,7 +513,6 @@ module Form =
             let orib =
                 new ToolStripButton(Image = img "orient.png", 
                                     ImageTransparentColor = Color.Magenta, 
-                                    DisplayStyle = ToolStripItemDisplayStyle.Image, 
                                     Text = "&Flip")
             orib.Click.Add(fun _ -> bd.Orient())
             ts.Items.Add(orib) |> ignore
@@ -479,6 +522,22 @@ module Form =
             //paste pgn
             pastepb.Click.Add(fun _ -> dopastepgn())
             ts.Items.Add(pastepb) |> ignore
+            //edit headers
+            edithb.Click.Add(fun _ -> pgn.EditHeaders())
+            ts.Items.Add(edithb) |> ignore
+            //set ECO
+            seteb.Click.Add(fun _ -> pgn.SetECO())
+            ts.Items.Add(seteb) |> ignore
+            ts.Items.Add(new ToolStripSeparator()) |> ignore
+            // game remove comments
+            remcb.Click.Add(fun _ -> pgn.RemoveComments())
+            ts.Items.Add(remcb) |> ignore
+            // game remove variationss
+            remvb.Click.Add(fun _ -> pgn.RemoveRavs())
+            ts.Items.Add(remvb) |> ignore
+            // game remove nags
+            remnb.Click.Add(fun _ -> pgn.RemoveNags())
+            ts.Items.Add(remnb) |> ignore
             ts.Items.Add(new ToolStripSeparator()) |> ignore
             //show white
             showwb.Click.Add(fun _ -> doshowwhite())
@@ -579,24 +638,19 @@ module Form =
             pastepm.Click.Add(fun _ -> dopastepgn())
             gamem.DropDownItems.Add(pastepm) |> ignore
             // game edit headers
-            let edithm = new ToolStripMenuItem(Text = "Edit Headers")
             edithm.Click.Add(fun _ -> pgn.EditHeaders())
             gamem.DropDownItems.Add(edithm) |> ignore
             // game set eco
-            let setem = new ToolStripMenuItem(Text = "Set ECO")
             setem.Click.Add(fun _ -> pgn.SetECO())
             gamem.DropDownItems.Add(setem) |> ignore
             gamem.DropDownItems.Add(new ToolStripSeparator()) |> ignore
             // game remove comments
-            let remcm = new ToolStripMenuItem(Text = "Remove Comments")
             remcm.Click.Add(fun _ -> pgn.RemoveComments())
             gamem.DropDownItems.Add(remcm) |> ignore
             // game remove variationss
-            let remvm = new ToolStripMenuItem(Text = "Remove Variations")
             remvm.Click.Add(fun _ -> pgn.RemoveRavs())
             gamem.DropDownItems.Add(remvm) |> ignore
-            // game remove comments
-            let remnm = new ToolStripMenuItem(Text = "Remove NAGs")
+            // game remove nags
             remnm.Click.Add(fun _ -> pgn.RemoveNags())
             gamem.DropDownItems.Add(remnm) |> ignore
             // rep menu
