@@ -173,6 +173,14 @@ module Form =
             new ToolStripButton(Image = img "remn.png", 
                                 ImageTransparentColor = Color.Magenta, 
                                 Text = "Remove NAGs", Enabled = false)
+        let remdm =
+            new ToolStripMenuItem(Image = img "remd.png", 
+                                  ImageTransparentColor = Color.Magenta, 
+                                  Text = "Remove Duplicates", Enabled = false)
+        let remdb =
+            new ToolStripButton(Image = img "remd.png", 
+                                ImageTransparentColor = Color.Magenta, 
+                                Text = "Remove Duplicates", Enabled = false)
         let ecom =
             new ToolStripMenuItem(Image = img "sete.png", 
                                   ImageTransparentColor = Color.Magenta, 
@@ -212,6 +220,8 @@ module Form =
             remvb.Enabled <- gmp.IsSome
             remnm.Enabled <- gmp.IsSome
             remnb.Enabled <- gmp.IsSome
+            remdm.Enabled <- gmp.IsSome
+            remdb.Enabled <- gmp.IsSome
             ecom.Enabled <- gmp.IsSome
             ecob.Enabled <- gmp.IsSome
         
@@ -894,6 +904,22 @@ module Form =
             prg.Value <- 0
             this.Enabled <- true
         
+        let doremdup() =
+            this.Enabled <- false
+            let numgames = iea.Length
+            prg.Minimum <- 0
+            prg.Maximum <- numgames
+            prg.Value <- 0
+            st <- DateTime.Now
+            lbl.Text <- "Removing Duplicates for " + numgames.ToString() 
+                        + " games..."
+            let msg = Games.RemoveDuplicates binfol updprg
+            log ("Duplicates Removed")
+            logtb.Text <- logtb.Text + nl + "Messages from Process: " + nl + msg
+            lbl.Text <- "Ready"
+            prg.Value <- 0
+            this.Enabled <- true
+        
         let doeco() =
             this.Enabled <- false
             let numgames = iea.Length
@@ -943,6 +969,8 @@ module Form =
             remvb.Click.Add(fun _ -> doremrav())
             ts2.Items.Add(remnb) |> ignore
             remnb.Click.Add(fun _ -> doremnag())
+            ts2.Items.Add(remdb) |> ignore
+            remdb.Click.Add(fun _ -> doremdup())
             ts2.Items.Add(ecob) |> ignore
             ecob.Click.Add(fun _ -> doeco())
         
@@ -1035,6 +1063,8 @@ module Form =
             remvm.Click.Add(fun _ -> doremrav())
             tlm.DropDownItems.Add(remnm) |> ignore
             remnm.Click.Add(fun _ -> doremnag())
+            tlm.DropDownItems.Add(remdm) |> ignore
+            remdm.Click.Add(fun _ -> doremdup())
             tlm.DropDownItems.Add(ecom) |> ignore
             ms.Items.Add(tlm) |> ignore
             // about menu
