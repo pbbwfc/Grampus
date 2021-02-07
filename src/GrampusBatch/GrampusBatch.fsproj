@@ -21,6 +21,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+    <EmbeddedResource Include="Images\add.png" />
     <EmbeddedResource Include="Images\remd.png" />
     <EmbeddedResource Include="Images\cmp.png" />
     <EmbeddedResource Include="Images\sete.png" />

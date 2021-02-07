@@ -111,6 +111,14 @@ module Form =
             new ToolStripButton(Image = img "info.png", 
                                 ImageTransparentColor = Color.Magenta, 
                                 Text = "&Info", Enabled = false)
+        let addm =
+            new ToolStripMenuItem(Image = img "add.png", 
+                                  ImageTransparentColor = Color.Magenta, 
+                                  Text = "&Add Base", Enabled = false)
+        let addb =
+            new ToolStripButton(Image = img "add.png", 
+                                ImageTransparentColor = Color.Magenta, 
+                                Text = "&Add Base", Enabled = false)
         let crm =
             new ToolStripMenuItem(Image = img "tree.png", 
                                   ImageTransparentColor = Color.Magenta, 
@@ -201,6 +209,8 @@ module Form =
             cpyb.Enabled <- gmp.IsSome
             infm.Enabled <- gmp.IsSome
             infb.Enabled <- gmp.IsSome
+            addm.Enabled <- gmp.IsSome
+            addb.Enabled <- gmp.IsSome
             crm.Enabled <- gmp.IsSome
             deltm.Enabled <- gmp.IsSome
             deltfm.Enabled <- gmp.IsSome
@@ -327,6 +337,43 @@ module Form =
                     + " on " + fdt.Value.ToLongDateString() + " to ply " 
                     + gmp.Value.FiltersPly.ToString()
             logtb.Text <- logtb.Text + nl + ftxt
+        
+        let doadd (e) =
+            let ndlg =
+                new SaveFileDialog(Title = "Add Base", 
+                                   Filter = "Grampus databases(*.grampus)|*.grampus", 
+                                   AddExtension = true, OverwritePrompt = false, 
+                                   InitialDirectory = bfol)
+            if ndlg.ShowDialog() = DialogResult.OK then 
+                this.Enabled <- false
+                let addgmpfile = ndlg.FileName
+                let addbinfol =
+                    Path.Combine
+                        (Path.GetDirectoryName(addgmpfile), 
+                         Path.GetFileNameWithoutExtension(addgmpfile) + "_FILES")
+                let addiea = Index.Load addbinfol
+                let addhdra = Headers.Load addbinfol
+                let numgames = addiea.Length
+                prg.Minimum <- 0
+                prg.Maximum <- numgames
+                st <- DateTime.Now
+                lbl.Text <- "Getting " + numgames.ToString() + " games..."
+                Application.DoEvents()
+                let getgm i =
+                    let ie = addiea.[i]
+                    let hdr = addhdra.[i]
+                    if i % 100 = 0 then updprg (i)
+                    Games.LoadGame addbinfol ie hdr
+                
+                let gms = [ 0..numgames - 1 ] |> Seq.map getgm
+                log ("Games Accessed")
+                lbl.Text <- "Adding " + numgames.ToString() + " games..."
+                Application.DoEvents()
+                Games.Add binfol gms updprg
+                log ("Games Added")
+                lbl.Text <- "Ready"
+                this.Enabled <- true
+                prg.Value <- 0
         
         let docreate (e) =
             let totaldict =
@@ -954,6 +1001,8 @@ module Form =
             cpyb.Click.Add(docopy)
             ts.Items.Add(cpyb) |> ignore
             infb.Click.Add(doinfo)
+            addb.Click.Add(doadd)
+            ts.Items.Add(addb) |> ignore
             ts.Items.Add(infb) |> ignore
             ts.Items.Add(new ToolStripSeparator()) |> ignore
             ts.Items.Add(crbtn) |> ignore
@@ -999,6 +1048,8 @@ module Form =
             cpym.Click.Add(docopy)
             bm.DropDownItems.Add(infm) |> ignore
             infm.Click.Add(doinfo)
+            bm.DropDownItems.Add(addm) |> ignore
+            addm.Click.Add(doadd)
             // recents
             let recm = new ToolStripMenuItem(Text = "Recent")
             bm.DropDownItems.Add(recm) |> ignore
