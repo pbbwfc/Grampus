@@ -31,12 +31,14 @@ type private MvTrees = System.Collections.Generic.Dictionary<string, TreeData>
 module Form =
     let img nm =
         let thisExe = System.Reflection.Assembly.GetExecutingAssembly()
-        let file = thisExe.GetManifestResourceStream("GrampusBatch." + nm)
+        let file =
+            thisExe.GetManifestResourceStream("GrampusBatch.Images." + nm)
         Image.FromStream(file)
     
     let ico nm =
         let thisExe = System.Reflection.Assembly.GetExecutingAssembly()
-        let file = thisExe.GetManifestResourceStream("GrampusBatch." + nm)
+        let file =
+            thisExe.GetManifestResourceStream("GrampusBatch.Images." + nm)
         new Icon(file)
     
     type FrmMain() as this =
@@ -81,17 +83,23 @@ module Form =
         let nl = Environment.NewLine
         let el() =
             (float ((nd - st).TotalMilliseconds) / 1000.0).ToString("0.##")
-        let crbtn = new ToolStripButton(Text = "Create Tree", Enabled = false)
-        let crfbtn =
-            new ToolStripButton(Text = "Create Filters", Enabled = false)
-        let opnm = new ToolStripMenuItem(Text = "&Open")
-        let clsm = new ToolStripMenuItem(Text = "&Close", Enabled = false)
+        let clsm =
+            new ToolStripMenuItem(Image = img "cls.png", 
+                                  ImageTransparentColor = Color.Magenta, 
+                                  Text = "&Close", Enabled = false)
+        let clsb =
+            new ToolStripButton(Image = img "cls.png", 
+                                ImageTransparentColor = Color.Magenta, 
+                                Text = "&Close", Enabled = false)
         let delm = new ToolStripMenuItem(Text = "&Delete", Enabled = false)
         let cpym = new ToolStripMenuItem(Text = "&Copy", Enabled = false)
         let infm = new ToolStripMenuItem(Text = "&Info", Enabled = false)
         let crm = new ToolStripMenuItem(Text = "&Create", Enabled = false)
+        let crbtn = new ToolStripButton(Text = "Create Tree", Enabled = false)
         let deltm = new ToolStripMenuItem(Text = "&Delete", Enabled = false)
         let crfm = new ToolStripMenuItem(Text = "&Create", Enabled = false)
+        let crfbtn =
+            new ToolStripButton(Text = "Create Filters", Enabled = false)
         let deltfm = new ToolStripMenuItem(Text = "&Delete", Enabled = false)
         let deltgfm =
             new ToolStripMenuItem(Text = "Delete &Games and Filters", 
@@ -118,6 +126,7 @@ module Form =
             crbtn.Enabled <- gmp.IsSome
             crfbtn.Enabled <- gmp.IsSome
             clsm.Enabled <- gmp.IsSome
+            clsb.Enabled <- gmp.IsSome
             delm.Enabled <- gmp.IsSome
             cpym.Enabled <- gmp.IsSome
             infm.Enabled <- gmp.IsSome
@@ -832,6 +841,22 @@ module Form =
             this.Enabled <- true
         
         let createts() =
+            let newb =
+                new ToolStripButton(Image = img "new.png", 
+                                    ImageTransparentColor = Color.Magenta, 
+                                    Text = "&New")
+            newb.Click.Add(fun _ -> donew())
+            ts.Items.Add(newb) |> ignore
+            // open
+            let opnb =
+                new ToolStripButton(Image = img "opn.png", 
+                                    ImageTransparentColor = Color.Magenta, 
+                                    Text = "&Open")
+            opnb.Click.Add(fun _ -> doopen (""))
+            ts.Items.Add(opnb) |> ignore
+            // close
+            clsb.Click.Add(fun _ -> doclose())
+            ts.Items.Add(clsb) |> ignore
             ts.Items.Add(crbtn) |> ignore
             ts.Items.Add(crfbtn) |> ignore
             crbtn.Click.Add(docreate)
@@ -840,9 +865,18 @@ module Form =
         let createms() =
             //base menu
             let bm = new ToolStripMenuItem(Text = "&Base")
-            let newm = new ToolStripMenuItem(Text = "&New")
+            let newm =
+                new ToolStripMenuItem(Image = img "new.png", 
+                                      ImageTransparentColor = Color.Magenta, 
+                                      ShortcutKeys = (Keys.Control ||| Keys.N), 
+                                      Text = "&New")
             newm.Click.Add(fun _ -> donew())
             bm.DropDownItems.Add(newm) |> ignore
+            let opnm =
+                new ToolStripMenuItem(Image = img "opn.png", 
+                                      ImageTransparentColor = Color.Magenta, 
+                                      ShortcutKeys = (Keys.Control ||| Keys.O), 
+                                      Text = "&Open")
             bm.DropDownItems.Add(opnm) |> ignore
             opnm.Click.Add(fun _ -> doopen (""))
             bm.DropDownItems.Add(clsm) |> ignore

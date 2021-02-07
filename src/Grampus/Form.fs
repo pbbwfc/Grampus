@@ -62,7 +62,6 @@ module Form =
         let closem =
             new ToolStripMenuItem(Image = img "cls.png", 
                                   ImageTransparentColor = Color.Magenta, 
-                                  ShortcutKeys = (Keys.Control ||| Keys.W), 
                                   Text = "&Close", Enabled = false)
         let tcloseb =
             new ToolStripButton(Image = img "tcls.png", 
