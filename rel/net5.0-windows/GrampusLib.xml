@@ -405,6 +405,14 @@ Get an encoded move from a SAN Move(move) such as Nf3 for this Board(bd)
  Holds the functions related to a set of Games in PGN format.
  </summary>
 </member>
+<member name="M:Grampus.Games.RemoveDuplicates(System.String,Microsoft.FSharp.Core.FSharpFunc{System.Int32,Microsoft.FSharp.Core.Unit})">
+ <summary>
+ Removes duplicate games for the base in the specified folder.
+ </summary>
+ <param name="fol">The folder in which the base is stored.</param>
+ <param name="cb">Callback function to report on progress.</param>
+ <returns>Messages from process as a string type.</returns>
+</member>
 <member name="M:Grampus.Games.ExtractPlayer(System.String,System.String,System.String,Microsoft.FSharp.Core.FSharpFunc{System.Int32,Microsoft.FSharp.Core.Unit})">
  <summary>
  Extracts player's games to the specified base.
