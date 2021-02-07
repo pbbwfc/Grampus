@@ -234,6 +234,11 @@ Get an encoded move from a SAN Move(move) such as Nf3 for this Board(bd)
 
  <exclude />
 </member>
+<member name="T:GrampusInternal.GrampusFile">
+ <summary>This type is for implementation purposes.</summary>
+
+ <exclude />
+</member>
 <member name="T:GrampusInternal.Games">
  <summary>This type is for implementation purposes.</summary>
 
@@ -270,11 +275,6 @@ Get an encoded move from a SAN Move(move) such as Nf3 for this Board(bd)
  <exclude />
 </member>
 <member name="T:GrampusInternal.Repertoire">
- <summary>This type is for implementation purposes.</summary>
-
- <exclude />
-</member>
-<member name="T:GrampusInternal.GrampusFile">
  <summary>This type is for implementation purposes.</summary>
 
  <exclude />
@@ -404,6 +404,45 @@ Get an encoded move from a SAN Move(move) such as Nf3 for this Board(bd)
  <summary>
  Holds the functions related to a set of Games in PGN format.
  </summary>
+</member>
+<member name="M:Grampus.Games.ExtractPlayer(System.String,System.String,System.String,Microsoft.FSharp.Core.FSharpFunc{System.Int32,Microsoft.FSharp.Core.Unit})">
+ <summary>
+ Extracts player's games to the specified base.
+ </summary>
+ <param name="nm">The full path and name of the source base.</param>
+ <param name="trgnm">The full path and name of the target base.</param>
+ <param name="player">The name of the player to include.</param>
+ <param name="cb">Callback function to report on progress.</param>
+ <returns>Nothing.</returns>
+</member>
+<member name="M:Grampus.Games.GetPossNames(System.String,System.String)">
+ <summary>
+ Gets possible names of Players given part of the name string.
+ </summary>
+ <param name="fol">The folder in which the base is stored.</param>
+ <param name="part">The string containing part of the name.</param>
+ <param name="cb">Callback function to report on progress.</param>
+ <returns>Possible names as a string array type.</returns>
+</member>
+<member name="M:Grampus.Games.ExtractStronger(System.String,System.String,System.Int32,Microsoft.FSharp.Core.FSharpFunc{System.Int32,Microsoft.FSharp.Core.Unit})">
+ <summary>
+ Extracts stronger games to the specified base.
+ </summary>
+ <param name="nm">The full path and name of the source base.</param>
+ <param name="trgnm">The full path and name of the target base.</param>
+ <param name="grade">The minimum grade to include.</param>
+ <param name="cb">Callback function to report on progress.</param>
+ <returns>Nothing.</returns>
+</member>
+<member name="M:Grampus.Games.ExtractNewer(System.String,System.String,System.Int32,Microsoft.FSharp.Core.FSharpFunc{System.Int32,Microsoft.FSharp.Core.Unit})">
+ <summary>
+ Extracts newer games to the specified base.
+ </summary>
+ <param name="nm">The full path and name of the source base.</param>
+ <param name="trgnm">The full path and name of the target base.</param>
+ <param name="year">The first year to include.</param>
+ <param name="cb">Callback function to report on progress.</param>
+ <returns>Nothing.</returns>
 </member>
 <member name="M:Grampus.Games.Compact(System.String,Microsoft.FSharp.Core.FSharpFunc{System.Int32,Microsoft.FSharp.Core.Unit})">
  <summary>
@@ -542,6 +581,14 @@ Get an encoded move from a SAN Move(move) such as Nf3 for this Board(bd)
  </summary>
  <param name="nm">The full path and file name.</param>
  <returns>The contents of the new file as a GrampusData type.</returns>
+</member>
+<member name="M:Grampus.Grampus.Copy(System.String,System.String)">
+ <summary>
+ Copies a Grampus File and related content given the full path and file name of source and target.
+ </summary>
+ <param name="nm">The full path and file name of the source.</param>
+ <param name="copynm">The full path and file name of the target.</param>
+ <returns>Nothing.</returns>
 </member>
 <member name="M:Grampus.Grampus.Delete(System.String)">
  <summary>

@@ -23,7 +23,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-    <EmbeddedResource Include="grampus.ico">
+    <EmbeddedResource Include="Images\grampus.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Images\remc.png" />

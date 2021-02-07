@@ -21,15 +21,14 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+    <EmbeddedResource Include="Images\info.png" />
     <EmbeddedResource Include="Images\batch.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Images\cls.png" />
     <EmbeddedResource Include="Images\copyp.png" />
-    <EmbeddedResource Include="Images\edith.png" />
     <EmbeddedResource Include="Images\new.png" />
     <EmbeddedResource Include="Images\opn.png" />
-    <EmbeddedResource Include="Images\sav.png" />
     <EmbeddedResource Include="Images\tree.png" />
     <Compile Include="Recents.fs" />
     <Compile Include="Dialogs.fs" />

@@ -3,7 +3,7 @@
 
 #define MyAppName "Grampus"
 #define MyAppName2 "GrampusBatch"
-#define MyAppVersion "0.03"
+#define MyAppVersion "0.04"
 #define MyAppPublisher "pbbwfc"
 #define MyAppURL "https://pbbwfc.github.io/Grampus/"
 #define MyAppExeName "Grampus.exe"
@@ -28,7 +28,7 @@ DefaultGroupName={#MyAppName}
 LicenseFile=D:\GitHub\Grampus\License.txt
 OutputDir=D:\GitHub\Grampus\inno\output
 OutputBaseFilename=setup
-SetupIconFile=D:\GitHub\Grampus\src\Grampus\grampus.ico
+SetupIconFile=D:\GitHub\Grampus\src\Grampus\Images\grampus.ico
 Compression=lzma
 SolidCompression=yes
 
@@ -48,8 +48,8 @@ Source: "trees\*"; DestDir: "{userdocs}\Grampus\trees"; Flags: ignoreversion rec
 
 [Icons]
 Name: "{group}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}" ; IconFilename: "{app}\{#MyAppIcoName}"
-Name: "{commondesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; IconFilename: "{app}\{#MyAppIcoName}"; Tasks: desktopicon
-Name: "{commondesktop}\{#MyAppName2}"; Filename: "{app}\{#MyAppExeName2}"; IconFilename: "{app}\{#MyAppIcoName2}"; Tasks: desktopicon
+Name: "{commondesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; IconFilename: "{app}\Images\{#MyAppIcoName}"; Tasks: desktopicon
+Name: "{commondesktop}\{#MyAppName2}"; Filename: "{app}\{#MyAppExeName2}"; IconFilename: "{app}\Images\{#MyAppIcoName2}"; Tasks: desktopicon
 
 [Run]
 Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent

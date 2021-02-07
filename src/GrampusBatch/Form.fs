@@ -92,10 +92,30 @@ module Form =
                                 ImageTransparentColor = Color.Magenta, 
                                 Text = "&Close", Enabled = false)
         let delm = new ToolStripMenuItem(Text = "&Delete", Enabled = false)
-        let cpym = new ToolStripMenuItem(Text = "&Copy", Enabled = false)
-        let infm = new ToolStripMenuItem(Text = "&Info", Enabled = false)
-        let crm = new ToolStripMenuItem(Text = "&Create", Enabled = false)
-        let crbtn = new ToolStripButton(Text = "Create Tree", Enabled = false)
+        let cpym =
+            new ToolStripMenuItem(Image = img "copyp.png", 
+                                  ImageTransparentColor = Color.Magenta, 
+                                  Text = "Copy", Enabled = false)
+        let cpyb =
+            new ToolStripButton(Image = img "copyp.png", 
+                                ImageTransparentColor = Color.Magenta, 
+                                Text = "Copy", Enabled = false)
+        let infm =
+            new ToolStripMenuItem(Image = img "info.png", 
+                                  ImageTransparentColor = Color.Magenta, 
+                                  Text = "&Info", Enabled = false)
+        let infb =
+            new ToolStripButton(Image = img "info.png", 
+                                ImageTransparentColor = Color.Magenta, 
+                                Text = "&Info", Enabled = false)
+        let crm =
+            new ToolStripMenuItem(Image = img "tree.png", 
+                                  ImageTransparentColor = Color.Magenta, 
+                                  Text = "&Create", Enabled = false)
+        let crbtn =
+            new ToolStripButton(Image = img "tree.png", 
+                                ImageTransparentColor = Color.Magenta, 
+                                Text = "&Create Tree", Enabled = false)
         let deltm = new ToolStripMenuItem(Text = "&Delete", Enabled = false)
         let crfm = new ToolStripMenuItem(Text = "&Create", Enabled = false)
         let crfbtn =
@@ -129,7 +149,9 @@ module Form =
             clsb.Enabled <- gmp.IsSome
             delm.Enabled <- gmp.IsSome
             cpym.Enabled <- gmp.IsSome
+            cpyb.Enabled <- gmp.IsSome
             infm.Enabled <- gmp.IsSome
+            infb.Enabled <- gmp.IsSome
             crm.Enabled <- gmp.IsSome
             deltm.Enabled <- gmp.IsSome
             deltfm.Enabled <- gmp.IsSome
@@ -857,6 +879,11 @@ module Form =
             // close
             clsb.Click.Add(fun _ -> doclose())
             ts.Items.Add(clsb) |> ignore
+            cpyb.Click.Add(docopy)
+            ts.Items.Add(cpyb) |> ignore
+            infb.Click.Add(doinfo)
+            ts.Items.Add(infb) |> ignore
+            ts.Items.Add(new ToolStripSeparator()) |> ignore
             ts.Items.Add(crbtn) |> ignore
             ts.Items.Add(crfbtn) |> ignore
             crbtn.Click.Add(docreate)

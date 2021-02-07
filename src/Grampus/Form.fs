@@ -14,7 +14,7 @@ module Form =
     
     let ico nm =
         let thisExe = System.Reflection.Assembly.GetExecutingAssembly()
-        let file = thisExe.GetManifestResourceStream("Grampus." + nm)
+        let file = thisExe.GetManifestResourceStream("Grampus.Images." + nm)
         new Icon(file)
     
     type FrmMain() as this =
