@@ -84,6 +84,24 @@ module Form =
                                 ImageTransparentColor = Color.Magenta, 
                                 DisplayStyle = ToolStripItemDisplayStyle.Image, 
                                 Enabled = false)
+        let copypm =
+            new ToolStripMenuItem(Text = "Copy PGN", Image = img "copyp.png", 
+                                  ImageTransparentColor = Color.Magenta, 
+                                  Enabled = false)
+        let copypb =
+            new ToolStripButton(Text = "Copy PGN", Image = img "copyp.png", 
+                                ImageTransparentColor = Color.Magenta, 
+                                DisplayStyle = ToolStripItemDisplayStyle.Image, 
+                                Enabled = false)
+        let pastepm =
+            new ToolStripMenuItem(Text = "Paste PGN", Image = img "pastep.png", 
+                                  ImageTransparentColor = Color.Magenta, 
+                                  Enabled = false)
+        let pastepb =
+            new ToolStripButton(Text = "Paste PGN", Image = img "pastep.png", 
+                                ImageTransparentColor = Color.Magenta, 
+                                DisplayStyle = ToolStripItemDisplayStyle.Image, 
+                                Enabled = false)
         let showwb =
             new ToolStripButton(Image = img "white.png", Enabled = false, 
                                 Text = "Show White")
@@ -114,6 +132,10 @@ module Form =
             closem.Enabled <- gmtbs.TabCount > 1
             newgb.Enabled <- gmtbs.TabCount > 1
             newgm.Enabled <- gmtbs.TabCount > 1
+            copypb.Enabled <- gmtbs.TabCount > 1
+            copypm.Enabled <- gmtbs.TabCount > 1
+            pastepb.Enabled <- gmtbs.TabCount > 1
+            pastepm.Enabled <- gmtbs.TabCount > 1
             showwb.Enabled <- gmtbs.TabCount > 1
             showwm.Enabled <- gmtbs.TabCount > 1
             showbb.Enabled <- gmtbs.TabCount > 1
@@ -451,6 +473,12 @@ module Form =
                                     Text = "&Flip")
             orib.Click.Add(fun _ -> bd.Orient())
             ts.Items.Add(orib) |> ignore
+            //copy pgn
+            copypb.Click.Add(fun _ -> docopypgn())
+            ts.Items.Add(copypb) |> ignore
+            //paste pgn
+            pastepb.Click.Add(fun _ -> dopastepgn())
+            ts.Items.Add(pastepb) |> ignore
             ts.Items.Add(new ToolStripSeparator()) |> ignore
             //show white
             showwb.Click.Add(fun _ -> doshowwhite())
@@ -545,11 +573,9 @@ module Form =
             gamem.DropDownItems.Add(flipm) |> ignore
             gamem.DropDownItems.Add(new ToolStripSeparator()) |> ignore
             // game copy PGN
-            let copypm = new ToolStripMenuItem(Text = "Copy PGN")
             copypm.Click.Add(fun _ -> docopypgn())
             gamem.DropDownItems.Add(copypm) |> ignore
             // game copy PGN
-            let pastepm = new ToolStripMenuItem(Text = "Paste PGN")
             pastepm.Click.Add(fun _ -> dopastepgn())
             gamem.DropDownItems.Add(pastepm) |> ignore
             // game edit headers

@@ -26,6 +26,8 @@
     <EmbeddedResource Include="grampus.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
+    <EmbeddedResource Include="Images\pastep.png" />
+    <EmbeddedResource Include="Images\copyp.png" />
     <EmbeddedResource Include="Images\gnew.png" />
     <EmbeddedResource Include="Images\tcls.png" />
     <EmbeddedResource Include="Images\tree.png" />
