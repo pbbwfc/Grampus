@@ -42,7 +42,7 @@ module Form =
         new Icon(file)
     
     type FrmMain() as this =
-        inherit Form(Text = "Grampus Batch", Icon = ico "batch.ico", Width = 800, 
+        inherit Form(Text = "Grampus Batch", Icon = ico "batch.ico", Width = 700, 
                      Height = 700, FormBorderStyle = FormBorderStyle.FixedDialog, 
                      MaximizeBox = false, 
                      StartPosition = FormStartPosition.CenterScreen)
@@ -68,6 +68,9 @@ module Form =
         let mutable ply = 0
         let ms = new MenuStrip()
         let ts =
+            new ToolStrip(LayoutStyle = ToolStripLayoutStyle.HorizontalStackWithOverflow, 
+                          Dock = DockStyle.Top)
+        let ts2 =
             new ToolStrip(LayoutStyle = ToolStripLayoutStyle.HorizontalStackWithOverflow, 
                           Dock = DockStyle.Fill)
         let logtb =
@@ -117,9 +120,14 @@ module Form =
                                 ImageTransparentColor = Color.Magenta, 
                                 Text = "&Create Tree", Enabled = false)
         let deltm = new ToolStripMenuItem(Text = "&Delete", Enabled = false)
-        let crfm = new ToolStripMenuItem(Text = "&Create", Enabled = false)
+        let crfm =
+            new ToolStripMenuItem(Image = img "crf.png", 
+                                  ImageTransparentColor = Color.Magenta, 
+                                  Text = "&Create", Enabled = false)
         let crfbtn =
-            new ToolStripButton(Text = "Create Filters", Enabled = false)
+            new ToolStripButton(Image = img "crf.png", 
+                                ImageTransparentColor = Color.Magenta, 
+                                Text = "Create Filters", Enabled = false)
         let deltfm = new ToolStripMenuItem(Text = "&Delete", Enabled = false)
         let deltgfm =
             new ToolStripMenuItem(Text = "Delete &Games and Filters", 
@@ -133,13 +141,46 @@ module Form =
             new ToolStripMenuItem(Text = "Add PGN file", Enabled = false)
         let topm =
             new ToolStripMenuItem(Text = "Export to PGN file", Enabled = false)
-        let cmpm = new ToolStripMenuItem(Text = "Compact Base", Enabled = false)
+        let cmpm =
+            new ToolStripMenuItem(Image = img "cmp.png", 
+                                  ImageTransparentColor = Color.Magenta, 
+                                  Text = "Compact Base", Enabled = false)
+        let cmpb =
+            new ToolStripButton(Image = img "cmp.png", 
+                                ImageTransparentColor = Color.Magenta, 
+                                Text = "Compact Base", Enabled = false)
         let remcm =
-            new ToolStripMenuItem(Text = "Remove Comments", Enabled = false)
+            new ToolStripMenuItem(Image = img "remc.png", 
+                                  ImageTransparentColor = Color.Magenta, 
+                                  Text = "Remove Comments", Enabled = false)
+        let remcb =
+            new ToolStripButton(Image = img "remc.png", 
+                                ImageTransparentColor = Color.Magenta, 
+                                Text = "Remove Comments", Enabled = false)
         let remvm =
-            new ToolStripMenuItem(Text = "Remove Variations", Enabled = false)
-        let remnm = new ToolStripMenuItem(Text = "Remove NAGs", Enabled = false)
-        let ecom = new ToolStripMenuItem(Text = "Set ECOs", Enabled = false)
+            new ToolStripMenuItem(Image = img "remv.png", 
+                                  ImageTransparentColor = Color.Magenta, 
+                                  Text = "Remove Variations", Enabled = false)
+        let remvb =
+            new ToolStripButton(Image = img "remv.png", 
+                                ImageTransparentColor = Color.Magenta, 
+                                Text = "Remove Variations", Enabled = false)
+        let remnm =
+            new ToolStripMenuItem(Image = img "remn.png", 
+                                  ImageTransparentColor = Color.Magenta, 
+                                  Text = "Remove NAGs", Enabled = false)
+        let remnb =
+            new ToolStripButton(Image = img "remn.png", 
+                                ImageTransparentColor = Color.Magenta, 
+                                Text = "Remove NAGs", Enabled = false)
+        let ecom =
+            new ToolStripMenuItem(Image = img "sete.png", 
+                                  ImageTransparentColor = Color.Magenta, 
+                                  Text = "Set ECOs", Enabled = false)
+        let ecob =
+            new ToolStripButton(Image = img "sete.png", 
+                                ImageTransparentColor = Color.Magenta, 
+                                Text = "Set ECOs", Enabled = false)
         let updateTitle() = this.Text <- "Grampus Batch - " + gmpfile
         
         let updateMenuStates() =
@@ -164,10 +205,15 @@ module Form =
             addpm.Enabled <- gmp.IsSome
             topm.Enabled <- gmp.IsSome
             cmpm.Enabled <- gmp.IsSome
+            cmpb.Enabled <- gmp.IsSome
             remcm.Enabled <- gmp.IsSome
+            remcb.Enabled <- gmp.IsSome
             remvm.Enabled <- gmp.IsSome
+            remvb.Enabled <- gmp.IsSome
             remnm.Enabled <- gmp.IsSome
+            remnb.Enabled <- gmp.IsSome
             ecom.Enabled <- gmp.IsSome
+            ecob.Enabled <- gmp.IsSome
         
         let log (msg) =
             nd <- DateTime.Now
@@ -885,9 +931,20 @@ module Form =
             ts.Items.Add(infb) |> ignore
             ts.Items.Add(new ToolStripSeparator()) |> ignore
             ts.Items.Add(crbtn) |> ignore
-            ts.Items.Add(crfbtn) |> ignore
             crbtn.Click.Add(docreate)
+            ts.Items.Add(crfbtn) |> ignore
             crfbtn.Click.Add(docreatef)
+            // second toolbar
+            ts2.Items.Add(cmpb) |> ignore
+            cmpb.Click.Add(fun _ -> docompact())
+            ts2.Items.Add(remcb) |> ignore
+            remcb.Click.Add(fun _ -> doremcomm())
+            ts2.Items.Add(remvb) |> ignore
+            remvb.Click.Add(fun _ -> doremrav())
+            ts2.Items.Add(remnb) |> ignore
+            remnb.Click.Add(fun _ -> doremnag())
+            ts2.Items.Add(ecob) |> ignore
+            ecob.Click.Add(fun _ -> doeco())
         
         let createms() =
             //base menu
@@ -1005,7 +1062,7 @@ module Form =
                       Height = 30)
         let tppnl =
             new Panel(Dock = DockStyle.Top, BorderStyle = BorderStyle.Fixed3D, 
-                      Height = 60)
+                      Height = 90)
         let logpnl =
             new Panel(Dock = DockStyle.Fill, BorderStyle = BorderStyle.Fixed3D)
         do 
@@ -1018,6 +1075,7 @@ module Form =
             this.Controls.Add(btmpnl)
             logpnl.Controls.Add(logtb)
             this.Controls.Add(logpnl)
+            tppnl.Controls.Add(ts2)
             tppnl.Controls.Add(ts)
             tppnl.Controls.Add(ms)
             this.Controls.Add(tppnl)
