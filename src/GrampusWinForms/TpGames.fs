@@ -8,7 +8,7 @@ open Grampus
 [<AutoOpen>]
 module TpGamesLib =
     type TpGames() as gmstp =
-        inherit TabPage(Width = 800, Height = 250, Text = "Clipbase")
+        inherit TabPage(Width = 800, Height = 250, Text = "")
         let gms =
             new DataGridView(Width = 800, Height = 250, 
                              AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCellsExceptHeaders, 
@@ -22,7 +22,7 @@ module TpGamesLib =
         let mutable gmsui = new System.ComponentModel.BindingList<Header>()
         let bs = new BindingSource()
         //scinc related
-        let mutable nm = "clipbase" //base name
+        let mutable nm : string = "" //base name
         let mutable gn = 0 //number of games
         let mutable fn = 0 //number of games in filter
         let mutable filt = []

@@ -164,28 +164,28 @@ module Form =
             Application.DoEvents()
         
         let updateMenuStates() =
-            closeb.Enabled <- gmtbs.TabCount > 1
-            closem.Enabled <- gmtbs.TabCount > 1
-            newgb.Enabled <- gmtbs.TabCount > 1
-            newgm.Enabled <- gmtbs.TabCount > 1
-            copypb.Enabled <- gmtbs.TabCount > 1
-            copypm.Enabled <- gmtbs.TabCount > 1
-            pastepb.Enabled <- gmtbs.TabCount > 1
-            pastepm.Enabled <- gmtbs.TabCount > 1
-            edithb.Enabled <- gmtbs.TabCount > 1
-            edithm.Enabled <- gmtbs.TabCount > 1
-            seteb.Enabled <- gmtbs.TabCount > 1
-            setem.Enabled <- gmtbs.TabCount > 1
-            remcb.Enabled <- gmtbs.TabCount > 1
-            remcm.Enabled <- gmtbs.TabCount > 1
-            remvb.Enabled <- gmtbs.TabCount > 1
-            remvm.Enabled <- gmtbs.TabCount > 1
-            remnb.Enabled <- gmtbs.TabCount > 1
-            remnm.Enabled <- gmtbs.TabCount > 1
-            showwb.Enabled <- gmtbs.TabCount > 1
-            showwm.Enabled <- gmtbs.TabCount > 1
-            showbb.Enabled <- gmtbs.TabCount > 1
-            showbm.Enabled <- gmtbs.TabCount > 1
+            closeb.Enabled <- gmtbs.TabCount > 0
+            closem.Enabled <- gmtbs.TabCount > 0
+            newgb.Enabled <- gmtbs.TabCount > 0
+            newgm.Enabled <- gmtbs.TabCount > 0
+            copypb.Enabled <- gmtbs.TabCount > 0
+            copypm.Enabled <- gmtbs.TabCount > 0
+            pastepb.Enabled <- gmtbs.TabCount > 0
+            pastepm.Enabled <- gmtbs.TabCount > 0
+            edithb.Enabled <- gmtbs.TabCount > 0
+            edithm.Enabled <- gmtbs.TabCount > 0
+            seteb.Enabled <- gmtbs.TabCount > 0
+            setem.Enabled <- gmtbs.TabCount > 0
+            remcb.Enabled <- gmtbs.TabCount > 0
+            remcm.Enabled <- gmtbs.TabCount > 0
+            remvb.Enabled <- gmtbs.TabCount > 0
+            remvm.Enabled <- gmtbs.TabCount > 0
+            remnb.Enabled <- gmtbs.TabCount > 0
+            remnm.Enabled <- gmtbs.TabCount > 0
+            showwb.Enabled <- gmtbs.TabCount > 0
+            showwm.Enabled <- gmtbs.TabCount > 0
+            showbb.Enabled <- gmtbs.TabCount > 0
+            showbm.Enabled <- gmtbs.TabCount > 0
         
         let updateTitle() = this.Text <- "Grampus - " + gmtbs.BaseName()
         
@@ -249,6 +249,18 @@ module Form =
                     //dotbselect will be called to do the loading
                     let gmp = Grampus.Load(gmpfile)
                     gmtbs.AddTab(nm, gmp.FiltersCreated.IsNone)
+                    if gmtbs.TabCount = 1 then 
+                        //need to set current
+                        let basename = gmtbs.BaseName()
+                        pgn.Refrsh(0, basename)
+                        let nbd = Board.Start
+                        bd.SetBoard(nbd)
+                        SbUpdate("Reloading tree")
+                        sts.UpdateStr(nbd)
+                        SbUpdate("Reloading list of games")
+                        gmtbs.Refrsh(nbd)
+                        anl.SetBoard(nbd)
+                        refreshWindows()
                     SbUpdate("Ready")
                 elif ifn <> "" then 
                     //open database
@@ -261,6 +273,18 @@ module Form =
                     //dotbselect will be called to do the loading
                     let gmp = Grampus.Load(ifn)
                     gmtbs.AddTab(nm, gmp.FiltersCreated.IsNone)
+                    if gmtbs.TabCount = 1 then 
+                        //need to set current
+                        let basename = gmtbs.BaseName()
+                        pgn.Refrsh(0, basename)
+                        let nbd = Board.Start
+                        bd.SetBoard(nbd)
+                        SbUpdate("Reloading tree")
+                        sts.UpdateStr(nbd)
+                        SbUpdate("Reloading list of games")
+                        gmtbs.Refrsh(nbd)
+                        anl.SetBoard(nbd)
+                        refreshWindows()
                     SbUpdate("Ready")
             waitify (dofun)
         
