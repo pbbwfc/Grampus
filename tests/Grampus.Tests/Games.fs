@@ -148,3 +148,22 @@ type Games() =
         let nindx = Index.Load(tstfol2)
         nindx.Length |> should equal 0
         if File.Exists(tstfn2) then Grampus.Delete(tstfn2)
+    
+    [<TestMethod>]
+    member this.GetPossNames() =
+        let nms = Games.GetPossNames tstfol "x" (fun i -> ())
+        nms.Length |> should equal 0
+        let nms = Games.GetPossNames tstfol "e" (fun i -> ())
+        nms.Length |> should equal 1
+    
+    [<TestMethod>]
+    member this.ExtractPlayer() =
+        if File.Exists(tstfn2) then Grampus.Delete(tstfn2)
+        Games.ExtractPlayer tstfn tstfn2 "Howell, David" (fun i -> ())
+        let nindx = Index.Load(tstfol2)
+        nindx.Length |> should equal 1
+        if File.Exists(tstfn2) then Grampus.Delete(tstfn2)
+        Games.ExtractPlayer tstfn tstfn2 "Fred" (fun i -> ())
+        let nindx = Index.Load(tstfol2)
+        nindx.Length |> should equal 0
+        if File.Exists(tstfn2) then Grampus.Delete(tstfn2)

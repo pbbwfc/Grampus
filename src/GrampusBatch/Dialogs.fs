@@ -111,3 +111,44 @@ module Dialogs =
         
         member this.SetText(txt) = lbl.Text <- txt
         member this.Grade = spn.Value
+    
+    type DlgNm() as this =
+        inherit Dialog()
+        let lbl =
+            new Label(Text = "Part of Name ", AutoSize = false, 
+                      TextAlign = ContentAlignment.MiddleLeft, Width = 80)
+        let tb = new TextBox(Width = 150)
+        
+        do 
+            this.AddControl(lbl)
+            this.AddControl(tb)
+        
+        override this.DoOK(e) =
+            this.DialogResult <- DialogResult.OK
+            this.Close()
+        
+        member this.SetText(txt) = lbl.Text <- txt
+        member this.Part = tb.Text
+    
+    type DlgPlyr() as this =
+        inherit Dialog()
+        let lbl =
+            new Label(Text = "Player ", AutoSize = false, 
+                      TextAlign = ContentAlignment.MiddleLeft, Width = 60)
+        let cb =
+            new ComboBox(Width = 170, DropDownStyle = ComboBoxStyle.DropDownList)
+        
+        do 
+            this.AddControl(lbl)
+            this.AddControl(cb)
+        
+        override this.DoOK(e) =
+            this.DialogResult <- DialogResult.OK
+            this.Close()
+        
+        member this.SetItems(nms : string []) =
+            if nms.Length > 0 then 
+                cb.Items.AddRange(nms |> Array.map box)
+                cb.SelectedIndex <- 0
+        
+        member this.Player = cb.SelectedItem.ToString()

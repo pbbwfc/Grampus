@@ -236,3 +236,61 @@ module Games =
         hdrs |> Array.iteri svgm
         let ntrggmp = { trggmp with BaseCreated = Some(DateTime.Now) }
         GrampusFile.Save(trgnm, ntrggmp)
+    
+    let GetPossNames (fol : string) (ipart : string) cb =
+        let part = ipart.ToLower()
+        
+        let getnms i (hdr : Header) =
+            let wnm =
+                if hdr.White.ToLower().Contains(part) then Some(hdr.White)
+                else None
+            
+            let bnm =
+                if hdr.Black.ToLower().Contains(part) then Some(hdr.Black)
+                else None
+            
+            if i % 100 = 0 then cb (i)
+            wnm, bnm
+        
+        let hdrs = Headers.Load(fol)
+        
+        let wnms, bnms =
+            hdrs
+            |> Array.mapi getnms
+            |> Array.unzip
+        
+        let wset =
+            wnms
+            |> Array.filter (fun w -> w.IsSome)
+            |> Array.map (fun w -> w.Value)
+            |> Set.ofArray
+        
+        let bset =
+            bnms
+            |> Array.filter (fun b -> b.IsSome)
+            |> Array.map (fun b -> b.Value)
+            |> Set.ofArray
+        
+        let nms = wset + bset
+        nms |> Set.toArray
+    
+    let ExtractPlayer (nm : string) (trgnm : string) (player : string) cb =
+        let trggmp = GrampusFile.New(trgnm)
+        let fol = Path.GetDirectoryName(nm)
+        let binfol =
+            Path.Combine(fol, Path.GetFileNameWithoutExtension(nm) + "_FILES")
+        let trgfol = Path.GetDirectoryName(trgnm)
+        let trgbinfol =
+            Path.Combine
+                (trgfol, Path.GetFileNameWithoutExtension(trgnm) + "_FILES")
+        let hdrs = Headers.Load(binfol)
+        let iea = Index.Load(binfol)
+        
+        let svgm i hdr =
+            if hdr.White = player || hdr.Black = player then 
+                let gm = LoadGame binfol iea.[i] hdr
+                AppendGame trgbinfol gm
+            if i % 100 = 0 then cb (i)
+        hdrs |> Array.iteri svgm
+        let ntrggmp = { trggmp with BaseCreated = Some(DateTime.Now) }
+        GrampusFile.Save(trgnm, ntrggmp)

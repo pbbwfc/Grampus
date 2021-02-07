@@ -641,6 +641,26 @@ module Games =
     /// <returns>Nothing.</returns>
     let ExtractStronger nm trgnm grade cb =
         GrampusInternal.Games.ExtractStronger nm trgnm grade cb
+    
+    /// <summary>
+    /// Gets possible names of Players given part of the name string.
+    /// </summary>
+    /// <param name="fol">The folder in which the base is stored.</param>
+    /// <param name="part">The string containing part of the name.</param>
+    /// <param name="cb">Callback function to report on progress.</param>
+    /// <returns>Possible names as a string array type.</returns>
+    let GetPossNames fol cb = GrampusInternal.Games.GetPossNames fol cb
+    
+    /// <summary>
+    /// Extracts player's games to the specified base.
+    /// </summary>
+    /// <param name="nm">The full path and name of the source base.</param>
+    /// <param name="trgnm">The full path and name of the target base.</param>
+    /// <param name="player">The name of the player to include.</param>
+    /// <param name="cb">Callback function to report on progress.</param>
+    /// <returns>Nothing.</returns>
+    let ExtractPlayer nm trgnm player cb =
+        GrampusInternal.Games.ExtractPlayer nm trgnm player cb
 
 /// <summary>
 /// Holds the functions related to a set of Games in PGN format.

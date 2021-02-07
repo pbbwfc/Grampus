@@ -590,7 +590,51 @@ module Form =
                     this.Enabled <- true
                     prg.Value <- 0
         
-        let doextractplayer (e) = ()
+        let doextractplayer (e) =
+            let dlg = new DlgNm(Text = "Enter Part of the Player's Name")
+            if dlg.ShowDialog() = DialogResult.OK then 
+                let part = dlg.Part
+                this.Enabled <- false
+                let numgames = iea.Length
+                prg.Minimum <- 0
+                prg.Maximum <- numgames
+                st <- DateTime.Now
+                lbl.Text <- "Processing " + numgames.ToString() + " games..."
+                Application.DoEvents()
+                let nms = Games.GetPossNames binfol part updprg
+                log 
+                    ("Extracted " + (nms.Length.ToString()) + " Names matching " 
+                     + part)
+                lbl.Text <- "Ready"
+                this.Enabled <- true
+                prg.Value <- 0
+                let pdlg = new DlgPlyr(Text = "Select Player's Name")
+                pdlg.SetItems(nms)
+                if pdlg.ShowDialog() = DialogResult.OK then 
+                    let player = pdlg.Player
+                    let copynm = player
+                    let ndlg =
+                        new SaveFileDialog(Title = "Extract to Base", 
+                                           Filter = "Grampus databases(*.grampus)|*.grampus", 
+                                           AddExtension = true, 
+                                           OverwritePrompt = false, 
+                                           InitialDirectory = bfol, 
+                                           FileName = copynm + ".grampus")
+                    if ndlg.ShowDialog() = DialogResult.OK then 
+                        let trgnm = ndlg.FileName
+                        this.Enabled <- false
+                        let numgames = iea.Length
+                        prg.Minimum <- 0
+                        prg.Maximum <- numgames
+                        st <- DateTime.Now
+                        lbl.Text <- "Processing " + numgames.ToString() 
+                                    + " games..."
+                        Application.DoEvents()
+                        Games.ExtractPlayer gmpfile trgnm player updprg
+                        log ("Extracted Games from Player " + player)
+                        lbl.Text <- "Ready"
+                        this.Enabled <- true
+                        prg.Value <- 0
         
         let doimp (e) =
             let ndlg =
