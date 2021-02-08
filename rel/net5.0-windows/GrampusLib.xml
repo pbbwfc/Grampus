@@ -234,6 +234,11 @@ Get an encoded move from a SAN Move(move) such as Nf3 for this Board(bd)
 
  <exclude />
 </member>
+<member name="T:GrampusInternal.GameCompressed">
+ <summary>This type is for implementation purposes.</summary>
+
+ <exclude />
+</member>
 <member name="T:GrampusInternal.GrampusFile">
  <summary>This type is for implementation purposes.</summary>
 
@@ -404,6 +409,30 @@ Get an encoded move from a SAN Move(move) such as Nf3 for this Board(bd)
  <summary>
  Holds the functions related to a set of Games in PGN format.
  </summary>
+</member>
+<member name="M:Grampus.Games.RemoveNags(System.String,Microsoft.FSharp.Core.FSharpFunc{System.Int32,Microsoft.FSharp.Core.Unit})">
+ <summary>
+ Removes all NAGs for the base in the specified folder.
+ </summary>
+ <param name="fol">The folder in which the base is stored.</param>
+ <param name="cb">Callback function to report on progress.</param>
+ <returns>Nothing.</returns>
+</member>
+<member name="M:Grampus.Games.RemoveRavs(System.String,Microsoft.FSharp.Core.FSharpFunc{System.Int32,Microsoft.FSharp.Core.Unit})">
+ <summary>
+ Removes all Variations for the base in the specified folder.
+ </summary>
+ <param name="fol">The folder in which the base is stored.</param>
+ <param name="cb">Callback function to report on progress.</param>
+ <returns>Nothing.</returns>
+</member>
+<member name="M:Grampus.Games.RemoveComments(System.String,Microsoft.FSharp.Core.FSharpFunc{System.Int32,Microsoft.FSharp.Core.Unit})">
+ <summary>
+ Removes all Comments for the base in the specified folder.
+ </summary>
+ <param name="fol">The folder in which the base is stored.</param>
+ <param name="cb">Callback function to report on progress.</param>
+ <returns>Nothing.</returns>
 </member>
 <member name="M:Grampus.Games.RemoveDuplicates(System.String,Microsoft.FSharp.Core.FSharpFunc{System.Int32,Microsoft.FSharp.Core.Unit})">
  <summary>
