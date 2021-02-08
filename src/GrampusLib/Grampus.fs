@@ -669,6 +669,30 @@ module Games =
     /// <param name="cb">Callback function to report on progress.</param>
     /// <returns>Messages from process as a string type.</returns>
     let RemoveDuplicates fol cb = GrampusInternal.Games.RemoveDuplicates fol cb
+    
+    /// <summary>
+    /// Removes all Comments for the base in the specified folder.
+    /// </summary>
+    /// <param name="fol">The folder in which the base is stored.</param>
+    /// <param name="cb">Callback function to report on progress.</param>
+    /// <returns>Nothing.</returns>
+    let RemoveComments fol cb = GrampusInternal.Games.RemoveComments fol cb
+    
+    /// <summary>
+    /// Removes all Variations for the base in the specified folder.
+    /// </summary>
+    /// <param name="fol">The folder in which the base is stored.</param>
+    /// <param name="cb">Callback function to report on progress.</param>
+    /// <returns>Nothing.</returns>
+    let RemoveRavs fol cb = GrampusInternal.Games.RemoveRavs fol cb
+    
+    /// <summary>
+    /// Removes all NAGs for the base in the specified folder.
+    /// </summary>
+    /// <param name="fol">The folder in which the base is stored.</param>
+    /// <param name="cb">Callback function to report on progress.</param>
+    /// <returns>Nothing.</returns>
+    let RemoveNags fol cb = GrampusInternal.Games.RemoveNags fol cb
 
 /// <summary>
 /// Holds the functions related to a set of Games in PGN format.

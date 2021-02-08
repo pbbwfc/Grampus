@@ -334,3 +334,177 @@ module Games =
             //now compact
             let msg = Compact fol cb
             msg
+    
+    let RemoveComments (fol : string) cb =
+        let ifn = Path.Combine(fol, "GAMES")
+        if (File.Exists(ifn)) then 
+            //create temp folder to do the compact
+            let tmpfol = Path.Combine(fol, "temp")
+            Directory.CreateDirectory(tmpfol) |> ignore
+            let ofn = Path.Combine(tmpfol, "GAMES")
+            use writer = new BinaryWriter(File.Open(ofn, FileMode.OpenOrCreate))
+            //load all the current files
+            use reader =
+                new BinaryReader(File.Open
+                                     (ifn, FileMode.Open, FileAccess.Read, 
+                                      FileShare.Read))
+            let iea = Index.Load(fol)
+            let hdrs = Headers.Load(fol)
+            
+            //write in compacted format
+            let svgm i =
+                let ie = iea.[i]
+                let hdr = hdrs.[i]
+                reader.BaseStream.Position <- ie.Offset
+                let off = writer.BaseStream.Position
+                if i % 100 = 0 then cb (i)
+                let bin = reader.ReadBytes(ie.Length)
+                let ro = new ReadOnlyMemory<byte>(bin)
+                let cgm =
+                    MessagePackSerializer.Deserialize<CompressedGame>
+                        (ro, options)
+                let ncgm = GameCompressed.RemoveComments cgm
+                if ncgm.MoveText.Length < cgm.MoveText.Length then 
+                    let nbin =
+                        MessagePackSerializer.Serialize<CompressedGame>
+                            (ncgm, options)
+                    writer.Write(nbin)
+                    { Offset = off
+                      Length = nbin.Length }, hdr
+                else 
+                    writer.Write(bin)
+                    { Offset = off
+                      Length = bin.Length }, hdr
+            
+            let niea, nhdrs =
+                [| 0..iea.Length - 1 |]
+                |> Array.map svgm
+                |> Array.unzip
+            
+            Index.Save(tmpfol, niea)
+            Headers.Save(tmpfol, nhdrs)
+            reader.Close()
+            writer.Close()
+            //now overwrite with compacted versions
+            File.Move(ofn, ifn, true)
+            File.Move
+                (Path.Combine(tmpfol, "INDEX"), Path.Combine(fol, "INDEX"), true)
+            File.Move
+                (Path.Combine(tmpfol, "HEADERS"), Path.Combine(fol, "HEADERS"), 
+                 true)
+    
+    let RemoveRavs (fol : string) cb =
+        let ifn = Path.Combine(fol, "GAMES")
+        if (File.Exists(ifn)) then 
+            //create temp folder to do the compact
+            let tmpfol = Path.Combine(fol, "temp")
+            Directory.CreateDirectory(tmpfol) |> ignore
+            let ofn = Path.Combine(tmpfol, "GAMES")
+            use writer = new BinaryWriter(File.Open(ofn, FileMode.OpenOrCreate))
+            //load all the current files
+            use reader =
+                new BinaryReader(File.Open
+                                     (ifn, FileMode.Open, FileAccess.Read, 
+                                      FileShare.Read))
+            let iea = Index.Load(fol)
+            let hdrs = Headers.Load(fol)
+            
+            //write in compacted format
+            let svgm i =
+                let ie = iea.[i]
+                let hdr = hdrs.[i]
+                reader.BaseStream.Position <- ie.Offset
+                let off = writer.BaseStream.Position
+                if i % 100 = 0 then cb (i)
+                let bin = reader.ReadBytes(ie.Length)
+                let ro = new ReadOnlyMemory<byte>(bin)
+                let cgm =
+                    MessagePackSerializer.Deserialize<CompressedGame>
+                        (ro, options)
+                let ncgm = GameCompressed.RemoveRavs cgm
+                if ncgm.MoveText.Length < cgm.MoveText.Length then 
+                    let nbin =
+                        MessagePackSerializer.Serialize<CompressedGame>
+                            (ncgm, options)
+                    writer.Write(nbin)
+                    { Offset = off
+                      Length = nbin.Length }, hdr
+                else 
+                    writer.Write(bin)
+                    { Offset = off
+                      Length = bin.Length }, hdr
+            
+            let niea, nhdrs =
+                [| 0..iea.Length - 1 |]
+                |> Array.map svgm
+                |> Array.unzip
+            
+            Index.Save(tmpfol, niea)
+            Headers.Save(tmpfol, nhdrs)
+            reader.Close()
+            writer.Close()
+            //now overwrite with compacted versions
+            File.Move(ofn, ifn, true)
+            File.Move
+                (Path.Combine(tmpfol, "INDEX"), Path.Combine(fol, "INDEX"), true)
+            File.Move
+                (Path.Combine(tmpfol, "HEADERS"), Path.Combine(fol, "HEADERS"), 
+                 true)
+    
+    let RemoveNags (fol : string) cb =
+        let ifn = Path.Combine(fol, "GAMES")
+        if (File.Exists(ifn)) then 
+            //create temp folder to do the compact
+            let tmpfol = Path.Combine(fol, "temp")
+            Directory.CreateDirectory(tmpfol) |> ignore
+            let ofn = Path.Combine(tmpfol, "GAMES")
+            use writer = new BinaryWriter(File.Open(ofn, FileMode.OpenOrCreate))
+            //load all the current files
+            use reader =
+                new BinaryReader(File.Open
+                                     (ifn, FileMode.Open, FileAccess.Read, 
+                                      FileShare.Read))
+            let iea = Index.Load(fol)
+            let hdrs = Headers.Load(fol)
+            
+            //write in compacted format
+            let svgm i =
+                let ie = iea.[i]
+                let hdr = hdrs.[i]
+                reader.BaseStream.Position <- ie.Offset
+                let off = writer.BaseStream.Position
+                if i % 100 = 0 then cb (i)
+                let bin = reader.ReadBytes(ie.Length)
+                let ro = new ReadOnlyMemory<byte>(bin)
+                let cgm =
+                    MessagePackSerializer.Deserialize<CompressedGame>
+                        (ro, options)
+                let ncgm = GameCompressed.RemoveNags cgm
+                if ncgm.MoveText.Length < cgm.MoveText.Length then 
+                    let nbin =
+                        MessagePackSerializer.Serialize<CompressedGame>
+                            (ncgm, options)
+                    writer.Write(nbin)
+                    { Offset = off
+                      Length = nbin.Length }, hdr
+                else 
+                    writer.Write(bin)
+                    { Offset = off
+                      Length = bin.Length }, hdr
+            
+            let niea, nhdrs =
+                [| 0..iea.Length - 1 |]
+                |> Array.map svgm
+                |> Array.unzip
+            
+            Index.Save(tmpfol, niea)
+            Headers.Save(tmpfol, nhdrs)
+            reader.Close()
+            writer.Close()
+            //now overwrite with compacted versions
+            File.Move(ofn, ifn, true)
+            File.Move
+                (Path.Combine(tmpfol, "INDEX"), Path.Combine(fol, "INDEX"), true)
+            File.Move
+                (Path.Combine(tmpfol, "HEADERS"), Path.Combine(fol, "HEADERS"), 
+                 true)

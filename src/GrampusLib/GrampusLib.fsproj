@@ -129,6 +129,7 @@
     <Compile Include="MoveUtil.fs" />
     <Compile Include="MoveEncoded.fs" />
     <Compile Include="GameEncoded.fs" />
+    <Compile Include="GameCompressed.fs" />
     <Compile Include="GrampusFile.fs" />
     <Compile Include="Games.fs" />
     <Compile Include="Eco.fs" />
