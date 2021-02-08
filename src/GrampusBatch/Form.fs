@@ -901,12 +901,7 @@ module Form =
             st <- DateTime.Now
             lbl.Text <- "Removing Comments for " + numgames.ToString() 
                         + " games..."
-            for i = 0 to numgames - 1 do
-                let gm = Games.LoadGame binfol iea.[i] hdra.[i]
-                let ngm = Game.RemoveComments gm
-                if ngm.MoveText.Length < gm.MoveText.Length then 
-                    Games.UpdateGame binfol i ngm
-                if i % 100 = 0 then updprg (i)
+            Games.RemoveComments binfol updprg
             log ("Comments Removed")
             lbl.Text <- "Ready"
             prg.Value <- 0
@@ -921,12 +916,7 @@ module Form =
             st <- DateTime.Now
             lbl.Text <- "Removing Variations for " + numgames.ToString() 
                         + " games..."
-            for i = 0 to numgames - 1 do
-                let gm = Games.LoadGame binfol iea.[i] hdra.[i]
-                let ngm = Game.RemoveRavs gm
-                if ngm.MoveText.Length < gm.MoveText.Length then 
-                    Games.UpdateGame binfol i ngm
-                if i % 100 = 0 then updprg (i)
+            Games.RemoveRavs binfol updprg
             log ("Variations Removed")
             lbl.Text <- "Ready"
             prg.Value <- 0
@@ -940,12 +930,7 @@ module Form =
             prg.Value <- 0
             st <- DateTime.Now
             lbl.Text <- "Removing NAGs for " + numgames.ToString() + " games..."
-            for i = 0 to numgames - 1 do
-                let gm = Games.LoadGame binfol iea.[i] hdra.[i]
-                let ngm = Game.RemoveNags gm
-                if ngm.MoveText.Length < gm.MoveText.Length then 
-                    Games.UpdateGame binfol i ngm
-                if i % 100 = 0 then updprg (i)
+            Games.RemoveNags binfol updprg
             log ("NAGs Removed")
             lbl.Text <- "Ready"
             prg.Value <- 0
