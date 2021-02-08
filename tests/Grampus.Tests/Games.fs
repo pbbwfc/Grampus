@@ -193,3 +193,87 @@ type Games() =
         let gm3 = Games.LoadGame tstfol2 indx3.[0] hdrs3.[0]
         gm3.MoveText.Length |> should equal 107
         if Directory.Exists(tstfol2) then Directory.Delete(tstfol2, true)
+    
+    [<TestMethod>]
+    member this.RemoveComments() =
+        if Directory.Exists(tstfol2) then Grampus.Delete(tstfn2)
+        Grampus.Copy(tstfn, tstfn2)
+        let indx = Index.Load tstfol2
+        let hdrs = Headers.Load tstfol2
+        let gm = Games.LoadGame tstfol2 indx.[0] hdrs.[0]
+        let ans = gm |> Game.ToStr
+        ans.Length |> should equal 862
+        let ngm = Game.CommentAfter gm [ 1 ] "test"
+        Games.UpdateGame tstfol2 0 ngm
+        let indx = Index.Load tstfol2
+        let hdrs = Headers.Load tstfol2
+        let gm = Games.LoadGame tstfol2 indx.[0] hdrs.[0]
+        let ans = gm |> Game.ToStr
+        ans.Length |> should equal 871
+        gm.MoveText.[2] |> should equal (EncodedCommentEntry("test"))
+        Games.RemoveComments tstfol2 (fun i -> ())
+        let indx = Index.Load tstfol2
+        let hdrs = Headers.Load tstfol2
+        let gm = Games.LoadGame tstfol2 indx.[0] hdrs.[0]
+        let ans = gm |> Game.ToStr
+        ans.Length |> should equal 862
+        if Directory.Exists(tstfol2) then Grampus.Delete(tstfn2)
+    
+    [<TestMethod>]
+    member this.RemoveNags() =
+        if Directory.Exists(tstfol2) then Grampus.Delete(tstfn2)
+        Grampus.Copy(tstfn, tstfn2)
+        let indx = Index.Load tstfol2
+        let hdrs = Headers.Load tstfol2
+        let gm = Games.LoadGame tstfol2 indx.[0] hdrs.[0]
+        let ans = gm |> Game.ToStr
+        ans.Length |> should equal 862
+        let ngm = Game.AddNag gm [ 1 ] NAG.Good
+        Games.UpdateGame tstfol2 0 ngm
+        let indx = Index.Load tstfol2
+        let hdrs = Headers.Load tstfol2
+        let gm = Games.LoadGame tstfol2 indx.[0] hdrs.[0]
+        let ans = gm |> Game.ToStr
+        ans.Length |> should equal 865
+        gm.MoveText.[2] |> should equal (EncodedNAGEntry(NAG.Good))
+        Games.RemoveNags tstfol2 (fun i -> ())
+        let indx = Index.Load tstfol2
+        let hdrs = Headers.Load tstfol2
+        let gm = Games.LoadGame tstfol2 indx.[0] hdrs.[0]
+        let ans = gm |> Game.ToStr
+        ans.Length |> should equal 862
+        if Directory.Exists(tstfol2) then Grampus.Delete(tstfn2)
+    
+    [<TestMethod>]
+    member this.RemoveRavs() =
+        if Directory.Exists(tstfol2) then Grampus.Delete(tstfn2)
+        Grampus.Copy(tstfn, tstfn2)
+        let indx = Index.Load tstfol2
+        let hdrs = Headers.Load tstfol2
+        let gm = Games.LoadGame tstfol2 indx.[0] hdrs.[0]
+        let ans = gm |> Game.ToStr
+        ans.Length |> should equal 862
+        let mv =
+            let mte = gm.MoveText.[0]
+            match mte with
+            | EncodedHalfMoveEntry(_, _, mv) -> Some(mv)
+            | _ -> None
+        mv.Value.San |> should equal "e4"
+        let bd = mv.Value.PostBrd
+        let nmv = Move.FromSan bd "e6"
+        let ngm, nirs = Game.AddRav gm [ 0 ] nmv
+        nirs.Head |> should equal 2
+        nirs.Tail.Head |> should equal 0
+        Games.UpdateGame tstfol2 0 ngm
+        let indx = Index.Load tstfol2
+        let hdrs = Headers.Load tstfol2
+        let gm = Games.LoadGame tstfol2 indx.[0] hdrs.[0]
+        let ans = gm |> Game.ToStr
+        ans.Length |> should equal 876
+        Games.RemoveRavs tstfol2 (fun i -> ())
+        let indx = Index.Load tstfol2
+        let hdrs = Headers.Load tstfol2
+        let gm = Games.LoadGame tstfol2 indx.[0] hdrs.[0]
+        let ans = gm |> Game.ToStr
+        ans.Length |> should equal 862
+        if Directory.Exists(tstfol2) then Grampus.Delete(tstfn2)
