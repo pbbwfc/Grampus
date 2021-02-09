@@ -392,14 +392,15 @@ module Form =
                 
                 let yr = gm.Hdr.Year
                 
+                let tryParseInt s =
+                    try 
+                        s |> int
+                    with :? FormatException -> 0
+                
                 let gminfo =
                     { Gmno = i
-                      Welo =
-                          if welo = "-" || welo = "" then 0
-                          else int (welo)
-                      Belo =
-                          if belo = "-" || belo = "" then 0
-                          else int (belo)
+                      Welo = welo |> tryParseInt
+                      Belo = belo |> tryParseInt
                       Year = yr
                       Result = res }
                 
