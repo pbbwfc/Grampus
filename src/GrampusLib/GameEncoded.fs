@@ -243,6 +243,32 @@ module GameEncoded =
                 let nmtel = getnmtel irs gm.MoveText
                 { gm with MoveText = nmtel }
     
+    let fixnums (gm : EncodedGame) =
+        let rec fixemv pmvo (emvl : EncodedMoveTextEntry list) oemvl =
+            if emvl |> List.isEmpty then oemvl |> List.rev
+            else 
+                let mte = emvl.Head
+                match mte with
+                | EncodedRAVEntry(mtel) -> 
+                    let nmtel = fixemv None mtel []
+                    let nmte = EncodedRAVEntry(nmtel)
+                    fixemv None emvl.Tail (nmte :: oemvl)
+                | EncodedHalfMoveEntry(n, b, mv) -> 
+                    if pmvo.IsSome then 
+                        match pmvo.Value with
+                        | EncodedCommentEntry(_) -> 
+                            fixemv (Some(mte)) emvl.Tail (mte :: oemvl)
+                        | _ -> 
+                            let nmte =
+                                if mv.Isw then mte
+                                else EncodedHalfMoveEntry(None, false, mv)
+                            fixemv (Some(nmte)) emvl.Tail (nmte :: oemvl)
+                    else fixemv (Some(mte)) emvl.Tail (mte :: oemvl)
+                | _ -> fixemv (Some(mte)) emvl.Tail (mte :: oemvl)
+        
+        let nmtel = fixemv None gm.MoveText []
+        { gm with MoveText = nmtel }
+    
     let RemoveRavs(gm : EncodedGame) =
         let rec setemv (emvl : EncodedMoveTextEntry list) oemvl =
             if emvl |> List.isEmpty then oemvl |> List.rev
@@ -253,7 +279,8 @@ module GameEncoded =
                 | _ -> setemv emvl.Tail (mte :: oemvl)
         
         let nmtel = setemv gm.MoveText []
-        { gm with MoveText = nmtel }
+        let ngm = { gm with MoveText = nmtel }
+        ngm |> fixnums
     
     let AddMv (gm : EncodedGame) (irs : int list) (mv : Move) =
         let rec getext ci nmte (imtel : EncodedMoveTextEntry list) 
@@ -627,7 +654,8 @@ module GameEncoded =
                 | _ -> setemv emvl.Tail (mte :: oemvl)
         
         let nmtel = setemv gm.MoveText []
-        { gm with MoveText = nmtel }
+        let ngm = { gm with MoveText = nmtel }
+        ngm |> fixnums
     
     let AddNag (gm : EncodedGame) (irs : int list) (ng : NAG) =
         let mte = EncodedNAGEntry(ng)
