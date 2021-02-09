@@ -3,7 +3,7 @@
 
 #define MyAppName "Grampus"
 #define MyAppName2 "GrampusBatch"
-#define MyAppVersion "0.05"
+#define MyAppVersion "0.06"
 #define MyAppPublisher "pbbwfc"
 #define MyAppURL "https://pbbwfc.github.io/Grampus/"
 #define MyAppExeName "Grampus.exe"

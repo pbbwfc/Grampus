@@ -891,7 +891,7 @@ module GameEncoded =
         cgm1
     
     let Expand(gm : CompressedGame, hdr : Header) =
-        let rec setemv cbd (pmvl : CompressedMoveTextEntry list) oemvl =
+        let rec setemv pbd cbd (pmvl : CompressedMoveTextEntry list) oemvl =
             if pmvl |> List.isEmpty then oemvl |> List.rev
             else 
                 let mte = pmvl.Head
@@ -899,17 +899,17 @@ module GameEncoded =
                 | CompressedHalfMoveEntry(mn, ic, mv) -> 
                     let emv = mv |> MoveEncoded.Expand cbd
                     let nmte = EncodedHalfMoveEntry(mn, ic, emv)
-                    setemv emv.PostBrd pmvl.Tail (nmte :: oemvl)
+                    setemv cbd emv.PostBrd pmvl.Tail (nmte :: oemvl)
                 | CompressedRAVEntry(mtel) -> 
-                    let nmtel = setemv cbd mtel []
+                    let nmtel = setemv pbd pbd mtel []
                     let nmte = EncodedRAVEntry(nmtel)
-                    setemv cbd pmvl.Tail (nmte :: oemvl)
+                    setemv pbd cbd pmvl.Tail (nmte :: oemvl)
                 | CompressedCommentEntry(c) -> 
-                    setemv cbd pmvl.Tail (EncodedCommentEntry(c) :: oemvl)
+                    setemv pbd cbd pmvl.Tail (EncodedCommentEntry(c) :: oemvl)
                 | CompressedGameEndEntry(r) -> 
-                    setemv cbd pmvl.Tail (EncodedGameEndEntry(r) :: oemvl)
+                    setemv pbd cbd pmvl.Tail (EncodedGameEndEntry(r) :: oemvl)
                 | CompressedNAGEntry(n) -> 
-                    setemv cbd pmvl.Tail (EncodedNAGEntry(n) :: oemvl)
+                    setemv pbd cbd pmvl.Tail (EncodedNAGEntry(n) :: oemvl)
         
         let ibd =
             if gm.BoardSetup.IsSome then gm.BoardSetup.Value
@@ -917,7 +917,7 @@ module GameEncoded =
         
         let nmt =
             try 
-                setemv ibd gm.MoveText []
+                setemv ibd ibd gm.MoveText []
             with ex -> 
                 let msg = ex.Message
                 []
