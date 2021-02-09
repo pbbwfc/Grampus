@@ -1,41 +1,41 @@
 [
   {
-    "R.B..RK......PBPPPN...P...PQ...............pbn..pp..bppp..rq.rk. w": [
+    "R.B..RK......PBPPPN...P...PQ...............pbn..pp..bppp..rq.rk. b": [
       {
         "San": "b6",
         "Nag": "Null",
         "Comm": ""
       }
     ],
-    "R.BQ.RK......PBPPPN...P...PN..............npbn..pp..bppp..rq.rk. w": [
+    "R.BQ.RK......PBPPPN...P...PN..............npbn..pp..bppp..rq.rk. b": [
       {
         "San": "Nxd4",
         "Nag": "Null",
         "Comm": ""
       }
     ],
-    "R.BQ.RK.....NPBPPPN...P...PP..............npbn..pp..bppp..rq.rk. w": [
+    "R.BQ.RK.....NPBPPPN...P...PP........p.....npbn..pp..bppp..rq.rk. b": [
       {
         "San": "exd4",
         "Nag": "Null",
         "Comm": ""
       }
     ],
-    "R.BQ.RK.....NPBPPPN.P.P...PP......p.......npbn..pp..bppp..rq.rk. w": [
+    "R.BQ.RK.....NPBPPPN.P.P...PP......p.p.....npbn..pp..bppp..rq.rk. b": [
       {
         "San": "cxd4",
         "Nag": "Null",
         "Comm": ""
       }
     ],
-    "R.BQ.RK....PNPBPPPN.P.P...P.......p.......npbn..pp..bpppr..q.rk. w": [
+    "R.BQ.RK....PNPBPPPN.P.P...P.......p.p.....npbn..pp..bpppr..q.rk. b": [
       {
         "San": "Rc8",
         "Nag": "Null",
         "Comm": ""
       }
     ],
-    "R.BQ.RK..P.PNPBPP.N.P.P...P.......p.......np.n..pp..bpppr.bq.rk. w": [
+    "R.BQ.RK..P.PNPBPP.N.P.P...P.......p.p.....np.n..pp..bpppr.bq.rk. b": [
       {
         "San": "Be6",
         "Nag": "Null",
@@ -56,56 +56,56 @@
         "Comm": ""
       }
     ],
-    "R.BQ.RK.PP...PBP..N.P.P...P........Ppp....npb...ppp...ppr..qk..r w": [
-      {
-        "San": "Bxd5",
-        "Nag": "Null",
-        "Comm": ""
-      }
-    ],
-    "R.BQ.RK.PP...PBP..N.P.P..b.N.............nn.....ppp..pppr.bq.rk. w": [
+    "R.BQ.RK.PP...PBP..N.P.P....N.............nn.....ppp.bpppr.bq.rk. b": [
       {
         "San": "Nxd4",
         "Nag": "Null",
         "Comm": ""
       }
     ],
-    "R.BQ.RK.PP..NPBP..N.P.P...PP......b.pp....npb...ppp...ppr..qk..r w": [
+    "R.BQ.RK.PP...PBP..N.P.P...P........Ppp....npbn..ppp...ppr..qk..r b": [
       {
-        "San": "Bb4",
+        "San": "Bxd5",
         "Nag": "Null",
         "Comm": ""
       }
     ],
-    "R.BQ.RK.PP..NPBP..N.P.P..b.P........p....nn.....ppp..pppr.bq.rk. w": [
+    "R.BQ.RK.PP..NPBP..N.P.P....P........p....nn.....ppp.bpppr.bq.rk. b": [
       {
         "San": "exd4",
         "Nag": "Null",
         "Comm": ""
       }
     ],
-    "R.BQ.RK.PP..NPBP..N.P.P..bP........Ppp....npb...ppp...ppr..qk..r w": [
+    "R.BQ.RK.PP..NPBP..N.P.P...PP......b.pp....npbn..ppp...ppr..qk..r b": [
+      {
+        "San": "Bb4",
+        "Nag": "Null",
+        "Comm": ""
+      }
+    ],
+    "R.BQ.RK.PP..NPBP..N.P.P..bP........Ppp....npbn..ppp...ppr..qk..r b": [
       {
         "San": "Bxc3",
         "Nag": "Null",
         "Comm": ""
       }
     ],
-    "R.BQ.RK.PP.PNPBP..N.P.P...P.......b.pp....np....ppp...ppr.bqk..r w": [
-      {
-        "San": "Be6",
-        "Nag": "Null",
-        "Comm": ""
-      }
-    ],
-    "R.BQ.RK.PP.PNPBP..N.P.P..b..........p....nn.....ppp..pppr.bqk..r w": [
+    "R.BQ.RK.PP.PNPBP..N.P.P.............p....nn.....ppp.bpppr.bqk..r b": [
       {
         "San": "O-O",
         "Nag": "Null",
         "Comm": ""
       }
     ],
-    "R.BQK..R.P.PNPBPP.N.P.P...P.......p.......np.n..pp..bpppr.bqk..r w": [
+    "R.BQ.RK.PP.PNPBP..N.P.P...P.......b.pp....np.n..ppp...ppr.bqk..r b": [
+      {
+        "San": "Be6",
+        "Nag": "Null",
+        "Comm": ""
+      }
+    ],
+    "R.BQK..R.P.PNPBPP.N.P.P...P.......p.p.....np.n..pp..bpppr.bqk..r b": [
       {
         "San": "O-O",
         "Nag": "Null",
@@ -119,28 +119,28 @@
         "Comm": ""
       }
     ],
-    "R.BQK..RPP.PNPBP..N.P.P...P.......b.pp....n.....pppp..ppr.bqk..r w": [
+    "R.BQK..RPP.PNPBP..N.P.P.............p....nn.....ppp..pppr.bqkb.r b": [
+      {
+        "San": "Be7",
+        "Nag": "Null",
+        "Comm": ""
+      }
+    ],
+    "R.BQK..RPP.PNPBP..N.P.P...P.......b.pp....n..n..pppp..ppr.bqk..r b": [
       {
         "San": "d6",
         "Nag": "Null",
         "Comm": ""
       }
     ],
-    "R.BQK..RPP.PNPBP..N.P.P..b..........p....nn.....ppp..pppr.bqk..r w": [
+    "R.BQK.NR.P.P.PBPP.N.P.P...P.......p.p.....np.n..pp...pppr.bqkb.r b": [
       {
         "San": "Be7",
         "Nag": "Null",
         "Comm": ""
       }
     ],
-    "R.BQK.NR.P.P.PBPP.N.P.P...P.......p.......np.n..pp...pppr.bqkb.r w": [
-      {
-        "San": "Be7",
-        "Nag": "Null",
-        "Comm": ""
-      }
-    ],
-    "R.BQK.NR.P.PPPBPP.N...P...P.......p.......np....pp...pppr.bqkbnr w": [
+    "R.BQK.NR.P.PPPBPP.N...P...P.......p.p.....np....pp...pppr.bqkbnr b": [
       {
         "San": "Nf6",
         "Nag": "Null",
@@ -161,37 +161,37 @@
         "Comm": ""
       }
     ],
-    "R.BQK.NRPP.P.PBP..N.P.P...P.......b.pp..........pppp..pprnbqk..r w": [
+    "R.BQK.NRPP.P.PBP..N.P.P.............p....n......ppp..ppprnbqkb.r b": [
       {
         "San": "Nc6",
         "Nag": "Null",
         "Comm": ""
       }
     ],
-    "R.BQK.NRPP.P.PBP..N.P.P..b..........p....n......ppp..ppprnbqk..r w": [
+    "R.BQK.NRPP.P.PBP..N.P.P...P.......b.pp.......n..pppp..pprnbqk..r b": [
       {
         "San": "Nc6",
         "Nag": "Null",
         "Comm": ""
       }
     ],
-    "R.BQK.NRPP.PPPBP..N...P...P.........pp..........pppp..pprnbqkb.r w": [
+    "R.BQK.NRPP.PPPBP..N...P............np...........ppp..ppprnbqkb.r b": [
+      {
+        "San": "Nb6",
+        "Nag": "Null",
+        "Comm": ""
+      }
+    ],
+    "R.BQK.NRPP.PPPBP..N...P...P.........pp.......n..pppp..pprnbqkb.r b": [
       {
         "San": "Bc5",
         "Nag": "Null",
         "Comm": ""
       }
     ],
-    "R.BQK.NRPP.PPPBP..N...P...P.......p.......n.....pp.p.pppr.bqkbnr w": [
+    "R.BQK.NRPP.PPPBP..N...P...P.......p.p.....n.....pp.p.pppr.bqkbnr b": [
       {
         "San": "d6",
-        "Nag": "Null",
-        "Comm": ""
-      }
-    ],
-    "R.BQK.NRPP.PPPBP..N...P..b.........np...........ppp..ppprnbqk..r w": [
-      {
-        "San": "Nb6",
         "Nag": "Null",
         "Comm": ""
       }
@@ -199,6 +199,13 @@
     "R.BQK.NRPP.PPPBP..N...P..bP.........p........n..pppp.ppprnbqk..r b": [
       {
         "San": "Bxc3",
+        "Nag": "Null",
+        "Comm": ""
+      }
+    ],
+    "R.BQKBNRPP.PPP.P..N...P............Pp........n..ppp..ppprnbqkb.r b": [
+      {
+        "San": "Nxd5",
         "Nag": "Null",
         "Comm": ""
       }
@@ -215,23 +222,16 @@
         "Comm": ""
       }
     ],
-    "R.BQKBNRPP.PPP.P..N...P...P.........pp.......n..pppp..pprnbqkb.r w": [
+    "R.BQKBNRPP.PPP.P..N...P...P.........pp..........pppp..pprnbqkbnr b": [
       {
         "San": "Nf6",
         "Nag": "Null",
         "Comm": ""
       }
     ],
-    "R.BQKBNRPP.PPP.P..N...P...P.......p.p.....n.....pp.p.pppr.bqkbnr w": [
+    "R.BQKBNRPP.PPP.P..N...P...P.......p.......n.....pp.pppppr.bqkbnr b": [
       {
         "San": "e5",
-        "Nag": "Null",
-        "Comm": ""
-      }
-    ],
-    "R.BQKBNRPP.PPP.P..N...P..b.........Pp........n..ppp..ppprnbqk..r w": [
-      {
-        "San": "Nxd5",
         "Nag": "Null",
         "Comm": ""
       }
@@ -248,7 +248,7 @@
         "Comm": ""
       }
     ],
-    "R.BQKBNRPP.PPPPP..N.......P.......p.p...........pp.p.ppprnbqkbnr w": [
+    "R.BQKBNRPP.PPPPP..N.......P.......p.............pp.ppppprnbqkbnr b": [
       {
         "San": "Nc6",
         "Nag": "Null",
@@ -269,32 +269,32 @@
     ]
   },
   {
-    "R.B..RK......PBPPPN...P...PQ.............p.pbn..p...bppp..rq.rk. b": {
+    "R.B..RK......PBPPPN...P...PQ.............p.pbn..p...bppp..rq.rk. w": {
       "San": "Bd2",
       "Nag": "Null",
       "Comm": ""
     },
-    "R.BQ.RK......PBPPPN...P...Pn...............pbn..pp..bppp..rq.rk. b": {
+    "R.BQ.RK......PBPPPN...P...Pn...............pbn..pp..bppp..rq.rk. w": {
       "San": "Qxd4",
       "Nag": "Null",
       "Comm": ""
     },
-    "R.BQ.RK.....NPBPPPN...P...P...............npbn..pp..bppp..rq.rk. b": {
+    "R.BQ.RK.....NPBPPPN...P...Pp..............npbn..pp..bppp..rq.rk. w": {
       "San": "Nxd4",
       "Nag": "Null",
       "Comm": ""
     },
-    "R.BQ.RK.....NPBPPPN.P.P...Pp..............npbn..pp..bppp..rq.rk. b": {
+    "R.BQ.RK.....NPBPPPN.P.P...Pp........p.....npbn..pp..bppp..rq.rk. w": {
       "San": "exd4",
       "Nag": "Null",
       "Comm": ""
     },
-    "R.BQ.RK....PNPBPPPN.P.P...P.......p.......npbn..pp..bppp..rq.rk. b": {
+    "R.BQ.RK....PNPBPPPN.P.P...P.......p.p.....npbn..pp..bppp..rq.rk. w": {
       "San": "d4",
       "Nag": "Null",
       "Comm": ""
     },
-    "R.BQ.RK..P.PNPBPP.N.P.P...P.......p.......npbn..pp..bpppr..q.rk. b": {
+    "R.BQ.RK..P.PNPBPP.N.P.P...P.......p.p.....npbn..pp..bpppr..q.rk. w": {
       "San": "b3",
       "Nag": "Null",
       "Comm": ""
@@ -304,42 +304,42 @@
       "Nag": "Null",
       "Comm": ""
     },
-    "R.BQ.RK.PP...PBP..N.P.P...P........bpp....np....ppp...ppr..qk..r b": {
-      "San": "cxd5",
-      "Nag": "Null",
-      "Comm": ""
-    },
-    "R.BQ.RK.PP...PBP..N.P.P..b.n.............n......ppp..pppr.bq.rk. b": {
+    "R.BQ.RK.PP...PBP..N.P.P....n.............n......ppp.bpppr.bq.rk. w": {
       "San": "Qxd4",
       "Nag": "Null",
       "Comm": ""
     },
-    "R.BQ.RK.PP..NPBP..N.P.P..b.p.............nn.....ppp..pppr.bq.rk. b": {
+    "R.BQ.RK.PP...PBP..N.P.P...P........bpp....np.n..ppp...ppr..qk..r w": {
+      "San": "cxd5",
+      "Nag": "Null",
+      "Comm": ""
+    },
+    "R.BQ.RK.PP..NPBP..N.P.P....p.............nn.....ppp.bpppr.bq.rk. w": {
       "San": "Nxd4",
       "Nag": "Null",
       "Comm": ""
     },
-    "R.BQ.RK.PP..NPBP..N.P.P..bPP........pp....npb...ppp...ppr..qk..r b": {
+    "R.BQ.RK.PP..NPBP..N.P.P..bPP........pp....npbn..ppp...ppr..qk..r w": {
       "San": "d5",
       "Nag": "Null",
       "Comm": ""
     },
-    "R.BQ.RK.PP..NPBP..b.P.P...P........Ppp....npb...ppp...ppr..qk..r b": {
+    "R.BQ.RK.PP..NPBP..b.P.P...P........Ppp....npbn..ppp...ppr..qk..r w": {
       "San": "Nxc3",
       "Nag": "Null",
       "Comm": ""
     },
-    "R.BQ.RK.PP.PNPBP..N.P.P...P.......b.pp....npb...ppp...ppr..qk..r b": {
+    "R.BQ.RK.PP.PNPBP..N.P.P.............p....nn.....ppp.bpppr.bq.rk. w": {
       "San": "d4",
       "Nag": "Null",
       "Comm": ""
     },
-    "R.BQ.RK.PP.PNPBP..N.P.P..b..........p....nn.....ppp..pppr.bq.rk. b": {
+    "R.BQ.RK.PP.PNPBP..N.P.P...P.......b.pp....npbn..ppp...ppr..qk..r w": {
       "San": "d4",
       "Nag": "Null",
       "Comm": ""
     },
-    "R.BQK..R.P.PNPBPP.N.P.P...P.......p.......np.n..pp..bpppr.bq.rk. b": {
+    "R.BQK..R.P.PNPBPP.N.P.P...P.......p.p.....np.n..pp..bpppr.bq.rk. w": {
       "San": "O-O",
       "Nag": "Null",
       "Comm": ""
@@ -349,22 +349,22 @@
       "Nag": "Null",
       "Comm": ""
     },
-    "R.BQK..RPP.PNPBP..N.P.P...P.......b.pp....np....ppp...ppr.bqk..r b": {
+    "R.BQK..RPP.PNPBP..N.P.P.............p....nn.....ppp.bpppr.bqk..r w": {
       "San": "O-O",
       "Nag": "Null",
       "Comm": ""
     },
-    "R.BQK..RPP.PNPBP..N.P.P..b..........p....nn.....ppp..pppr.bqk..r b": {
+    "R.BQK..RPP.PNPBP..N.P.P...P.......b.pp....np.n..ppp...ppr.bqk..r w": {
       "San": "O-O",
       "Nag": "Null",
       "Comm": ""
     },
-    "R.BQK.NR.P.P.PBPP.N.P.P...P.......p.......np.n..pp..bpppr.bqk..r b": {
+    "R.BQK.NR.P.P.PBPP.N.P.P...P.......p.p.....np.n..pp..bpppr.bqk..r w": {
       "San": "Nge2",
       "Nag": "Null",
       "Comm": ""
     },
-    "R.BQK.NR.P.PPPBPP.N...P...P.......p.......np.n..pp...pppr.bqkb.r b": {
+    "R.BQK.NR.P.PPPBPP.N...P...P.......p.p.....np.n..pp...pppr.bqkb.r w": {
       "San": "e3",
       "Nag": "Null",
       "Comm": ""
@@ -379,28 +379,28 @@
       "Nag": "Null",
       "Comm": ""
     },
-    "R.BQK.NRPP.P.PBP..N.P.P...P.......b.pp....n.....pppp..ppr.bqk..r b": {
+    "R.BQK.NRPP.P.PBP..N.P.P.............p....nn.....ppp..pppr.bqkb.r w": {
       "San": "Nge2",
       "Nag": "Null",
       "Comm": ""
     },
-    "R.BQK.NRPP.P.PBP..N.P.P..b..........p....nn.....ppp..pppr.bqk..r b": {
+    "R.BQK.NRPP.P.PBP..N.P.P...P.......b.pp....n..n..pppp..ppr.bqk..r w": {
       "San": "Nge2",
       "Nag": "Null",
       "Comm": ""
     },
-    "R.BQK.NRPP.PPPBP..N...P...P.......b.pp..........pppp..pprnbqk..r b": {
+    "R.BQK.NRPP.PPPBP..N...P.............p....n......ppp..ppprnbqkb.r w": {
       "San": "e3",
       "Nag": "Null",
       "Comm": ""
     },
-    "R.BQK.NRPP.PPPBP..N...P...P.......p.......np....pp...pppr.bqkbnr b": {
+    "R.BQK.NRPP.PPPBP..N...P...P.......b.pp.......n..pppp..pprnbqk..r w": {
+      "San": "e3",
+      "Nag": "Null",
+      "Comm": ""
+    },
+    "R.BQK.NRPP.PPPBP..N...P...P.......p.p.....np....pp...pppr.bqkbnr w": {
       "San": "a3",
-      "Nag": "Null",
-      "Comm": ""
-    },
-    "R.BQK.NRPP.PPPBP..N...P..b..........p....n......ppp..ppprnbqk..r b": {
-      "San": "e3",
       "Nag": "Null",
       "Comm": ""
     },
@@ -409,17 +409,22 @@
       "Nag": "Null",
       "Comm": ""
     },
-    "R.BQKBNRPP.PPP.P..N...P...P.........pp..........pppp..pprnbqkb.r b": {
+    "R.BQKBNRPP.PPP.P..N...P............np...........ppp..ppprnbqkb.r w": {
       "San": "Bg2",
       "Nag": "Null",
       "Comm": ""
     },
-    "R.BQKBNRPP.PPP.P..N...P...P.......p.......n.....pp.p.pppr.bqkbnr b": {
+    "R.BQKBNRPP.PPP.P..N...P...P.........pp.......n..pppp..pprnbqkb.r w": {
       "San": "Bg2",
       "Nag": "Null",
       "Comm": ""
     },
-    "R.BQKBNRPP.PPP.P..N...P..b.........np...........ppp..ppprnbqk..r b": {
+    "R.BQKBNRPP.PPP.P..N...P...P........pp........n..ppp..ppprnbqkb.r w": {
+      "San": "cxd5",
+      "Nag": "Null",
+      "Comm": ""
+    },
+    "R.BQKBNRPP.PPP.P..N...P...P.......p.p.....n.....pp.p.pppr.bqkbnr w": {
       "San": "Bg2",
       "Nag": "Null",
       "Comm": ""
@@ -429,22 +434,17 @@
       "Nag": "Null",
       "Comm": ""
     },
-    "R.BQKBNRPP.PPP.P..N...P..bP........pp........n..ppp..ppprnbqk..r b": {
-      "San": "cxd5",
-      "Nag": "Null",
-      "Comm": ""
-    },
     "R.BQKBNRPP.PPPPP..N.......P.........p........n..pppp.ppprnbqkb.r w": {
       "San": "g3",
       "Nag": "Null",
       "Comm": ""
     },
-    "R.BQKBNRPP.PPPPP..N.......P.........pp.......n..pppp..pprnbqkb.r b": {
+    "R.BQKBNRPP.PPPPP..N.......P.........pp..........pppp..pprnbqkbnr w": {
       "San": "g3",
       "Nag": "Null",
       "Comm": ""
     },
-    "R.BQKBNRPP.PPPPP..N.......P.......p.p.....n.....pp.p.pppr.bqkbnr b": {
+    "R.BQKBNRPP.PPPPP..N.......P.......p.......n.....pp.pppppr.bqkbnr w": {
       "San": "g3",
       "Nag": "Null",
       "Comm": ""
@@ -454,7 +454,7 @@
       "Nag": "Null",
       "Comm": ""
     },
-    "RNBQKBNRPP.PPPPP..........P.......p.p...........pp.p.ppprnbqkbnr b": {
+    "RNBQKBNRPP.PPPPP..........P.......p.............pp.ppppprnbqkbnr w": {
       "San": "Nc3",
       "Nag": "Null",
       "Comm": ""
