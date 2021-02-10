@@ -299,12 +299,8 @@ module Form =
                     let gmpfile = ndlg.FileName
                     SbUpdate("Opening tree: " + gmpfile)
                     let gmp = Grampus.Load(gmpfile)
-                    let nm =
-                        Path.Combine
-                            (Path.GetDirectoryName(gmpfile), 
-                             Path.GetFileNameWithoutExtension(gmpfile))
                     if gmp.TreesCreated.IsSome then 
-                        sts.Init(nm)
+                        sts.Init(gmpfile)
                         Recents.addtr gmpfile
                         let nbd = bd.GetBoard()
                         sts.UpdateStr(nbd)
@@ -316,12 +312,8 @@ module Form =
                     let nm = Path.GetFileNameWithoutExtension(ifn)
                     SbUpdate("Opening tree: " + ifn)
                     let gmp = Grampus.Load(ifn)
-                    let nm =
-                        Path.Combine
-                            (Path.GetDirectoryName(ifn), 
-                             Path.GetFileNameWithoutExtension(ifn))
                     if gmp.TreesCreated.IsSome then 
-                        sts.Init(nm)
+                        sts.Init(ifn)
                         Recents.addtr ifn
                         let nbd = bd.GetBoard()
                         sts.UpdateStr(nbd)

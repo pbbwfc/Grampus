@@ -58,7 +58,7 @@ type Grampus() =
         if Directory.Exists(trfol) then Directory.Delete(trfol, true)
         let ans = Directory.Exists(trfol)
         ans |> should equal false
-        Tree.Create(tstfol)
+        Tree.Create(tstfn)
         let ans = Directory.Exists(trfol)
         ans |> should equal true
         let ngmp = Grampus.DeleteTree(tstfn)

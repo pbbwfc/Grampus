@@ -414,7 +414,7 @@ Get an encoded move from a SAN Move(move) such as Nf3 for this Board(bd)
  <summary>
  Removes all NAGs for the base in the specified folder.
  </summary>
- <param name="fol">The folder in which the base is stored.</param>
+ <param name="nm">The full path and file name.</param>
  <param name="cb">Callback function to report on progress.</param>
  <returns>Nothing.</returns>
 </member>
@@ -422,7 +422,7 @@ Get an encoded move from a SAN Move(move) such as Nf3 for this Board(bd)
  <summary>
  Removes all Variations for the base in the specified folder.
  </summary>
- <param name="fol">The folder in which the base is stored.</param>
+ <param name="nm">The full path and file name.</param>
  <param name="cb">Callback function to report on progress.</param>
  <returns>Nothing.</returns>
 </member>
@@ -430,7 +430,7 @@ Get an encoded move from a SAN Move(move) such as Nf3 for this Board(bd)
  <summary>
  Removes all Comments for the base in the specified folder.
  </summary>
- <param name="fol">The folder in which the base is stored.</param>
+ <param name="nm">The full path and file name.</param>
  <param name="cb">Callback function to report on progress.</param>
  <returns>Nothing.</returns>
 </member>
@@ -438,7 +438,7 @@ Get an encoded move from a SAN Move(move) such as Nf3 for this Board(bd)
  <summary>
  Removes duplicate games for the base in the specified folder.
  </summary>
- <param name="fol">The folder in which the base is stored.</param>
+ <param name="nm">The full path and file name.</param>
  <param name="cb">Callback function to report on progress.</param>
  <returns>Messages from process as a string type.</returns>
 </member>
@@ -456,7 +456,7 @@ Get an encoded move from a SAN Move(move) such as Nf3 for this Board(bd)
  <summary>
  Gets possible names of Players given part of the name string.
  </summary>
- <param name="fol">The folder in which the base is stored.</param>
+ <param name="nm">The full path and file name.</param>
  <param name="part">The string containing part of the name.</param>
  <param name="cb">Callback function to report on progress.</param>
  <returns>Possible names as a string array type.</returns>
@@ -485,7 +485,7 @@ Get an encoded move from a SAN Move(move) such as Nf3 for this Board(bd)
  <summary>
  Compacts the base in the specified folder.
  </summary>
- <param name="fol">The folder in which the base is stored.</param>
+ <param name="nm">The full path and file name.</param>
  <param name="cb">Callback function to report on progress.</param>
  <returns>Messages from compaction process as a string type.</returns>
 </member>
@@ -493,7 +493,7 @@ Get an encoded move from a SAN Move(move) such as Nf3 for this Board(bd)
  <summary>
  Updates a game in an existing base in the specified folder.
  </summary>
- <param name="fol">The folder in which the games are stored.</param>
+ <param name="nm">The full path and file name.</param>
  <param name="gnum">The game number to update a int type.</param>
  <param name="gm">The game as an EncodedGame type.</param>
  <returns>Nothing.</returns>
@@ -502,15 +502,24 @@ Get an encoded move from a SAN Move(move) such as Nf3 for this Board(bd)
  <summary>
  Adds game to an existing base in the specified folder.
  </summary>
- <param name="fol">The folder in which the games are stored.</param>
+ <param name="nm">The full path and file name.</param>
  <param name="gm">The game as an EncodedGame type.</param>
+ <returns>Nothing.</returns>
+</member>
+<member name="M:Grampus.Games.AddGmp(System.String,System.String,Microsoft.FSharp.Core.FSharpFunc{System.Int32,Microsoft.FSharp.Core.Unit})">
+ <summary>
+ Adds a sequence of games to an existing base in the specified folder.
+ </summary>
+ <param name="nm">The full path and file name.</param>
+ <param name="addnm">The full path and file name of the base with the games to add.</param>
+ <param name="cb">Callback function to report on progress.</param>
  <returns>Nothing.</returns>
 </member>
 <member name="M:Grampus.Games.Add(System.String,System.Collections.Generic.IEnumerable{Grampus.Types.EncodedGame},Microsoft.FSharp.Core.FSharpFunc{System.Int32,Microsoft.FSharp.Core.Unit})">
  <summary>
  Adds a sequence of games to an existing base in the specified folder.
  </summary>
- <param name="fol">The folder in which the games are stored.</param>
+ <param name="nm">The full path and file name.</param>
  <param name="gms">The games as an EncodedGame sequence type.</param>
  <param name="cb">Callback function to report on progress.</param>
  <returns>Nothing.</returns>
@@ -519,7 +528,7 @@ Get an encoded move from a SAN Move(move) such as Nf3 for this Board(bd)
  <summary>
  Saves a sequence of games to create a new base in the specified folder.
  </summary>
- <param name="fol">The folder in which the games are stored.</param>
+ <param name="nm">The full path and file name.</param>
  <param name="gms">The games as an EncodedGame sequence type.</param>
  <param name="cb">Callback function to report on progress.</param>
  <returns>Nothing.</returns>
@@ -528,7 +537,7 @@ Get an encoded move from a SAN Move(move) such as Nf3 for this Board(bd)
  <summary>
  Loads an encoded game given the folder, index entry and the header.
  </summary>
- <param name="fol">The folder in which the game is stored.</param>
+ <param name="nm">The full path and file name.</param>
  <param name="ie">The index entry for the game as an IndexEntry type.</param>
  <param name="hdr">The header for the game as a Header type.</param>
  <returns>The encoded game.</returns>
@@ -542,7 +551,7 @@ Get an encoded move from a SAN Move(move) such as Nf3 for this Board(bd)
  <summary>
  Saves the headers given the folder and the data.
  </summary>
- <param name="fol">The folder in which to store the headers.</param>
+ <param name="nm">The full path and file name.</param>
  <param name="hdrs">The headers as a Header array type.</param>
  <returns>Nothing.</returns>
 </member>
@@ -550,7 +559,7 @@ Get an encoded move from a SAN Move(move) such as Nf3 for this Board(bd)
  <summary>
  Loads the headers given the folder.
  </summary>
- <param name="fol">The folder which stores the headers.</param>
+ <param name="nm">The full path and file name.</param>
  <returns>The headers as an Header array type.</returns>
 </member>
 <member name="T:Grampus.Headers">
@@ -562,7 +571,7 @@ Get an encoded move from a SAN Move(move) such as Nf3 for this Board(bd)
  <summary>
  Set ECO for games given the folder containing the base.
  </summary>
- <param name="fol">The folder which stores the games.</param>
+ <param name="nm">The full path and file name.</param>
  <param name="cb">Callback function to report on progress.</param>
  <returns>Nothing.</returns>
 </member>
@@ -582,7 +591,7 @@ Get an encoded move from a SAN Move(move) such as Nf3 for this Board(bd)
  <summary>
  Saves the Index given the folder and the data.
  </summary>
- <param name="fol">The folder in which to store the index.</param>
+ <param name="nm">The full path and file name.</param>
  <param name="iea">The index as an IndexEntry array type.</param>
  <returns>Nothing.</returns>
 </member>
@@ -590,7 +599,7 @@ Get an encoded move from a SAN Move(move) such as Nf3 for this Board(bd)
  <summary>
  Loads the Index given the folder.
  </summary>
- <param name="fol">The folder which stores the index.</param>
+ <param name="nm">The full path and file name.</param>
  <returns>The index as an IndexEntry array type.</returns>
 </member>
 <member name="T:Grampus.Index">

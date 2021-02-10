@@ -10,15 +10,15 @@ open LevelDB
 ///
 /// <exclude />
 module StaticTree =
-    let Create(ifol) =
-        let fol = ifol + "\\tree"
+    let Create(nm) =
+        let fol = gettrfol nm
         Directory.CreateDirectory(fol) |> ignore
         let options = new Options(CreateIfMissing = true)
         let db = new DB(options, fol)
         db.Close()
     
-    let Save(posns : string [], stss : stats [], ifol : string) =
-        let fol = ifol + "\\tree"
+    let Save(posns : string [], stss : stats [], nm : string) =
+        let fol = gettrfol nm
         let options = new Options()
         let db = new DB(options, fol)
         for i = 0 to posns.Length - 1 do
@@ -27,8 +27,8 @@ module StaticTree =
                  MessagePackSerializer.Serialize<stats>(stss.[i]))
         db.Close()
     
-    let ReadArray(posns : string [], ifol : string) =
-        let fol = ifol + "\\tree"
+    let ReadArray(posns : string [], nm : string) =
+        let fol = gettrfol nm
         let options = new Options()
         let db = new DB(options, fol)
         
@@ -46,8 +46,8 @@ module StaticTree =
         db.Close()
         vs
     
-    let Read(posn : string, ifol : string) =
-        let fol = ifol + "\\tree"
+    let Read(posn : string, nm : string) =
+        let fol = gettrfol nm
         if Directory.Exists(fol) then 
             let options = new Options()
             let db = new DB(options, fol)

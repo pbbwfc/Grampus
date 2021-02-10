@@ -394,26 +394,26 @@ module Tree =
     /// <summary>
     /// Creates the tree storage given a folder.
     /// </summary>
-    /// <param name="fol">The folder to store the tree.</param>
+    /// <param name="nm">The full path and file name.</param>
     /// <returns>Nothing.</returns>
-    let Create(fol) = GrampusInternal.StaticTree.Create(fol)
+    let Create(nm) = GrampusInternal.StaticTree.Create(nm)
     
     /// <summary>
     /// Saves the tree storage given an array of positions, an array of stats and a folder.
     /// </summary>
     /// <param name="posns">The array of positions for the tree.</param>
     /// <param name="sts">The array of stats for the tree.</param>
-    /// <param name="fol">The folder to store the tree.</param>
+    /// <param name="nm">The full path and file name.</param>
     /// <returns>Nothing.</returns>
-    let Save(posns, sts, fol) = GrampusInternal.StaticTree.Save(posns, sts, fol)
+    let Save(posns, sts, nm) = GrampusInternal.StaticTree.Save(posns, sts, nm)
     
     /// <summary>
     /// Reads the tree storage given a position and a folder.
     /// </summary>
     /// <param name="posn">The position to read in the tree.</param>
-    /// <param name="fol">The folder which stores the tree.</param>
+    /// <param name="nm">The full path and file name.</param>
     /// <returns>The tree for the posn as a stats type.</returns>
-    let Read(posn, fol) = GrampusInternal.StaticTree.Read(posn, fol)
+    let Read(posn, nm) = GrampusInternal.StaticTree.Read(posn, nm)
 
 /// <summary>
 /// Holds the functions related to Filters.

@@ -12,6 +12,8 @@ type Games() =
     let tstfol2 = @"D:\GitHub\Grampus\tests\data\simple-game2_FILES"
     let tstfn = @"D:\GitHub\Grampus\tests\data\simple-game.grampus"
     let tstfn2 = @"D:\GitHub\Grampus\tests\data\simple-game2.grampus"
+    let tstfn2b = @"D:\GitHub\Grampus\tests\data\simple-game2_B.grampus"
+    let tstfn2w = @"D:\GitHub\Grampus\tests\data\simple-game2_W.grampus"
     
     [<TestMethod>]
     member this.Save() =
@@ -176,6 +178,8 @@ type Games() =
     [<TestMethod>]
     member this.ExtractPlayer() =
         if File.Exists(tstfn2) then Grampus.Delete(tstfn2)
+        if File.Exists(tstfn2b) then Grampus.Delete(tstfn2b)
+        if File.Exists(tstfn2w) then Grampus.Delete(tstfn2w)
         Games.ExtractPlayer tstfn tstfn2 "Howell, David" (fun i -> ())
         let nindx = Index.Load tstfn2
         nindx.Length |> should equal 1
@@ -184,6 +188,9 @@ type Games() =
         let nindx = Index.Load tstfn2
         nindx.Length |> should equal 0
         if File.Exists(tstfn2) then Grampus.Delete(tstfn2)
+        if File.Exists(tstfn2b) then Grampus.Delete(tstfn2b)
+        if File.Exists(tstfn2w) then Grampus.Delete(tstfn2w)
+
     
     [<TestMethod>]
     member this.RemoveDuplicates() =

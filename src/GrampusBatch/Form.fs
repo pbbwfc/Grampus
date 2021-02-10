@@ -558,11 +558,11 @@ module Form =
                 log ("Processed Positions")
                 lbl.Text <- "Creating dictionary..."
                 Application.DoEvents()
-                Tree.Create(binfol) |> ignore
+                Tree.Create(gmpfile) |> ignore
                 log ("Created dictionary")
                 lbl.Text <- "Saving dictionary..."
                 Application.DoEvents()
-                Tree.Save(posns, stsarr, binfol) |> ignore
+                Tree.Save(posns, stsarr, gmpfile) |> ignore
                 log ("Saved dictionary")
                 lbl.Text <- "Ready"
                 gmp <- Some({ gmp.Value with TreesCreated = Some(DateTime.Now)

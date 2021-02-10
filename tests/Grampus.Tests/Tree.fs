@@ -7,6 +7,7 @@ open System.IO
 
 [<TestClass>]
 type Tree() =
+    let tstfn = @"D:\GitHub\Grampus\tests\data\simple-game.grampus"
     let tstfol = @"D:\GitHub\Grampus\tests\data\simple-game_FILES"
     let ss1 =
         "RNBQKBNRPP.PPPPP..........P.....................pppppppprnbqkbnr b"
@@ -17,7 +18,7 @@ type Tree() =
         if Directory.Exists(trfol) then Directory.Delete(trfol, true)
         let ans = Directory.Exists(trfol)
         ans |> should equal false
-        Tree.Create(tstfol)
+        Tree.Create(tstfn)
         let ans = Directory.Exists(trfol)
         ans |> should equal true
         Directory.Delete(trfol, true)
@@ -28,8 +29,8 @@ type Tree() =
         if Directory.Exists(trfol) then Directory.Delete(trfol, true)
         let ans = Directory.Exists(trfol)
         ans |> should equal false
-        Tree.Create(tstfol)
-        Tree.Save([||], [||], tstfol)
+        Tree.Create(tstfn)
+        Tree.Save([||], [||], tstfn)
         let ans = Directory.Exists(trfol)
         ans |> should equal true
         Directory.Delete(trfol, true)
@@ -40,9 +41,9 @@ type Tree() =
         if Directory.Exists(trfol) then Directory.Delete(trfol, true)
         let ans = Directory.Exists(trfol)
         ans |> should equal false
-        Tree.Create(tstfol)
-        Tree.Save([| ss1 |], [| new stats() |], tstfol)
-        let ans = Tree.Read(ss1, tstfol)
+        Tree.Create(tstfn)
+        Tree.Save([| ss1 |], [| new stats() |], tstfn)
+        let ans = Tree.Read(ss1, tstfn)
         ans.MvsStats.Count |> should equal 0
         let ans = Directory.Exists(trfol)
         ans |> should equal true
