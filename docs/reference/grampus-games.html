@@ -127,7 +127,7 @@
                 <p>
                   <a id="Add">
                     <a href="#Add">
-                      <code><span>Add&#32;<span>fol&#32;gms&#32;cb</span></span></code>
+                      <code><span>Add&#32;<span>nm&#32;gms&#32;cb</span></span></code>
                     </a>
                   </a>
                 </p>
@@ -135,19 +135,19 @@
               <div class="fsdocs-tip" id="38">
                 <div class="member-tooltip">
                   Full Usage: 
-                  <code><span>Add&#32;<span>fol&#32;gms&#32;cb</span></span></code>
+                  <code><span>Add&#32;<span>nm&#32;gms&#32;cb</span></span></code>
                   <br/>
                   <br/>
                   Parameters: 
                   <ul>
                     <span>
                       <b>
-                        fol
+                        nm
                       </b>
                       :
                       <code>string</code>
                        - 
-                      The folder in which the games are stored.
+                      The full path and file name.
                     </span>
                     <br/>
                     <span>
@@ -189,14 +189,14 @@
             <dl class="fsdocs-params">
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
-                  fol
+                  nm
                 </span>
                 :
                 <code>string</code>
               </dt>
               <dd class="fsdocs-param-docs">
                 <p>
-                  The folder in which the games are stored.
+                  The full path and file name.
                 </p>
               </dd>
               <dt class="fsdocs-param">
@@ -231,9 +231,9 @@
             <div>
               <code onmouseout="hideTip(event, '39', 39)" onmouseover="showTip(event, '39', 39)">
                 <p>
-                  <a id="AppendGame">
-                    <a href="#AppendGame">
-                      <code><span>AppendGame&#32;<span>fol&#32;gm</span></span></code>
+                  <a id="AddGmp">
+                    <a href="#AddGmp">
+                      <code><span>AddGmp&#32;<span>nm&#32;addnm&#32;cb</span></span></code>
                     </a>
                   </a>
                 </p>
@@ -241,19 +241,125 @@
               <div class="fsdocs-tip" id="39">
                 <div class="member-tooltip">
                   Full Usage: 
-                  <code><span>AppendGame&#32;<span>fol&#32;gm</span></span></code>
+                  <code><span>AddGmp&#32;<span>nm&#32;addnm&#32;cb</span></span></code>
                   <br/>
                   <br/>
                   Parameters: 
                   <ul>
                     <span>
                       <b>
-                        fol
+                        nm
+                      </b>
+                      :
+                      <code>'a</code>
+                       - 
+                      The full path and file name.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        addnm
+                      </b>
+                      :
+                      <code>'b</code>
+                       - 
+                      The full path and file name of the base with the games to add.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        cb
+                      </b>
+                      :
+                      <code>'c</code>
+                       - 
+                      Callback function to report on progress.
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L605-605" class="fsdocs-source-link">
+                <img src="/Grampus/content/img/github.png" class="normal"/>
+                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+ Adds a sequence of games to an existing base in the specified folder.
+ 
+            </p>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  nm
+                </span>
+                :
+                <code>'a</code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  The full path and file name.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  addnm
+                </span>
+                :
+                <code>'b</code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  The full path and file name of the base with the games to add.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  cb
+                </span>
+                :
+                <code>'c</code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Callback function to report on progress.
+                </p>
+              </dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '40', 40)" onmouseover="showTip(event, '40', 40)">
+                <p>
+                  <a id="AppendGame">
+                    <a href="#AppendGame">
+                      <code><span>AppendGame&#32;<span>nm&#32;gm</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="40">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>AppendGame&#32;<span>nm&#32;gm</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        nm
                       </b>
                       :
                       <code>string</code>
                        - 
-                      The folder in which the games are stored.
+                      The full path and file name.
                     </span>
                     <br/>
                     <span>
@@ -274,7 +380,7 @@
           </td>
           <td class="fsdocs-xmldoc">
             <p class="fsdocs-summary">
-              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L604-604" class="fsdocs-source-link">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L613-613" class="fsdocs-source-link">
                 <img src="/Grampus/content/img/github.png" class="normal"/>
                 <img src="/Grampus/content/img/github-blue.png" class="hover"/>
               </a>
@@ -285,14 +391,14 @@
             <dl class="fsdocs-params">
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
-                  fol
+                  nm
                 </span>
                 :
                 <code>string</code>
               </dt>
               <dd class="fsdocs-param-docs">
                 <p>
-                  The folder in which the games are stored.
+                  The full path and file name.
                 </p>
               </dd>
               <dt class="fsdocs-param">
@@ -313,31 +419,31 @@
         <tr>
           <td class="fsdocs-member-name">
             <div>
-              <code onmouseout="hideTip(event, '40', 40)" onmouseover="showTip(event, '40', 40)">
+              <code onmouseout="hideTip(event, '41', 41)" onmouseover="showTip(event, '41', 41)">
                 <p>
                   <a id="Compact">
                     <a href="#Compact">
-                      <code><span>Compact&#32;<span>fol&#32;cb</span></span></code>
+                      <code><span>Compact&#32;<span>nm&#32;cb</span></span></code>
                     </a>
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="40">
+              <div class="fsdocs-tip" id="41">
                 <div class="member-tooltip">
                   Full Usage: 
-                  <code><span>Compact&#32;<span>fol&#32;cb</span></span></code>
+                  <code><span>Compact&#32;<span>nm&#32;cb</span></span></code>
                   <br/>
                   <br/>
                   Parameters: 
                   <ul>
                     <span>
                       <b>
-                        fol
+                        nm
                       </b>
                       :
                       <code>string</code>
                        - 
-                      The folder in which the base is stored.
+                      The full path and file name.
                     </span>
                     <br/>
                     <span>
@@ -364,7 +470,7 @@
           </td>
           <td class="fsdocs-xmldoc">
             <p class="fsdocs-summary">
-              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L621-621" class="fsdocs-source-link">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L630-630" class="fsdocs-source-link">
                 <img src="/Grampus/content/img/github.png" class="normal"/>
                 <img src="/Grampus/content/img/github-blue.png" class="hover"/>
               </a>
@@ -375,14 +481,14 @@
             <dl class="fsdocs-params">
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
-                  fol
+                  nm
                 </span>
                 :
                 <code>string</code>
               </dt>
               <dd class="fsdocs-param-docs">
                 <p>
-                  The folder in which the base is stored.
+                  The full path and file name.
                 </p>
               </dd>
               <dt class="fsdocs-param">
@@ -416,7 +522,7 @@
         <tr>
           <td class="fsdocs-member-name">
             <div>
-              <code onmouseout="hideTip(event, '41', 41)" onmouseover="showTip(event, '41', 41)">
+              <code onmouseout="hideTip(event, '42', 42)" onmouseover="showTip(event, '42', 42)">
                 <p>
                   <a id="ExtractNewer">
                     <a href="#ExtractNewer">
@@ -425,7 +531,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="41">
+              <div class="fsdocs-tip" id="42">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>ExtractNewer&#32;<span>nm&#32;trgnm&#32;year&#32;cb</span></span></code>
@@ -481,7 +587,7 @@
           </td>
           <td class="fsdocs-xmldoc">
             <p class="fsdocs-summary">
-              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L631-631" class="fsdocs-source-link">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L640-640" class="fsdocs-source-link">
                 <img src="/Grampus/content/img/github.png" class="normal"/>
                 <img src="/Grampus/content/img/github-blue.png" class="hover"/>
               </a>
@@ -544,7 +650,7 @@
         <tr>
           <td class="fsdocs-member-name">
             <div>
-              <code onmouseout="hideTip(event, '42', 42)" onmouseover="showTip(event, '42', 42)">
+              <code onmouseout="hideTip(event, '43', 43)" onmouseover="showTip(event, '43', 43)">
                 <p>
                   <a id="ExtractPlayer">
                     <a href="#ExtractPlayer">
@@ -553,7 +659,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="42">
+              <div class="fsdocs-tip" id="43">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>ExtractPlayer&#32;<span>nm&#32;trgnm&#32;player&#32;cb</span></span></code>
@@ -609,7 +715,7 @@
           </td>
           <td class="fsdocs-xmldoc">
             <p class="fsdocs-summary">
-              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L662-662" class="fsdocs-source-link">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L671-671" class="fsdocs-source-link">
                 <img src="/Grampus/content/img/github.png" class="normal"/>
                 <img src="/Grampus/content/img/github-blue.png" class="hover"/>
               </a>
@@ -672,7 +778,7 @@
         <tr>
           <td class="fsdocs-member-name">
             <div>
-              <code onmouseout="hideTip(event, '43', 43)" onmouseover="showTip(event, '43', 43)">
+              <code onmouseout="hideTip(event, '44', 44)" onmouseover="showTip(event, '44', 44)">
                 <p>
                   <a id="ExtractStronger">
                     <a href="#ExtractStronger">
@@ -681,7 +787,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="43">
+              <div class="fsdocs-tip" id="44">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>ExtractStronger&#32;<span>nm&#32;trgnm&#32;grade&#32;cb</span></span></code>
@@ -737,7 +843,7 @@
           </td>
           <td class="fsdocs-xmldoc">
             <p class="fsdocs-summary">
-              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L642-642" class="fsdocs-source-link">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L651-651" class="fsdocs-source-link">
                 <img src="/Grampus/content/img/github.png" class="normal"/>
                 <img src="/Grampus/content/img/github-blue.png" class="hover"/>
               </a>
@@ -800,31 +906,31 @@
         <tr>
           <td class="fsdocs-member-name">
             <div>
-              <code onmouseout="hideTip(event, '44', 44)" onmouseover="showTip(event, '44', 44)">
+              <code onmouseout="hideTip(event, '45', 45)" onmouseover="showTip(event, '45', 45)">
                 <p>
                   <a id="GetPossNames">
                     <a href="#GetPossNames">
-                      <code><span>GetPossNames&#32;<span>fol&#32;cb</span></span></code>
+                      <code><span>GetPossNames&#32;<span>nm&#32;cb</span></span></code>
                     </a>
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="44">
+              <div class="fsdocs-tip" id="45">
                 <div class="member-tooltip">
                   Full Usage: 
-                  <code><span>GetPossNames&#32;<span>fol&#32;cb</span></span></code>
+                  <code><span>GetPossNames&#32;<span>nm&#32;cb</span></span></code>
                   <br/>
                   <br/>
                   Parameters: 
                   <ul>
                     <span>
                       <b>
-                        fol
+                        nm
                       </b>
                       :
                       <code>string</code>
                        - 
-                      The folder in which the base is stored.
+                      The full path and file name.
                     </span>
                     <br/>
                     <span>
@@ -851,7 +957,7 @@
           </td>
           <td class="fsdocs-xmldoc">
             <p class="fsdocs-summary">
-              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L652-652" class="fsdocs-source-link">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L661-661" class="fsdocs-source-link">
                 <img src="/Grampus/content/img/github.png" class="normal"/>
                 <img src="/Grampus/content/img/github-blue.png" class="hover"/>
               </a>
@@ -862,14 +968,14 @@
             <dl class="fsdocs-params">
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
-                  fol
+                  nm
                 </span>
                 :
                 <code>string</code>
               </dt>
               <dd class="fsdocs-param-docs">
                 <p>
-                  The folder in which the base is stored.
+                  The full path and file name.
                 </p>
               </dd>
               <dt class="fsdocs-param">
@@ -903,31 +1009,31 @@
         <tr>
           <td class="fsdocs-member-name">
             <div>
-              <code onmouseout="hideTip(event, '45', 45)" onmouseover="showTip(event, '45', 45)">
+              <code onmouseout="hideTip(event, '46', 46)" onmouseover="showTip(event, '46', 46)">
                 <p>
                   <a id="LoadGame">
                     <a href="#LoadGame">
-                      <code><span>LoadGame&#32;<span>fol&#32;ie&#32;hdr</span></span></code>
+                      <code><span>LoadGame&#32;<span>nm&#32;ie&#32;hdr</span></span></code>
                     </a>
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="45">
+              <div class="fsdocs-tip" id="46">
                 <div class="member-tooltip">
                   Full Usage: 
-                  <code><span>LoadGame&#32;<span>fol&#32;ie&#32;hdr</span></span></code>
+                  <code><span>LoadGame&#32;<span>nm&#32;ie&#32;hdr</span></span></code>
                   <br/>
                   <br/>
                   Parameters: 
                   <ul>
                     <span>
                       <b>
-                        fol
+                        nm
                       </b>
                       :
                       <code>string</code>
                        - 
-                      The folder in which the game is stored.
+                      The full path and file name.
                     </span>
                     <br/>
                     <span>
@@ -975,14 +1081,14 @@
             <dl class="fsdocs-params">
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
-                  fol
+                  nm
                 </span>
                 :
                 <code>string</code>
               </dt>
               <dd class="fsdocs-param-docs">
                 <p>
-                  The folder in which the game is stored.
+                  The full path and file name.
                 </p>
               </dd>
               <dt class="fsdocs-param">
@@ -1028,31 +1134,31 @@
         <tr>
           <td class="fsdocs-member-name">
             <div>
-              <code onmouseout="hideTip(event, '46', 46)" onmouseover="showTip(event, '46', 46)">
+              <code onmouseout="hideTip(event, '47', 47)" onmouseover="showTip(event, '47', 47)">
                 <p>
                   <a id="RemoveComments">
                     <a href="#RemoveComments">
-                      <code><span>RemoveComments&#32;<span>fol&#32;cb</span></span></code>
+                      <code><span>RemoveComments&#32;<span>nm&#32;cb</span></span></code>
                     </a>
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="46">
+              <div class="fsdocs-tip" id="47">
                 <div class="member-tooltip">
                   Full Usage: 
-                  <code><span>RemoveComments&#32;<span>fol&#32;cb</span></span></code>
+                  <code><span>RemoveComments&#32;<span>nm&#32;cb</span></span></code>
                   <br/>
                   <br/>
                   Parameters: 
                   <ul>
                     <span>
                       <b>
-                        fol
+                        nm
                       </b>
                       :
                       <code>string</code>
                        - 
-                      The folder in which the base is stored.
+                      The full path and file name.
                     </span>
                     <br/>
                     <span>
@@ -1073,7 +1179,7 @@
           </td>
           <td class="fsdocs-xmldoc">
             <p class="fsdocs-summary">
-              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L679-679" class="fsdocs-source-link">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L688-688" class="fsdocs-source-link">
                 <img src="/Grampus/content/img/github.png" class="normal"/>
                 <img src="/Grampus/content/img/github-blue.png" class="hover"/>
               </a>
@@ -1084,14 +1190,14 @@
             <dl class="fsdocs-params">
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
-                  fol
+                  nm
                 </span>
                 :
                 <code>string</code>
               </dt>
               <dd class="fsdocs-param-docs">
                 <p>
-                  The folder in which the base is stored.
+                  The full path and file name.
                 </p>
               </dd>
               <dt class="fsdocs-param">
@@ -1112,31 +1218,31 @@
         <tr>
           <td class="fsdocs-member-name">
             <div>
-              <code onmouseout="hideTip(event, '47', 47)" onmouseover="showTip(event, '47', 47)">
+              <code onmouseout="hideTip(event, '48', 48)" onmouseover="showTip(event, '48', 48)">
                 <p>
                   <a id="RemoveDuplicates">
                     <a href="#RemoveDuplicates">
-                      <code><span>RemoveDuplicates&#32;<span>fol&#32;cb</span></span></code>
+                      <code><span>RemoveDuplicates&#32;<span>nm&#32;cb</span></span></code>
                     </a>
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="47">
+              <div class="fsdocs-tip" id="48">
                 <div class="member-tooltip">
                   Full Usage: 
-                  <code><span>RemoveDuplicates&#32;<span>fol&#32;cb</span></span></code>
+                  <code><span>RemoveDuplicates&#32;<span>nm&#32;cb</span></span></code>
                   <br/>
                   <br/>
                   Parameters: 
                   <ul>
                     <span>
                       <b>
-                        fol
+                        nm
                       </b>
                       :
                       <code>string</code>
                        - 
-                      The folder in which the base is stored.
+                      The full path and file name.
                     </span>
                     <br/>
                     <span>
@@ -1163,7 +1269,7 @@
           </td>
           <td class="fsdocs-xmldoc">
             <p class="fsdocs-summary">
-              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L671-671" class="fsdocs-source-link">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L680-680" class="fsdocs-source-link">
                 <img src="/Grampus/content/img/github.png" class="normal"/>
                 <img src="/Grampus/content/img/github-blue.png" class="hover"/>
               </a>
@@ -1174,14 +1280,14 @@
             <dl class="fsdocs-params">
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
-                  fol
+                  nm
                 </span>
                 :
                 <code>string</code>
               </dt>
               <dd class="fsdocs-param-docs">
                 <p>
-                  The folder in which the base is stored.
+                  The full path and file name.
                 </p>
               </dd>
               <dt class="fsdocs-param">
@@ -1215,31 +1321,31 @@
         <tr>
           <td class="fsdocs-member-name">
             <div>
-              <code onmouseout="hideTip(event, '48', 48)" onmouseover="showTip(event, '48', 48)">
+              <code onmouseout="hideTip(event, '49', 49)" onmouseover="showTip(event, '49', 49)">
                 <p>
                   <a id="RemoveNags">
                     <a href="#RemoveNags">
-                      <code><span>RemoveNags&#32;<span>fol&#32;cb</span></span></code>
+                      <code><span>RemoveNags&#32;<span>nm&#32;cb</span></span></code>
                     </a>
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="48">
+              <div class="fsdocs-tip" id="49">
                 <div class="member-tooltip">
                   Full Usage: 
-                  <code><span>RemoveNags&#32;<span>fol&#32;cb</span></span></code>
+                  <code><span>RemoveNags&#32;<span>nm&#32;cb</span></span></code>
                   <br/>
                   <br/>
                   Parameters: 
                   <ul>
                     <span>
                       <b>
-                        fol
+                        nm
                       </b>
                       :
                       <code>string</code>
                        - 
-                      The folder in which the base is stored.
+                      The full path and file name.
                     </span>
                     <br/>
                     <span>
@@ -1260,7 +1366,7 @@
           </td>
           <td class="fsdocs-xmldoc">
             <p class="fsdocs-summary">
-              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L695-695" class="fsdocs-source-link">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L704-704" class="fsdocs-source-link">
                 <img src="/Grampus/content/img/github.png" class="normal"/>
                 <img src="/Grampus/content/img/github-blue.png" class="hover"/>
               </a>
@@ -1271,98 +1377,14 @@
             <dl class="fsdocs-params">
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
-                  fol
+                  nm
                 </span>
                 :
                 <code>string</code>
               </dt>
               <dd class="fsdocs-param-docs">
                 <p>
-                  The folder in which the base is stored.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  cb
-                </span>
-                :
-                <code><span>int&#32;->&#32;unit</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Callback function to report on progress.
-                </p>
-              </dd>
-            </dl>
-          </td>
-        </tr>
-        <tr>
-          <td class="fsdocs-member-name">
-            <div>
-              <code onmouseout="hideTip(event, '49', 49)" onmouseover="showTip(event, '49', 49)">
-                <p>
-                  <a id="RemoveRavs">
-                    <a href="#RemoveRavs">
-                      <code><span>RemoveRavs&#32;<span>fol&#32;cb</span></span></code>
-                    </a>
-                  </a>
-                </p>
-              </code>
-              <div class="fsdocs-tip" id="49">
-                <div class="member-tooltip">
-                  Full Usage: 
-                  <code><span>RemoveRavs&#32;<span>fol&#32;cb</span></span></code>
-                  <br/>
-                  <br/>
-                  Parameters: 
-                  <ul>
-                    <span>
-                      <b>
-                        fol
-                      </b>
-                      :
-                      <code>string</code>
-                       - 
-                      The folder in which the base is stored.
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        cb
-                      </b>
-                      :
-                      <code><span>int&#32;->&#32;unit</span></code>
-                       - 
-                      Callback function to report on progress.
-                    </span>
-                    <br/>
-                  </ul>
-                  <br/>
-                </div>
-              </div>
-            </div>
-          </td>
-          <td class="fsdocs-xmldoc">
-            <p class="fsdocs-summary">
-              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L687-687" class="fsdocs-source-link">
-                <img src="/Grampus/content/img/github.png" class="normal"/>
-                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
-              </a>
-              
- Removes all Variations for the base in the specified folder.
- 
-            </p>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  fol
-                </span>
-                :
-                <code>string</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The folder in which the base is stored.
+                  The full path and file name.
                 </p>
               </dd>
               <dt class="fsdocs-param">
@@ -1385,9 +1407,9 @@
             <div>
               <code onmouseout="hideTip(event, '50', 50)" onmouseover="showTip(event, '50', 50)">
                 <p>
-                  <a id="Save">
-                    <a href="#Save">
-                      <code><span>Save&#32;<span>fol&#32;gms&#32;cb</span></span></code>
+                  <a id="RemoveRavs">
+                    <a href="#RemoveRavs">
+                      <code><span>RemoveRavs&#32;<span>nm&#32;cb</span></span></code>
                     </a>
                   </a>
                 </p>
@@ -1395,19 +1417,103 @@
               <div class="fsdocs-tip" id="50">
                 <div class="member-tooltip">
                   Full Usage: 
-                  <code><span>Save&#32;<span>fol&#32;gms&#32;cb</span></span></code>
+                  <code><span>RemoveRavs&#32;<span>nm&#32;cb</span></span></code>
                   <br/>
                   <br/>
                   Parameters: 
                   <ul>
                     <span>
                       <b>
-                        fol
+                        nm
                       </b>
                       :
                       <code>string</code>
                        - 
-                      The folder in which the games are stored.
+                      The full path and file name.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        cb
+                      </b>
+                      :
+                      <code><span>int&#32;->&#32;unit</span></code>
+                       - 
+                      Callback function to report on progress.
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L696-696" class="fsdocs-source-link">
+                <img src="/Grampus/content/img/github.png" class="normal"/>
+                <img src="/Grampus/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+ Removes all Variations for the base in the specified folder.
+ 
+            </p>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  nm
+                </span>
+                :
+                <code>string</code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  The full path and file name.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  cb
+                </span>
+                :
+                <code><span>int&#32;->&#32;unit</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Callback function to report on progress.
+                </p>
+              </dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '51', 51)" onmouseover="showTip(event, '51', 51)">
+                <p>
+                  <a id="Save">
+                    <a href="#Save">
+                      <code><span>Save&#32;<span>nm&#32;gms&#32;cb</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="51">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>Save&#32;<span>nm&#32;gms&#32;cb</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        nm
+                      </b>
+                      :
+                      <code>string</code>
+                       - 
+                      The full path and file name.
                     </span>
                     <br/>
                     <span>
@@ -1449,14 +1555,14 @@
             <dl class="fsdocs-params">
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
-                  fol
+                  nm
                 </span>
                 :
                 <code>string</code>
               </dt>
               <dd class="fsdocs-param-docs">
                 <p>
-                  The folder in which the games are stored.
+                  The full path and file name.
                 </p>
               </dd>
               <dt class="fsdocs-param">
@@ -1489,31 +1595,31 @@
         <tr>
           <td class="fsdocs-member-name">
             <div>
-              <code onmouseout="hideTip(event, '51', 51)" onmouseover="showTip(event, '51', 51)">
+              <code onmouseout="hideTip(event, '52', 52)" onmouseover="showTip(event, '52', 52)">
                 <p>
                   <a id="UpdateGame">
                     <a href="#UpdateGame">
-                      <code><span>UpdateGame&#32;<span>fol&#32;gnum&#32;gm</span></span></code>
+                      <code><span>UpdateGame&#32;<span>nm&#32;gnum&#32;gm</span></span></code>
                     </a>
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="51">
+              <div class="fsdocs-tip" id="52">
                 <div class="member-tooltip">
                   Full Usage: 
-                  <code><span>UpdateGame&#32;<span>fol&#32;gnum&#32;gm</span></span></code>
+                  <code><span>UpdateGame&#32;<span>nm&#32;gnum&#32;gm</span></span></code>
                   <br/>
                   <br/>
                   Parameters: 
                   <ul>
                     <span>
                       <b>
-                        fol
+                        nm
                       </b>
                       :
                       <code>string</code>
                        - 
-                      The folder in which the games are stored.
+                      The full path and file name.
                     </span>
                     <br/>
                     <span>
@@ -1544,7 +1650,7 @@
           </td>
           <td class="fsdocs-xmldoc">
             <p class="fsdocs-summary">
-              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L613-613" class="fsdocs-source-link">
+              <a href="https://github.com/pbbwfc/Grampus/tree/master/src/GrampusLib/Grampus.fs#L622-622" class="fsdocs-source-link">
                 <img src="/Grampus/content/img/github.png" class="normal"/>
                 <img src="/Grampus/content/img/github-blue.png" class="hover"/>
               </a>
@@ -1555,14 +1661,14 @@
             <dl class="fsdocs-params">
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
-                  fol
+                  nm
                 </span>
                 :
                 <code>string</code>
               </dt>
               <dd class="fsdocs-param-docs">
                 <p>
-                  The folder in which the games are stored.
+                  The full path and file name.
                 </p>
               </dd>
               <dt class="fsdocs-param">
