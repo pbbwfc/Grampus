@@ -614,12 +614,12 @@ module Form =
                 log ("Created Arrays")
                 lbl.Text <- "Creating dictionary..."
                 Application.DoEvents()
-                Filters.Create(binfol) |> ignore
+                Filters.Create(gmpfile) |> ignore
                 log ("Created dictionary")
                 lbl.Text <- "Saving dictionary..."
                 Application.DoEvents()
                 let rgmls = gmls |> Array.map (fun l -> List.rev l)
-                Filters.Save(posns, rgmls, binfol) |> ignore
+                Filters.Save(posns, rgmls, gmpfile) |> ignore
                 log ("Saved dictionary")
                 lbl.Text <- "Ready"
                 Application.DoEvents()

@@ -107,7 +107,7 @@ module TpGamesLib =
             gmsui.Clear()
             let fol = nm + "_FILES"
             let gmpfile = nm + ".grampus"
-            filt <- Filters.Read(bdstr, fol)
+            filt <- Filters.Read(bdstr, gmpfile)
             hdrs <- Headers.Load gmpfile
             if hasnofilt then 
                 fn <- hdrs.Length

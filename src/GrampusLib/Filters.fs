@@ -16,15 +16,15 @@ module Filters =
             (FSharpResolver.Instance, StandardResolver.Instance)
     let options = MessagePackSerializerOptions.Standard.WithResolver(resolver)
     
-    let Create(ifol) =
-        let fol = ifol + "\\filters"
+    let Create(nm) =
+        let fol = getffol nm
         Directory.CreateDirectory(fol) |> ignore
         let opts = new Options(CreateIfMissing = true)
         let db = new DB(opts, fol)
         db.Close()
     
-    let Save(posns : string [], filts : int list [], ifol : string) =
-        let fol = ifol + "\\filters"
+    let Save(posns : string [], filts : int list [], nm : string) =
+        let fol = getffol nm
         let opts = new Options()
         let db = new DB(opts, fol)
         for i = 0 to posns.Length - 1 do
@@ -33,8 +33,8 @@ module Filters =
                  MessagePackSerializer.Serialize<int list>(filts.[i], options))
         db.Close()
     
-    let ReadArray(posns : string [], ifol : string) =
-        let fol = ifol + "\\filters"
+    let ReadArray(posns : string [], nm : string) =
+        let fol = getffol nm
         let opts = new Options()
         let db = new DB(opts, fol)
         
@@ -52,8 +52,8 @@ module Filters =
         db.Close()
         vs
     
-    let Read(posn : string, ifol : string) =
-        let fol = ifol + "\\filters"
+    let Read(posn : string, nm : string) =
+        let fol = getffol nm
         if Directory.Exists(fol) then 
             let opts = new Options()
             let db = new DB(opts, fol)

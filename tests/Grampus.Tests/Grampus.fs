@@ -73,7 +73,7 @@ type Grampus() =
         if Directory.Exists(ffol) then Directory.Delete(ffol, true)
         let ans = Directory.Exists(ffol)
         ans |> should equal false
-        Filters.Create(tstfol)
+        Filters.Create(tstfn)
         let ans = Directory.Exists(ffol)
         ans |> should equal true
         let ngmp = Grampus.DeleteFilters(tstfn)
@@ -94,7 +94,7 @@ type Grampus() =
         if Directory.Exists(ffol) then Directory.Delete(ffol, true)
         let ans = Directory.Exists(ffol)
         ans |> should equal false
-        Filters.Create(tstfol2)
+        Filters.Create(tstfn2)
         let ans = Directory.Exists(ffol)
         ans |> should equal true
         let ngmp = Grampus.DeleteGamesFilters(tstfn2)

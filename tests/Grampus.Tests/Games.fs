@@ -190,7 +190,6 @@ type Games() =
         if File.Exists(tstfn2) then Grampus.Delete(tstfn2)
         if File.Exists(tstfn2b) then Grampus.Delete(tstfn2b)
         if File.Exists(tstfn2w) then Grampus.Delete(tstfn2w)
-
     
     [<TestMethod>]
     member this.RemoveDuplicates() =
