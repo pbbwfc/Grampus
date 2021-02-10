@@ -2,7 +2,6 @@ namespace GrampusInternal
 
 open Grampus
 
-
 /// <summary>This type is for implementation purposes.</summary>
 ///
 /// <exclude />
@@ -20,14 +19,15 @@ module Util =
     let (+!) (r : Rank) (i : int16) : Rank = r + i
     let (--) (f : File) (i : int16) : File = f - i
     let (++) (f : File) (i : int16) : File = f + i
-
-    let getbinfol (gmpfile:string) =
-        System.IO.Path.Combine(System.IO.Path.GetDirectoryName(gmpfile),System.IO.Path.GetFileNameWithoutExtension(gmpfile) + "_FILES")
+    let getbinfol (gmpfile : string) =
+        System.IO.Path.Combine
+            (System.IO.Path.GetDirectoryName(gmpfile), 
+             System.IO.Path.GetFileNameWithoutExtension(gmpfile) + "_FILES")
     
-    let gettrfol (gmpfile:string) =
-        let binfol = getbinfol gmpfile 
-        System.IO.Path.Combine(binfol,"tree")
-
-    let getffol (gmpfile:string) =
-        let binfol = getbinfol gmpfile 
-        System.IO.Path.Combine(binfol,"filters")
+    let gettrfol (gmpfile : string) =
+        let binfol = getbinfol gmpfile
+        System.IO.Path.Combine(binfol, "tree")
+    
+    let getffol (gmpfile : string) =
+        let binfol = getbinfol gmpfile
+        System.IO.Path.Combine(binfol, "filters")

@@ -54,6 +54,23 @@ type Games() =
         if Directory.Exists(tstfol2) then Directory.Delete(tstfol2, true)
     
     [<TestMethod>]
+    member this.AddGmp() =
+        if Directory.Exists(tstfol2) then Grampus.Delete(tstfn2)
+        Grampus.Copy(tstfn, tstfn2)
+        let indx = Index.Load tstfn
+        let hdrs = Headers.Load tstfn
+        let gm = Games.LoadGame tstfn indx.[0] hdrs.[0]
+        gm.MoveText.Length |> should equal 107
+        Games.AddGmp tstfn2 tstfn (fun i -> ())
+        Games.AddGmp tstfn2 tstfn (fun i -> ())
+        let indx2 = Index.Load tstfn2
+        let hdrs2 = Headers.Load tstfn2
+        indx2.Length |> should equal 3
+        let gm2 = Games.LoadGame tstfn2 indx2.[1] hdrs2.[1]
+        gm2.MoveText.Length |> should equal 107
+        if Directory.Exists(tstfol2) then Grampus.Delete(tstfn2)
+    
+    [<TestMethod>]
     member this.AppendGame() =
         if Directory.Exists(tstfol2) then Directory.Delete(tstfol2, true)
         Directory.CreateDirectory(tstfol2) |> ignore

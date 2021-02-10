@@ -270,9 +270,8 @@ module Form =
                 if ndlg.ShowDialog() = DialogResult.OK then 
                     gmpfile <- ndlg.FileName
                     Recents.addrec gmpfile
-            elif File.Exists(ifn) then 
-                gmpfile <- ifn
-            if gmpfile <> "" then
+            elif File.Exists(ifn) then gmpfile <- ifn
+            if gmpfile <> "" then 
                 gmp <- Some(Grampus.Load gmpfile)
                 setbinfol()
                 iea <- Index.Load gmpfile
@@ -343,24 +342,13 @@ module Form =
                 this.Enabled <- false
                 let addgmpfile = ndlg.FileName
                 let addiea = Index.Load addgmpfile
-                let addhdra = Headers.Load addgmpfile
                 let numgames = addiea.Length
                 prg.Minimum <- 0
                 prg.Maximum <- numgames
                 st <- DateTime.Now
-                lbl.Text <- "Getting " + numgames.ToString() + " games..."
-                Application.DoEvents()
-                let getgm i =
-                    let ie = addiea.[i]
-                    let hdr = addhdra.[i]
-                    if i % 100 = 0 then updprg (i)
-                    Games.LoadGame addgmpfile ie hdr
-                
-                let gms = [ 0..numgames - 1 ] |> Seq.map getgm
-                log ("Games Accessed")
                 lbl.Text <- "Adding " + numgames.ToString() + " games..."
                 Application.DoEvents()
-                Games.Add gmpfile gms updprg
+                Games.AddGmp gmpfile addgmpfile updprg
                 log ("Games Added")
                 lbl.Text <- "Ready"
                 this.Enabled <- true

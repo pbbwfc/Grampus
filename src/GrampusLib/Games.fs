@@ -83,8 +83,50 @@ module Games =
         let nhdrs = Array.append hdrs ahdrs
         Index.Save(nm, niea)
         Headers.Save(nm, nhdrs)
+        let gmp = GrampusFile.Load nm
+        let ngmp = { gmp with BaseCreated = Some(DateTime.Now) }
+        GrampusFile.Save(nm, ngmp)
     
-    let AddGmp nm addnm cb = ()
+    let AddGmp nm addnm cb =
+        let fol = getbinfol nm
+        let fn = Path.Combine(fol, "GAMES")
+        use writer = new BinaryWriter(File.Open(fn, FileMode.OpenOrCreate))
+        writer.Seek(0, SeekOrigin.End) |> ignore
+        let iea = Index.Load nm
+        let hdrs = Headers.Load nm
+        let ct = iea.Length
+        let addfol = getbinfol addnm
+        let addfn = Path.Combine(addfol, "GAMES")
+        use reader =
+            new BinaryReader(File.Open
+                                 (addfn, FileMode.Open, FileAccess.Read, 
+                                  FileShare.Read))
+        let addiea = Index.Load addnm
+        let addhdrs = Headers.Load addnm
+        
+        let svgm i hdr =
+            let ie = addiea.[i]
+            reader.BaseStream.Position <- ie.Offset
+            let bin = reader.ReadBytes(ie.Length)
+            let off = writer.BaseStream.Position
+            if i % 100 = 0 then cb (i)
+            writer.Write(bin)
+            { Offset = off
+              Length = bin.Length }, { hdr with Num = i + ct }
+        
+        let aiea, ahdrs =
+            addhdrs
+            |> Seq.mapi svgm
+            |> Seq.toArray
+            |> Array.unzip
+        
+        let niea = Array.append iea aiea
+        let nhdrs = Array.append hdrs ahdrs
+        Index.Save(nm, niea)
+        Headers.Save(nm, nhdrs)
+        let gmp = GrampusFile.Load nm
+        let ngmp = { gmp with BaseCreated = Some(DateTime.Now) }
+        GrampusFile.Save(nm, ngmp)
     
     let AppendGame (nm : string) (gm : EncodedGame) =
         let fol = getbinfol nm
@@ -137,7 +179,7 @@ module Games =
         else 
             let mutable msg = ""
             //create temp folder to do the compact
-            let tmp = Path.Combine(fol,"temp.grampus")
+            let tmp = Path.Combine(fol, "temp.grampus")
             let tmpfol = getbinfol tmp
             Directory.CreateDirectory(tmpfol) |> ignore
             let ofn = Path.Combine(tmpfol, "GAMES")
@@ -330,7 +372,7 @@ module Games =
         let ifn = Path.Combine(fol, "GAMES")
         if (File.Exists(ifn)) then 
             //create temp folder to do the compact
-            let tmp = Path.Combine(fol,"temp.grampus")
+            let tmp = Path.Combine(fol, "temp.grampus")
             let tmpfol = getbinfol tmp
             Directory.CreateDirectory(tmpfol) |> ignore
             let ofn = Path.Combine(tmpfol, "GAMES")
@@ -390,7 +432,7 @@ module Games =
         let ifn = Path.Combine(fol, "GAMES")
         if (File.Exists(ifn)) then 
             //create temp folder to do the compact
-            let tmp = Path.Combine(fol,"temp.grampus")
+            let tmp = Path.Combine(fol, "temp.grampus")
             let tmpfol = getbinfol tmp
             Directory.CreateDirectory(tmpfol) |> ignore
             let ofn = Path.Combine(tmpfol, "GAMES")
@@ -450,7 +492,7 @@ module Games =
         let ifn = Path.Combine(fol, "GAMES")
         if (File.Exists(ifn)) then 
             //create temp folder to do the compact
-            let tmp = Path.Combine(fol,"temp.grampus")
+            let tmp = Path.Combine(fol, "temp.grampus")
             let tmpfol = getbinfol tmp
             Directory.CreateDirectory(tmpfol) |> ignore
             let ofn = Path.Combine(tmpfol, "GAMES")
