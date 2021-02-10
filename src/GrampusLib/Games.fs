@@ -235,44 +235,68 @@ module Games =
                  true)
             msg
     
-    let ExtractNewer (nm : string) (trgnm : string) (year : int) cb =
+    let extract (nm : string) (trgnm : string) cb filt =
+        let fol = getbinfol nm
+        let ifn = Path.Combine(fol, "GAMES")
+        let trgfol = getbinfol trgnm
+        let ofn = Path.Combine(trgfol, "GAMES")
         let trggmp = GrampusFile.New(trgnm)
+        use writer = new BinaryWriter(File.Open(ofn, FileMode.OpenOrCreate))
+        //load all the current files
+        use reader =
+            new BinaryReader(File.Open
+                                 (ifn, FileMode.Open, FileAccess.Read, 
+                                  FileShare.Read))
         let hdrs = Headers.Load nm
         let iea = Index.Load nm
         
-        let svgm i hdr =
-            if hdr.Year >= year then 
-                let gm = LoadGame nm iea.[i] hdr
-                AppendGame trgnm gm
-            if i % 100 = 0 then cb (i)
-        hdrs |> Array.iteri svgm
+        let svgm i =
+            let ie = iea.[i]
+            let hdr = hdrs.[i]
+            let keep = filt (hdr)
+            if keep then 
+                reader.BaseStream.Position <- ie.Offset
+                let bin = reader.ReadBytes(ie.Length)
+                let off = writer.BaseStream.Position
+                if i % 100 = 0 then cb (i)
+                writer.Write(bin)
+                keep, 
+                { Offset = off
+                  Length = bin.Length }, hdr
+            else 
+                keep, 
+                { Offset = 0L
+                  Length = 0 }, hdr
+        
+        let kihs = [| 0..iea.Length - 1 |] |> Array.map svgm
+        
+        let niea, nhdrs =
+            kihs
+            |> Array.filter (fun (k, i, h) -> k)
+            |> Array.map (fun (k, i, h) -> i, h)
+            |> Array.unzip
+        reader.Close()
+        writer.Close()
+        Index.Save(trgnm, niea)
+        Headers.Save(trgnm, nhdrs)
         let ntrggmp = { trggmp with BaseCreated = Some(DateTime.Now) }
         GrampusFile.Save(trgnm, ntrggmp)
     
+    let ExtractNewer (nm : string) (trgnm : string) (year : int) cb =
+        let filt hdr = hdr.Year >= year
+        extract nm trgnm cb filt
+    
     let ExtractStronger (nm : string) (trgnm : string) (grade : int) cb =
-        let trggmp = GrampusFile.New(trgnm)
-        let hdrs = Headers.Load nm
-        let iea = Index.Load nm
-        
-        let svgm i hdr =
-            let w = hdr.W_Elo
+        let filt hdr =
+            let tryParseInt s =
+                try 
+                    s |> int
+                with :? FormatException -> 0
             
-            let welo =
-                if w = "-" || w = "" then 0
-                else int (w)
-            
-            let b = hdr.B_Elo
-            
-            let belo =
-                if b = "-" || b = "" then 0
-                else int (b)
-            if welo >= grade || belo >= grade then 
-                let gm = LoadGame nm iea.[i] hdr
-                AppendGame trgnm gm
-            if i % 100 = 0 then cb (i)
-        hdrs |> Array.iteri svgm
-        let ntrggmp = { trggmp with BaseCreated = Some(DateTime.Now) }
-        GrampusFile.Save(trgnm, ntrggmp)
+            let welo = hdr.W_Elo |> tryParseInt
+            let belo = hdr.B_Elo |> tryParseInt
+            welo >= grade || belo >= grade
+        extract nm trgnm cb filt
     
     let GetPossNames (nm : string) (ipart : string) cb =
         let fol = getbinfol nm
@@ -313,18 +337,20 @@ module Games =
         nms |> Set.toArray
     
     let ExtractPlayer (nm : string) (trgnm : string) (player : string) cb =
-        let trggmp = GrampusFile.New(trgnm)
-        let hdrs = Headers.Load nm
-        let iea = Index.Load nm
-        
-        let svgm i hdr =
-            if hdr.White = player || hdr.Black = player then 
-                let gm = LoadGame nm iea.[i] hdr
-                AppendGame trgnm gm
-            if i % 100 = 0 then cb (i)
-        hdrs |> Array.iteri svgm
-        let ntrggmp = { trggmp with BaseCreated = Some(DateTime.Now) }
-        GrampusFile.Save(trgnm, ntrggmp)
+        let filt hdr = hdr.White = player || hdr.Black = player
+        extract nm trgnm cb filt
+        let wfilt hdr = hdr.White = player
+        let wtrgnm =
+            Path.Combine
+                (Path.GetDirectoryName(trgnm), 
+                 Path.GetFileNameWithoutExtension(trgnm) + "_W.grampus")
+        extract nm wtrgnm cb wfilt
+        let bfilt hdr = hdr.Black = player
+        let btrgnm =
+            Path.Combine
+                (Path.GetDirectoryName(trgnm), 
+                 Path.GetFileNameWithoutExtension(trgnm) + "_B.grampus")
+        extract nm btrgnm cb bfilt
     
     let RemoveDuplicates (nm : string) cb =
         let fol = getbinfol nm

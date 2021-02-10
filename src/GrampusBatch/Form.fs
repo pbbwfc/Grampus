@@ -354,7 +354,7 @@ module Form =
                 this.Enabled <- true
                 prg.Value <- 0
         
-        let docreate (e) =
+        let docreatetree (e) =
             let totaldict =
                 new System.Collections.Generic.Dictionary<string, MvTrees>()
             
@@ -431,7 +431,7 @@ module Form =
                            else 0L)
                       TotCount = 1L }
                 
-                //now need to go through the boarda and put in dictionary holding running totals
+                //now need to go through the boards and put in dictionary holding running totals
                 for j = 0 to posns.Length - 1 do
                     let bd = posns.[j]
                     let mv = mvs.[j]
@@ -571,7 +571,7 @@ module Form =
                 this.Enabled <- true
                 prg.Value <- 0
         
-        let docreatef (e) =
+        let docreatefilters (e) =
             let totaldict =
                 new System.Collections.Generic.Dictionary<string, int list>()
             
@@ -971,9 +971,9 @@ module Form =
             ts.Items.Add(infb) |> ignore
             ts.Items.Add(new ToolStripSeparator()) |> ignore
             ts.Items.Add(crbtn) |> ignore
-            crbtn.Click.Add(docreate)
+            crbtn.Click.Add(docreatetree)
             ts.Items.Add(crfbtn) |> ignore
-            crfbtn.Click.Add(docreatef)
+            crfbtn.Click.Add(docreatefilters)
             // second toolbar
             ts2.Items.Add(cmpb) |> ignore
             cmpb.Click.Add(fun _ -> docompact())
@@ -1037,14 +1037,14 @@ module Form =
             //tree menu
             let tm = new ToolStripMenuItem(Text = "&Tree")
             tm.DropDownItems.Add(crm) |> ignore
-            crm.Click.Add(docreate)
+            crm.Click.Add(docreatetree)
             tm.DropDownItems.Add(deltm) |> ignore
             deltm.Click.Add(dodeltree)
             ms.Items.Add(tm) |> ignore
             //filter menu
             let fm = new ToolStripMenuItem(Text = "&Filters")
             fm.DropDownItems.Add(crfm) |> ignore
-            crfm.Click.Add(docreatef)
+            crfm.Click.Add(docreatefilters)
             fm.DropDownItems.Add(deltfm) |> ignore
             deltfm.Click.Add(dodelfilters)
             fm.DropDownItems.Add(deltgfm) |> ignore
