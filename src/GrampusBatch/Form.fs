@@ -58,11 +58,6 @@ module Form =
         
         let mutable gmpfile = Path.Combine(bfol, "Dummy.grampus")
         let mutable gmp : GrampusData option = None
-        let mutable binfol = ""
-        let setbinfol() =
-            binfol <- Path.Combine
-                          (Path.GetDirectoryName(gmpfile), 
-                           Path.GetFileNameWithoutExtension(gmpfile) + "_FILES")
         let mutable iea = [||]
         let mutable hdra = [||]
         let mutable ply = 0
@@ -254,7 +249,6 @@ module Form =
                 //create database
                 gmpfile <- ndlg.FileName
                 gmp <- Some(Grampus.New(gmpfile))
-                setbinfol()
                 iea <- [||]
                 hdra <- [||]
                 Recents.addrec gmpfile
@@ -273,7 +267,6 @@ module Form =
             elif File.Exists(ifn) then gmpfile <- ifn
             if gmpfile <> "" then 
                 gmp <- Some(Grampus.Load gmpfile)
-                setbinfol()
                 iea <- Index.Load gmpfile
                 hdra <- Headers.Load gmpfile
                 updateMenuStates()
@@ -282,7 +275,6 @@ module Form =
         let doclose (e) =
             gmpfile <- ""
             gmp <- None
-            binfol <- ""
             iea <- [||]
             hdra <- [||]
             ply <- 0
@@ -769,7 +761,6 @@ module Form =
                 if sdlg.ShowDialog() = DialogResult.OK then 
                     gmpfile <- sdlg.FileName
                     this.Enabled <- false
-                    setbinfol()
                     lbl.Text <- "Counting games..."
                     Application.DoEvents()
                     st <- DateTime.Now

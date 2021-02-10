@@ -23,9 +23,9 @@ module TcGamesLib =
             tp.SelNum(num)
         
         ///Add a new tab
-        member gmstc.AddTab(nm) =
+        member gmstc.AddTab(gmpfile) =
             let tp = new TpGames()
-            tp.Init(nm)
+            tp.Init(gmpfile)
             gmstc.TabPages.Add(tp)
             gmstc.SelectedTab <- gmstc.TabPages.[gmstc.TabPages.Count - 1]
             tp.GmSel |> Observable.add selEvt.Trigger

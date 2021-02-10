@@ -223,11 +223,7 @@ module Form =
                 let gmp = Grampus.New(gmpfile)
                 SbUpdate("Updating windows")
                 Recents.addrec gmpfile
-                let nm =
-                    Path.Combine
-                        (Path.GetDirectoryName(gmpfile), 
-                         Path.GetFileNameWithoutExtension(gmpfile))
-                gmtbs.AddTab(nm, gmp.FiltersCreated.IsNone)
+                gmtbs.AddTab(gmpfile, gmp.FiltersCreated.IsNone)
                 refreshWindows()
                 SbUpdate("Ready")
         
@@ -242,13 +238,9 @@ module Form =
                     let gmpfile = ndlg.FileName
                     SbUpdate("Opening base: " + gmpfile)
                     Recents.addrec gmpfile
-                    let nm =
-                        Path.Combine
-                            (Path.GetDirectoryName(gmpfile), 
-                             Path.GetFileNameWithoutExtension(gmpfile))
                     //dotbselect will be called to do the loading
                     let gmp = Grampus.Load(gmpfile)
-                    gmtbs.AddTab(nm, gmp.FiltersCreated.IsNone)
+                    gmtbs.AddTab(gmpfile, gmp.FiltersCreated.IsNone)
                     if gmtbs.TabCount = 1 then 
                         //need to set current
                         let basename = gmtbs.BaseName()
@@ -266,13 +258,9 @@ module Form =
                     //open database
                     let nm = Path.GetFileNameWithoutExtension(ifn)
                     SbUpdate("Opening base: " + ifn)
-                    let nm =
-                        Path.Combine
-                            (Path.GetDirectoryName(ifn), 
-                             Path.GetFileNameWithoutExtension(ifn))
                     //dotbselect will be called to do the loading
                     let gmp = Grampus.Load(ifn)
-                    gmtbs.AddTab(nm, gmp.FiltersCreated.IsNone)
+                    gmtbs.AddTab(ifn, gmp.FiltersCreated.IsNone)
                     if gmtbs.TabCount = 1 then 
                         //need to set current
                         let basename = gmtbs.BaseName()
@@ -363,8 +351,8 @@ module Form =
         let donewg() =
             SbUpdate("Creating game")
             //clear pgn and set gnum to -1
-            let nm = gmtbs.BaseName()
-            pgn.NewGame(nm)
+            let gmpfile = gmtbs.BaseName()
+            pgn.NewGame(gmpfile)
             saveb.Enabled <- true
             savem.Enabled <- true
             SbUpdate("Ready")
@@ -475,17 +463,18 @@ module Form =
         
         let dotbselect (e : TabControlEventArgs) =
             let dofun() =
-                //need to set current
-                let basename = gmtbs.BaseName()
-                pgn.Refrsh(0, basename)
-                let nbd = Board.Start
-                bd.SetBoard(nbd)
-                SbUpdate("Reloading tree")
-                sts.UpdateStr(nbd)
-                SbUpdate("Reloading list of games")
-                gmtbs.Refrsh(nbd)
-                anl.SetBoard(nbd)
-                refreshWindows()
+                if gmtbs.TabCount > 0 then 
+                    //need to set current
+                    let basename = gmtbs.BaseName()
+                    pgn.Refrsh(0, basename)
+                    let nbd = Board.Start
+                    bd.SetBoard(nbd)
+                    SbUpdate("Reloading tree")
+                    sts.UpdateStr(nbd)
+                    SbUpdate("Reloading list of games")
+                    gmtbs.Refrsh(nbd)
+                    anl.SetBoard(nbd)
+                    refreshWindows()
             waitify (dofun)
             SbUpdate("Ready")
         

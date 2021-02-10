@@ -22,7 +22,7 @@ module TpGamesLib =
         let mutable gmsui = new System.ComponentModel.BindingList<Header>()
         let bs = new BindingSource()
         //scinc related
-        let mutable nm : string = "" //base name
+        let mutable gmpfile : string = "" //base name
         let mutable gn = 0 //number of games
         let mutable fn = 0 //number of games in filter
         let mutable filt = []
@@ -33,8 +33,8 @@ module TpGamesLib =
         
         let settxt() =
             let txt =
-                Path.GetFileNameWithoutExtension(nm) + "-" + fn.ToString() + "/" 
-                + gn.ToString()
+                Path.GetFileNameWithoutExtension(gmpfile) + "-" + fn.ToString() 
+                + "/" + gn.ToString()
             gmstp.Text <- txt
         
         let color() =
@@ -48,7 +48,6 @@ module TpGamesLib =
             let hdr = hdrs.[gnum]
             let nhdr = { hdr with Deleted = "D" }
             hdrs.[gnum] <- nhdr
-            let gmpfile = nm + ".grampus"
             Headers.Save(gmpfile, hdrs)
             gmsui.[rw] <- nhdr
             gms.Rows.[rw].DefaultCellStyle.ForeColor <- Color.Red
@@ -91,9 +90,8 @@ module TpGamesLib =
             gms.CellMouseDown.Add(dorightclick)
         
         /// initialise
-        member gmstp.Init(inm : string, nofilt) =
-            nm <- inm
-            let gmpfile = nm + ".grampus"
+        member gmstp.Init(igmpfile : string, nofilt) =
+            gmpfile <- igmpfile
             let indx = Index.Load gmpfile
             gn <- indx.Length
             fn <- gn
@@ -105,8 +103,6 @@ module TpGamesLib =
         ///Refresh the list
         member gmstp.Refrsh(bdstr : string) =
             gmsui.Clear()
-            let fol = nm + "_FILES"
-            let gmpfile = nm + ".grampus"
             filt <- Filters.Read(bdstr, gmpfile)
             hdrs <- Headers.Load gmpfile
             if hasnofilt then 
@@ -135,7 +131,7 @@ module TpGamesLib =
                     gms.CurrentCell <- rw.Cells.[0]
         
         ///get baseNum
-        member gmstp.BaseName() = nm
+        member gmstp.BaseName() = gmpfile
         
         /// close
         member gmstp.Close() = ()

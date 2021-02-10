@@ -41,7 +41,7 @@ module PnlPgnLib =
         let mutable hdrchg = false
         //base related
         let mutable gnum = -1
-        let mutable nm = ""
+        let mutable gmpfile = ""
         //events
         let bdchngEvt = new Event<_>()
         let gmchngEvt = new Event<_>()
@@ -547,8 +547,6 @@ module PnlPgnLib =
         ///Saves the Game that is displayed
         member pgnpnl.SaveGame() =
             // Add to end of binary file and change the offset and length 
-            let fol = nm + "_FILES"
-            let gmpfile = nm + ".grampus"
             let indx = Index.Load gmpfile
             if gnum = -1 then 
                 gnum <- indx.Length
@@ -578,7 +576,6 @@ module PnlPgnLib =
         ///Switches to another game with the same position
         member pgnpnl.SwitchGame(rw : int) =
             gnum <- rw
-            let gmpfile = nm + ".grampus"
             let indx = Index.Load gmpfile
             let hdrs = Headers.Load gmpfile
             let gm = Games.LoadGame gmpfile indx.[gnum] hdrs.[gnum]
@@ -618,14 +615,14 @@ module PnlPgnLib =
             irs <- [ -1 ]
             sethdr()
         
-        member pgnpnl.NewGame(inm) =
+        member pgnpnl.NewGame(igmpfile) =
             let gm = Game.Start
             pgnpnl.SetGame(gm)
             gnum <- -1
-            nm <- inm
+            gmpfile <- igmpfile
         
-        member pgnpnl.Refrsh(ignum : int, inm) =
-            let gmpfile = nm + ".grampus"
+        member pgnpnl.Refrsh(ignum : int, igmpfile) =
+            gmpfile <- igmpfile
             let indx = Index.Load gmpfile
             if indx.Length > 0 then 
                 let hdrs = Headers.Load gmpfile
@@ -636,7 +633,6 @@ module PnlPgnLib =
                 let gm = Game.Start
                 pgnpnl.SetGame(gm)
                 gnum <- -1
-            nm <- inm
         
         member pgnpnl.SetPgn(pgnstr : string) =
             let gm = Game.FromStr(pgnstr)
