@@ -514,17 +514,17 @@ module Index =
     /// <summary>
     /// Loads the Index given the folder.
     /// </summary>
-    /// <param name="fol">The folder which stores the index.</param>
+    /// <param name="nm">The full path and file name.</param>
     /// <returns>The index as an IndexEntry array type.</returns>
-    let Load(fol) = GrampusInternal.Index.Load(fol)
+    let Load(nm) = GrampusInternal.Index.Load(nm)
     
     /// <summary>
     /// Saves the Index given the folder and the data.
     /// </summary>
-    /// <param name="fol">The folder in which to store the index.</param>
+    /// <param name="nm">The full path and file name.</param>
     /// <param name="iea">The index as an IndexEntry array type.</param>
     /// <returns>Nothing.</returns>
-    let Save(fol, iea) = GrampusInternal.Index.Save(fol, iea)
+    let Save(nm, iea) = GrampusInternal.Index.Save(nm, iea)
 
 /// <summary>
 /// Holds the functions related to ECO classification.
@@ -540,10 +540,10 @@ module Eco =
     /// <summary>
     /// Set ECO for games given the folder containing the base.
     /// </summary>
-    /// <param name="fol">The folder which stores the games.</param>
+    /// <param name="nm">The full path and file name.</param>
     /// <param name="cb">Callback function to report on progress.</param>
     /// <returns>Nothing.</returns>
-    let ForBase fol cb = GrampusInternal.Eco.ForBase fol cb
+    let ForBase nm cb = GrampusInternal.Eco.ForBase nm cb
 
 /// <summary>
 /// Holds the functions related to Headers.
@@ -552,17 +552,17 @@ module Headers =
     /// <summary>
     /// Loads the headers given the folder.
     /// </summary>
-    /// <param name="fol">The folder which stores the headers.</param>
+    /// <param name="nm">The full path and file name.</param>
     /// <returns>The headers as an Header array type.</returns>
-    let Load(fol) = GrampusInternal.Headers.Load(fol)
+    let Load(nm) = GrampusInternal.Headers.Load(nm)
     
     /// <summary>
     /// Saves the headers given the folder and the data.
     /// </summary>
-    /// <param name="fol">The folder in which to store the headers.</param>
+    /// <param name="nm">The full path and file name.</param>
     /// <param name="hdrs">The headers as a Header array type.</param>
     /// <returns>Nothing.</returns>
-    let Save(fol, hdrs) = GrampusInternal.Headers.Save(fol, hdrs)
+    let Save(nm, hdrs) = GrampusInternal.Headers.Save(nm, hdrs)
 
 /// <summary>
 /// Holds the functions related to a set of Games.
@@ -571,54 +571,63 @@ module Games =
     /// <summary>
     /// Loads an encoded game given the folder, index entry and the header.
     /// </summary>
-    /// <param name="fol">The folder in which the game is stored.</param>
+    /// <param name="nm">The full path and file name.</param>
     /// <param name="ie">The index entry for the game as an IndexEntry type.</param>
     /// <param name="hdr">The header for the game as a Header type.</param>
     /// <returns>The encoded game.</returns>
-    let LoadGame fol ie hdr = GrampusInternal.Games.LoadGame fol ie hdr
+    let LoadGame nm ie hdr = GrampusInternal.Games.LoadGame nm ie hdr
     
     /// <summary>
     /// Saves a sequence of games to create a new base in the specified folder.
     /// </summary>
-    /// <param name="fol">The folder in which the games are stored.</param>
+    /// <param name="nm">The full path and file name.</param>
     /// <param name="gms">The games as an EncodedGame sequence type.</param>
     /// <param name="cb">Callback function to report on progress.</param>
     /// <returns>Nothing.</returns>
-    let Save fol gms cb = GrampusInternal.Games.Save fol gms cb
+    let Save nm gms cb = GrampusInternal.Games.Save nm gms cb
     
     /// <summary>
     /// Adds a sequence of games to an existing base in the specified folder.
     /// </summary>
-    /// <param name="fol">The folder in which the games are stored.</param>
+    /// <param name="nm">The full path and file name.</param>
     /// <param name="gms">The games as an EncodedGame sequence type.</param>
     /// <param name="cb">Callback function to report on progress.</param>
     /// <returns>Nothing.</returns>
-    let Add fol gms cb = GrampusInternal.Games.Add fol gms cb
+    let Add nm gms cb = GrampusInternal.Games.Add nm gms cb
+    
+    /// <summary>
+    /// Adds a sequence of games to an existing base in the specified folder.
+    /// </summary>
+    /// <param name="nm">The full path and file name.</param>
+    /// <param name="addnm">The full path and file name of the base with the games to add.</param>
+    /// <param name="cb">Callback function to report on progress.</param>
+    /// <returns>Nothing.</returns>
+    let AddGmp nm addnm cb = GrampusInternal.Games.AddGmp nm addnm cb
     
     /// <summary>
     /// Adds game to an existing base in the specified folder.
     /// </summary>
-    /// <param name="fol">The folder in which the games are stored.</param>
+    /// <param name="nm">The full path and file name.</param>
     /// <param name="gm">The game as an EncodedGame type.</param>
     /// <returns>Nothing.</returns>
-    let AppendGame fol gm = GrampusInternal.Games.AppendGame fol gm
+    let AppendGame nm gm = GrampusInternal.Games.AppendGame nm gm
     
     /// <summary>
     /// Updates a game in an existing base in the specified folder.
     /// </summary>
-    /// <param name="fol">The folder in which the games are stored.</param>
+    /// <param name="nm">The full path and file name.</param>
     /// <param name="gnum">The game number to update a int type.</param>
     /// <param name="gm">The game as an EncodedGame type.</param>
     /// <returns>Nothing.</returns>
-    let UpdateGame fol gnum gm = GrampusInternal.Games.UpdateGame fol gnum gm
+    let UpdateGame nm gnum gm = GrampusInternal.Games.UpdateGame nm gnum gm
     
     /// <summary>
     /// Compacts the base in the specified folder.
     /// </summary>
-    /// <param name="fol">The folder in which the base is stored.</param>
+    /// <param name="nm">The full path and file name.</param>
     /// <param name="cb">Callback function to report on progress.</param>
     /// <returns>Messages from compaction process as a string type.</returns>
-    let Compact fol cb = GrampusInternal.Games.Compact fol cb
+    let Compact nm cb = GrampusInternal.Games.Compact nm cb
     
     /// <summary>
     /// Extracts newer games to the specified base.
@@ -645,11 +654,11 @@ module Games =
     /// <summary>
     /// Gets possible names of Players given part of the name string.
     /// </summary>
-    /// <param name="fol">The folder in which the base is stored.</param>
+    /// <param name="nm">The full path and file name.</param>
     /// <param name="part">The string containing part of the name.</param>
     /// <param name="cb">Callback function to report on progress.</param>
     /// <returns>Possible names as a string array type.</returns>
-    let GetPossNames fol cb = GrampusInternal.Games.GetPossNames fol cb
+    let GetPossNames nm cb = GrampusInternal.Games.GetPossNames nm cb
     
     /// <summary>
     /// Extracts player's games to the specified base.
@@ -665,34 +674,34 @@ module Games =
     /// <summary>
     /// Removes duplicate games for the base in the specified folder.
     /// </summary>
-    /// <param name="fol">The folder in which the base is stored.</param>
+    /// <param name="nm">The full path and file name.</param>
     /// <param name="cb">Callback function to report on progress.</param>
     /// <returns>Messages from process as a string type.</returns>
-    let RemoveDuplicates fol cb = GrampusInternal.Games.RemoveDuplicates fol cb
+    let RemoveDuplicates nm cb = GrampusInternal.Games.RemoveDuplicates nm cb
     
     /// <summary>
     /// Removes all Comments for the base in the specified folder.
     /// </summary>
-    /// <param name="fol">The folder in which the base is stored.</param>
+    /// <param name="nm">The full path and file name.</param>
     /// <param name="cb">Callback function to report on progress.</param>
     /// <returns>Nothing.</returns>
-    let RemoveComments fol cb = GrampusInternal.Games.RemoveComments fol cb
+    let RemoveComments nm cb = GrampusInternal.Games.RemoveComments nm cb
     
     /// <summary>
     /// Removes all Variations for the base in the specified folder.
     /// </summary>
-    /// <param name="fol">The folder in which the base is stored.</param>
+    /// <param name="nm">The full path and file name.</param>
     /// <param name="cb">Callback function to report on progress.</param>
     /// <returns>Nothing.</returns>
-    let RemoveRavs fol cb = GrampusInternal.Games.RemoveRavs fol cb
+    let RemoveRavs nm cb = GrampusInternal.Games.RemoveRavs nm cb
     
     /// <summary>
     /// Removes all NAGs for the base in the specified folder.
     /// </summary>
-    /// <param name="fol">The folder in which the base is stored.</param>
+    /// <param name="nm">The full path and file name.</param>
     /// <param name="cb">Callback function to report on progress.</param>
     /// <returns>Nothing.</returns>
-    let RemoveNags fol cb = GrampusInternal.Games.RemoveNags fol cb
+    let RemoveNags nm cb = GrampusInternal.Games.RemoveNags nm cb
 
 /// <summary>
 /// Holds the functions related to a set of Games in PGN format.

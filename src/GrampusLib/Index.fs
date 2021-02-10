@@ -16,7 +16,8 @@ module Index =
             (FSharpResolver.Instance, StandardResolver.Instance)
     let options = MessagePackSerializerOptions.Standard.WithResolver(resolver)
     
-    let Load(fol : string) =
+    let Load(nm : string) =
+        let fol = getbinfol nm
         let fn = Path.Combine(fol, "INDEX")
         if File.Exists(fn) then 
             let bin = File.ReadAllBytes(fn)
@@ -26,7 +27,8 @@ module Index =
             iea
         else [||]
     
-    let Save(fol : string, iea : IndexEntry []) =
+    let Save(nm : string, iea : IndexEntry []) =
+        let fol = getbinfol nm
         let fn = Path.Combine(fol, "INDEX")
         let bin = MessagePackSerializer.Serialize<IndexEntry []>(iea, options)
         File.WriteAllBytes(fn, bin)

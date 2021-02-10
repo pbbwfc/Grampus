@@ -269,19 +269,14 @@ module Form =
                                        InitialDirectory = bfol)
                 if ndlg.ShowDialog() = DialogResult.OK then 
                     gmpfile <- ndlg.FileName
-                    gmp <- Some(Grampus.Load gmpfile)
-                    setbinfol()
-                    iea <- Index.Load binfol
-                    hdra <- Headers.Load binfol
                     Recents.addrec gmpfile
-                    updateMenuStates()
-                    updateTitle()
-            else if File.Exists(ifn) then 
+            elif File.Exists(ifn) then 
                 gmpfile <- ifn
+            if gmpfile <> "" then
                 gmp <- Some(Grampus.Load gmpfile)
                 setbinfol()
-                iea <- Index.Load binfol
-                hdra <- Headers.Load binfol
+                iea <- Index.Load gmpfile
+                hdra <- Headers.Load gmpfile
                 updateMenuStates()
                 updateTitle()
         
@@ -347,12 +342,8 @@ module Form =
             if ndlg.ShowDialog() = DialogResult.OK then 
                 this.Enabled <- false
                 let addgmpfile = ndlg.FileName
-                let addbinfol =
-                    Path.Combine
-                        (Path.GetDirectoryName(addgmpfile), 
-                         Path.GetFileNameWithoutExtension(addgmpfile) + "_FILES")
-                let addiea = Index.Load addbinfol
-                let addhdra = Headers.Load addbinfol
+                let addiea = Index.Load addgmpfile
+                let addhdra = Headers.Load addgmpfile
                 let numgames = addiea.Length
                 prg.Minimum <- 0
                 prg.Maximum <- numgames
@@ -363,13 +354,13 @@ module Form =
                     let ie = addiea.[i]
                     let hdr = addhdra.[i]
                     if i % 100 = 0 then updprg (i)
-                    Games.LoadGame addbinfol ie hdr
+                    Games.LoadGame addgmpfile ie hdr
                 
                 let gms = [ 0..numgames - 1 ] |> Seq.map getgm
                 log ("Games Accessed")
                 lbl.Text <- "Adding " + numgames.ToString() + " games..."
                 Application.DoEvents()
-                Games.Add binfol gms updprg
+                Games.Add gmpfile gms updprg
                 log ("Games Added")
                 lbl.Text <- "Ready"
                 this.Enabled <- true
@@ -380,7 +371,7 @@ module Form =
                 new System.Collections.Generic.Dictionary<string, MvTrees>()
             
             let processGame i =
-                let gm = Games.LoadGame binfol iea.[i] hdra.[i]
+                let gm = Games.LoadGame gmpfile iea.[i] hdra.[i]
                 let posns, mvs = Game.GetPosnsMoves ply gm
                 let welo = gm.Hdr.W_Elo
                 let belo = gm.Hdr.B_Elo
@@ -597,7 +588,7 @@ module Form =
                 new System.Collections.Generic.Dictionary<string, int list>()
             
             let processGame i =
-                let gm = Games.LoadGame binfol iea.[i] hdra.[i]
+                let gm = Games.LoadGame gmpfile iea.[i] hdra.[i]
                 let posns = Game.GetPosns ply gm
                 //now need to go through the boarda and put in dictionary holding running totals
                 for j = 0 to posns.Length - 1 do
@@ -736,7 +727,7 @@ module Form =
                 st <- DateTime.Now
                 lbl.Text <- "Processing " + numgames.ToString() + " games..."
                 Application.DoEvents()
-                let nms = Games.GetPossNames binfol part updprg
+                let nms = Games.GetPossNames gmpfile part updprg
                 log 
                     ("Extracted " + (nms.Length.ToString()) + " Names matching " 
                      + part)
@@ -807,7 +798,7 @@ module Form =
                     let egms = ugms |> Seq.map (Game.Encode)
                     log ("Encoded games as sequence")
                     lbl.Text <- "Saving " + numgames.ToString() + " games..."
-                    Games.Save binfol egms updprg
+                    Games.Save gmpfile egms updprg
                     gmp <- Some
                                ({ GrampusDataEMP with SourcePgn = pgn
                                                       BaseCreated =
@@ -815,8 +806,8 @@ module Form =
                     Grampus.Save(gmpfile, gmp.Value)
                     log ("Saved games")
                     lbl.Text <- "Ready"
-                    iea <- Index.Load binfol
-                    hdra <- Headers.Load binfol
+                    iea <- Index.Load gmpfile
+                    hdra <- Headers.Load gmpfile
                     this.Enabled <- true
                     prg.Value <- 0
                     updateTitle()
@@ -837,13 +828,13 @@ module Form =
                 st <- DateTime.Now
                 let ugma = PgnGames.ReadSeqFromFile pgnf
                 let egma = ugma |> Seq.map (Game.Encode)
-                Games.Add binfol egma updprg
+                Games.Add gmpfile egma updprg
                 log ("PGN file added")
                 gmp <- Some({ gmp.Value with SourcePgn = pgnf
                                              BaseCreated = Some(DateTime.Now) })
                 Grampus.Save(gmpfile, gmp.Value)
-                iea <- Index.Load binfol
-                hdra <- Headers.Load binfol
+                iea <- Index.Load gmpfile
+                hdra <- Headers.Load gmpfile
                 prg.Value <- 0
                 this.Enabled <- true
         
@@ -866,7 +857,7 @@ module Form =
                 lbl.Text <- "Processing " + numgames.ToString() + " games..."
                 Application.DoEvents()
                 for i = 0 to numgames - 1 do
-                    let gm = Games.LoadGame binfol iea.[i] hdra.[i]
+                    let gm = Games.LoadGame gmpfile iea.[i] hdra.[i]
                     let pgnstr = Game.ToStr gm
                     writer.Write(pgnstr)
                     writer.WriteLine()
@@ -885,7 +876,7 @@ module Form =
             st <- DateTime.Now
             lbl.Text <- "Cmopacting base for " + numgames.ToString() 
                         + " games..."
-            let msg = Games.Compact binfol updprg
+            let msg = Games.Compact gmpfile updprg
             log ("Base Compacted")
             logtb.Text <- logtb.Text + nl + "Messages from Compaction: " + nl 
                           + msg
@@ -902,7 +893,7 @@ module Form =
             st <- DateTime.Now
             lbl.Text <- "Removing Comments for " + numgames.ToString() 
                         + " games..."
-            Games.RemoveComments binfol updprg
+            Games.RemoveComments gmpfile updprg
             log ("Comments Removed")
             lbl.Text <- "Ready"
             prg.Value <- 0
@@ -917,7 +908,7 @@ module Form =
             st <- DateTime.Now
             lbl.Text <- "Removing Variations for " + numgames.ToString() 
                         + " games..."
-            Games.RemoveRavs binfol updprg
+            Games.RemoveRavs gmpfile updprg
             log ("Variations Removed")
             lbl.Text <- "Ready"
             prg.Value <- 0
@@ -931,7 +922,7 @@ module Form =
             prg.Value <- 0
             st <- DateTime.Now
             lbl.Text <- "Removing NAGs for " + numgames.ToString() + " games..."
-            Games.RemoveNags binfol updprg
+            Games.RemoveNags gmpfile updprg
             log ("NAGs Removed")
             lbl.Text <- "Ready"
             prg.Value <- 0
@@ -946,7 +937,7 @@ module Form =
             st <- DateTime.Now
             lbl.Text <- "Removing Duplicates for " + numgames.ToString() 
                         + " games..."
-            let msg = Games.RemoveDuplicates binfol updprg
+            let msg = Games.RemoveDuplicates gmpfile updprg
             log ("Duplicates Removed")
             logtb.Text <- logtb.Text + nl + "Messages from Process: " + nl + msg
             lbl.Text <- "Ready"
@@ -961,7 +952,7 @@ module Form =
             prg.Value <- 0
             st <- DateTime.Now
             lbl.Text <- "Setting ECOs for " + numgames.ToString() + " games..."
-            Eco.ForBase binfol updprg
+            Eco.ForBase gmpfile updprg
             log ("ECOs set")
             lbl.Text <- "Ready"
             prg.Value <- 0

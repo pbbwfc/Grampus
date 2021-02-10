@@ -16,7 +16,8 @@ module Games =
             (FSharpResolver.Instance, StandardResolver.Instance)
     let options = MessagePackSerializerOptions.Standard.WithResolver(resolver)
     
-    let LoadGame (fol : string) (ie : IndexEntry) (hdr : Header) =
+    let LoadGame (nm : string) (ie : IndexEntry) (hdr : Header) =
+        let fol = getbinfol nm
         let fn = Path.Combine(fol, "GAMES")
         use reader =
             new BinaryReader(File.Open
@@ -28,7 +29,8 @@ module Games =
         let gm = MessagePackSerializer.Deserialize<CompressedGame>(ro, options)
         (gm, hdr) |> GameEncoded.Expand
     
-    let Save (fol : string) (gms : seq<EncodedGame>) cb =
+    let Save (nm : string) (gms : seq<EncodedGame>) cb =
+        let fol = getbinfol nm
         Directory.CreateDirectory(fol) |> ignore
         let fn = Path.Combine(fol, "GAMES")
         use writer = new BinaryWriter(File.Open(fn, FileMode.OpenOrCreate))
@@ -49,15 +51,16 @@ module Games =
             |> Seq.toArray
             |> Array.unzip
         
-        Index.Save(fol, iea)
-        Headers.Save(fol, hdrs)
+        Index.Save(nm, iea)
+        Headers.Save(nm, hdrs)
     
-    let Add (fol : string) (gma : seq<EncodedGame>) cb =
+    let Add (nm : string) (gma : seq<EncodedGame>) cb =
+        let fol = getbinfol nm
         let fn = Path.Combine(fol, "GAMES")
         use writer = new BinaryWriter(File.Open(fn, FileMode.OpenOrCreate))
         writer.Seek(0, SeekOrigin.End) |> ignore
-        let iea = Index.Load(fol)
-        let hdrs = Headers.Load(fol)
+        let iea = Index.Load nm
+        let hdrs = Headers.Load nm
         let ct = iea.Length
         
         let svgm i gm =
@@ -78,10 +81,13 @@ module Games =
         
         let niea = Array.append iea aiea
         let nhdrs = Array.append hdrs ahdrs
-        Index.Save(fol, niea)
-        Headers.Save(fol, nhdrs)
+        Index.Save(nm, niea)
+        Headers.Save(nm, nhdrs)
     
-    let AppendGame (fol : string) (gm : EncodedGame) =
+    let AddGmp nm addnm cb = ()
+    
+    let AppendGame (nm : string) (gm : EncodedGame) =
+        let fol = getbinfol nm
         let cgm = gm |> GameEncoded.Compress
         Directory.CreateDirectory(fol) |> ignore
         let fn = Path.Combine(fol, "GAMES")
@@ -94,15 +100,16 @@ module Games =
             { Offset = off
               Length = bin.Length }
         
-        let iea = Index.Load(fol)
-        let hdrs = Headers.Load(fol)
+        let iea = Index.Load nm
+        let hdrs = Headers.Load nm
         let hdr = { gm.Hdr with Num = iea.Length }
         let niea = Array.append iea [| ie |]
         let nhdrs = Array.append hdrs [| hdr |]
-        Index.Save(fol, niea)
-        Headers.Save(fol, nhdrs)
+        Index.Save(nm, niea)
+        Headers.Save(nm, nhdrs)
     
-    let UpdateGame (fol : string) (gnum : int) (gm : EncodedGame) =
+    let UpdateGame (nm : string) (gnum : int) (gm : EncodedGame) =
+        let fol = getbinfol nm
         let cgm = gm |> GameEncoded.Compress
         let fn = Path.Combine(fol, "GAMES")
         use writer = new BinaryWriter(File.Open(fn, FileMode.OpenOrCreate))
@@ -115,21 +122,23 @@ module Games =
               Length = bin.Length }
         
         let hdr = gm.Hdr
-        let iea = Index.Load(fol)
-        let hdrs = Headers.Load(fol)
+        let iea = Index.Load nm
+        let hdrs = Headers.Load nm
         iea.[gnum] <- ie
         hdrs.[gnum] <- hdr
-        Index.Save(fol, iea)
-        Headers.Save(fol, hdrs)
+        Index.Save(nm, iea)
+        Headers.Save(nm, hdrs)
     
-    let Compact (fol : string) cb =
+    let Compact (nm : string) cb =
+        let fol = getbinfol nm
         let ifn = Path.Combine(fol, "GAMES")
         if not (File.Exists(ifn)) then 
             "Compaction Terminated: No Games to compact."
         else 
             let mutable msg = ""
             //create temp folder to do the compact
-            let tmpfol = Path.Combine(fol, "temp")
+            let tmp = Path.Combine(fol,"temp.grampus")
+            let tmpfol = getbinfol tmp
             Directory.CreateDirectory(tmpfol) |> ignore
             let ofn = Path.Combine(tmpfol, "GAMES")
             use writer = new BinaryWriter(File.Open(ofn, FileMode.OpenOrCreate))
@@ -138,8 +147,8 @@ module Games =
                 new BinaryReader(File.Open
                                      (ifn, FileMode.Open, FileAccess.Read, 
                                       FileShare.Read))
-            let iea = Index.Load(fol)
-            let hdrs = Headers.Load(fol)
+            let iea = Index.Load nm
+            let hdrs = Headers.Load nm
             
             //write in compacted format
             let svgm i =
@@ -171,8 +180,8 @@ module Games =
             let del = iea.Length - niea.Length
             msg <- msg + "Number of games permanently deleted is: " 
                    + del.ToString()
-            Index.Save(tmpfol, niea)
-            Headers.Save(tmpfol, nhdrs)
+            Index.Save(tmp, niea)
+            Headers.Save(tmp, nhdrs)
             reader.Close()
             writer.Close()
             //now overwrite with compacted versions
@@ -186,20 +195,13 @@ module Games =
     
     let ExtractNewer (nm : string) (trgnm : string) (year : int) cb =
         let trggmp = GrampusFile.New(trgnm)
-        let fol = Path.GetDirectoryName(nm)
-        let binfol =
-            Path.Combine(fol, Path.GetFileNameWithoutExtension(nm) + "_FILES")
-        let trgfol = Path.GetDirectoryName(trgnm)
-        let trgbinfol =
-            Path.Combine
-                (trgfol, Path.GetFileNameWithoutExtension(trgnm) + "_FILES")
-        let hdrs = Headers.Load(binfol)
-        let iea = Index.Load(binfol)
+        let hdrs = Headers.Load nm
+        let iea = Index.Load nm
         
         let svgm i hdr =
             if hdr.Year >= year then 
-                let gm = LoadGame binfol iea.[i] hdr
-                AppendGame trgbinfol gm
+                let gm = LoadGame nm iea.[i] hdr
+                AppendGame trgnm gm
             if i % 100 = 0 then cb (i)
         hdrs |> Array.iteri svgm
         let ntrggmp = { trggmp with BaseCreated = Some(DateTime.Now) }
@@ -207,15 +209,8 @@ module Games =
     
     let ExtractStronger (nm : string) (trgnm : string) (grade : int) cb =
         let trggmp = GrampusFile.New(trgnm)
-        let fol = Path.GetDirectoryName(nm)
-        let binfol =
-            Path.Combine(fol, Path.GetFileNameWithoutExtension(nm) + "_FILES")
-        let trgfol = Path.GetDirectoryName(trgnm)
-        let trgbinfol =
-            Path.Combine
-                (trgfol, Path.GetFileNameWithoutExtension(trgnm) + "_FILES")
-        let hdrs = Headers.Load(binfol)
-        let iea = Index.Load(binfol)
+        let hdrs = Headers.Load nm
+        let iea = Index.Load nm
         
         let svgm i hdr =
             let w = hdr.W_Elo
@@ -230,14 +225,15 @@ module Games =
                 if b = "-" || b = "" then 0
                 else int (b)
             if welo >= grade || belo >= grade then 
-                let gm = LoadGame binfol iea.[i] hdr
-                AppendGame trgbinfol gm
+                let gm = LoadGame nm iea.[i] hdr
+                AppendGame trgnm gm
             if i % 100 = 0 then cb (i)
         hdrs |> Array.iteri svgm
         let ntrggmp = { trggmp with BaseCreated = Some(DateTime.Now) }
         GrampusFile.Save(trgnm, ntrggmp)
     
-    let GetPossNames (fol : string) (ipart : string) cb =
+    let GetPossNames (nm : string) (ipart : string) cb =
+        let fol = getbinfol nm
         let part = ipart.ToLower()
         
         let getnms i (hdr : Header) =
@@ -252,7 +248,7 @@ module Games =
             if i % 100 = 0 then cb (i)
             wnm, bnm
         
-        let hdrs = Headers.Load(fol)
+        let hdrs = Headers.Load nm
         
         let wnms, bnms =
             hdrs
@@ -276,26 +272,20 @@ module Games =
     
     let ExtractPlayer (nm : string) (trgnm : string) (player : string) cb =
         let trggmp = GrampusFile.New(trgnm)
-        let fol = Path.GetDirectoryName(nm)
-        let binfol =
-            Path.Combine(fol, Path.GetFileNameWithoutExtension(nm) + "_FILES")
-        let trgfol = Path.GetDirectoryName(trgnm)
-        let trgbinfol =
-            Path.Combine
-                (trgfol, Path.GetFileNameWithoutExtension(trgnm) + "_FILES")
-        let hdrs = Headers.Load(binfol)
-        let iea = Index.Load(binfol)
+        let hdrs = Headers.Load nm
+        let iea = Index.Load nm
         
         let svgm i hdr =
             if hdr.White = player || hdr.Black = player then 
-                let gm = LoadGame binfol iea.[i] hdr
-                AppendGame trgbinfol gm
+                let gm = LoadGame nm iea.[i] hdr
+                AppendGame trgnm gm
             if i % 100 = 0 then cb (i)
         hdrs |> Array.iteri svgm
         let ntrggmp = { trggmp with BaseCreated = Some(DateTime.Now) }
         GrampusFile.Save(trgnm, ntrggmp)
     
-    let RemoveDuplicates (fol : string) cb =
+    let RemoveDuplicates (nm : string) cb =
+        let fol = getbinfol nm
         let ifn = Path.Combine(fol, "GAMES")
         if not (File.Exists(ifn)) then 
             "Process Terminated: No Games to process."
@@ -306,8 +296,8 @@ module Games =
                 new BinaryReader(File.Open
                                      (ifn, FileMode.Open, FileAccess.Read, 
                                       FileShare.Read))
-            let iea = Index.Load(fol)
-            let hdrs = Headers.Load(fol)
+            let iea = Index.Load nm
+            let hdrs = Headers.Load nm
             let numgames = iea.Length
             
             //find duplicates
@@ -318,28 +308,30 @@ module Games =
                     let w = hdr.White
                     let b = hdr.Black
                     let ie = iea.[i]
-                    let gm = LoadGame fol ie hdr
+                    let gm = LoadGame nm ie hdr
                     let n = gm.MoveText.Length
                     for j = i + 1 to numgames - 1 do
                         let hdr2 = hdrs.[j]
                         if w = hdr2.White && b = hdr2.Black then 
                             let ie2 = iea.[j]
-                            let gm2 = LoadGame fol ie2 hdr2
+                            let gm2 = LoadGame nm ie2 hdr2
                             if n = gm2.MoveText.Length then 
                                 hdrs.[j] <- { hdr2 with Deleted = "D" }
                     if i % 100 = 0 then cb (i)
             [| 0..numgames - 1 |] |> Array.iter findgm
-            Headers.Save(fol, hdrs)
+            Headers.Save(nm, hdrs)
             reader.Close()
             //now compact
-            let msg = Compact fol cb
+            let msg = Compact nm cb
             msg
     
-    let RemoveComments (fol : string) cb =
+    let RemoveComments (nm : string) cb =
+        let fol = getbinfol nm
         let ifn = Path.Combine(fol, "GAMES")
         if (File.Exists(ifn)) then 
             //create temp folder to do the compact
-            let tmpfol = Path.Combine(fol, "temp")
+            let tmp = Path.Combine(fol,"temp.grampus")
+            let tmpfol = getbinfol tmp
             Directory.CreateDirectory(tmpfol) |> ignore
             let ofn = Path.Combine(tmpfol, "GAMES")
             use writer = new BinaryWriter(File.Open(ofn, FileMode.OpenOrCreate))
@@ -348,8 +340,8 @@ module Games =
                 new BinaryReader(File.Open
                                      (ifn, FileMode.Open, FileAccess.Read, 
                                       FileShare.Read))
-            let iea = Index.Load(fol)
-            let hdrs = Headers.Load(fol)
+            let iea = Index.Load nm
+            let hdrs = Headers.Load nm
             
             //write in compacted format
             let svgm i =
@@ -381,8 +373,8 @@ module Games =
                 |> Array.map svgm
                 |> Array.unzip
             
-            Index.Save(tmpfol, niea)
-            Headers.Save(tmpfol, nhdrs)
+            Index.Save(tmp, niea)
+            Headers.Save(tmp, nhdrs)
             reader.Close()
             writer.Close()
             //now overwrite with compacted versions
@@ -393,11 +385,13 @@ module Games =
                 (Path.Combine(tmpfol, "HEADERS"), Path.Combine(fol, "HEADERS"), 
                  true)
     
-    let RemoveRavs (fol : string) cb =
+    let RemoveRavs (nm : string) cb =
+        let fol = getbinfol nm
         let ifn = Path.Combine(fol, "GAMES")
         if (File.Exists(ifn)) then 
             //create temp folder to do the compact
-            let tmpfol = Path.Combine(fol, "temp")
+            let tmp = Path.Combine(fol,"temp.grampus")
+            let tmpfol = getbinfol tmp
             Directory.CreateDirectory(tmpfol) |> ignore
             let ofn = Path.Combine(tmpfol, "GAMES")
             use writer = new BinaryWriter(File.Open(ofn, FileMode.OpenOrCreate))
@@ -406,8 +400,8 @@ module Games =
                 new BinaryReader(File.Open
                                      (ifn, FileMode.Open, FileAccess.Read, 
                                       FileShare.Read))
-            let iea = Index.Load(fol)
-            let hdrs = Headers.Load(fol)
+            let iea = Index.Load nm
+            let hdrs = Headers.Load nm
             
             //write in compacted format
             let svgm i =
@@ -439,8 +433,8 @@ module Games =
                 |> Array.map svgm
                 |> Array.unzip
             
-            Index.Save(tmpfol, niea)
-            Headers.Save(tmpfol, nhdrs)
+            Index.Save(tmp, niea)
+            Headers.Save(tmp, nhdrs)
             reader.Close()
             writer.Close()
             //now overwrite with compacted versions
@@ -451,11 +445,13 @@ module Games =
                 (Path.Combine(tmpfol, "HEADERS"), Path.Combine(fol, "HEADERS"), 
                  true)
     
-    let RemoveNags (fol : string) cb =
+    let RemoveNags (nm : string) cb =
+        let fol = getbinfol nm
         let ifn = Path.Combine(fol, "GAMES")
         if (File.Exists(ifn)) then 
             //create temp folder to do the compact
-            let tmpfol = Path.Combine(fol, "temp")
+            let tmp = Path.Combine(fol,"temp.grampus")
+            let tmpfol = getbinfol tmp
             Directory.CreateDirectory(tmpfol) |> ignore
             let ofn = Path.Combine(tmpfol, "GAMES")
             use writer = new BinaryWriter(File.Open(ofn, FileMode.OpenOrCreate))
@@ -464,8 +460,8 @@ module Games =
                 new BinaryReader(File.Open
                                      (ifn, FileMode.Open, FileAccess.Read, 
                                       FileShare.Read))
-            let iea = Index.Load(fol)
-            let hdrs = Headers.Load(fol)
+            let iea = Index.Load nm
+            let hdrs = Headers.Load nm
             
             //write in compacted format
             let svgm i =
@@ -497,8 +493,8 @@ module Games =
                 |> Array.map svgm
                 |> Array.unzip
             
-            Index.Save(tmpfol, niea)
-            Headers.Save(tmpfol, nhdrs)
+            Index.Save(tmp, niea)
+            Headers.Save(tmp, nhdrs)
             reader.Close()
             writer.Close()
             //now overwrite with compacted versions

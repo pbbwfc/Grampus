@@ -8,22 +8,24 @@ open System.IO
 [<TestClass>]
 type Headers() =
     let tstfol = @"D:\GitHub\Grampus\tests\data\simple-game_FILES"
+    let tstfn = @"D:\GitHub\Grampus\tests\data\simple-game.grampus"
     let tstfol2 = @"D:\GitHub\Grampus\tests\data\simple-game2_FILES"
+    let tstfn2 = @"D:\GitHub\Grampus\tests\data\simple-game2.grampus"
     
     [<TestMethod>]
     member this.Load() =
-        let ans = Headers.Load(tstfol)
+        let ans = Headers.Load tstfn
         ans.Length |> should equal 1
     
     [<TestMethod>]
     member this.Save() =
-        let tstfn2 = Path.Combine(tstfol2, "HEADERS")
-        if File.Exists(tstfn2) then File.Delete(tstfn2)
-        let ans = File.Exists(tstfn2)
+        let tstfnh2 = Path.Combine(tstfol2, "HEADERS")
+        if File.Exists(tstfnh2) then File.Delete(tstfnh2)
+        let ans = File.Exists(tstfnh2)
         ans |> should equal false
-        let hdrs = Headers.Load(tstfol)
+        let hdrs = Headers.Load tstfn
         Directory.CreateDirectory(tstfol2) |> ignore
-        Headers.Save(tstfol2, hdrs)
-        let ans = File.Exists(tstfn2)
+        Headers.Save(tstfn2, hdrs)
+        let ans = File.Exists(tstfnh2)
         ans |> should equal true
-        File.Delete(tstfn2)
+        File.Delete(tstfnh2)

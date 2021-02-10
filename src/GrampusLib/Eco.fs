@@ -61,19 +61,19 @@ module Eco =
                 { gm with Hdr = nhdr }
         ngm
     
-    let ForBase (fol : string) cb =
+    let ForBase (nm : string) cb =
         //load all the current files
-        let iea = Index.Load(fol)
-        let hdrs = Headers.Load(fol)
+        let iea = Index.Load nm
+        let hdrs = Headers.Load nm
         
         //write in compacted format
         let updhdr i =
             let ie = iea.[i]
             let hdr = hdrs.[i]
-            let gm = Games.LoadGame fol ie hdr
+            let gm = Games.LoadGame nm ie hdr
             let ngm = gm |> ForGame
             if i % 100 = 0 then cb (i)
             ngm.Hdr
         
         let nhdrs = [| 0..iea.Length - 1 |] |> Array.map updhdr
-        Headers.Save(fol, nhdrs)
+        Headers.Save(nm, nhdrs)

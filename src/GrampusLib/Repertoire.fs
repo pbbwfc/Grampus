@@ -22,10 +22,10 @@ module Repertoire =
     let mutable WhiteRep : RepOpts * RepMove = Map.empty, Map.empty
     let mutable WhiteErrors : string list = []
     let setfol fol = rfol <- fol
-    let whitedb() = Path.Combine(rfol, "WhiteRep")
+    let whitedb() = Path.Combine(rfol, "WhiteRep.grmapus")
     let whiterep() = Path.Combine(rfol, "whte.json")
     let whiteerrs() = Path.Combine(rfol, "whteerrs.txt")
-    let blackdb() = Path.Combine(rfol, "BlackRep")
+    let blackdb() = Path.Combine(rfol, "BlackRep.grampus")
     let blackrep() = Path.Combine(rfol, "blck.json")
     let blackerrs() = Path.Combine(rfol, "blckerrs.txt")
     
@@ -156,14 +156,14 @@ module Repertoire =
                     else domvt cemvo pbd cbd imtel.Tail repopts repmove
                 | _ -> domvt cemvo pbd cbd imtel.Tail repopts repmove
         
-        let fol = whitedb() + "_FILES"
-        let iea = Index.Load(fol)
-        let hdra = Headers.Load(fol)
+        let nm = whitedb()
+        let iea = Index.Load nm
+        let hdra = Headers.Load nm
         let numgames = iea.Length
         WhiteRep <- Map.empty, Map.empty
         WhiteErrors <- []
         for i = 0 to numgames - 1 do
-            let gm = Games.LoadGame fol iea.[i] hdra.[i]
+            let gm = Games.LoadGame nm iea.[i] hdra.[i]
             let mvs = gm.MoveText
             
             let bd =
@@ -270,14 +270,14 @@ module Repertoire =
                     else domvt cemvo pbd cbd imtel.Tail repopts repmove
                 | _ -> domvt cemvo pbd cbd imtel.Tail repopts repmove
         
-        let fol = blackdb() + "_FILES"
-        let iea = Index.Load(fol)
-        let hdra = Headers.Load(fol)
+        let nm = blackdb()
+        let iea = Index.Load nm
+        let hdra = Headers.Load nm
         let numgames = iea.Length
         BlackRep <- Map.empty, Map.empty
         BlackErrors <- []
         for i = 0 to numgames - 1 do
-            let gm = Games.LoadGame fol iea.[i] hdra.[i]
+            let gm = Games.LoadGame nm iea.[i] hdra.[i]
             let mvs = gm.MoveText
             
             let bd =

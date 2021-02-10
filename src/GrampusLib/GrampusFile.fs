@@ -19,18 +19,14 @@ module GrampusFile =
         File.WriteAllText(nm, str)
     
     let New(nm : string) : GrampusData =
-        let fol = Path.GetDirectoryName(nm)
-        let binfol =
-            Path.Combine(fol, Path.GetFileNameWithoutExtension(nm) + "_FILES")
+        let binfol = getbinfol nm
         Directory.CreateDirectory(binfol) |> ignore
         let gmp = GrampusDataEMP
         Save(nm, gmp)
         gmp
     
     let Delete(nm : string) =
-        let fol = Path.GetDirectoryName(nm)
-        let binfol =
-            Path.Combine(fol, Path.GetFileNameWithoutExtension(nm) + "_FILES")
+        let binfol = getbinfol nm
         if Directory.Exists(binfol) then Directory.Delete(binfol, true)
         File.Delete(nm)
     
@@ -53,21 +49,13 @@ module GrampusFile =
                     let dstSubDir = System.IO.Path.Combine(dstPath, subdir.Name)
                     directoryCopy subdir.FullName dstSubDir copySubDirs
         
-        let fol = Path.GetDirectoryName(nm)
-        let binfol =
-            Path.Combine(fol, Path.GetFileNameWithoutExtension(nm) + "_FILES")
-        let copyfol = Path.GetDirectoryName(copynm)
-        let copybinfol =
-            Path.Combine
-                (copyfol, Path.GetFileNameWithoutExtension(copynm) + "_FILES")
+        let binfol = getbinfol nm
+        let copybinfol = getbinfol copynm
         File.Copy(nm, copynm, true)
         directoryCopy binfol copybinfol true
     
     let DeleteTree(nm : string) =
-        let fol = Path.GetDirectoryName(nm)
-        let binfol =
-            Path.Combine(fol, Path.GetFileNameWithoutExtension(nm) + "_FILES")
-        let trfol = Path.Combine(binfol, "tree")
+        let trfol = gettrfol nm
         if Directory.Exists(trfol) then Directory.Delete(trfol, true)
         let gmp = Load(nm)
         
@@ -78,10 +66,7 @@ module GrampusFile =
         ngmp
     
     let DeleteFilters(nm : string) =
-        let fol = Path.GetDirectoryName(nm)
-        let binfol =
-            Path.Combine(fol, Path.GetFileNameWithoutExtension(nm) + "_FILES")
-        let ffol = Path.Combine(binfol, "filters")
+        let ffol = getffol nm
         if Directory.Exists(ffol) then Directory.Delete(ffol, true)
         let gmp = Load(nm)
         
@@ -92,9 +77,7 @@ module GrampusFile =
         ngmp
     
     let DeleteGames(nm : string) =
-        let fol = Path.GetDirectoryName(nm)
-        let binfol =
-            Path.Combine(fol, Path.GetFileNameWithoutExtension(nm) + "_FILES")
+        let binfol = getbinfol nm
         if File.Exists(binfol + @"\GAMES") then File.Delete(binfol + @"\GAMES")
         if File.Exists(binfol + @"\INDEX") then File.Delete(binfol + @"\INDEX")
         if File.Exists(binfol + @"\HEADERS") then 

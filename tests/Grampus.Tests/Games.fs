@@ -21,15 +21,15 @@ type Games() =
         File.Copy(Path.Combine(tstfol, "GAMES"), Path.Combine(tstfol2, "GAMES"))
         File.Copy
             (Path.Combine(tstfol, "HEADERS"), Path.Combine(tstfol2, "HEADERS"))
-        let indx = Index.Load tstfol
-        let hdrs = Headers.Load tstfol
-        let gm = Games.LoadGame tstfol indx.[0] hdrs.[0]
+        let indx = Index.Load tstfn
+        let hdrs = Headers.Load tstfn
+        let gm = Games.LoadGame tstfn indx.[0] hdrs.[0]
         gm.MoveText.Length |> should equal 107
-        Games.Save tstfol2 [ gm; gm ] (fun i -> ())
-        let indx2 = Index.Load tstfol2
-        let hdrs2 = Headers.Load tstfol2
+        Games.Save tstfn2 [ gm; gm ] (fun i -> ())
+        let indx2 = Index.Load tstfn2
+        let hdrs2 = Headers.Load tstfn2
         indx2.Length |> should equal 2
-        let gm2 = Games.LoadGame tstfol2 indx2.[1] hdrs2.[1]
+        let gm2 = Games.LoadGame tstfn2 indx2.[1] hdrs2.[1]
         gm2.MoveText.Length |> should equal 107
         if Directory.Exists(tstfol2) then Directory.Delete(tstfol2, true)
     
@@ -41,15 +41,15 @@ type Games() =
         File.Copy(Path.Combine(tstfol, "GAMES"), Path.Combine(tstfol2, "GAMES"))
         File.Copy
             (Path.Combine(tstfol, "HEADERS"), Path.Combine(tstfol2, "HEADERS"))
-        let indx = Index.Load tstfol
-        let hdrs = Headers.Load tstfol
-        let gm = Games.LoadGame tstfol indx.[0] hdrs.[0]
+        let indx = Index.Load tstfn
+        let hdrs = Headers.Load tstfn
+        let gm = Games.LoadGame tstfn indx.[0] hdrs.[0]
         gm.MoveText.Length |> should equal 107
-        Games.Add tstfol2 [ gm; gm ] (fun i -> ())
-        let indx2 = Index.Load tstfol2
-        let hdrs2 = Headers.Load tstfol2
+        Games.Add tstfn2 [ gm; gm ] (fun i -> ())
+        let indx2 = Index.Load tstfn2
+        let hdrs2 = Headers.Load tstfn2
         indx2.Length |> should equal 3
-        let gm2 = Games.LoadGame tstfol2 indx2.[1] hdrs2.[1]
+        let gm2 = Games.LoadGame tstfn2 indx2.[1] hdrs2.[1]
         gm2.MoveText.Length |> should equal 107
         if Directory.Exists(tstfol2) then Directory.Delete(tstfol2, true)
     
@@ -61,15 +61,15 @@ type Games() =
         File.Copy(Path.Combine(tstfol, "GAMES"), Path.Combine(tstfol2, "GAMES"))
         File.Copy
             (Path.Combine(tstfol, "HEADERS"), Path.Combine(tstfol2, "HEADERS"))
-        let indx = Index.Load tstfol
-        let hdrs = Headers.Load tstfol
-        let gm = Games.LoadGame tstfol indx.[0] hdrs.[0]
+        let indx = Index.Load tstfn
+        let hdrs = Headers.Load tstfn
+        let gm = Games.LoadGame tstfn indx.[0] hdrs.[0]
         gm.MoveText.Length |> should equal 107
-        Games.AppendGame tstfol2 gm
-        let indx2 = Index.Load tstfol2
-        let hdrs2 = Headers.Load tstfol2
+        Games.AppendGame tstfn2 gm
+        let indx2 = Index.Load tstfn2
+        let hdrs2 = Headers.Load tstfn2
         indx2.Length |> should equal 2
-        let gm2 = Games.LoadGame tstfol2 indx2.[1] hdrs2.[1]
+        let gm2 = Games.LoadGame tstfn2 indx2.[1] hdrs2.[1]
         gm2.MoveText.Length |> should equal 107
         if Directory.Exists(tstfol2) then Directory.Delete(tstfol2, true)
     
@@ -81,17 +81,17 @@ type Games() =
         File.Copy(Path.Combine(tstfol, "GAMES"), Path.Combine(tstfol2, "GAMES"))
         File.Copy
             (Path.Combine(tstfol, "HEADERS"), Path.Combine(tstfol2, "HEADERS"))
-        let indx = Index.Load tstfol
+        let indx = Index.Load tstfn
         indx.[0].Offset |> should equal 0L
-        let hdrs = Headers.Load tstfol
-        let gm = Games.LoadGame tstfol indx.[0] hdrs.[0]
+        let hdrs = Headers.Load tstfn
+        let gm = Games.LoadGame tstfn indx.[0] hdrs.[0]
         gm.MoveText.Length |> should equal 107
-        Games.UpdateGame tstfol2 0 gm
-        let indx2 = Index.Load tstfol2
-        let hdrs2 = Headers.Load tstfol2
+        Games.UpdateGame tstfn2 0 gm
+        let indx2 = Index.Load tstfn2
+        let hdrs2 = Headers.Load tstfn2
         indx2.Length |> should equal 1
         indx2.[0].Offset |> should equal 1676L
-        let gm2 = Games.LoadGame tstfol2 indx2.[0] hdrs2.[0]
+        let gm2 = Games.LoadGame tstfn2 indx2.[0] hdrs2.[0]
         gm2.MoveText.Length |> should equal 107
         if Directory.Exists(tstfol2) then Directory.Delete(tstfol2, true)
     
@@ -103,25 +103,25 @@ type Games() =
         File.Copy(Path.Combine(tstfol, "GAMES"), Path.Combine(tstfol2, "GAMES"))
         File.Copy
             (Path.Combine(tstfol, "HEADERS"), Path.Combine(tstfol2, "HEADERS"))
-        let indx = Index.Load tstfol
+        let indx = Index.Load tstfn
         indx.[0].Offset |> should equal 0L
-        let hdrs = Headers.Load tstfol
-        let gm = Games.LoadGame tstfol indx.[0] hdrs.[0]
+        let hdrs = Headers.Load tstfn
+        let gm = Games.LoadGame tstfn indx.[0] hdrs.[0]
         gm.MoveText.Length |> should equal 107
-        Games.UpdateGame tstfol2 0 gm
-        let indx2 = Index.Load tstfol2
-        let hdrs2 = Headers.Load tstfol2
+        Games.UpdateGame tstfn2 0 gm
+        let indx2 = Index.Load tstfn2
+        let hdrs2 = Headers.Load tstfn2
         indx2.Length |> should equal 1
         indx2.[0].Offset |> should equal 1676L
-        let gm2 = Games.LoadGame tstfol2 indx2.[0] hdrs2.[0]
+        let gm2 = Games.LoadGame tstfn2 indx2.[0] hdrs2.[0]
         gm2.MoveText.Length |> should equal 107
-        let msg = Games.Compact tstfol2 (fun i -> ())
+        let msg = Games.Compact tstfn2 (fun i -> ())
         msg |> should equal "Number of games permanently deleted is: 0"
-        let indx3 = Index.Load tstfol2
-        let hdrs3 = Headers.Load tstfol2
+        let indx3 = Index.Load tstfn2
+        let hdrs3 = Headers.Load tstfn2
         indx3.Length |> should equal 1
         indx3.[0].Offset |> should equal 0L
-        let gm3 = Games.LoadGame tstfol2 indx3.[0] hdrs3.[0]
+        let gm3 = Games.LoadGame tstfn2 indx3.[0] hdrs3.[0]
         gm3.MoveText.Length |> should equal 107
         if Directory.Exists(tstfol2) then Directory.Delete(tstfol2, true)
     
@@ -129,11 +129,11 @@ type Games() =
     member this.ExtractNewer() =
         if File.Exists(tstfn2) then Grampus.Delete(tstfn2)
         Games.ExtractNewer tstfn tstfn2 2020 (fun i -> ())
-        let nindx = Index.Load(tstfol2)
+        let nindx = Index.Load tstfn2
         nindx.Length |> should equal 0
         if File.Exists(tstfn2) then Grampus.Delete(tstfn2)
         Games.ExtractNewer tstfn tstfn2 2000 (fun i -> ())
-        let nindx = Index.Load(tstfol2)
+        let nindx = Index.Load tstfn2
         nindx.Length |> should equal 1
         if File.Exists(tstfn2) then Grampus.Delete(tstfn2)
     
@@ -141,30 +141,30 @@ type Games() =
     member this.ExtractStronger() =
         if File.Exists(tstfn2) then Grampus.Delete(tstfn2)
         Games.ExtractStronger tstfn tstfn2 2200 (fun i -> ())
-        let nindx = Index.Load(tstfol2)
+        let nindx = Index.Load tstfn2
         nindx.Length |> should equal 1
         if File.Exists(tstfn2) then Grampus.Delete(tstfn2)
         Games.ExtractStronger tstfn tstfn2 2800 (fun i -> ())
-        let nindx = Index.Load(tstfol2)
+        let nindx = Index.Load tstfn2
         nindx.Length |> should equal 0
         if File.Exists(tstfn2) then Grampus.Delete(tstfn2)
     
     [<TestMethod>]
     member this.GetPossNames() =
-        let nms = Games.GetPossNames tstfol "x" (fun i -> ())
+        let nms = Games.GetPossNames tstfn "x" (fun i -> ())
         nms.Length |> should equal 0
-        let nms = Games.GetPossNames tstfol "e" (fun i -> ())
+        let nms = Games.GetPossNames tstfn "e" (fun i -> ())
         nms.Length |> should equal 1
     
     [<TestMethod>]
     member this.ExtractPlayer() =
         if File.Exists(tstfn2) then Grampus.Delete(tstfn2)
         Games.ExtractPlayer tstfn tstfn2 "Howell, David" (fun i -> ())
-        let nindx = Index.Load(tstfol2)
+        let nindx = Index.Load tstfn2
         nindx.Length |> should equal 1
         if File.Exists(tstfn2) then Grampus.Delete(tstfn2)
         Games.ExtractPlayer tstfn tstfn2 "Fred" (fun i -> ())
-        let nindx = Index.Load(tstfol2)
+        let nindx = Index.Load tstfn2
         nindx.Length |> should equal 0
         if File.Exists(tstfn2) then Grampus.Delete(tstfn2)
     
@@ -172,25 +172,25 @@ type Games() =
     member this.RemoveDuplicates() =
         if Directory.Exists(tstfol2) then Directory.Delete(tstfol2, true)
         Grampus.Copy(tstfn, tstfn2)
-        let indx = Index.Load tstfol
+        let indx = Index.Load tstfn
         indx.[0].Offset |> should equal 0L
-        let hdrs = Headers.Load tstfol
-        let gm = Games.LoadGame tstfol indx.[0] hdrs.[0]
+        let hdrs = Headers.Load tstfn
+        let gm = Games.LoadGame tstfn indx.[0] hdrs.[0]
         gm.MoveText.Length |> should equal 107
-        Games.AppendGame tstfol2 gm
-        let indx2 = Index.Load tstfol2
-        let hdrs2 = Headers.Load tstfol2
+        Games.AppendGame tstfn2 gm
+        let indx2 = Index.Load tstfn2
+        let hdrs2 = Headers.Load tstfn2
         indx2.Length |> should equal 2
         indx2.[1].Offset |> should equal 1676L
-        let gm2 = Games.LoadGame tstfol2 indx2.[0] hdrs2.[0]
+        let gm2 = Games.LoadGame tstfn2 indx2.[0] hdrs2.[0]
         gm2.MoveText.Length |> should equal 107
-        let msg = Games.RemoveDuplicates tstfol2 (fun i -> ())
+        let msg = Games.RemoveDuplicates tstfn2 (fun i -> ())
         msg |> should equal "Number of games permanently deleted is: 1"
-        let indx3 = Index.Load tstfol2
-        let hdrs3 = Headers.Load tstfol2
+        let indx3 = Index.Load tstfn2
+        let hdrs3 = Headers.Load tstfn2
         indx3.Length |> should equal 1
         indx3.[0].Offset |> should equal 0L
-        let gm3 = Games.LoadGame tstfol2 indx3.[0] hdrs3.[0]
+        let gm3 = Games.LoadGame tstfn2 indx3.[0] hdrs3.[0]
         gm3.MoveText.Length |> should equal 107
         if Directory.Exists(tstfol2) then Directory.Delete(tstfol2, true)
     
@@ -198,23 +198,23 @@ type Games() =
     member this.RemoveComments() =
         if Directory.Exists(tstfol2) then Grampus.Delete(tstfn2)
         Grampus.Copy(tstfn, tstfn2)
-        let indx = Index.Load tstfol2
-        let hdrs = Headers.Load tstfol2
-        let gm = Games.LoadGame tstfol2 indx.[0] hdrs.[0]
+        let indx = Index.Load tstfn2
+        let hdrs = Headers.Load tstfn2
+        let gm = Games.LoadGame tstfn2 indx.[0] hdrs.[0]
         let ans = gm |> Game.ToStr
         ans.Length |> should equal 862
         let ngm = Game.CommentAfter gm [ 1 ] "test"
-        Games.UpdateGame tstfol2 0 ngm
-        let indx = Index.Load tstfol2
-        let hdrs = Headers.Load tstfol2
-        let gm = Games.LoadGame tstfol2 indx.[0] hdrs.[0]
+        Games.UpdateGame tstfn2 0 ngm
+        let indx = Index.Load tstfn2
+        let hdrs = Headers.Load tstfn2
+        let gm = Games.LoadGame tstfn2 indx.[0] hdrs.[0]
         let ans = gm |> Game.ToStr
         ans.Length |> should equal 871
         gm.MoveText.[2] |> should equal (EncodedCommentEntry("test"))
-        Games.RemoveComments tstfol2 (fun i -> ())
-        let indx = Index.Load tstfol2
-        let hdrs = Headers.Load tstfol2
-        let gm = Games.LoadGame tstfol2 indx.[0] hdrs.[0]
+        Games.RemoveComments tstfn2 (fun i -> ())
+        let indx = Index.Load tstfn2
+        let hdrs = Headers.Load tstfn2
+        let gm = Games.LoadGame tstfn2 indx.[0] hdrs.[0]
         let ans = gm |> Game.ToStr
         ans.Length |> should equal 862
         if Directory.Exists(tstfol2) then Grampus.Delete(tstfn2)
@@ -223,23 +223,23 @@ type Games() =
     member this.RemoveNags() =
         if Directory.Exists(tstfol2) then Grampus.Delete(tstfn2)
         Grampus.Copy(tstfn, tstfn2)
-        let indx = Index.Load tstfol2
-        let hdrs = Headers.Load tstfol2
-        let gm = Games.LoadGame tstfol2 indx.[0] hdrs.[0]
+        let indx = Index.Load tstfn2
+        let hdrs = Headers.Load tstfn2
+        let gm = Games.LoadGame tstfn2 indx.[0] hdrs.[0]
         let ans = gm |> Game.ToStr
         ans.Length |> should equal 862
         let ngm = Game.AddNag gm [ 1 ] NAG.Good
-        Games.UpdateGame tstfol2 0 ngm
-        let indx = Index.Load tstfol2
-        let hdrs = Headers.Load tstfol2
-        let gm = Games.LoadGame tstfol2 indx.[0] hdrs.[0]
+        Games.UpdateGame tstfn2 0 ngm
+        let indx = Index.Load tstfn2
+        let hdrs = Headers.Load tstfn2
+        let gm = Games.LoadGame tstfn2 indx.[0] hdrs.[0]
         let ans = gm |> Game.ToStr
         ans.Length |> should equal 865
         gm.MoveText.[2] |> should equal (EncodedNAGEntry(NAG.Good))
-        Games.RemoveNags tstfol2 (fun i -> ())
-        let indx = Index.Load tstfol2
-        let hdrs = Headers.Load tstfol2
-        let gm = Games.LoadGame tstfol2 indx.[0] hdrs.[0]
+        Games.RemoveNags tstfn2 (fun i -> ())
+        let indx = Index.Load tstfn2
+        let hdrs = Headers.Load tstfn2
+        let gm = Games.LoadGame tstfn2 indx.[0] hdrs.[0]
         let ans = gm |> Game.ToStr
         ans.Length |> should equal 862
         if Directory.Exists(tstfol2) then Grampus.Delete(tstfn2)
@@ -248,9 +248,9 @@ type Games() =
     member this.RemoveRavs() =
         if Directory.Exists(tstfol2) then Grampus.Delete(tstfn2)
         Grampus.Copy(tstfn, tstfn2)
-        let indx = Index.Load tstfol2
-        let hdrs = Headers.Load tstfol2
-        let gm = Games.LoadGame tstfol2 indx.[0] hdrs.[0]
+        let indx = Index.Load tstfn2
+        let hdrs = Headers.Load tstfn2
+        let gm = Games.LoadGame tstfn2 indx.[0] hdrs.[0]
         let ans = gm |> Game.ToStr
         ans.Length |> should equal 862
         let mv =
@@ -264,16 +264,16 @@ type Games() =
         let ngm, nirs = Game.AddRav gm [ 0 ] nmv
         nirs.Head |> should equal 2
         nirs.Tail.Head |> should equal 0
-        Games.UpdateGame tstfol2 0 ngm
-        let indx = Index.Load tstfol2
-        let hdrs = Headers.Load tstfol2
-        let gm = Games.LoadGame tstfol2 indx.[0] hdrs.[0]
+        Games.UpdateGame tstfn2 0 ngm
+        let indx = Index.Load tstfn2
+        let hdrs = Headers.Load tstfn2
+        let gm = Games.LoadGame tstfn2 indx.[0] hdrs.[0]
         let ans = gm |> Game.ToStr
         ans.Length |> should equal 876
-        Games.RemoveRavs tstfol2 (fun i -> ())
-        let indx = Index.Load tstfol2
-        let hdrs = Headers.Load tstfol2
-        let gm = Games.LoadGame tstfol2 indx.[0] hdrs.[0]
+        Games.RemoveRavs tstfn2 (fun i -> ())
+        let indx = Index.Load tstfn2
+        let hdrs = Headers.Load tstfn2
+        let gm = Games.LoadGame tstfn2 indx.[0] hdrs.[0]
         let ans = gm |> Game.ToStr
         ans.Length |> should equal 862
         if Directory.Exists(tstfol2) then Grampus.Delete(tstfn2)

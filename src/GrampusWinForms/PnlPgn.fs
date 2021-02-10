@@ -548,14 +548,15 @@ module PnlPgnLib =
         member pgnpnl.SaveGame() =
             // Add to end of binary file and change the offset and length 
             let fol = nm + "_FILES"
-            let indx = Index.Load(fol)
+            let gmpfile = nm + ".grampus"
+            let indx = Index.Load gmpfile
             if gnum = -1 then 
                 gnum <- indx.Length
                 let hdr = { game.Hdr with Num = gnum }
                 game <- { game with Hdr = hdr }
                 //need to update index, game rows and binary file
-                Games.AppendGame fol game
-            else Games.UpdateGame fol gnum game
+                Games.AppendGame gmpfile game
+            else Games.UpdateGame gmpfile gnum game
             gmchg <- false
             gmchg |> gmchngEvt.Trigger
             hdrchg <- false
@@ -577,10 +578,10 @@ module PnlPgnLib =
         ///Switches to another game with the same position
         member pgnpnl.SwitchGame(rw : int) =
             gnum <- rw
-            let fol = nm + "_FILES"
-            let indx = Index.Load fol
-            let hdrs = Headers.Load fol
-            let gm = Games.LoadGame fol indx.[gnum] hdrs.[gnum]
+            let gmpfile = nm + ".grampus"
+            let indx = Index.Load gmpfile
+            let hdrs = Headers.Load gmpfile
+            let gm = Games.LoadGame gmpfile indx.[gnum] hdrs.[gnum]
             //need to check if want to save
             if gmchg then pgnpnl.PromptSaveGame()
             game <- gm
@@ -624,11 +625,11 @@ module PnlPgnLib =
             nm <- inm
         
         member pgnpnl.Refrsh(ignum : int, inm) =
-            let fol = inm + "_FILES"
-            let indx = Index.Load fol
+            let gmpfile = nm + ".grampus"
+            let indx = Index.Load gmpfile
             if indx.Length > 0 then 
-                let hdrs = Headers.Load fol
-                let gm = Games.LoadGame fol indx.[ignum] hdrs.[ignum]
+                let hdrs = Headers.Load gmpfile
+                let gm = Games.LoadGame gmpfile indx.[ignum] hdrs.[ignum]
                 pgnpnl.SetGame(gm)
                 gnum <- ignum
             else 

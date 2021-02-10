@@ -16,7 +16,8 @@ module Headers =
             (FSharpResolver.Instance, StandardResolver.Instance)
     let options = MessagePackSerializerOptions.Standard.WithResolver(resolver)
     
-    let Load(fol : string) =
+    let Load(nm : string) =
+        let fol = getbinfol nm
         let fn = Path.Combine(fol, "HEADERS")
         if File.Exists(fn) then 
             let bin = File.ReadAllBytes(fn)
@@ -25,7 +26,8 @@ module Headers =
             gmr
         else [||]
     
-    let Save(fol : string, hdrs : Header []) =
+    let Save(nm : string, hdrs : Header []) =
+        let fol = getbinfol nm
         let fn = Path.Combine(fol, "HEADERS")
         let bin = MessagePackSerializer.Serialize<Header []>(hdrs, options)
         File.WriteAllBytes(fn, bin)

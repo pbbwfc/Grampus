@@ -48,7 +48,8 @@ module TpGamesLib =
             let hdr = hdrs.[gnum]
             let nhdr = { hdr with Deleted = "D" }
             hdrs.[gnum] <- nhdr
-            Headers.Save(nm + "_FILES", hdrs)
+            let gmpfile = nm + ".grampus"
+            Headers.Save(gmpfile, hdrs)
             gmsui.[rw] <- nhdr
             gms.Rows.[rw].DefaultCellStyle.ForeColor <- Color.Red
         
@@ -92,11 +93,12 @@ module TpGamesLib =
         /// initialise
         member gmstp.Init(inm : string, nofilt) =
             nm <- inm
-            let indx = Index.Load(inm + "_FILES")
+            let gmpfile = nm + ".grampus"
+            let indx = Index.Load gmpfile
             gn <- indx.Length
             fn <- gn
             filt <- []
-            hdrs <- Headers.Load(inm + "_FILES")
+            hdrs <- Headers.Load gmpfile
             hasnofilt <- nofilt
             settxt()
         
@@ -104,8 +106,9 @@ module TpGamesLib =
         member gmstp.Refrsh(bdstr : string) =
             gmsui.Clear()
             let fol = nm + "_FILES"
+            let gmpfile = nm + ".grampus"
             filt <- Filters.Read(bdstr, fol)
-            hdrs <- Headers.Load(fol)
+            hdrs <- Headers.Load gmpfile
             if hasnofilt then 
                 fn <- hdrs.Length
                 let lim =

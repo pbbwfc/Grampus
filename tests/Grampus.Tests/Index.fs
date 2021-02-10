@@ -8,22 +8,24 @@ open System.IO
 [<TestClass>]
 type Index() =
     let tstfol = @"D:\GitHub\Grampus\tests\data\simple-game_FILES"
+    let tstfn = @"D:\GitHub\Grampus\tests\data\simple-game.grampus"
     let tstfol2 = @"D:\GitHub\Grampus\tests\data\simple-game2_FILES"
+    let tstfn2 = @"D:\GitHub\Grampus\tests\data\simple-game2.grampus"
     
     [<TestMethod>]
     member this.Load() =
-        let ans = Index.Load(tstfol)
+        let ans = Index.Load tstfn
         ans.Length |> should equal 1
     
     [<TestMethod>]
     member this.Save() =
-        let tstfn2 = Path.Combine(tstfol2, "INDEX")
-        if File.Exists(tstfn2) then File.Delete(tstfn2)
-        let ans = File.Exists(tstfn2)
+        let tstfni2 = Path.Combine(tstfol2, "INDEX")
+        if File.Exists(tstfni2) then File.Delete(tstfni2)
+        let ans = File.Exists(tstfni2)
         ans |> should equal false
-        let iea = Index.Load(tstfol)
+        let iea = Index.Load tstfn
         Directory.CreateDirectory(tstfol2) |> ignore
-        Index.Save(tstfol2, iea)
-        let ans = File.Exists(tstfn2)
+        Index.Save(tstfn2, iea)
+        let ans = File.Exists(tstfni2)
         ans |> should equal true
-        File.Delete(tstfn2)
+        File.Delete(tstfni2)

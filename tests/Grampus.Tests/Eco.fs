@@ -12,7 +12,9 @@ type Eco() =
     let db = PgnGames.ReadSeqFromFile fl |> Seq.toList
     let gm = db.Head |> Game.Encode
     let tstfol = @"D:\GitHub\Grampus\tests\data\simple-game_FILES"
+    let tstfn = @"D:\GitHub\Grampus\tests\data\simple-game.grampus"
     let tstfol2 = @"D:\GitHub\Grampus\tests\data\simple-game2_FILES"
+    let tstfn2 = @"D:\GitHub\Grampus\tests\data\simple-game2.grampus"
     
     [<TestMethod>]
     member this.ForGame() =
@@ -30,15 +32,15 @@ type Eco() =
         File.Copy(Path.Combine(tstfol, "GAMES"), Path.Combine(tstfol2, "GAMES"))
         File.Copy
             (Path.Combine(tstfol, "HEADERS"), Path.Combine(tstfol2, "HEADERS"))
-        let indx = Index.Load tstfol
-        let hdrs = Headers.Load tstfol
-        let gm = Games.LoadGame tstfol indx.[0] hdrs.[0]
+        let indx = Index.Load tstfn
+        let hdrs = Headers.Load tstfn
+        let gm = Games.LoadGame tstfn indx.[0] hdrs.[0]
         gm.Hdr.ECO |> should equal ""
         gm.Hdr.Opening |> should equal ""
-        Eco.ForBase tstfol2 (fun i -> ())
-        let indx2 = Index.Load tstfol2
-        let hdrs2 = Headers.Load tstfol2
-        let gm2 = Games.LoadGame tstfol2 indx2.[0] hdrs2.[0]
+        Eco.ForBase tstfn2 (fun i -> ())
+        let indx2 = Index.Load tstfn2
+        let hdrs2 = Headers.Load tstfn2
+        let gm2 = Games.LoadGame tstfn2 indx2.[0] hdrs2.[0]
         gm2.Hdr.ECO |> should equal "C42"
         gm2.Hdr.Opening |> should equal "Petrov"
         if Directory.Exists(tstfol2) then Directory.Delete(tstfol2, true)
