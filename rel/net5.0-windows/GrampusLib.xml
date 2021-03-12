@@ -675,7 +675,7 @@ Get an encoded move from a SAN Move(move) such as Nf3 for this Board(bd)
  Reads the filter storage given a position and a folder.
  </summary>
  <param name="posn">The position to read in the tree.</param>
- <param name="fol">The folder which stores the tree.</param>
+ <param name="nm">The full path and file name.</param>
  <returns>The filter for the posn as an int list type.</returns>
 </member>
 <member name="M:Grampus.Filters.Save(System.String[],Microsoft.FSharp.Collections.FSharpList{System.Int32}[],System.String)">
@@ -684,14 +684,14 @@ Get an encoded move from a SAN Move(move) such as Nf3 for this Board(bd)
  </summary>
  <param name="posns">The array of positions for the tree.</param>
  <param name="filts">The array of references to games as an int list type.</param>
- <param name="fol">The folder to store the tree.</param>
+ <param name="nm">The full path and file name.</param>
  <returns>Nothing.</returns>
 </member>
 <member name="M:Grampus.Filters.Create(System.String)">
  <summary>
  Creates the filter storage given a folder.
  </summary>
- <param name="fol">The folder to store the tree.</param>
+ <param name="nm">The full path and file name.</param>
  <returns>Nothing.</returns>
 </member>
 <member name="T:Grampus.Filters">
@@ -704,7 +704,7 @@ Get an encoded move from a SAN Move(move) such as Nf3 for this Board(bd)
  Reads the tree storage given a position and a folder.
  </summary>
  <param name="posn">The position to read in the tree.</param>
- <param name="fol">The folder which stores the tree.</param>
+ <param name="nm">The full path and file name.</param>
  <returns>The tree for the posn as a stats type.</returns>
 </member>
 <member name="M:Grampus.Tree.Save(System.String[],Grampus.Types.stats[],System.String)">
@@ -713,14 +713,14 @@ Get an encoded move from a SAN Move(move) such as Nf3 for this Board(bd)
  </summary>
  <param name="posns">The array of positions for the tree.</param>
  <param name="sts">The array of stats for the tree.</param>
- <param name="fol">The folder to store the tree.</param>
+ <param name="nm">The full path and file name.</param>
  <returns>Nothing.</returns>
 </member>
 <member name="M:Grampus.Tree.Create(System.String)">
  <summary>
  Creates the tree storage given a folder.
  </summary>
- <param name="fol">The folder to store the tree.</param>
+ <param name="nm">The full path and file name.</param>
  <returns>Nothing.</returns>
 </member>
 <member name="T:Grampus.Tree">

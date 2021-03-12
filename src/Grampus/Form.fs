@@ -224,6 +224,7 @@ module Form =
                 SbUpdate("Updating windows")
                 Recents.addrec gmpfile
                 gmtbs.AddTab(gmpfile, gmp.FiltersCreated.IsNone)
+                pgn.NewGame(gmpfile)
                 refreshWindows()
                 SbUpdate("Ready")
         
