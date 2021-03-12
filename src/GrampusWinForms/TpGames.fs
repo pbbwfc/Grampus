@@ -75,9 +75,8 @@ module TpGamesLib =
             if gnum < hdrs.Length - 1 then 
                 let hdr = { hdrs.[gnum] with Num = gnum + 1 }
                 let nhdr = { hdrs.[gnum + 1] with Num = gnum }
-                hdrs.[gnum - 1] <- hdr
-                hdrs.[gnum + 1] <- { hdr with Num = gnum + 1 }
-                hdrs.[gnum] <- { nhdr with Num = gnum }
+                hdrs.[gnum + 1] <- hdr
+                hdrs.[gnum] <- nhdr
                 Headers.Save(gmpfile, hdrs)
                 let iea = Index.Load(gmpfile)
                 let ie = iea.[gnum]
@@ -166,6 +165,7 @@ module TpGamesLib =
             gms.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells)
             settxt()
             color()
+            if crw <> -1 then gmstp.SelNum(crw)
         
         ///Refresh the list
         member gmstp.SelNum(num : int) =
