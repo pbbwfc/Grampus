@@ -54,42 +54,41 @@ module TpGamesLib =
         
         let domvup (rw : int) =
             let gnum = gms.Rows.[rw].Cells.[0].Value :?> int
-            if gnum>0 then
-                let hdr = {hdrs.[gnum] with Num=gnum-1}
-                let phdr = {hdrs.[gnum-1] with Num=gnum}
-                hdrs.[gnum-1] <- hdr
+            if gnum > 0 then 
+                let hdr = { hdrs.[gnum] with Num = gnum - 1 }
+                let phdr = { hdrs.[gnum - 1] with Num = gnum }
+                hdrs.[gnum - 1] <- hdr
                 hdrs.[gnum] <- phdr
                 Headers.Save(gmpfile, hdrs)
                 let iea = Index.Load(gmpfile)
                 let ie = iea.[gnum]
-                let pie = iea.[gnum-1]
-                iea.[gnum-1] <- ie
+                let pie = iea.[gnum - 1]
+                iea.[gnum - 1] <- ie
                 iea.[gnum] <- pie
                 Index.Save(gmpfile, iea)
-                gmsui.[rw-1] <- hdr
+                gmsui.[rw - 1] <- hdr
                 gmsui.[rw] <- phdr
-                gmstp.SelNum(gnum-1) 
-
+                gmstp.SelNum(gnum - 1)
+        
         let domvdn (rw : int) =
             let gnum = gms.Rows.[rw].Cells.[0].Value :?> int
-            if gnum<hdrs.Length-1 then
-                let hdr = {hdrs.[gnum] with Num=gnum+1}
-                let nhdr = {hdrs.[gnum+1] with Num=gnum}
-                hdrs.[gnum-1] <- hdr
-                hdrs.[gnum+1] <- {hdr with Num=gnum+1}
-                hdrs.[gnum] <- {nhdr with Num=gnum}
+            if gnum < hdrs.Length - 1 then 
+                let hdr = { hdrs.[gnum] with Num = gnum + 1 }
+                let nhdr = { hdrs.[gnum + 1] with Num = gnum }
+                hdrs.[gnum - 1] <- hdr
+                hdrs.[gnum + 1] <- { hdr with Num = gnum + 1 }
+                hdrs.[gnum] <- { nhdr with Num = gnum }
                 Headers.Save(gmpfile, hdrs)
                 let iea = Index.Load(gmpfile)
                 let ie = iea.[gnum]
-                let nie = iea.[gnum+1]
-                iea.[gnum+1] <- ie
+                let nie = iea.[gnum + 1]
+                iea.[gnum + 1] <- ie
                 iea.[gnum] <- nie
                 Index.Save(gmpfile, iea)
-                gmsui.[rw+1] <- hdr
+                gmsui.[rw + 1] <- hdr
                 gmsui.[rw] <- nhdr
-                gmstp.SelNum(gnum+1) 
-
-
+                gmstp.SelNum(gnum + 1)
+        
         let doload (rw : int) =
             gms.CurrentCell <- gms.Rows.[rw].Cells.[0]
             crw <- gms.Rows.[rw].Cells.[0].Value :?> int
@@ -126,7 +125,6 @@ module TpGamesLib =
                 let mvdn = new ToolStripMenuItem(Text = "Move Down")
                 mvdn.Click.Add(fun _ -> domvdn (rw))
                 m.Items.Add(mvdn) |> ignore
-
                 m
             gms.ContextMenuStrip <- ctxmnu
             if e.Button = MouseButtons.Right then gms.ContextMenuStrip.Show()
