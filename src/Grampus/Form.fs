@@ -354,8 +354,7 @@ module Form =
             //clear pgn and set gnum to -1
             let gmpfile = gmtbs.BaseName()
             pgn.NewGame(gmpfile)
-            saveb.Enabled <- true
-            savem.Enabled <- true
+            dosave()
             SbUpdate("Ready")
         
         let docopypgn() = Clipboard.SetText(pgn.GetPgn())
@@ -427,9 +426,7 @@ module Form =
             savem.Enabled <- ischg
         
         let dohdrchg (ischg) =
-            //set save menus
-            saveb.Enabled <- ischg
-            savem.Enabled <- ischg
+            if ischg then dosave()
         
         let domvsel (mvstr) =
             let dofun() =

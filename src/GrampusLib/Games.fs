@@ -223,7 +223,8 @@ module Games =
             msg <- msg + "Number of games permanently deleted is: " 
                    + del.ToString()
             Index.Save(tmp, niea)
-            Headers.Save(tmp, nhdrs)
+            let nnhdrs = nhdrs |> Array.mapi (fun i h -> { h with Num = i })
+            Headers.Save(tmp, nnhdrs)
             reader.Close()
             writer.Close()
             //now overwrite with compacted versions
@@ -278,7 +279,8 @@ module Games =
         reader.Close()
         writer.Close()
         Index.Save(trgnm, niea)
-        Headers.Save(trgnm, nhdrs)
+        let nnhdrs = nhdrs |> Array.mapi (fun i h -> { h with Num = i })
+        Headers.Save(trgnm, nnhdrs)
         let ntrggmp = { trggmp with BaseCreated = Some(DateTime.Now) }
         GrampusFile.Save(trgnm, ntrggmp)
     

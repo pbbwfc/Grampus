@@ -637,7 +637,11 @@ module PnlPgnLib =
         member pgnpnl.SetPgn(pgnstr : string) =
             let gm = Game.FromStr(pgnstr)
             gmchg <- false
-            pgnpnl.SetGame(gm |> Game.Encode)
+            let egm = gm |> Game.Encode
+            let ehdr = egm.Hdr
+            let nhdr = { ehdr with Num = gnum }
+            let ngm = { egm with Hdr = nhdr }
+            pgnpnl.SetGame(ngm)
             gmchg <- true
             gmchg |> gmchngEvt.Trigger
             hdrchg <- true

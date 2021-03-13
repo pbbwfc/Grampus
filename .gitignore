@@ -384,3 +384,5 @@ inno/trees/MasterTree_FILES/tree/MANIFEST-006469
 inno/setup.exe
 docfiles/images/qd7_sq.jpg
 docs/images/qd7_sq.jpg
+rel/net5.0-windows/Grampus.dll
+rel/net5.0-windows/Grampus.exe
